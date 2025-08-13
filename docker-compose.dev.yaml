@@ -1,0 +1,44 @@
+services:
+  next-app:
+    container_name: nextjs-dev
+    build:
+      context: ./next
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - next-build:/app/.next
+    env_file: "./next/.env"
+    restart: unless-stopped
+    depends_on:
+      - strapi-app
+
+  strapi-app:
+    container_name: strapi-dev
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile.dev
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./strapi:/opt/app
+    env_file: "./strapi/.env"
+    environment:
+      - NODE_ENV=development
+      - STRAPI_URL=http://strapi-app:1337
+    restart: unless-stopped
+    depends_on:
+      - db
+  db:
+    image: postgres:17-alpine
+    container_name: strapi-db
+    ports:
+      - "5432:5432"
+    env_file: "./strapi/.env"
+    volumes:
+      - strapi-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  next-build:
+  strapi-db-data:
