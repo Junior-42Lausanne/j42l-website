@@ -16,19 +16,19 @@
   --color-white: #ffffff;
 
   --font-poppins: "Poppins", sans-serif;
-  --text-h1: 4 rem;
+  --text-h1: 4rem;
   --text-h1--font-weight: 700;
-  --text-h2: 3 rem;
+  --text-h2: 3rem;
   --text-h2--font-weight: 700;
-  --text-h3: 2.25 rem;
+  --text-h3: 2.25rem;
   --text-h3--font-weight: 500;
-  --text-h4: 1.5 rem;
+  --text-h4: 1.5rem;
   --text-h4--font-weight: 500;
-  --text-h5: 1 rem;
+  --text-h5: 1rem;
   --text-h5--font-weight: 400;
-  --text-button: 1 rem;
+  --text-button: 1rem;
   --text-button--font-weight: 600;
-  --text-navButton: 1 rem;
+  --text-navButton: 1rem;
   --text-navButton--font-weight: 400;
 }
 
@@ -40,7 +40,7 @@
 }
 
 body {
-  background: var(--color-pale_orange);
+  background: var(--color-white);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
