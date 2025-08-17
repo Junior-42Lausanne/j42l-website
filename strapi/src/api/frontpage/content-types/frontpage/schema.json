@@ -11,7 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "MainTitle": {
+    "title": {
       "type": "string"
     },
     "imageBackground": {
