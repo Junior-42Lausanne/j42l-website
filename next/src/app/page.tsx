@@ -1,6 +1,9 @@
 import WelcomeSection from "./components/welcomeSection"
 import ServiceSection from "./components/serviceSection"
 import HeroSection, {HeroProps} from "./components/heroSection"
+import PortfolioSection from "./components/portfolioSection"
+import FooterCTA, {footerCtaProps} from "./components/footerCTA"
+import Footer from "./components/footer"
 
 export default function Home() {
   return (
@@ -14,6 +17,12 @@ export default function Home() {
                     haveSubtile />
       <WelcomeSection />
       <ServiceSection />
+      <PortfolioSection />
+      <div className="h-[700px] bg-black"></div>
+      <FooterCTA text="Réalisez votre projet de rêve avec nous!"
+                buttonText="Contactez-Nous"
+                buttonPath="https://www.google.com" />
+      <Footer />
     </div>
   )
 }
