@@ -1,4 +1,4 @@
-import CustomButton, {buttonProps} from "./customButton"
+import CustomButton from "./customButton"
 
 export interface serviceTileProps {
 	type: string;
@@ -51,7 +51,7 @@ export default function serviceTile(props : serviceTileProps) {
 			<h2 className="text-h2">{props.type}</h2>
 			<div className="text-h5 h-[150px]">{text}</div>
 			<div className="flex flex-col items-center">
-				<CustomButton text="Découvrir" path={target} color="white" fullWitdh />
+				<CustomButton text="Découvrir" path={target} color="white" fullWitdh="true" />
 			</div>
 		</div>
 	);

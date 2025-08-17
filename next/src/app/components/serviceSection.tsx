@@ -1,5 +1,5 @@
-import ServiceTile, {serviceTileProps} from "./serviceTile"
-import CustomTitle, {titleProps} from "./customTitle"
+import ServiceTile from "./serviceTile"
+import CustomTitle from "./customTitle"
 
 export default function serviceSection() {
 	return (

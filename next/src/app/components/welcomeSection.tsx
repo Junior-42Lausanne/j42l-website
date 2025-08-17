@@ -1,10 +1,11 @@
-import CustomButton, {buttonProps} from "./customButton"
+import CustomButton from "./customButton"
+import Image from 'next/image'
 
 export default function welcomeSection() {
   return(
 	<div className="flex pt-[100px] pb-[100px] gap-[150px] items-center justify-center">
 		<div className="w-1/5">
-			<img src="/graphic/logo/svg/j42_j_orange_svg.svg" alt="j42 logo"/>
+			<Image src="/graphic/logo/svg/j42_j_orange_svg.svg" alt="j42 logo" width={500} height={1000}/>
 		</div>
 		<div className="flex flex-col items-center w-2/5">
 			<div className="font-poppins text-black text-h2 text-center">
@@ -17,7 +18,7 @@ export default function welcomeSection() {
 				<p>En étroite collaboration avec 42 Lausanne, nous donnons vie à des projets innovants, reliant éducation et industrie au sein de l’écosystème 42.</p>
 			</div>
 			<div className="pt-[60px]">
-				<CustomButton text="Notre Histoire" path="https://www.google.com" color="orange" />
+				<CustomButton text="Notre Histoire" path="https://www.google.com" color="orange" fullWitdh="false"/>
 			</div>
 		</div>	
 	</div>

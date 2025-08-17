@@ -2,7 +2,7 @@ export interface buttonProps {
 	text: string;
 	path: string;
 	color: string;
-	fullWitdh: boolean;
+	fullWitdh: string;
 }
 
 export default function customButton(content: buttonProps) {
@@ -10,7 +10,7 @@ export default function customButton(content: buttonProps) {
 
 	if (content.color !== "white" && content.color !== "orange")
 		return null;
-	if (content.fullWitdh === true)
+	if (content.fullWitdh === "true")
 		widthClass = "w-full";
 	else
 		widthClass = "inline-block";

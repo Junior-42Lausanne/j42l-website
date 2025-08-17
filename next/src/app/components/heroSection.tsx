@@ -1,4 +1,5 @@
-import CustomButton, {buttonProps} from "./customButton";
+import CustomButton from "./customButton";
+import Image from 'next/image'
 
 export interface HeroProps {
 	background: string;
@@ -21,17 +22,17 @@ export default function heroSection(content: HeroProps) {
 						pl-[150px] pr-[150px] pt-[100px] pb-[60px] gap-[80px] h-screen"
     					style={{backgroundImage:`url("${content.background}")`}}>
 			<div className="flex flex-col items-start">
-				<img className="w-[200px]" src={trianglePath} />
+				<Image src={trianglePath} alt="triangle" width={200} height={200}/>
 			</div>
 			<div className="flex flex-col font-poppins text-white text-center justify-center gap-[80px]">
 				<div className="place-items-center">
 					<h1 className="text-h1 w-4/5">{content.title}</h1>
 					<div className="text-h5 pt-[20px] w-1/2">{content.subTitle}</div>
 				</div>
-				<CustomButton text={content.buttonText} path={content.buttonPath} color="white" />
+				<CustomButton text={content.buttonText} path={content.buttonPath} color="white" fullWitdh="false"/>
 			</div>
 			<div className="flex flex-col justify-end items-end">
-				<img className="w-[200px] rotate-180" src={trianglePath} />
+				<Image className="rotate-180" src={trianglePath} alt="triangle" width={200} height={200}/>
 			</div>
 		</div>
 	)
