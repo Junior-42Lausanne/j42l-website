@@ -1,4 +1,5 @@
-import FooterNavButton, {FooterNavButtonProps} from "./footerNavButton";
+import FooterNavButton from "./footerNavButton";
+import Image from 'next/image'
 
 export default function footer() {
 	const currentYear = new Date().getFullYear();
@@ -49,7 +50,7 @@ export default function footer() {
 				</div>
 				<div>
 					<div className="flex flex-row justify-end">
-						<img className="w-[550px]" src="/graphic/elements/svg/Junior Orange.svg" />
+						<Image className="w-[550px]" src="/graphic/elements/svg/Junior Orange.svg" alt="junior alt logo" width={550} height={1000}/>
 					</div>
 				</div>
 			</div>

@@ -1,12 +1,14 @@
-import CustomTitle, {titleProps} from "./customTitle"
+import CustomTitle from "./customTitle"
+import Image from 'next/image'
+
 
 export default function portfolioSection() {
-	let list = (
+	const list = (
 		<ul className="flex gap-[50px] place-content-center">
-			<li className="w-[240px] place-content-center"><img src="/partners/open urbanism foundation.png" /></li>
-			<li className="w-[240px] place-content-center"><img src="/partners/alpes vivantes grey.png" /></li>
-			<li className="w-[240px] place-content-center"><img src="/partners/red line grey.png" /></li>
-			<li className="w-[240px] place-content-center"><img src="/partners/wechip grey.png" /></li>
+			<li className="place-content-center"><Image src="/partners/open urbanism foundation.png" alt="partner logo" width={240} height={100}/></li>
+			<li className="place-content-center"><Image src="/partners/alpes vivantes grey.png" alt="partner logo" width={240} height={100}/></li>
+			<li className="place-content-center"><Image src="/partners/red line grey.png" alt="partner logo" width={240} height={100}/></li>
+			<li className="place-content-center"><Image src="/partners/wechip grey.png" alt="partner logo" width={240} height={100}/></li>
 		</ul>
 	)
 	return (

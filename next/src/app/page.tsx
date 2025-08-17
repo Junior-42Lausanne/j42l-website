@@ -1,8 +1,8 @@
 import WelcomeSection from "./components/welcomeSection"
 import ServiceSection from "./components/serviceSection"
-import HeroSection, {HeroProps} from "./components/heroSection"
+import HeroSection from "./components/heroSection"
 import PortfolioSection from "./components/portfolioSection"
-import FooterCTA, {footerCtaProps} from "./components/footerCTA"
+import FooterCTA from "./components/footerCTA"
 import Footer from "./components/footer"
 
 export default function Home() {
