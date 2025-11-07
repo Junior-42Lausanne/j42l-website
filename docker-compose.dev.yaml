@@ -25,7 +25,7 @@ services:
     env_file: "./strapi/.env"
     environment:
       - NODE_ENV=development
-      - STRAPI_URL=http://strapi-app:1337
+      - STRAPI_URL=http://localhost:1337
     restart: unless-stopped
     depends_on:
       - db
