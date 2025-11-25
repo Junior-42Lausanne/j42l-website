@@ -1,4 +1,4 @@
-import CustomButton from "./customButton"
+import CustomButton from "./button"
 import {Color} from "./type"
 import Image from 'next/image'
 

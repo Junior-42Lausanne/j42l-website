@@ -1,5 +1,5 @@
-import CustomButton from "./customButton"
-import {Color} from "./type"
+import CustomButton from "../button"
+import {Color} from "../type"
 import Image from 'next/image'
 
 export default function WelcomeSection() {

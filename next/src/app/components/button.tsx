@@ -18,7 +18,7 @@ export default function customButton({
 	if (fullWidth === true)
 		widthClass = "w-full";
 	else
-		widthClass = "inline-block";
+		widthClass = "inline-block w-auto";
 	return (
 		<a
 		href={path}

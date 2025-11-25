@@ -54,7 +54,7 @@ export default function Footer() {
 					</div>
 				</div>
 			</div>
-			<div className="border-[1px] border-white"></div>
+			<div className="border border-white"></div>
 			<div className="flex flex-row justify-between pr-[200px] pl-[200px] pt-[5px]">
 				<div>® {currentYear} JUNIOR ENTREPRISE 42 LAUSANNE. Tous droits réservés.</div>
 				<div>Design: NguyenNGUYEN.ch</div>

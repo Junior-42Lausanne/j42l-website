@@ -1,5 +1,5 @@
-import CustomButton from "./customButton";
-import {Color} from "./type";
+import CustomButton from "../button";
+import {Color} from "../type";
 import Image from 'next/image';
 
 export interface HeroProps {
@@ -19,8 +19,9 @@ export default function HeroSection({
 	buttonText,
 	buttonPath,
 	triangleColor,
-	haveSubtile = false
+	haveSubtile
 	}: HeroProps) {
+	haveSubtile = false;
 	let trianglePath: string;
 	if (triangleColor === Color.orange)
 		trianglePath = "/graphic/elements/svg/triangle orange.svg";

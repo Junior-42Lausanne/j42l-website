@@ -1,5 +1,5 @@
 import ServiceTile from "./serviceTile"
-import CustomTitle from "./customTitle"
+import CustomTitle from "../sectionTitle"
 
 export default function ServiceSection() {
 	return (

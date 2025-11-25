@@ -1,4 +1,4 @@
-import CustomTitle from "./customTitle"
+import CustomTitle from "../sectionTitle"
 import Image from 'next/image'
 
 
