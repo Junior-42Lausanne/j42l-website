@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_layout_text_sections",
+  "info": {
+    "displayName": "Text section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "blocks"
+    },
+    "link": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "backgroundColor": {
+      "type": "string",
+      "regex": "[0-f]{6}"
+    }
+  },
+  "config": {}
+}
