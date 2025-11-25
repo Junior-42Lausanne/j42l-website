@@ -1,15 +1,18 @@
 import CustomButton from "./customButton"
+import {Color} from "./type"
 
 export interface serviceTileProps {
 	type: string;
 }
 
-export default function serviceTile(props : serviceTileProps) {
+export default function ServiceTile({
+	type
+	} : serviceTileProps) {
 	let text;
-	let image;
-	let target;
+	let image: string;
+	let target: string;
 
-	if (props.type === "Web") {
+	if (type === "Web") {
 		text = (
 		<ul className="list-disc pl-[20px]">
 			<li>Design graphique, UX/UI</li>
@@ -20,7 +23,7 @@ export default function serviceTile(props : serviceTileProps) {
 		image = "/stock photo/home web service dark.jpg";
 		target = "https://www.google.com";
 	}
-	else if (props.type === "Prototype") {
+	else if (type === "Prototype") {
 		text = (
 			<ul className="list-disc pl-[20px]">
 				<li>Accompagnement start-up</li>
@@ -31,7 +34,7 @@ export default function serviceTile(props : serviceTileProps) {
 		)
 		image = "/stock photo/home prototype service dark.jpg";
 		target = "https://www.bing.com";
-	} else if (props.type === "Automation") {
+	} else if (type === "Automation") {
 		text = (
 			<ul className="list-disc pl-[20px]">
 				<li>Cold email</li>
@@ -48,10 +51,10 @@ export default function serviceTile(props : serviceTileProps) {
 						text-white bg-cover bg-center 
 						pl-[20px] pr-[20px] pt-[30px] pb-[30px] gap-[20px]"
     	style={{backgroundImage:`url("${image}")`}}>
-			<h2 className="text-h2">{props.type}</h2>
+			<h2 className="text-h2">{type}</h2>
 			<div className="text-h5 h-[150px]">{text}</div>
 			<div className="flex flex-col items-center">
-				<CustomButton text="Découvrir" path={target} color="white" fullWitdh="true" />
+				<CustomButton text="Découvrir" path={target} color={Color.white} fullWidth={true} />
 			</div>
 		</div>
 	);

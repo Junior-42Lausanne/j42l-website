@@ -1,3 +1,4 @@
+import {Color} from "./components/type"
 import WelcomeSection from "./components/welcomeSection"
 import ServiceSection from "./components/serviceSection"
 import HeroSection from "./components/heroSection"
@@ -13,7 +14,7 @@ export default function Home() {
                     subTitle="Propulsant l'innovation en tant que plus grande Junior Entreprise du réseau 42 – où de jeunes consultants IT donnent vie à vos projets digitaux."
                     buttonText="Nos Services"
                     buttonPath="https://www.google.com" 
-                    triangleColor="orange"
+                    triangleColor={Color.orange}
                     haveSubtile />
       <WelcomeSection />
       <ServiceSection />

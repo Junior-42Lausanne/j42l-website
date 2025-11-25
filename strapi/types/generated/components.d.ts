@@ -35,6 +35,15 @@ export interface ComposantsSubMenu extends Struct.ComponentSchema {
   };
 }
 
+export interface FrontpageHero extends Struct.ComponentSchema {
+  collectionName: 'components_frontpage_heroes';
+  info: {
+    displayName: 'hero';
+    icon: 'globe';
+  };
+  attributes: {};
+}
+
 export interface LayoutCardSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_card_sections';
   info: {
@@ -79,6 +88,7 @@ declare module '@strapi/strapi' {
       'composants.card': ComposantsCard;
       'composants.lien': ComposantsLien;
       'composants.sub-menu': ComposantsSubMenu;
+      'frontpage.hero': FrontpageHero;
       'layout.card-section': LayoutCardSection;
       'layout.hero': LayoutHero;
       'layout.text-section': LayoutTextSection;

@@ -1,7 +1,7 @@
 import FooterNavButton from "./footerNavButton";
 import Image from 'next/image'
 
-export default function footer() {
+export default function Footer() {
 	const currentYear = new Date().getFullYear();
 	const footerNav1 = (
 			<ul className="flex flex-col gap-[20px]">

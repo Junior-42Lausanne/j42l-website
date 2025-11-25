@@ -3,8 +3,11 @@ export interface FooterNavButtonProps{
 	buttonPath: string;
 }
 
-export default function footerNavButton(content: FooterNavButtonProps) {
+export default function FooterNavButton({
+	text, 
+	buttonPath
+	}: FooterNavButtonProps) {
 	return (
-		<a className="font-poppins text-h5 text-white text-center" href={content.buttonPath}>{content.text}</a>
+		<a className="font-poppins text-h5 text-white text-center" href={buttonPath}>{text}</a>
 	)
 }

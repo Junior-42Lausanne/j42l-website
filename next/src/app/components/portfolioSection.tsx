@@ -2,7 +2,7 @@ import CustomTitle from "./customTitle"
 import Image from 'next/image'
 
 
-export default function portfolioSection() {
+export default function PortfolioSection() {
 	const list = (
 		<ul className="flex gap-[50px] place-content-center">
 			<li className="place-content-center"><Image src="/partners/open urbanism foundation.png" alt="partner logo" width={240} height={100}/></li>

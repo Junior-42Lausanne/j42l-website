@@ -1,7 +1,7 @@
 import ServiceTile from "./serviceTile"
 import CustomTitle from "./customTitle"
 
-export default function serviceSection() {
+export default function ServiceSection() {
 	return (
 		<div className="flex flex-col pt-[100px] pb-[100px] gap-[60px]">
 			<CustomTitle text="Nos Service" />
