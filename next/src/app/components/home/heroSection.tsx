@@ -1,4 +1,4 @@
-import CustomButton from "../button";
+import Button, { buttonProps } from "../button";
 import {Color} from "../type";
 import Image from 'next/image';
 
@@ -6,20 +6,18 @@ export interface HeroProps {
 	background: string;
 	title: string;
 	subTitle: string;
-	buttonText: string;
-	buttonPath: string;
-	triangleColor: Color;
+	triangleColor?: Color;
 	haveSubtile?: boolean;
+	button: buttonProps;
 }
 
 export default function HeroSection({
 	background,
 	title,
 	subTitle,
-	buttonText,
-	buttonPath,
-	triangleColor,
-	haveSubtile = false
+	triangleColor = 'white',
+	haveSubtile = false,
+	button
 	}: HeroProps) {
 	let trianglePath: string;
 	if (triangleColor === 'orange')
@@ -36,9 +34,10 @@ export default function HeroSection({
 			<div className="flex flex-col font-poppins text-white text-center justify-center gap-[80px]">
 				<div className="place-items-center">
 					<h1 className="text-h1 w-4/5">{title}</h1>
-					<div className="text-h5 pt-[20px] w-1/2">{subTitle}</div>
+					{haveSubtile && (
+					<div className="text-h5 pt-[20px] w-1/2">{subTitle}</div>)}
 				</div>
-				<CustomButton text={buttonText} path={buttonPath} color='white'/>
+				<Button {...button}/>
 			</div>
 			<div className="flex flex-col justify-end items-end">
 				<Image className="rotate-180" src={trianglePath} alt="triangle" width={200} height={200}/>

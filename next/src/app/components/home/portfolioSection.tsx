@@ -1,4 +1,4 @@
-import CustomTitle from "../sectionTitle"
+import SectionTitle from "../sectionTitle"
 import Image from 'next/image'
 
 
@@ -13,7 +13,7 @@ export default function PortfolioSection() {
 	)
 	return (
 		<div className="pt-[150px] pb-[150px]">
-			<CustomTitle text="Portfolio" />
+			<SectionTitle text="Portfolio" />
 			<div className="pt-[50px]">
 				{list}
 			</div>

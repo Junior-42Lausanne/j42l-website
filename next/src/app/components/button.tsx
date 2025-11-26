@@ -7,7 +7,7 @@ export interface buttonProps {
 	fullWidth?: boolean;
 }
 
-export default function customButton({
+export default function Button({
 	text,
 	path,
 	color,

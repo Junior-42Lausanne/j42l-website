@@ -1,7 +1,7 @@
-import CustomButton from "../button"
+import Button from "../button"
 import Image from 'next/image'
 
-export default function WelcomeSection() {
+export default function TextSection() {
   return(
 	<div className="flex pt-[100px] pb-[100px] gap-[150px] items-center justify-center">
 		<div className="w-1/5">
@@ -18,7 +18,7 @@ export default function WelcomeSection() {
 				<p>En étroite collaboration avec 42 Lausanne, nous donnons vie à des projets innovants, reliant éducation et industrie au sein de l’écosystème 42.</p>
 			</div>
 			<div className="pt-[60px]">
-				<CustomButton text="Notre Histoire" path="https://www.google.com" color='orange'/>
+				<Button text="Notre Histoire" path="https://www.google.com" color='orange'/>
 			</div>
 		</div>	
 	</div>
