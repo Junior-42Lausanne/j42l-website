@@ -1,4 +1,1 @@
-export enum Color {
-	orange = 'ORANGE',
-	white = 'WHITE'
-}
+export type Color = 'orange' | 'white';

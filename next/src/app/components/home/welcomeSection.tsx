@@ -1,5 +1,4 @@
 import CustomButton from "../button"
-import {Color} from "../type"
 import Image from 'next/image'
 
 export default function WelcomeSection() {
@@ -19,7 +18,7 @@ export default function WelcomeSection() {
 				<p>En étroite collaboration avec 42 Lausanne, nous donnons vie à des projets innovants, reliant éducation et industrie au sein de l’écosystème 42.</p>
 			</div>
 			<div className="pt-[60px]">
-				<CustomButton text="Notre Histoire" path="https://www.google.com" color={Color.orange}/>
+				<CustomButton text="Notre Histoire" path="https://www.google.com" color='orange'/>
 			</div>
 		</div>	
 	</div>

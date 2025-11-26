@@ -1,4 +1,3 @@
-import {Color} from "./components/type"
 import WelcomeSection from "./components/home/welcomeSection"
 import ServiceSection from "./components//home/serviceSection"
 import HeroSection from "./components/home/heroSection"
@@ -31,7 +30,7 @@ export default async function Home() {
                     subTitle={subtitle}
                     buttonText="Nos Services"
                     buttonPath="https://www.google.com" 
-                    triangleColor={Color.orange}
+                    triangleColor='orange'
                     haveSubtile />
       <WelcomeSection />
       <ServiceSection />

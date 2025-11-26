@@ -1,5 +1,4 @@
 import CustomButton from "./button"
-import {Color} from "./type"
 import Image from 'next/image'
 
 export interface footerCtaProps {
@@ -20,7 +19,7 @@ export default function FooterCTA({
 			</div>
 			<div className="flex flex-col items-center justify-center gap-[80px]">
 				<h1 className="font-poppins text-center text-black text-h2 place-items-center">{text}</h1>
-				<CustomButton text={buttonText} path={buttonPath} color={Color.orange}/>
+				<CustomButton text={buttonText} path={buttonPath} color='orange'/>
 			</div>
 			<div className="flex flex-col justify-end items-end">
 				<Image className="rotate-180" src="/graphic/elements/svg/triangle orange.svg" alt="triangle" width={100} height={100}/>

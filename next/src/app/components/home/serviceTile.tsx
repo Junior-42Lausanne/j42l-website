@@ -1,5 +1,4 @@
 import CustomButton from "../button"
-import {Color} from "../type"
 
 export interface serviceTileProps {
 	type: string;
@@ -54,7 +53,7 @@ export default function ServiceTile({
 			<h2 className="text-h2">{type}</h2>
 			<div className="text-h5 h-[150px]">{text}</div>
 			<div className="flex flex-col items-center">
-				<CustomButton text="Découvrir" path={target} color={Color.white} fullWidth={true} />
+				<CustomButton text="Découvrir" path={target} color='white' fullWidth={true} />
 			</div>
 		</div>
 	);

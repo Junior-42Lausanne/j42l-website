@@ -22,7 +22,7 @@ export default function HeroSection({
 	haveSubtile = false
 	}: HeroProps) {
 	let trianglePath: string;
-	if (triangleColor === Color.orange)
+	if (triangleColor === 'orange')
 		trianglePath = "/graphic/elements/svg/triangle orange.svg";
 	else
 		trianglePath = "/graphic/elements/svg/triangle white.svg";
@@ -38,7 +38,7 @@ export default function HeroSection({
 					<h1 className="text-h1 w-4/5">{title}</h1>
 					<div className="text-h5 pt-[20px] w-1/2">{subTitle}</div>
 				</div>
-				<CustomButton text={buttonText} path={buttonPath} color={Color.white}/>
+				<CustomButton text={buttonText} path={buttonPath} color='white'/>
 			</div>
 			<div className="flex flex-col justify-end items-end">
 				<Image className="rotate-180" src={trianglePath} alt="triangle" width={200} height={200}/>
