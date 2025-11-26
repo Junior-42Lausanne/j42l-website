@@ -19,9 +19,8 @@ export default function HeroSection({
 	buttonText,
 	buttonPath,
 	triangleColor,
-	haveSubtile
+	haveSubtile = false
 	}: HeroProps) {
-	haveSubtile = false;
 	let trianglePath: string;
 	if (triangleColor === Color.orange)
 		trianglePath = "/graphic/elements/svg/triangle orange.svg";

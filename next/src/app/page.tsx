@@ -5,28 +5,30 @@ import HeroSection from "./components/home/heroSection"
 import PortfolioSection from "./components/home/portfolioSection"
 import FooterCTA from "./components/footerCTA"
 import Footer from "./components/footer"
-
-// async function getStrapiData(path: string) {
-//   const baseUrl = "http://localhost:1337";
-//   try {
-//     const response: Response = await fetch(baseUrl + path);
-//     const data = await response.json();
-//     return data
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+import getStrapiData from "./utils"
 
 export default async function Home() {
-  // const strapiHero = await getStrapiData("/api/accueil");
-  // const { heroTitle, text, link, backgroundImage} = strapiHero.data.attributes;
+  let heroTitle = "";
+  let subtitle = "";
+
+  try {
+    const strapiHero = await getStrapiData("/api/accueil?populate=*");
+    const heroArray = strapiHero.data.hero;
+
+    if (heroArray && heroArray.length > 0) {
+      heroTitle = heroArray[0].title;
+      subtitle = heroArray[0].text;
+    }
+  } catch (err) {
+    console.error("Strapi unreachable: " + err);
+    heroTitle = "Titre indisponible car fetch fail";
+  }
 
   return (
     <div>
       <HeroSection background="/stock photo/home background.jpg" 
-                    // title={heroTitle}
-                    title="TEST TEST"
-                    subTitle="Propulsant l'innovation en tant que plus grande Junior Entreprise du réseau 42 – où de jeunes consultants IT donnent vie à vos projets digitaux."
+                    title={heroTitle}
+                    subTitle={subtitle}
                     buttonText="Nos Services"
                     buttonPath="https://www.google.com" 
                     triangleColor={Color.orange}
