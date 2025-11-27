@@ -5,5 +5,13 @@ export type Hero = {
 	heroSubHeading: string,
 	heroButtonText: string,
 	heroButtonPath: string,
-	heroBackgroundImage: string
+	heroBackground: StrapiImageType
+}
+
+export type StrapiImageType = {
+	src: string | null;
+	alt: string;
+	height: number;
+	width: number;
+	className?: string;
 }

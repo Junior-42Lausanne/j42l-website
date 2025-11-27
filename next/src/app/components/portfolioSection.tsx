@@ -1,4 +1,4 @@
-import SectionTitle from "./sectionTitle"
+import SectionTitle from "./sub_components/sectionTitle"
 import Image from 'next/image'
 
 

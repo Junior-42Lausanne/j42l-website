@@ -4,25 +4,35 @@ import HeroSection from "./components/heroSection"
 import PortfolioSection from "./components/portfolioSection"
 import FooterCTA from "./components/footerCTA"
 import Footer from "./components/footer"
-import {Hero} from "./components/type"
 import getHomeHero from "./home/homeHero"
-import getStrapiData from "./utils"
+import {getStrapiData} from "./utils"
+import qs from "qs"
 
-export async function Home() {
-  let strapiData: any;
-  let hero: Hero;
+const homePageQuery = qs.stringify({
+	populate: {
+		hero: {
+      populate: {
+        backgroundImage: {populate: "*"},
+        button: true
+      }
+		}
+	}
+})
+
+export default async function Home() {
+  let strapiData: unknown;
 
   try {
-    strapiData = await getStrapiData("/api/accueil?populate=*");
+    strapiData = await getStrapiData("/api/accueil", homePageQuery);
   } catch (err) {
-    console.error("Strapi unreachable during build, using default value");
+    console.error(`Strapi unreachable during build, using default value. Error: ${err}`);
   }
 
-  hero = getHomeHero(strapiData);
+  const hero = getHomeHero(strapiData);
 
   return (
     <div>
-      <HeroSection background={hero.heroBackgroundImage}
+      <HeroSection background={hero.heroBackground}
                     title={hero.heroHeading}
                     subTitle={hero.heroSubHeading}
                     triangleColor='orange'

@@ -1,6 +1,6 @@
-import {Color} from "./type";
+import {Color} from "../type";
 
-export interface buttonProps {
+export interface buttonType {
 	text: string;
 	path: string;
 	color: Color;
@@ -12,7 +12,7 @@ export default function Button({
 	path,
 	color,
 	fullWidth = false
-	}: buttonProps) {
+	}: buttonType) {
 	let widthClass: string;
 
 	if (fullWidth === true)

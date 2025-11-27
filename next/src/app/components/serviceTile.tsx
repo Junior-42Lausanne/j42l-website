@@ -1,4 +1,4 @@
-import Button from "./button"
+import Button from "./sub_components/button"
 
 export interface serviceTileProps {
 	type: string;

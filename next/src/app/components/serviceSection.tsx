@@ -1,5 +1,5 @@
 import ServiceTile from "./serviceTile"
-import SectionTitle from "./sectionTitle"
+import SectionTitle from "./sub_components/sectionTitle"
 
 export default function ServiceSection() {
 	return (

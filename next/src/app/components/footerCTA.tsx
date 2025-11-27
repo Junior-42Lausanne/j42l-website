@@ -1,9 +1,9 @@
-import Button, {buttonProps} from "./button"
+import Button, {buttonType} from "./sub_components/button"
 import Image from 'next/image'
 
 export interface footerCtaProps {
 	text: string;
-	button: buttonProps;
+	button: buttonType;
 }
 
 export default function FooterCTA({
