@@ -1,11 +1,11 @@
 {
   "collectionName": "components_composants_liens",
   "info": {
-    "displayName": "Link"
+    "displayName": "Button"
   },
   "options": {},
   "attributes": {
-    "text": {
+    "buttonText": {
       "type": "string"
     },
     "url": {

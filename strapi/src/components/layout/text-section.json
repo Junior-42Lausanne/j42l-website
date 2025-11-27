@@ -11,10 +11,10 @@
     "text": {
       "type": "blocks"
     },
-    "link": {
+    "button": {
       "type": "component",
       "component": "composants.lien",
-      "repeatable": true
+      "repeatable": false
     },
     "image": {
       "type": "media",

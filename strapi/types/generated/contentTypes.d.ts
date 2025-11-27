@@ -376,7 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
   collectionName: 'accueils';
   info: {
-    displayName: 'Accueil';
+    displayName: 'Home';
     pluralName: 'accueils';
     singularName: 'accueil';
   };

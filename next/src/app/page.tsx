@@ -1,38 +1,35 @@
-import TextSection from "./components/home/textSection"
-import ServiceSection from "./components//home/serviceSection"
-import HeroSection from "./components/home/heroSection"
-import PortfolioSection from "./components/home/portfolioSection"
+import TextSection from "./components/textSection"
+import ServiceSection from "./components/serviceSection"
+import HeroSection from "./components/heroSection"
+import PortfolioSection from "./components/portfolioSection"
 import FooterCTA from "./components/footerCTA"
 import Footer from "./components/footer"
+import {Hero} from "./components/type"
+import getHomeHero from "./home/homeHero"
 import getStrapiData from "./utils"
 
-export default async function Home() {
-  let heroTitle = "";
-  let subtitle = "";
+export async function Home() {
+  let strapiData: any;
+  let hero: Hero;
 
   try {
-    const strapiHero = await getStrapiData("/api/accueil?populate=*");
-    const heroArray = strapiHero.data.hero;
-
-    if (heroArray && heroArray.length > 0) {
-      heroTitle = heroArray[0].title;
-      subtitle = heroArray[0].text;
-    }
+    strapiData = await getStrapiData("/api/accueil?populate=*");
   } catch (err) {
-    console.error("Strapi unreachable: " + err);
-    heroTitle = "Title not available during setup";
+    console.error("Strapi unreachable during build, using default value");
   }
+
+  hero = getHomeHero(strapiData);
 
   return (
     <div>
-      <HeroSection background="/stock photo/home background.jpg" 
-                    title={heroTitle}
-                    subTitle={subtitle}
+      <HeroSection background={hero.heroBackgroundImage}
+                    title={hero.heroHeading}
+                    subTitle={hero.heroSubHeading}
                     triangleColor='orange'
                     haveSubtile={true}
                     button={{
-                      text: "Nos Services",
-                      path: "https://www.google.com",
+                      text: hero.heroButtonText,
+                      path: hero.heroButtonPath,
                       color:'white'
                     }} />
       <TextSection />

@@ -16,10 +16,10 @@ export interface ComposantsCard extends Struct.ComponentSchema {
 export interface ComposantsLien extends Struct.ComponentSchema {
   collectionName: 'components_composants_liens';
   info: {
-    displayName: 'Link';
+    displayName: 'Button';
   };
   attributes: {
-    text: Schema.Attribute.String;
+    buttonText: Schema.Attribute.String;
     url: Schema.Attribute.String;
   };
 }
@@ -33,15 +33,6 @@ export interface ComposantsSubMenu extends Struct.ComponentSchema {
     links: Schema.Attribute.Component<'composants.lien', true>;
     title: Schema.Attribute.String;
   };
-}
-
-export interface FrontpageHero extends Struct.ComponentSchema {
-  collectionName: 'components_frontpage_heroes';
-  info: {
-    displayName: 'hero';
-    icon: 'globe';
-  };
-  attributes: {};
 }
 
 export interface LayoutCardSection extends Struct.ComponentSchema {
@@ -62,9 +53,9 @@ export interface LayoutHero extends Struct.ComponentSchema {
   };
   attributes: {
     backgroundImage: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.Component<'composants.lien', false>;
-    text: Schema.Attribute.Text;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    button: Schema.Attribute.Component<'composants.lien', false>;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    subheading: Schema.Attribute.Text;
   };
 }
 
@@ -75,8 +66,8 @@ export interface LayoutTextSection extends Struct.ComponentSchema {
   };
   attributes: {
     backgroundColor: Schema.Attribute.String;
+    button: Schema.Attribute.Component<'composants.lien', false>;
     image: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.Component<'composants.lien', true>;
     text: Schema.Attribute.Blocks;
     title: Schema.Attribute.String;
   };
@@ -88,7 +79,6 @@ declare module '@strapi/strapi' {
       'composants.card': ComposantsCard;
       'composants.lien': ComposantsLien;
       'composants.sub-menu': ComposantsSubMenu;
-      'frontpage.hero': FrontpageHero;
       'layout.card-section': LayoutCardSection;
       'layout.hero': LayoutHero;
       'layout.text-section': LayoutTextSection;

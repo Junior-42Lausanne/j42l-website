@@ -5,14 +5,14 @@
   },
   "options": {},
   "attributes": {
-    "title": {
+    "heading": {
       "type": "string",
       "required": true
     },
-    "text": {
+    "subheading": {
       "type": "text"
     },
-    "link": {
+    "button": {
       "type": "component",
       "component": "composants.lien",
       "repeatable": false
