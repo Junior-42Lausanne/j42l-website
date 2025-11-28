@@ -1,6 +1,5 @@
 import Button, { buttonType } from "./sub_components/button";
 import {Color, StrapiImageType} from "./type";
-import Image from 'next/image';
 import {StrapiImage} from "./sub_components/strapiImage"
 
 export interface HeroProps {
@@ -20,11 +19,6 @@ export default function HeroSection({
 	haveSubtile = false,
 	button
 	}: HeroProps) {
-	let trianglePath: string;
-	if (triangleColor === 'orange')
-		trianglePath = "/graphic/elements/svg/triangle orange.svg";
-	else
-		trianglePath = "/graphic/elements/svg/triangle white.svg";
 	return (
 		<div className="relative h-screen">
 			<StrapiImage
@@ -34,20 +28,20 @@ export default function HeroSection({
 					src={background.src}
 					width={1920}
 			/>
-			<div className="flex flex-row bg-cover bg-center pl-[150px] pr-[150px] pt-[100px] pb-[60px] gap-[80px] h-full">
-				<div className="flex flex-col items-start">
-					<Image src={trianglePath} alt="triangle" width={200} height={200}/>
+			<div className="flex flex-row bg-cover bg-center pl-[100px] pr-[100px] pt-[100px] pb-[60px] gap-[80px] h-full">
+				<div className="flex flex-col justify-start items-start">
+					<div className={`w-0 h-0 border-t-[6rem] border-r-[6rem] border-${triangleColor} border-r-transparent`}></div>
 				</div>
-				<div className="flex flex-col font-poppins text-white text-center justify-center gap-[80px]">
-					<div className="place-items-center">
-						<h1 className="text-h1 w-4/5">{title}</h1>
+				<div className="flex flex-col font-poppins text-white text-center justify-center items-center gap-[80px]">
+					<div className="flex flex-col items-center">
+						<h1 className="text-h1 leading-[1.1]">{title}</h1>
 						{haveSubtile && (
-						<div className="text-h5 pt-[20px] w-1/2">{subTitle}</div>)}
+						<div className="text-h5 pt-[40px] w-4/5">{subTitle}</div>)}
 					</div>
 					<Button {...button}/>
 				</div>
 				<div className="flex flex-col justify-end items-end">
-					<Image className="rotate-180" src={trianglePath} alt="triangle" width={200} height={200}/>
+					<div className={`w-0 h-0 border-l-[6rem] border-b-[6rem] border-${triangleColor} border-l-transparent`}></div>
 				</div>
 			</div>
 		</div>

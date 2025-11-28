@@ -13,7 +13,7 @@ export async function getStrapiData<T>(path: string, query: string): Promise<T |
 }
 
 export function getStrapiURL(): string {
-	return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
+	return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://strapi-app:1337";
 }
 
 export function getStrapiMedia(url: string | null): string | null {

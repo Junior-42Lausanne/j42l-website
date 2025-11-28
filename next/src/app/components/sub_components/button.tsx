@@ -4,7 +4,7 @@ export interface buttonType {
 	text: string;
 	path: string;
 	color: Color;
-	fullWidth?: boolean;
+	fullWidth?: boolean
 }
 
 export default function Button({
@@ -13,17 +13,11 @@ export default function Button({
 	color,
 	fullWidth = false
 	}: buttonType) {
-	let widthClass: string;
-
-	if (fullWidth === true)
-		widthClass = "w-full";
-	else
-		widthClass = "inline-block w-auto";
 	return (
 		<a
 		href={path}
 		className={`font-poppins text-button text-center 
-					pt-[10px] pb-[10px] pl-[20px] pr-[20px] border-2 border-orange ${widthClass}`}
+					pt-[10px] pb-[10px] pl-[20px] pr-[20px] border-2 border-orange ${fullWidth ? "w-full" : "inline-block"}`}
 		style={{ color }}
 		>
 		{text}
