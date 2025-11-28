@@ -19,7 +19,7 @@ export default function ServiceTile({
 			<li>Développement d’application web</li>
 			<li>Mise à jour et maintenance mensuel</li>
 		</ul>);
-		image = "/stock photo/home web service dark.jpg";
+		image = "/stock_photo/home_web_service_dark.jpg";
 		target = "https://www.google.com";
 	}
 	else if (type === "Prototype") {
@@ -31,7 +31,7 @@ export default function ServiceTile({
 				<li>Création de maquette</li>
 			</ul>
 		)
-		image = "/stock photo/home prototype service dark.jpg";
+		image = "/stock_photo/home_prototype_service_dark.jpg";
 		target = "https://www.bing.com";
 	} else if (type === "Automation") {
 		text = (
@@ -40,7 +40,7 @@ export default function ServiceTile({
 				<li>Script d’automatisation</li>
 			</ul>
 		)
-		image = "/stock photo/home automation service dark.jpg";
+		image = "/stock_photo/home_automation_service_dark.jpg";
 		target = "https://www.duckduckgo.com";
 	} else {
 		return null;

@@ -9,8 +9,9 @@ export function StrapiImage({
 	width,
 	className
 }: Readonly<StrapiImageType>) {
-	const imageUrl = src ? getStrapiMedia(src) : null;
-	const fallback = "/stock photo/home background.jpg";
+	const fallback = "/stock_photo/home_background.jpg";
+	const isRemote = typeof src === "string" && src.startsWith("/uploads");
+	const imageUrl = isRemote ? getStrapiMedia(src) : null;
 
 	return (
 		<Image

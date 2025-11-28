@@ -1,4 +1,3 @@
-import { Hedvig_Letters_Sans } from "next/font/google";
 import {Hero} from "../components/type"
 
 export default function getHomeHero(strapiData: unknown): Hero {
@@ -27,7 +26,7 @@ export default function getHomeHero(strapiData: unknown): Hero {
 		heroButtonText: "nos Services",
 		heroButtonPath: "https://www.bing.com",
 		heroBackground: {
-			src: "/stock photo/home background.jpg",
+			src: "/stock_photo/home_background.jpg",
 			alt: "Orange dot connection background",
 			height: 5000,
 			width: 4000,

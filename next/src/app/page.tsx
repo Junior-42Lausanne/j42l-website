@@ -9,14 +9,19 @@ import {getStrapiData} from "./utils"
 import qs from "qs"
 
 const homePageQuery = qs.stringify({
-	populate: {
-		hero: {
+  populate: {
+    hero: {
+      fields: ["heading", "subheading"],
       populate: {
-        backgroundImage: {populate: "*"},
-        button: true
+        backgroundImage: {
+          fields: ["url", "altText", "width", "height"]
+        },
+        button: {
+          fields: ["buttonText", "url"]
+        }
       }
-		}
-	}
+    }
+  }
 })
 
 export default async function Home() {
