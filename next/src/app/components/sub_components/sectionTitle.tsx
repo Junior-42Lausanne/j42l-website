@@ -8,7 +8,7 @@ export interface titleProps {
 export default function SectionTitle({
 	text,
 	color = 'black'
-	}: titleProps) {
+	}: Readonly<titleProps>) {
 	return ( 
 		<div className="flex flex-row justify-center">
 			<div className="flex flex-col justify-start items-start">

@@ -22,10 +22,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "backgroundColor": {
-      "type": "string",
-      "regex": "[0-f]{6}"
     }
   },
   "config": {}

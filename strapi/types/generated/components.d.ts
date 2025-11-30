@@ -65,7 +65,6 @@ export interface LayoutTextSection extends Struct.ComponentSchema {
     displayName: 'Text section';
   };
   attributes: {
-    backgroundColor: Schema.Attribute.String;
     button: Schema.Attribute.Component<'composants.lien', false>;
     image: Schema.Attribute.Media<'images'>;
     text: Schema.Attribute.Blocks;

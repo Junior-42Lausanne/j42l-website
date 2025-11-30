@@ -5,6 +5,7 @@ import PortfolioSection from "./components/portfolioSection"
 import FooterCTA from "./components/footerCTA"
 import Footer from "./components/footer"
 import getHomeHero from "./home/homeHero"
+import getHomeTextSection from "./home/homeTextSection"
 import {getStrapiData} from "./utils"
 import qs from "qs"
 
@@ -14,12 +15,15 @@ const homePageQuery = qs.stringify({
       fields: ["heading", "subheading"],
       populate: {
         backgroundImage: {
-          fields: ["url", "altText", "width", "height"]
+          fields: ["url", "alternativeText", "width", "height"]
         },
         button: {
-          fields: ["buttonText", "url"]
+          fields: ["buttonText", "url"],
         }
       }
+    },
+    blocks: {
+      populate: "*",
     }
   }
 })
@@ -30,11 +34,12 @@ export default async function Home() {
   try {
     strapiData = await getStrapiData("/api/accueil", homePageQuery);
   } catch (err) {
-    console.error(`Strapi unreachable during build, using default value. Error: ${err}`);
+    console.error(`Strapi unreachable, using default value. Error: ${err}`);
   }
 
   const hero = getHomeHero(strapiData);
-
+  const textSection1 = getHomeTextSection(strapiData);
+  
   return (
     <div>
       <HeroSection background={hero.heroBackground}
@@ -42,12 +47,11 @@ export default async function Home() {
                     subTitle={hero.heroSubHeading}
                     triangleColor='orange'
                     haveSubtile={true}
-                    button={{
-                      text: hero.heroButtonText,
-                      path: hero.heroButtonPath,
-                      color:'white'
-                    }} />
-      <TextSection />
+                    button={{...hero.heroButton, color: 'white'}} />
+      <TextSection title={textSection1.textSectionTitle}
+                    text={textSection1.textSectionText}
+                    image={textSection1.textSectionImage}
+                    button={{...textSection1.textSectionButton}} />
       <ServiceSection />
       <PortfolioSection />
       <div className="h-[700px] bg-black"></div>

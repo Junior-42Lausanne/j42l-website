@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getStrapiMedia } from '../../utils'; 
+import {getStrapiMedia} from '../../utils'; 
 import {StrapiImageType} from "../type";
 
 export function StrapiImage({
@@ -17,9 +17,10 @@ export function StrapiImage({
 		<Image
 			src={imageUrl ?? fallback}
 			alt={alt}
-			height={height}
-			width={width}
+			fill
 			className={className}
+			unoptimized
 		/>
 	)
+
 }

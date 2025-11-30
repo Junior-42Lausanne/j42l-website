@@ -12,19 +12,39 @@ const tailwindColor = [
   "bg-black",
 ];
 
+export type ButtonType = {
+	text: string,
+	path: string,
+	color?: Color,
+	fullWidth?: boolean,
+}
 
 export type Hero = {
 	heroHeading: string,
 	heroSubHeading: string,
-	heroButtonText: string,
-	heroButtonPath: string,
-	heroBackground: StrapiImageType
+	heroButton: ButtonType,
+	heroBackground: StrapiImageType,
+}
+
+export type TextSectionType = {
+	textSectionTitle: string,
+	textSectionText: string,
+	textSectionImage: StrapiImageType,
+	textSectionButton: ButtonType,
 }
 
 export type StrapiImageType = {
-	src: string | null;
-	alt: string;
-	height: number;
-	width: number;
-	className?: string;
+	src: string | null,
+	alt: string,
+	height: number,
+	width: number,
+	className?: string,
 }
+
+export type StrapiRawText = {
+	type?: string,
+	children?: {
+		type?: string,
+		text?: string,
+	}[],
+}[]

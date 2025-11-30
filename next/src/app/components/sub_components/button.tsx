@@ -1,18 +1,11 @@
-import {Color} from "../type";
-
-export interface buttonType {
-	text: string;
-	path: string;
-	color: Color;
-	fullWidth?: boolean
-}
+import {ButtonType} from "../type";
 
 export default function Button({
 	text,
 	path,
-	color,
+	color = 'orange',
 	fullWidth = false
-	}: buttonType) {
+	}: Readonly<ButtonType>) {
 	return (
 		<a
 		href={path}

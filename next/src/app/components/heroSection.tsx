@@ -1,14 +1,14 @@
-import Button, { buttonType } from "./sub_components/button";
-import {Color, StrapiImageType} from "./type";
+import Button from "./sub_components/button";
+import {Color, StrapiImageType, ButtonType} from "./type";
 import {StrapiImage} from "./sub_components/strapiImage"
 
 export interface HeroProps {
-	background: StrapiImageType;
-	title: string;
-	subTitle: string;
-	triangleColor?: Color;
-	haveSubtile?: boolean;
-	button: buttonType;
+	background: StrapiImageType,
+	title: string,
+	subTitle: string,
+	triangleColor?: Color,
+	haveSubtile?: boolean,
+	button: ButtonType,
 }
 
 export default function HeroSection({
