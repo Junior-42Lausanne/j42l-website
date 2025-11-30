@@ -1,7 +1,15 @@
 import Image from 'next/image';
-import {getStrapiMedia} from '../../utils'; 
-import {StrapiImageType} from "../type";
+import {getStrapiMedia} from '../../utils/utils'; 
+import {StrapiImageType} from "../../utils/type";
 
+/*
+* Component for image
+* src: path to image
+* alt: alt text for image
+* height: image height, currently not used, fill is used. Optional field
+* width: image width, currently not used, fill is used. Optional field
+* className: Tailwind. Optional field
+*/
 export function StrapiImage({
 	src,
 	alt,

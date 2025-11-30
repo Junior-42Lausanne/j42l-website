@@ -1,22 +1,31 @@
 import Button from "./sub_components/button";
-import {Color, StrapiImageType, ButtonType} from "./type";
+import {Color, StrapiImageType, ButtonType} from "../utils/type";
 import {StrapiImage} from "./sub_components/strapiImage"
 
 export interface HeroProps {
 	background: StrapiImageType,
 	title: string,
 	subTitle: string,
+	haveSubtitle: boolean,
 	triangleColor?: Color,
-	haveSubtile?: boolean,
 	button: ButtonType,
 }
 
+/*
+* Component for hero section of every page
+* background: background image
+* title: Big H1 text
+* subTitle: smaller H5 text
+* haveSubtitle: have subtitle or not
+* triangleColor: color of the triangles. Optional field, default is white
+* button: button
+*/
 export default function HeroSection({
 	background,
 	title,
 	subTitle,
+	haveSubtitle,
 	triangleColor = 'white',
-	haveSubtile = false,
 	button
 	}: HeroProps) {
 	return (
@@ -35,7 +44,7 @@ export default function HeroSection({
 				<div className="flex flex-col font-poppins text-white text-center justify-center items-center gap-[80px]">
 					<div className="flex flex-col items-center">
 						<h1 className="text-h1 leading-[1.1]">{title}</h1>
-						{haveSubtile && (
+						{haveSubtitle && (
 						<div className="text-h5 pt-[40px] w-4/5">{subTitle}</div>)}
 					</div>
 					<Button {...button}/>

@@ -4,54 +4,42 @@ import HeroSection from "./components/heroSection"
 import PortfolioSection from "./components/portfolioSection"
 import FooterCTA from "./components/footerCTA"
 import Footer from "./components/footer"
-import getHomeHero from "./home/homeHero"
-import getHomeTextSection from "./home/homeTextSection"
-import {getStrapiData} from "./utils"
-import qs from "qs"
+import getHero from "./logic/hero"
+import getTextSection from "./logic/textSection"
+import {homeHeroDefault, textSectionDefault} from "./homeDefault"
+import {getStrapiData, query} from "./utils/utils"
 
-const homePageQuery = qs.stringify({
-  populate: {
-    hero: {
-      fields: ["heading", "subheading"],
-      populate: {
-        backgroundImage: {
-          fields: ["url", "alternativeText", "width", "height"]
-        },
-        button: {
-          fields: ["buttonText", "url"],
-        }
-      }
-    },
-    blocks: {
-      populate: "*",
-    }
-  }
-})
-
+/*
+* The logic:
+* API call for corresponse page
+* parse the data for each section object
+* pass the object to corresponse component
+*/
 export default async function Home() {
   let strapiData: unknown;
 
   try {
-    strapiData = await getStrapiData("/api/accueil", homePageQuery);
+    strapiData = await getStrapiData("/api/accueil", query);
   } catch (err) {
     console.error(`Strapi unreachable, using default value. Error: ${err}`);
   }
 
-  const hero = getHomeHero(strapiData);
-  const textSection1 = getHomeTextSection(strapiData);
+  const hero = getHero(strapiData, homeHeroDefault);
+  const textSection1 = getTextSection(strapiData, textSectionDefault);
   
   return (
     <div>
       <HeroSection background={hero.heroBackground}
                     title={hero.heroHeading}
                     subTitle={hero.heroSubHeading}
+                    haveSubtitle={true}
                     triangleColor='orange'
-                    haveSubtile={true}
                     button={{...hero.heroButton, color: 'white'}} />
       <TextSection title={textSection1.textSectionTitle}
                     text={textSection1.textSectionText}
                     image={textSection1.textSectionImage}
                     button={{...textSection1.textSectionButton}} />
+
       <ServiceSection />
       <PortfolioSection />
       <div className="h-[700px] bg-black"></div>

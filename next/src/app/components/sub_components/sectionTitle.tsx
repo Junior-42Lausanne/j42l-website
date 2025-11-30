@@ -1,10 +1,15 @@
-import {Color} from "../type";
+import {Color} from "../../utils/type";
 
 export interface titleProps {
 	text: string;
 	color?: Color
 }
 
+/*
+* Component for title of each section
+* text: title text
+* color: color of the triangles. Optional field, default is black
+*/
 export default function SectionTitle({
 	text,
 	color = 'black'

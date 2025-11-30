@@ -1,5 +1,5 @@
 import Button from "./sub_components/button"
-import {StrapiImageType, ButtonType} from "../components/type"; 
+import {StrapiImageType, ButtonType} from "../utils/type"; 
 import {StrapiImage} from "./sub_components/strapiImage";
 
 export interface TextSectionProps {
