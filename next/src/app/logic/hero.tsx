@@ -42,6 +42,7 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 			}
 		}
 	}
-	  
+	
+	console.log("Fail to get Strapi data, fallback to default hero")
 	return defaultHero;
 }

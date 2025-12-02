@@ -1,26 +1,21 @@
-import Button, {buttonType} from "./sub_components/button"
-import Image from 'next/image'
-
-export interface footerCtaProps {
-	text: string;
-	button: buttonType;
-}
+import Button from "./sub_components/button"
+import {FooterCTAType} from "../utils/type"
 
 export default function FooterCTA({
-	text, 
-	button
-	} : footerCtaProps) {
+	footerCTAText, 
+	footerCTAButton
+	} : FooterCTAType) {
 	return (
 		<div className="flex flex-row pt-[100px] pb-[100px] justify-center">
-			<div className="flex flex-col h-[500px] items-start">
-				<Image src="/graphic/elements/svg/triangle orange.svg" alt="triangle" width={100} height={100}/>
+			<div className="flex flex-col justify-start items-start">
+				<div className={`w-0 h-0 border-t-[4rem] border-r-[4rem] border-orange border-r-transparent`}></div>
 			</div>
-			<div className="flex flex-col items-center justify-center gap-[80px]">
-				<h1 className="font-poppins text-center text-black text-h2 place-items-center">{text}</h1>
-				<Button {...button}/>
+			<div className="flex flex-col items-center justify-center gap-[80px] mt-[100px] mb-[100px]">
+				<h1 className="font-poppins text-center text-black text-h2 place-items-center w-4/5">{footerCTAText}</h1>
+				<Button {...footerCTAButton}/>
 			</div>
 			<div className="flex flex-col justify-end items-end">
-				<Image className="rotate-180" src="/graphic/elements/svg/triangle orange.svg" alt="triangle" width={100} height={100}/>
+				<div className={`w-0 h-0 border-l-[4rem] border-b-[4rem] border-orange border-l-transparent`}></div>
 			</div>
 		</div>
 	)

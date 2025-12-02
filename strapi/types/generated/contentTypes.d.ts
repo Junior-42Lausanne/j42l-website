@@ -390,7 +390,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.text-section', 'layout.card-section']
+      ['layout.text-section', 'layout.card-section', 'layout.footer-cta']
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

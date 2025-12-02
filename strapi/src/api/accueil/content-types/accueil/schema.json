@@ -34,7 +34,8 @@
       },
       "components": [
         "layout.text-section",
-        "layout.card-section"
+        "layout.card-section",
+        "layout.footer-cta"
       ]
     }
   }

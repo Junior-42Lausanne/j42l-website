@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_layout_footer_ctas",
+  "info": {
+    "displayName": "footer cta"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "button": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

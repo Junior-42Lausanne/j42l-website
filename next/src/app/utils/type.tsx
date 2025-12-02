@@ -17,8 +17,7 @@ const tailwindColor = [
 ];
 
 /*
-* Read the name
-* If unclear, read again
+* yes, this is button
 */
 export type ButtonType = {
 	text: string,
@@ -48,9 +47,13 @@ export type TextSectionType = {
 	textSectionButton: ButtonType,
 }
 
+export type FooterCTAType = {
+	footerCTAText: string,
+	footerCTAButton: ButtonType,
+}
+
 /*
-* Read the name
-* If unclear, read again
+* Strapi Image
 */
 export type StrapiImageType = {
 	src: string | null,

@@ -46,6 +46,17 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutFooterCta extends Struct.ComponentSchema {
+  collectionName: 'components_layout_footer_ctas';
+  info: {
+    displayName: 'footer cta';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'composants.lien', false>;
+    text: Schema.Attribute.String;
+  };
+}
+
 export interface LayoutHero extends Struct.ComponentSchema {
   collectionName: 'components_layout_heroes';
   info: {
@@ -79,6 +90,7 @@ declare module '@strapi/strapi' {
       'composants.lien': ComposantsLien;
       'composants.sub-menu': ComposantsSubMenu;
       'layout.card-section': LayoutCardSection;
+      'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;
       'layout.text-section': LayoutTextSection;
     }

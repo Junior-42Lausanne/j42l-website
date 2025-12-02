@@ -34,8 +34,10 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 	};
 
 	const blocks = data.data?.blocks;
-	if (!Array.isArray(blocks))
+	if (!Array.isArray(blocks)) {
+		console.log("Fail to get Strapi data, fallback to default textSection")
 		return defaultTextSection;
+	}
 	const textSection = blocks.find(
 		(b) => b.__component === "layout.text-section"
 	);
@@ -56,5 +58,6 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 		}
 	}
 	
+	console.log("Fail to get Strapi data, fallback to default textSection")
 	return defaultTextSection;
 }

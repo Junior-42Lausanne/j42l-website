@@ -6,22 +6,22 @@ import qs from "qs";
 * this query is converted by qs and then append to the url
 */
 export const query = qs.stringify({
-  populate: {
-	hero: {
-	  fields: ["heading", "subheading"],
-	  populate: {
-		backgroundImage: {
-		  fields: ["url", "alternativeText", "width", "height"]
+	populate: {
+		hero: {
+			fields: ["heading", "subheading"],
+			populate: {
+				backgroundImage: {
+				fields: ["url", "alternativeText", "width", "height"]
+				},
+				button: {
+				fields: ["buttonText", "url"],
+				}
+			}
 		},
-		button: {
-		  fields: ["buttonText", "url"],
-		}
-	  }
-	},
-	blocks: {
-	  populate: "*",
+		blocks: {
+			populate: "*",
+		},
 	}
-  }
 })
 
 /*

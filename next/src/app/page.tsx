@@ -6,7 +6,8 @@ import FooterCTA from "./components/footerCTA"
 import Footer from "./components/footer"
 import getHero from "./logic/hero"
 import getTextSection from "./logic/textSection"
-import {homeHeroDefault, textSectionDefault} from "./homeDefault"
+import getfooterCTA from "./logic/footerCTA"
+import {homeHeroDefault, homeTextSectionDefault, homeFooterCTADefault} from "./homeDefault"
 import {getStrapiData, query} from "./utils/utils"
 
 /*
@@ -25,7 +26,8 @@ export default async function Home() {
   }
 
   const hero = getHero(strapiData, homeHeroDefault);
-  const textSection1 = getTextSection(strapiData, textSectionDefault);
+  const textSection1 = getTextSection(strapiData, homeTextSectionDefault);
+  const footerCTA = getfooterCTA(strapiData, homeFooterCTADefault);
   
   return (
     <div>
@@ -43,12 +45,11 @@ export default async function Home() {
       <ServiceSection />
       <PortfolioSection />
       <div className="h-[700px] bg-black"></div>
-      <FooterCTA  text= "Réalisez votre projet de rêve avec nous!" 
-                  button={{
-                    text: "Contactez-Nous",
-                    path: "https://www.google.com",
-                    color: 'orange'
-                   }} />
+
+
+      <FooterCTA  footerCTAText= {footerCTA.footerCTAText}
+                  footerCTAButton={{...footerCTA.footerCTAButton}} />
+
       <Footer />
     </div>
   )

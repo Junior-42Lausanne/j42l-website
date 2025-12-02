@@ -1,4 +1,4 @@
-import {Hero, TextSectionType} from "./utils/type";
+import {Hero, TextSectionType, FooterCTAType} from "./utils/type";
 
 /*
 * default options for Home Hero section
@@ -21,7 +21,7 @@ export const homeHeroDefault: Hero = {
 /*
 * default options for Home Text + Photo section
 */
-export const textSectionDefault : TextSectionType = {
+export const homeTextSectionDefault : TextSectionType = {
 	textSectionTitle: "Bienvenue",
 	textSectionText: `La Junior 42 Lausanne (J42L) est une association étudiante affiliée au réseau Junior Enterprises Switzerland.
 
@@ -37,4 +37,12 @@ En étroite collaboration avec 42 Lausanne, nous donnons vie à des projets inno
 		text: "Notre Histoire",
 		path: "https://www.bing.com",
 	},
+}
+
+export const homeFooterCTADefault : FooterCTAType = {
+	footerCTAText: 'Réalisez votre projet de rêve avec nous!',
+	footerCTAButton: {
+		text: 'Contactez-nous',
+		path: 'https://www.bing.com',
+	}
 }
