@@ -22,6 +22,22 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "textColor": {
+      "type": "enumeration",
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
     }
   },
   "config": {}

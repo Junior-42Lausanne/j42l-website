@@ -22,8 +22,8 @@ const tailwindColor = [
 export type ButtonType = {
 	text: string,
 	path: string,
-	color?: Color,
-	fullWidth?: boolean,
+	color: Color,
+	fullWidth: boolean,
 }
 
 /*
@@ -45,6 +45,8 @@ export type TextSectionType = {
 	textSectionText: string,
 	textSectionImage: StrapiImageType,
 	textSectionButton: ButtonType,
+	textSectionTextColor: Color,
+	textSectionBackgroundColor: Color,
 }
 
 export type FooterCTAType = {

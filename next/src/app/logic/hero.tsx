@@ -1,4 +1,4 @@
-import {Hero} from "../utils/type";
+import {Hero, Color} from "../utils/type";
 
 /*
 * Get the Hero object for the hero section
@@ -20,6 +20,8 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 			button?: {
 				buttonText?: string,
 				url?: string,
+				color?: Color,
+				fullWidth?: boolean,
 			};
 			}[];
 		};
@@ -33,6 +35,8 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 			heroButton: {
 				text: heroArray[0].button?.buttonText ?? defaultHero.heroButton.text,
 				path: heroArray[0].button?.url ?? defaultHero.heroButton.path,
+				color: heroArray[0].button?.color ?? defaultHero.heroButton.color,
+				fullWidth: heroArray[0].button?.fullWidth ?? defaultHero.heroButton.fullWidth,
 			},
 			heroBackground: {
 				src: heroArray[0].backgroundImage?.url ?? defaultHero.heroBackground.src,

@@ -33,11 +33,13 @@ export default async function Home() {
 							subTitle={hero.heroSubHeading}
 							haveSubtitle={true}
 							triangleColor='orange'
-							button={{...hero.heroButton, color: 'white'}} />
-			<TextSection title={textSection1.textSectionTitle}
-							text={textSection1.textSectionText}
-							image={textSection1.textSectionImage}
-							button={{...textSection1.textSectionButton}} />
+							button={{...hero.heroButton}} />
+			<TextSection textSectionTitle={textSection1.textSectionTitle}
+							textSectionText={textSection1.textSectionText}
+							textSectionImage={textSection1.textSectionImage}
+							textSectionButton={{...textSection1.textSectionButton}}
+							textSectionTextColor={textSection1.textSectionTextColor}
+							textSectionBackgroundColor={textSection1.textSectionBackgroundColor} />
 			<FooterCTA  footerCTAText= {footerCTA.footerCTAText}
 						footerCTAButton={{...footerCTA.footerCTAButton}} />
 		</div>

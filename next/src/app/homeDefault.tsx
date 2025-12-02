@@ -8,7 +8,9 @@ export const homeHeroDefault: Hero = {
 	heroSubHeading: "Propulsant l'innovation en tant que plus grande Junior Entreprise du réseau 42 – où de jeunes consultants IT donnent vie à vos projets digitaux.",
 	heroButton: {
 		text: "Nos Services",
-		path: "https://www.bing.com"
+		path: "https://www.bing.com",
+		color: 'white',
+		fullWidth: false,
 	},
 	heroBackground: {
 		src: "/stock_photo/home_background.jpg",
@@ -36,7 +38,11 @@ En étroite collaboration avec 42 Lausanne, nous donnons vie à des projets inno
 	textSectionButton: {
 		text: "Notre Histoire",
 		path: "https://www.bing.com",
+		color: 'orange',
+		fullWidth: false,
 	},
+	textSectionTextColor: 'black',
+	textSectionBackgroundColor: 'white',
 }
 
 export const homeFooterCTADefault : FooterCTAType = {
@@ -44,5 +50,7 @@ export const homeFooterCTADefault : FooterCTAType = {
 	footerCTAButton: {
 		text: 'Contactez-nous',
 		path: 'https://www.bing.com',
+		color: 'orange',
+		fullWidth: false,
 	}
 }

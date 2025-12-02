@@ -20,6 +20,8 @@ export interface ComposantsLien extends Struct.ComponentSchema {
   };
   attributes: {
     buttonText: Schema.Attribute.String;
+    color: Schema.Attribute.Enumeration<['orange', 'white']>;
+    fullWidth: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     url: Schema.Attribute.String;
   };
 }
@@ -76,9 +78,11 @@ export interface LayoutTextSection extends Struct.ComponentSchema {
     displayName: 'Text section';
   };
   attributes: {
+    backgroundColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
     button: Schema.Attribute.Component<'composants.lien', false>;
     image: Schema.Attribute.Media<'images'>;
     text: Schema.Attribute.Blocks;
+    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
     title: Schema.Attribute.String;
   };
 }

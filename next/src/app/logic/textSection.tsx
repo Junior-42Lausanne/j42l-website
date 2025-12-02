@@ -1,4 +1,4 @@
-import {TextSectionType} from "../utils/type";
+import {TextSectionType, Color} from "../utils/type";
 import {convertStrapiText} from "../utils/utils";
 
 /*
@@ -28,7 +28,11 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 				button?: {
 					buttonText?: string,
 					url?: string,
+					color?: Color,
+					fullWidth?: boolean,
 				}
+				textColor?: Color,
+				backgroundColor?: Color,
 			}[];
 		};
 	};
@@ -53,8 +57,12 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 			},
 			textSectionButton: {
 				text: textSection.button?.buttonText ?? defaultTextSection.textSectionButton.text,
-				path:textSection.button?.url ?? defaultTextSection.textSectionButton.path,
-			}
+				path: textSection.button?.url ?? defaultTextSection.textSectionButton.path,
+				color: textSection.button?.color ?? defaultTextSection.textSectionButton.color,
+				fullWidth: textSection.button?.fullWidth ?? defaultTextSection.textSectionButton.fullWidth,
+			},
+			textSectionTextColor: textSection.textColor ?? defaultTextSection.textSectionTextColor,
+			textSectionBackgroundColor: textSection.backgroundColor ?? defaultTextSection.textSectionBackgroundColor,
 		}
 	}
 	

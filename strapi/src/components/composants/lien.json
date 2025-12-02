@@ -10,6 +10,17 @@
     },
     "url": {
       "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "orange",
+        "white"
+      ]
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}

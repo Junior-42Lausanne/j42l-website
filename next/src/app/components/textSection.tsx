@@ -1,44 +1,38 @@
 import Button from "./sub_components/button"
-import {StrapiImageType, ButtonType} from "../utils/type"; 
+import {TextSectionType} from "../utils/type"; 
 import {StrapiImage} from "./sub_components/strapiImage";
 
-export interface TextSectionProps {
-	title: string,
-	text: string,
-	image:StrapiImageType,
-	button:ButtonType,
-}
 
 export default function TextSection({
-	title,
-	text,
-	image,
-	button,
-}: TextSectionProps) {
+	textSectionTitle,
+	textSectionText,
+	textSectionImage,
+	textSectionButton,
+	textSectionTextColor,
+	textSectionBackgroundColor
+}: TextSectionType) {
   return(
-	<div className="flex pt-[100px] pb-[100px] gap-[150px] items-center justify-center">
+	<div className={`flex bg-${textSectionBackgroundColor} pt-[100px] pb-[100px] gap-[150px] items-center justify-center`}>
 		<div className="w-1/5">
 			<div className="relative w-full"
-							style={{ aspectRatio: `${image.width}/${image.height}` }}>
+							style={{ aspectRatio: `${textSectionImage.width}/${textSectionImage.height}` }}>
 				<StrapiImage
-					alt={image.alt}
+					alt={textSectionImage.alt}
 					className=""
-					height={image.height}
-					src={image.src}
-					width={image.width}
+					height={textSectionImage.height}
+					src={textSectionImage.src}
+					width={textSectionImage.width}
 				/>
 			</div>
 		</div>
 		<div className="flex flex-col items-center w-2/5">
-			<div className="font-poppins text-black text-h2 text-center">
-				<h2>{title}</h2>
+			<div className={`font-poppins text-${textSectionTextColor} text-h2 text-center`}>
+				<h2>{textSectionTitle}</h2>
 			</div>
-			<div className="pt-[20px] font-poppins text-black text-h5 whitespace-pre-wrap">
-				<p>{text}</p>
+			<div className={`pt-[20px] mb-[60px] font-poppins text-${textSectionTextColor} text-h5 whitespace-pre-wrap`}>
+				<p>{textSectionText}</p>
 			</div>
-			<div className="pt-[60px]">
-				<Button {...button}/>
-			</div>
+			<Button {...textSectionButton}/>
 		</div>	
 	</div>
   )

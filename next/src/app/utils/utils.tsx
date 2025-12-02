@@ -14,7 +14,7 @@ export const query = qs.stringify({
 				fields: ["url", "alternativeText", "width", "height"]
 				},
 				button: {
-				fields: ["buttonText", "url"],
+				fields: ["buttonText", "url", "color", "fullWidth"],
 				}
 			}
 		},
