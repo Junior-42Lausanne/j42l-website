@@ -12,7 +12,7 @@ export default function Button({
 	path,
 	color,
 	fullWidth,
-	}: Readonly<ButtonType>) {
+}: Readonly<ButtonType>) {
 	return (
 		<a
 		href={path}

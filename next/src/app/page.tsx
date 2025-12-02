@@ -14,17 +14,11 @@ import {getStrapiData, query} from "./utils/utils"
 * pass the object to corresponse component
 */
 export default async function Home() {
-	let strapiData: unknown;
-
-	try {
-		strapiData = await getStrapiData("/api/accueil", query);
-	} catch (err) {
-		console.error(`Strapi unreachable, using default value. Error: ${err}`);
-	}
-
+	const strapiData = await getStrapiData("/api/accueil", query);
+	const {blocks} = strapiData.data;
 	const hero = getHero(strapiData, homeHeroDefault);
-	const textSection1 = getTextSection(strapiData, homeTextSectionDefault);
-	const footerCTA = getfooterCTA(strapiData, homeFooterCTADefault);
+	const textSection1 = getTextSection(blocks[0], homeTextSectionDefault);
+	const footerCTA = getfooterCTA(blocks[1], homeFooterCTADefault);
 	
 	return (
 		<div>
@@ -34,14 +28,8 @@ export default async function Home() {
 							haveSubtitle={true}
 							triangleColor='orange'
 							button={{...hero.heroButton}} />
-			<TextSection textSectionTitle={textSection1.textSectionTitle}
-							textSectionText={textSection1.textSectionText}
-							textSectionImage={textSection1.textSectionImage}
-							textSectionButton={{...textSection1.textSectionButton}}
-							textSectionTextColor={textSection1.textSectionTextColor}
-							textSectionBackgroundColor={textSection1.textSectionBackgroundColor} />
-			<FooterCTA  footerCTAText= {footerCTA.footerCTAText}
-						footerCTAButton={{...footerCTA.footerCTAButton}} />
+			<TextSection {...textSection1} />
+			<FooterCTA {...footerCTA} />
 		</div>
 	)
 }

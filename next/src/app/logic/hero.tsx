@@ -27,7 +27,7 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 		};
 	};
 	
-	const heroArray = data.data?.hero;
+	const heroArray = data?.data?.hero;
 	if (heroArray && heroArray.length > 0) {
 		return {
 			heroHeading: heroArray[0].heading ?? defaultHero.heroHeading,
@@ -39,7 +39,7 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 				fullWidth: heroArray[0].button?.fullWidth ?? defaultHero.heroButton.fullWidth,
 			},
 			heroBackground: {
-				src: heroArray[0].backgroundImage?.url ?? defaultHero.heroBackground.src,
+				source: heroArray[0].backgroundImage?.url ?? defaultHero.heroBackground.source,
 				alt: heroArray[0].backgroundImage?.alternativeText ?? defaultHero.heroBackground.alt,
 				height: heroArray[0].backgroundImage?.height ?? defaultHero.heroBackground.height,
 				width: heroArray[0].backgroundImage?.width ?? defaultHero.heroBackground.width,
@@ -47,6 +47,6 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 		}
 	}
 	
-	console.log("Fail to get Strapi data, fallback to default hero")
+	console.log("Fallback to default hero");
 	return defaultHero;
 }

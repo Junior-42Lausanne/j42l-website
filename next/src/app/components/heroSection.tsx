@@ -6,7 +6,7 @@ export interface HeroProps {
 	background: StrapiImageType,
 	title: string,
 	subTitle: string,
-	haveSubtitle: boolean,
+	haveSubtitle?: boolean,
 	triangleColor?: Color,
 	button: ButtonType,
 }
@@ -24,17 +24,17 @@ export default function HeroSection({
 	background,
 	title,
 	subTitle,
-	haveSubtitle,
+	haveSubtitle = false,
 	triangleColor = 'white',
-	button
-	}: HeroProps) {
+	button,
+}: HeroProps) {
 	return (
 		<div className="relative h-screen">
 			<StrapiImage
 					alt={background.alt}
 					className="absolute inset-0 object-cover w-full h-full -z-10"
 					height={1080}
-					src={background.src}
+					source={background.source}
 					width={1920}
 			/>
 			<div className="flex flex-row bg-cover bg-center pl-[100px] pr-[100px] pt-[100px] pb-[60px] gap-[80px] h-full">

@@ -11,19 +11,18 @@ import {StrapiImageType} from "../../utils/type";
 * className: Tailwind. Optional field
 */
 export function StrapiImage({
-	src,
+	source,
 	alt,
 	height,
 	width,
 	className
 }: Readonly<StrapiImageType>) {
-	const fallback = "/stock_photo/home_background.jpg";
-	const isRemote = typeof src === "string" && src.startsWith("/uploads");
-	const imageUrl = isRemote ? getStrapiMedia(src) : null;
+	const isRemote = typeof source === "string" && source.startsWith("/uploads");
+	const imageUrl = isRemote ? getStrapiMedia(source) : source;
 
 	return (
 		<Image
-			src={imageUrl ?? fallback}
+			src={imageUrl}
 			alt={alt}
 			fill
 			className={className}

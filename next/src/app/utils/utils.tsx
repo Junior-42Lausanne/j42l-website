@@ -29,8 +29,9 @@ export const query = qs.stringify({
 * param1: url to call, this corresponse to Strapi Single Types url. Eg: "/api/accueil"
 * param2: the query converted by qs
 */
-export async function getStrapiData<T>(path: string, query: string): Promise<T | null> {
+export async function getStrapiData(path: string, query: string) {
 	const baseUrl = "http://strapi-app:1337";
+	// const baseUrl = "http://localhost:1337";
 	const url = new URL(path, baseUrl);
 	url.search = query;
 	try {
@@ -39,7 +40,7 @@ export async function getStrapiData<T>(path: string, query: string): Promise<T |
 
 		// console.dir(data, {depth: null});
 		
-		return data
+		return data;
 	} catch (error) {
 		console.error(error);
 		return null;
@@ -57,9 +58,7 @@ export function getStrapiURL(): string {
 * get the correct Strapi media url
 * param1: media path
 */
-export function getStrapiMedia(url: string | null): string | null {
-	if (url === null)
-		return null;
+export function getStrapiMedia(url: string): string {
 	if (url.startsWith("data:"))
 		return url;
 	if (url.startsWith("http") || url.startsWith("//"))

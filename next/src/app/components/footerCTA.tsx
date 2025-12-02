@@ -8,8 +8,8 @@ import {FooterCTAType} from "../utils/type"
 */
 export default function FooterCTA({
 	footerCTAText, 
-	footerCTAButton
-	} : FooterCTAType) {
+	footerCTAButton,
+} : FooterCTAType) {
 	return (
 		<div className="flex flex-row pt-[100px] pb-[100px] justify-center">
 			<div className="flex flex-col justify-start items-start">

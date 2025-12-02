@@ -13,7 +13,7 @@ export const homeHeroDefault: Hero = {
 		fullWidth: false,
 	},
 	heroBackground: {
-		src: "/stock_photo/home_background.jpg",
+		source: "/stock_photo/home_background.jpg",
 		alt: "Orange dot connection background",
 		height: 5000,
 		width: 4000,
@@ -30,7 +30,7 @@ export const homeTextSectionDefault : TextSectionType = {
 Composée d’étudiants passionnés de 42 Lausanne, et étant la plus grande Junior Entreprise du réseau mondial 42, notre mission est d’offrir des solutions informatiques de qualité, allant de la conceptualisation à des développements sur mesure. 
 En étroite collaboration avec 42 Lausanne, nous donnons vie à des projets innovants, reliant éducation et industrie au sein de l’écosystème 42.`,
 	textSectionImage: {
-		src: "/graphic/elements/svg/J_Orange.svg",
+		source: "/graphic/elements/svg/J_Orange.svg",
 		alt: "J42l Symbol",
 		height: 188,
 		width: 123,

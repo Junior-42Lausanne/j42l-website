@@ -58,7 +58,7 @@ export type FooterCTAType = {
 * Strapi Image
 */
 export type StrapiImageType = {
-	src: string | null,
+	source: string,
 	alt: string,
 	height?: number,
 	width?: number,
@@ -66,7 +66,7 @@ export type StrapiImageType = {
 }
 
 /*
-* Strapi long text (rich text)
+* Strapi long text
 */
 export type StrapiRawText = {
 	type?: string,
