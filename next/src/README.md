@@ -11,6 +11,7 @@ Here is some documentations for you, yay!
 ## Function
 # Utilities functions
 - `getStrapiData`: call Strapi API
+- `getStrapiGlobalData`: call Strapi API for global data
 - `getStrapiURL`: public strapi domain or local host
 - `getStrapiMedia`: get the correct Strapi url for media
 - `convertStrapiText`: convert text paragraph from Strapi to string

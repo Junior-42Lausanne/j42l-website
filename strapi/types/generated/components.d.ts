@@ -21,19 +21,45 @@ export interface ComposantsLien extends Struct.ComponentSchema {
   attributes: {
     buttonText: Schema.Attribute.String;
     color: Schema.Attribute.Enumeration<['orange', 'white']>;
+    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     fullWidth: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     url: Schema.Attribute.String;
   };
 }
 
-export interface ComposantsSubMenu extends Struct.ComponentSchema {
-  collectionName: 'components_composants_sub_menus';
+export interface ComposantsLink extends Struct.ComponentSchema {
+  collectionName: 'components_composants_links';
   info: {
-    displayName: 'Sub-menu';
+    displayName: 'Link';
   };
   attributes: {
-    links: Schema.Attribute.Component<'composants.lien', true>;
-    title: Schema.Attribute.String;
+    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    linkText: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ComposantsLogo extends Struct.ComponentSchema {
+  collectionName: 'components_composants_logos';
+  info: {
+    displayName: 'Logo';
+  };
+  attributes: {
+    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    Logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.DefaultTo<'/'>;
+  };
+}
+
+export interface ComposantsSocial extends Struct.ComponentSchema {
+  collectionName: 'components_composants_socials';
+  info: {
+    displayName: 'Social';
+  };
+  attributes: {
+    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    icon: Schema.Attribute.Media<'images'>;
+    url: Schema.Attribute.String;
   };
 }
 
@@ -51,7 +77,7 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
 export interface LayoutFooterCta extends Struct.ComponentSchema {
   collectionName: 'components_layout_footer_ctas';
   info: {
-    displayName: 'footer cta';
+    displayName: 'footerCta';
   };
   attributes: {
     button: Schema.Attribute.Component<'composants.lien', false>;
@@ -62,7 +88,7 @@ export interface LayoutFooterCta extends Struct.ComponentSchema {
 export interface LayoutHero extends Struct.ComponentSchema {
   collectionName: 'components_layout_heroes';
   info: {
-    displayName: 'Hero';
+    displayName: 'hero';
   };
   attributes: {
     backgroundImage: Schema.Attribute.Media<'images'>;
@@ -72,10 +98,23 @@ export interface LayoutHero extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutNavBar extends Struct.ComponentSchema {
+  collectionName: 'components_layout_nav_bars';
+  info: {
+    displayName: 'navBar';
+  };
+  attributes: {
+    CTA: Schema.Attribute.Component<'composants.lien', false>;
+    logo: Schema.Attribute.Component<'composants.logo', false>;
+    NavBarMenu: Schema.Attribute.Component<'composants.link', true>;
+    Social: Schema.Attribute.Component<'composants.social', true>;
+  };
+}
+
 export interface LayoutTextSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_text_sections';
   info: {
-    displayName: 'Text section';
+    displayName: 'textSection';
   };
   attributes: {
     backgroundColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
@@ -92,10 +131,13 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'composants.card': ComposantsCard;
       'composants.lien': ComposantsLien;
-      'composants.sub-menu': ComposantsSubMenu;
+      'composants.link': ComposantsLink;
+      'composants.logo': ComposantsLogo;
+      'composants.social': ComposantsSocial;
       'layout.card-section': LayoutCardSection;
       'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;
+      'layout.nav-bar': LayoutNavBar;
       'layout.text-section': LayoutTextSection;
     }
   }

@@ -23,7 +23,7 @@
         }
       },
       "component": "layout.hero",
-      "repeatable": true
+      "repeatable": false
     },
     "blocks": {
       "type": "dynamiczone",

@@ -21,6 +21,10 @@
     "fullWidth": {
       "type": "boolean",
       "default": false
+    },
+    "external": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}

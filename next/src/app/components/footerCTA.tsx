@@ -1,5 +1,5 @@
 import Button from "./sub_components/button"
-import {FooterCTAType} from "../utils/type"
+import {FooterCTAType} from "@/app/utils/type"
 
 /*
 * Component for footerCTA of every page

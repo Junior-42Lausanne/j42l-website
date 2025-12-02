@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_composants_socials",
+  "info": {
+    "displayName": "Social"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "external": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

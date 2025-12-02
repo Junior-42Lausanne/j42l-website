@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_layout_nav_bars",
+  "info": {
+    "displayName": "navBar"
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "component",
+      "component": "composants.logo",
+      "repeatable": false
+    },
+    "NavBarMenu": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true
+    },
+    "CTA": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false
+    },
+    "Social": {
+      "type": "component",
+      "component": "composants.social",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

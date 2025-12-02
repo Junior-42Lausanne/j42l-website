@@ -1,4 +1,5 @@
-import {ButtonType} from "../../utils/type";
+import { ButtonType } from "@/app/utils/type";
+import Link from 'next/link';
 
 /*
 * Component for button
@@ -12,15 +13,23 @@ export default function Button({
 	path,
 	color,
 	fullWidth,
+	external,
 }: Readonly<ButtonType>) {
+	const styles = `block font-poppins text-button text-button--font-weight text-center text-${color}
+					pt-[10px] pb-[10px] pl-[20px] pr-[20px] border-2 border-orange ${fullWidth ? "w-full" : "inline-block"}`;
+	
+	if (external) {
+		return (
+			<a href={path}
+				target="_blank"
+				className={styles} >
+				{text}
+			</a>
+		);
+	}
 	return (
-		<a
-		href={path}
-		className={`block font-poppins text-button text-center 
-					pt-[10px] pb-[10px] pl-[20px] pr-[20px] border-2 border-orange ${fullWidth ? "w-full" : "inline-block"}`}
-		style={{ color }}
-		>
-		{text}
-		</a>
+		<Link href={path} className={styles}>
+			{text}
+		</Link>
 	);
 }

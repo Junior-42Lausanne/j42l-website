@@ -4,8 +4,8 @@ import FooterCTA from "./components/footerCTA"
 import getHero from "./logic/hero"
 import getTextSection from "./logic/textSection"
 import getfooterCTA from "./logic/footerCTASection"
-import {homeHeroDefault, homeTextSectionDefault, homeFooterCTADefault} from "./homeDefault"
-import {getStrapiData, query} from "./utils/utils"
+import { homeHeroDefault, homeTextSectionDefault, homeFooterCTADefault } from "./homeDefault"
+import { getStrapiData, query } from "./utils/utils"
 
 /*
 * The logic:

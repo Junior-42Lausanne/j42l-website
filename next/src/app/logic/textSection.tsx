@@ -1,5 +1,5 @@
-import {TextSectionType, Color} from "../utils/type";
-import {convertStrapiText} from "../utils/utils";
+import {TextSectionType, Color} from "@/app/utils/type";
+import {convertStrapiText} from "@/app/utils/utils";
 
 /*
 * Get the TextSection object for the text section
@@ -28,6 +28,7 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 			url?: string,
 			color?: Color,
 			fullWidth?: boolean,
+			external?: boolean,
 		}
 		textColor?: Color,
 		backgroundColor?: Color,
@@ -48,6 +49,7 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 				path: textSection.button?.url ?? defaultTextSection.textSectionButton.path,
 				color: textSection.button?.color ?? defaultTextSection.textSectionButton.color,
 				fullWidth: textSection.button?.fullWidth ?? defaultTextSection.textSectionButton.fullWidth,
+				external: textSection.button?.external ?? defaultTextSection.textSectionButton.external,
 			},
 			textSectionTextColor: textSection.textColor ?? defaultTextSection.textSectionTextColor,
 			textSectionBackgroundColor: textSection.backgroundColor ?? defaultTextSection.textSectionBackgroundColor,

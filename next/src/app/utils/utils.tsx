@@ -1,6 +1,10 @@
 import {StrapiRawText} from "./type";
 import qs from "qs";
 
+
+const baseUrl = "http://strapi-app:1337";
+// const baseUrl = "http://localhost:1337";
+
 /*
 * query for Strapi API call
 * this query is converted by qs and then append to the url
@@ -30,8 +34,6 @@ export const query = qs.stringify({
 * param2: the query converted by qs
 */
 export async function getStrapiData(path: string, query: string) {
-	const baseUrl = "http://strapi-app:1337";
-	// const baseUrl = "http://localhost:1337";
 	const url = new URL(path, baseUrl);
 	url.search = query;
 	try {
@@ -44,7 +46,32 @@ export async function getStrapiData(path: string, query: string) {
 	} catch (error) {
 		console.error(error);
 		return null;
-  }
+	}
+}
+
+/*
+* Strapi API call for global single type, uncomment the console.dir() to log the returned json
+*/
+export async function getStrapiGlobalData() {
+	const url = new URL("/api/global", baseUrl);
+	url.search = qs.stringify({
+		populate: {
+			global: {
+				populate: "*",
+			}
+		}
+	});
+	try {
+		const response = await fetch(url.href);
+		const data = await response.json();
+
+		// console.dir(data, {depth: null});
+		
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
 }
 
 /*

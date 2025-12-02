@@ -1,11 +1,11 @@
-import {Hero, Color} from "../utils/type";
+import {HeroType, Color} from "@/app/utils/type";
 
 /*
 * Get the Hero object for the hero section
 * param1: the data returned by Strapi to parse
 * param2: the default object for corresponse page in case of problem with strapiData
 */
-export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
+export default function getHero(strapiData: unknown, defaultHero: HeroType): HeroType {
 	const data = strapiData as {
 		data?: {
 			hero?: {
@@ -22,27 +22,29 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 				url?: string,
 				color?: Color,
 				fullWidth?: boolean,
+				external?: boolean,
 			};
-			}[];
+			};
 		};
 	};
 	
 	const heroArray = data?.data?.hero;
-	if (heroArray && heroArray.length > 0) {
+	if (heroArray) {
 		return {
-			heroHeading: heroArray[0].heading ?? defaultHero.heroHeading,
-			heroSubHeading: heroArray[0].subheading ?? defaultHero.heroSubHeading,
+			heroHeading: heroArray.heading ?? defaultHero.heroHeading,
+			heroSubHeading: heroArray.subheading ?? defaultHero.heroSubHeading,
 			heroButton: {
-				text: heroArray[0].button?.buttonText ?? defaultHero.heroButton.text,
-				path: heroArray[0].button?.url ?? defaultHero.heroButton.path,
-				color: heroArray[0].button?.color ?? defaultHero.heroButton.color,
-				fullWidth: heroArray[0].button?.fullWidth ?? defaultHero.heroButton.fullWidth,
+				text: heroArray.button?.buttonText ?? defaultHero.heroButton.text,
+				path: heroArray.button?.url ?? defaultHero.heroButton.path,
+				color: heroArray.button?.color ?? defaultHero.heroButton.color,
+				fullWidth: heroArray.button?.fullWidth ?? defaultHero.heroButton.fullWidth,
+				external: heroArray.button?.external ?? defaultHero.heroButton.external,
 			},
 			heroBackground: {
-				source: heroArray[0].backgroundImage?.url ?? defaultHero.heroBackground.source,
-				alt: heroArray[0].backgroundImage?.alternativeText ?? defaultHero.heroBackground.alt,
-				height: heroArray[0].backgroundImage?.height ?? defaultHero.heroBackground.height,
-				width: heroArray[0].backgroundImage?.width ?? defaultHero.heroBackground.width,
+				source: heroArray.backgroundImage?.url ?? defaultHero.heroBackground.source,
+				alt: heroArray.backgroundImage?.alternativeText ?? defaultHero.heroBackground.alt,
+				height: heroArray.backgroundImage?.height ?? defaultHero.heroBackground.height,
+				width: heroArray.backgroundImage?.width ?? defaultHero.heroBackground.width,
 			}
 		}
 	}

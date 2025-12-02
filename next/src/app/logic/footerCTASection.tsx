@@ -1,4 +1,4 @@
-import {FooterCTAType, Color} from "../utils/type"
+import {FooterCTAType, Color} from "@/app/utils/type"
 
 /*
 * Get the FooterSection object for the hero section
@@ -14,6 +14,7 @@ export default function getfooterCTA(strapiData: unknown, defaultFooterCTA: Foot
 			url?: string,
 			color?: Color,
 			fullWidth?: boolean,
+			external?: boolean,
 		}
 	};
 
@@ -25,6 +26,7 @@ export default function getfooterCTA(strapiData: unknown, defaultFooterCTA: Foot
 				path: footerCTA.button?.url ?? defaultFooterCTA.footerCTAButton.path,
 				color: footerCTA.button?.color ?? defaultFooterCTA.footerCTAButton.color,
 				fullWidth: footerCTA.button?.fullWidth ?? defaultFooterCTA.footerCTAButton.fullWidth,
+				external: footerCTA.button?.external ?? defaultFooterCTA.footerCTAButton.external,
 			}
 		}
 	}

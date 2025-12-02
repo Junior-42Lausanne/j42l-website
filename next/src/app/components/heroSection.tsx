@@ -1,5 +1,5 @@
 import Button from "./sub_components/button";
-import {Color, StrapiImageType, ButtonType} from "../utils/type";
+import {Color, StrapiImageType, ButtonType} from "@/app/utils/type";
 import {StrapiImage} from "./sub_components/strapiImage"
 
 export interface HeroProps {

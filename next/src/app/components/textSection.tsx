@@ -1,5 +1,5 @@
 import Button from "./sub_components/button"
-import {TextSectionType} from "../utils/type"; 
+import {TextSectionType} from "@/app/utils/type"; 
 import {StrapiImage} from "./sub_components/strapiImage";
 
 

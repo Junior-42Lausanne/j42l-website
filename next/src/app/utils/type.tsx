@@ -24,12 +24,38 @@ export type ButtonType = {
 	path: string,
 	color: Color,
 	fullWidth: boolean,
+	external: boolean,
+}
+
+export type NavBarLinkType = {
+	text: string,
+	url: string,
+	external: boolean,
+}
+
+export type logoType = {
+	logo: StrapiImageType,
+	url: string,
+	external: boolean,
+}
+
+export type socialType = {
+	icon: StrapiImageType,
+	url: string,
+	external: boolean,
+}
+
+export type NavBarType = {
+	logo: logoType,
+	navBarMenu: NavBarLinkType[],
+	cta: ButtonType,
+	social: socialType[],
 }
 
 /*
 * Hero section (Landing section) for every page
 */
-export type Hero = {
+export type HeroType = {
 	heroHeading: string,
 	heroSubHeading: string,
 	heroButton: ButtonType,

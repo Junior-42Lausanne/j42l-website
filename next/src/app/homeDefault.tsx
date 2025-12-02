@@ -1,9 +1,74 @@
-import {Hero, TextSectionType, FooterCTAType} from "./utils/type";
+import {HeroType, TextSectionType, FooterCTAType, NavBarType} from "./utils/type";
+
+
+export const navBarDefault: NavBarType = {
+	logo: {
+		logo: {
+			source: '/graphic/logo/svg/j42_orange_svg.svg',
+			alt: 'j42l logo',
+			height: 413,
+			width: 976,
+		},
+		url: '/',
+		external: false,
+	},
+	navBarMenu: [
+		{
+			text: 'Accueil',
+			url: '/',
+			external: false,
+		},
+		{
+			text: 'Services',
+			url: 'api/services',
+			external: false,
+		},
+		{
+			text: 'À propos',
+			url: 'api/about',
+			external: false,
+		},
+		{
+			text: 'Étudiants',
+			url: 'api/student',
+			external: false,
+		},
+		{
+			text: 'Jobs',
+			url: 'https://www.google.com',
+			external: true,
+		},
+		{
+			text: 'Game Jam',
+			url: 'https://42lsjam.ch/',
+			external: true,
+		},
+	],
+	cta: {
+		text: 'Contactez-nous',
+		path: 'api/contact',
+		color: 'white',
+		fullWidth: false,
+		external: false,
+	},
+	social: [
+		{
+			icon: {
+				source: '/graphic/icon/svg/Linkedin_White.svg',
+				alt: 'Linkedin icon',
+				height: 135,
+				width: 135,
+			},
+			url: 'https://www.linkedin.com/company/j42l',
+			external: true,
+		}
+	],
+}
 
 /*
 * default options for Home Hero section
 */
-export const homeHeroDefault: Hero = {
+export const homeHeroDefault: HeroType = {
 	heroHeading: "Votre vision réalisée par les étudiants de 42 Lausanne",
 	heroSubHeading: "Propulsant l'innovation en tant que plus grande Junior Entreprise du réseau 42 – où de jeunes consultants IT donnent vie à vos projets digitaux.",
 	heroButton: {
@@ -11,6 +76,7 @@ export const homeHeroDefault: Hero = {
 		path: "https://www.bing.com",
 		color: 'white',
 		fullWidth: false,
+		external: false,
 	},
 	heroBackground: {
 		source: "/stock_photo/home_background.jpg",
@@ -40,6 +106,7 @@ En étroite collaboration avec 42 Lausanne, nous donnons vie à des projets inno
 		path: "https://www.bing.com",
 		color: 'orange',
 		fullWidth: false,
+		external: false,
 	},
 	textSectionTextColor: 'black',
 	textSectionBackgroundColor: 'white',
@@ -52,5 +119,6 @@ export const homeFooterCTADefault : FooterCTAType = {
 		path: 'https://www.bing.com',
 		color: 'orange',
 		fullWidth: false,
+		external: false,
 	}
 }

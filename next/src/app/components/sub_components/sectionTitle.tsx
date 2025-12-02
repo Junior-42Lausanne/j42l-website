@@ -1,4 +1,4 @@
-import {Color} from "../../utils/type";
+import {Color} from "@/app/utils/type";
 
 export interface titleProps {
 	text: string;
