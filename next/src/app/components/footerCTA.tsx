@@ -1,6 +1,11 @@
 import Button from "./sub_components/button"
 import {FooterCTAType} from "../utils/type"
 
+/*
+* Component for footerCTA of every page
+* footerCTAText: text
+* footerCTAButton: button
+*/
 export default function FooterCTA({
 	footerCTAText, 
 	footerCTAButton

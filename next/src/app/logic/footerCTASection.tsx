@@ -1,5 +1,10 @@
 import {FooterCTAType} from "../utils/type"
 
+/*
+* Get the FooterSection object for the hero section
+* param1: the data returned by Strapi to parse
+* param2: the default object for corresponse page in case of problem with strapiData
+*/
 export default function getfooterCTA(strapiData: unknown, defaultFooterCTA: FooterCTAType): FooterCTAType {
 	const data = strapiData as {
 		data? : {
