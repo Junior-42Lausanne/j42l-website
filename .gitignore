@@ -2,3 +2,4 @@
 *.env.production
 shell.nix
 .envrc
+node_modules
