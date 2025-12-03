@@ -46,8 +46,7 @@ export default function TextSection({ blocks }: TextSectionProps) {
 						className=""
 						height={image.height}
 						url={image.url}
-						width={image.width}
-					/>
+						width={image.width} />
 				</div>
 			</div>
 			<div className="flex flex-col items-center w-2/5">

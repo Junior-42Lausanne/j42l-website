@@ -46,7 +46,7 @@ export interface ComposantsLogo extends Struct.ComponentSchema {
   };
   attributes: {
     external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    Logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.DefaultTo<'/'>;
   };
 }
@@ -71,6 +71,16 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
   attributes: {
     cards: Schema.Attribute.Component<'composants.card', true>;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface LayoutFooter extends Struct.ComponentSchema {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'footer';
+  };
+  attributes: {
+    footerImage: Schema.Attribute.Media<'images'>;
   };
 }
 
@@ -105,10 +115,10 @@ export interface LayoutNavBar extends Struct.ComponentSchema {
     displayName: 'navBar';
   };
   attributes: {
-    CTA: Schema.Attribute.Component<'composants.lien', false>;
+    cta: Schema.Attribute.Component<'composants.lien', false>;
     logo: Schema.Attribute.Component<'composants.logo', false>;
-    NavBarMenu: Schema.Attribute.Component<'composants.link', true>;
-    Social: Schema.Attribute.Component<'composants.social', true>;
+    navBarMenu: Schema.Attribute.Component<'composants.link', true>;
+    social: Schema.Attribute.Component<'composants.social', true>;
   };
 }
 
@@ -136,6 +146,7 @@ declare module '@strapi/strapi' {
       'composants.logo': ComposantsLogo;
       'composants.social': ComposantsSocial;
       'layout.card-section': LayoutCardSection;
+      'layout.footer': LayoutFooter;
       'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;
       'layout.nav-bar': LayoutNavBar;

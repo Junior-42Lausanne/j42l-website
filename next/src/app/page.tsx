@@ -8,19 +8,27 @@ import { getStrapiData, query, blockRenderer } from "@/app/utils/utils"
 * pass the object to corresponse component
 */
 export default async function Home() {
-	const strapiData = await getStrapiData("/api/accueil", query);
-	const hero = strapiData.data.hero;
-	const { blocks } = strapiData.data;
-	
-	return (
-		<div>
-			<HeroSection hero={hero} />
-			{
-				blocks
-					? blocks.map((block: any) => blockRenderer(block))	
-					: <div>No block!</div>
-			}
-		</div>
-	)
+	try {
+		const strapiData = await getStrapiData("/api/accueil", query);
+		const hero = strapiData.data.hero;
+		const { blocks } = strapiData.data;
+		return (
+			<div>
+				<HeroSection hero={hero} />
+				{
+					blocks
+						? blocks.map((block: any) => blockRenderer(block))	
+						: <div>No block!</div>
+				}
+			</div>
+		)
+	} catch (error) {
+		console.log("Error loading page");
+		return (
+			<div>
+				<h1>Problem loading the page content</h1>
+			</div>
+		)
+	}
 }
 

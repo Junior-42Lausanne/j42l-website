@@ -437,7 +437,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    global: Schema.Attribute.DynamicZone<['layout.nav-bar']> &
+    global: Schema.Attribute.DynamicZone<['layout.nav-bar', 'layout.footer']> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

@@ -29,9 +29,7 @@ export const query = qs.stringify({
 				backgroundImage: {
 					fields: ["url", "alternativeText", "width", "height"]
 				},
-				button: {
-					fields: ["buttonText", "url", "color", "fullWidth", "external"],
-				},
+				button: true,
 			}
 		},
 		blocks: {
@@ -69,9 +67,29 @@ export async function getStrapiGlobalData() {
 	url.search = qs.stringify({
 		populate: {
 			global: {
-				populate: "*",
-			}
-		}
+				on: {
+					'layout.nav-bar': {
+						populate: {
+							'logo': {
+								populate: "*",
+							},
+							'navBarMenu': {
+								populate: "*",
+							},
+							'cta': {
+								populate: "*",
+							},
+							'social': {
+								populate: "*",
+							}
+						},
+					},
+					'layout.footer': {
+						populate: "*",
+					},
+				},
+			},
+		},
 	});
 	try {
 		const response = await fetch(url.href);

@@ -10,17 +10,17 @@
       "component": "composants.logo",
       "repeatable": false
     },
-    "NavBarMenu": {
+    "navBarMenu": {
       "type": "component",
       "component": "composants.link",
       "repeatable": true
     },
-    "CTA": {
+    "cta": {
       "type": "component",
       "component": "composants.lien",
       "repeatable": false
     },
-    "Social": {
+    "social": {
       "type": "component",
       "component": "composants.social",
       "repeatable": true

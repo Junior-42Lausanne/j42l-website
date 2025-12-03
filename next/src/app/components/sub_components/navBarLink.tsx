@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
 export type NavBarLinkProps = {
-	text: string,
+	id: string,
 	url: string,
 	external: boolean,
+	children: React.ReactNode,
 }
 
 /*
@@ -13,25 +14,30 @@ export type NavBarLinkProps = {
 * external: external link or not
 */
 export default function NavBarLink({
-	text,
+	id,
 	url,
 	external,
+	children,
 } : Readonly<NavBarLinkProps> ){
 	const styles = `inline-flex font-poppins text-navButton text-navButton--font-weight 
 				text-center text-white pt-[5px] pb-[5px] pl-[10px] pr-[10px]`;
 
 	if (external) {
 		return (
-			<a href={url}
-				target="_blank"
-				className={styles} >
-				{text}
-			</a>
+			<div>
+				<a href={url}
+					target="_blank"
+					className={styles} >
+					{children}
+				</a>
+			</div>
 		);
 	}
 	return (
-		<Link href={url} className={styles}>
-			{text}
-		</Link>
+		<div>
+			<Link href={url} className={styles}>
+				{children}
+			</Link>
+		</div>
 	);
 }

@@ -5,6 +5,7 @@ import { getStrapiMedia } from '@/app/utils/utils';
 * Strapi Image
 */
 export type StrapiImageProps = {
+	id?: string,
 	url: string,
 	alternativeText: string,
 	height?: number,
@@ -21,6 +22,7 @@ export type StrapiImageProps = {
 * className: Tailwind. Optional field
 */
 export default function StrapiImage({
+	id,
 	url,
 	alternativeText,
 	height,
