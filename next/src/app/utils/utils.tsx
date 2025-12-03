@@ -99,16 +99,10 @@ export function getStrapiMedia(url: string): string {
 * 
 * this might be change later to for rich text support
 */
-export function convertStrapiText(strapiText?: StrapiRawText) : string | null {
-	if (!strapiText)
-		return null;
-	try {
-		const paragraphs = strapiText.map(block => {
-			const text = block.children?.map(c => c.text ?? "").join("");
-			return text ?? "";
-		}).filter(p => p.length > 0);
-		return paragraphs.join("\n");
-	} catch {
-		return null;
-	}
+export function convertStrapiText(strapiText: StrapiRawText) : string {
+	const paragraphs = strapiText.map(block => {
+		const text = block.children?.map(c => c.text ?? "").join("");
+		return text ?? "";
+	}).filter(p => p.length > 0);
+	return paragraphs.join("\n");
 }

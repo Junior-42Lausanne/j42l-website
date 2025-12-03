@@ -4,7 +4,6 @@ import FooterCTA from "./components/footerCTA"
 import getHero from "./logic/hero"
 import getTextSection from "./logic/textSection"
 import getfooterCTA from "./logic/footerCTASection"
-import { homeHeroDefault, homeTextSectionDefault, homeFooterCTADefault } from "./homeDefault"
 import { getStrapiData, query } from "./utils/utils"
 
 /*
@@ -16,9 +15,9 @@ import { getStrapiData, query } from "./utils/utils"
 export default async function Home() {
 	const strapiData = await getStrapiData("/api/accueil", query);
 	const {blocks} = strapiData.data;
-	const hero = getHero(strapiData, homeHeroDefault);
-	const textSection1 = getTextSection(blocks[0], homeTextSectionDefault);
-	const footerCTA = getfooterCTA(blocks[1], homeFooterCTADefault);
+	const hero = getHero(strapiData);
+	const textSection1 = getTextSection(blocks[0]);
+	const footerCTA = getfooterCTA(blocks[1]);
 	
 	return (
 		<div>

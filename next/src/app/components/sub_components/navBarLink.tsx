@@ -1,11 +1,16 @@
 import Link from 'next/link';
-import { NavBarLinkType } from '@/app/utils/type';
+
+export type NavBarLinkProps = {
+	text: string,
+	url: string,
+	external: boolean,
+}
 
 export default function NavBarLink({
 	text,
 	url,
 	external,
-} : Readonly<NavBarLinkType> ){
+} : Readonly<NavBarLinkProps> ){
 	const styles = `inline-flex font-poppins text-navButton text-navButton--font-weight 
 				text-center text-white pt-[5px] pb-[5px] pl-[10px] pr-[10px]`;
 

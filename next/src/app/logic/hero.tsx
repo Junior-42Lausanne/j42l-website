@@ -1,54 +1,50 @@
-import {HeroType, Color} from "@/app/utils/type";
+import { ThemeColor } from "@/app/utils/type";
+import { HeroType } from "@/app/components/heroSection"
 
 /*
 * Get the Hero object for the hero section
 * param1: the data returned by Strapi to parse
 * param2: the default object for corresponse page in case of problem with strapiData
 */
-export default function getHero(strapiData: unknown, defaultHero: HeroType): HeroType {
+export default function getHero(strapiData: unknown): HeroType {
 	const data = strapiData as {
-		data?: {
-			hero?: {
-			heading?: string,
-			subheading?: string,
-			backgroundImage?: {
-				alternativeText?: string,
-				url?: string,
-				height?: number,
-				width?: number,
+		data: {
+			hero: {
+			heading: string,
+			subheading: string,
+			backgroundImage: {
+				alternativeText: string,
+				url: string,
+				height: number,
+				width: number,
 			};
-			button?: {
-				buttonText?: string,
-				url?: string,
-				color?: Color,
-				fullWidth?: boolean,
-				external?: boolean,
+			button: {
+				buttonText: string,
+				url: string,
+				color: ThemeColor,
+				fullWidth: boolean,
+				external: boolean,
 			};
 			};
 		};
 	};
 	
-	const heroArray = data?.data?.hero;
-	if (heroArray) {
-		return {
-			heroHeading: heroArray.heading ?? defaultHero.heroHeading,
-			heroSubHeading: heroArray.subheading ?? defaultHero.heroSubHeading,
-			heroButton: {
-				text: heroArray.button?.buttonText ?? defaultHero.heroButton.text,
-				path: heroArray.button?.url ?? defaultHero.heroButton.path,
-				color: heroArray.button?.color ?? defaultHero.heroButton.color,
-				fullWidth: heroArray.button?.fullWidth ?? defaultHero.heroButton.fullWidth,
-				external: heroArray.button?.external ?? defaultHero.heroButton.external,
-			},
-			heroBackground: {
-				source: heroArray.backgroundImage?.url ?? defaultHero.heroBackground.source,
-				alt: heroArray.backgroundImage?.alternativeText ?? defaultHero.heroBackground.alt,
-				height: heroArray.backgroundImage?.height ?? defaultHero.heroBackground.height,
-				width: heroArray.backgroundImage?.width ?? defaultHero.heroBackground.width,
-			}
+	const heroArray = data.data.hero;
+	return {
+		heroHeading: heroArray.heading,
+		heroSubHeading: heroArray.subheading,
+		heroButton: {
+			text: heroArray.button.buttonText,
+			path: heroArray.button.url,
+			color: heroArray.button.color,
+			fullWidth: heroArray.button.fullWidth,
+			external: heroArray.button.external,
+		},
+		heroBackground: {
+			source: heroArray.backgroundImage.url,
+			alt: heroArray.backgroundImage.alternativeText,
+			height: heroArray.backgroundImage.height,
+			width: heroArray.backgroundImage.width,
 		}
 	}
-	
-	console.log("Fallback to default hero");
-	return defaultHero;
 }

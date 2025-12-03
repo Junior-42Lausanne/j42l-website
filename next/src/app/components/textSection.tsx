@@ -1,38 +1,50 @@
-import Button from "./sub_components/button"
-import {TextSectionType} from "@/app/utils/type"; 
-import {StrapiImage} from "./sub_components/strapiImage";
+import ButtonLink, { ButtonProps } from "./sub_components/button"
+import { StrapiImage } from "./sub_components/strapiImage";
+import { ThemeColor, StrapiImageType } from "@/app/utils/type"
 
+/*
+* Text section
+* Compose of side image, title, long text and a button
+*/
+export type TextSectionProps = {
+	title: string,
+	text: string,
+	image: StrapiImageType,
+	button: ButtonProps,
+	textColor: ThemeColor,
+	backgroundColor: ThemeColor,
+}
 
 export default function TextSection({
-	textSectionTitle,
-	textSectionText,
-	textSectionImage,
-	textSectionButton,
-	textSectionTextColor,
-	textSectionBackgroundColor,
-}: TextSectionType) {
+	title,
+	text,
+	image,
+	button,
+	textColor,
+	backgroundColor,
+}: TextSectionProps) {
 	return(
-		<div className={`flex bg-${textSectionBackgroundColor} pt-[100px] pb-[100px] gap-[150px] items-center justify-center`}>
+		<div className={`flex bg-${backgroundColor} pt-[100px] pb-[100px] gap-[150px] items-center justify-center`}>
 			<div className="w-1/5">
 				<div className="relative w-full"
-								style={{ aspectRatio: `${textSectionImage.width}/${textSectionImage.height}` }}>
+								style={{ aspectRatio: `${image.width}/${image.height}` }}>
 					<StrapiImage
-						alt={textSectionImage.alt}
+						alt={image.alt}
 						className=""
-						height={textSectionImage.height}
-						source={textSectionImage.source}
-						width={textSectionImage.width}
+						height={image.height}
+						source={image.source}
+						width={image.width}
 					/>
 				</div>
 			</div>
 			<div className="flex flex-col items-center w-2/5">
-				<div className={`font-poppins text-${textSectionTextColor} text-h2 text-center`}>
-					<h2>{textSectionTitle}</h2>
+				<div className={`font-poppins text-${textColor} text-h2 text-center`}>
+					<h2>{title}</h2>
 				</div>
-				<div className={`pt-[20px] mb-[60px] font-poppins text-${textSectionTextColor} text-h5 whitespace-pre-wrap`}>
-					<p>{textSectionText}</p>
+				<div className={`pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`}>
+					<p>{text}</p>
 				</div>
-				<Button {...textSectionButton}/>
+				<ButtonLink {...button}/>
 			</div>	
 		</div>
 	)

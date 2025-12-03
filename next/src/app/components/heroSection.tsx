@@ -1,14 +1,25 @@
-import Button from "./sub_components/button";
-import {Color, StrapiImageType, ButtonType} from "@/app/utils/type";
-import {StrapiImage} from "./sub_components/strapiImage"
+import ButtonLink, { ButtonProps } from "./sub_components/button";
+import { ThemeColor, StrapiImageType } from "@/app/utils/type";
+import { StrapiImage } from "./sub_components/strapiImage"
 
-export interface HeroProps {
+
+/*
+* Hero section (Landing section) for every page
+*/
+export type HeroType = {
+	heroHeading: string,
+	heroSubHeading: string,
+	heroButton: ButtonProps,
+	heroBackground: StrapiImageType,
+}
+
+export interface HeroSectionProps {
 	background: StrapiImageType,
 	title: string,
 	subTitle: string,
 	haveSubtitle?: boolean,
-	triangleColor?: Color,
-	button: ButtonType,
+	triangleColor?: ThemeColor,
+	button: ButtonProps,
 }
 
 /*
@@ -27,7 +38,7 @@ export default function HeroSection({
 	haveSubtitle = false,
 	triangleColor = 'white',
 	button,
-}: HeroProps) {
+}: HeroSectionProps) {
 	return (
 		<div className="relative h-screen">
 			<StrapiImage
@@ -47,7 +58,7 @@ export default function HeroSection({
 						{haveSubtitle && (
 						<div className="text-h5 pt-[40px] w-4/5">{subTitle}</div>)}
 					</div>
-					<Button {...button}/>
+					<ButtonLink {...button}/>
 				</div>
 				<div className="flex flex-col justify-end items-end">
 					<div className={`w-0 h-0 border-l-[6rem] border-b-[6rem] border-${triangleColor} border-l-transparent`}></div>

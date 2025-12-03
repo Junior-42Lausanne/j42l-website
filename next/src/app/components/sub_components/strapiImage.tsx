@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import {getStrapiMedia} from '@/app/utils/utils'; 
-import {StrapiImageType} from "@/app//utils/type";
+import { getStrapiMedia } from '@/app/utils/utils'; 
+import { StrapiImageType } from "@/app//utils/type";
 
 /*
 * Component for image

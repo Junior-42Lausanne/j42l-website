@@ -1,4 +1,4 @@
-export type Color = 'orange' | 'white' | 'black';
+export type ThemeColor = 'orange' | 'white' | 'black';
 
 /*
 * this is for Tailwind reference
@@ -15,70 +15,6 @@ const tailwindColor = [
   "bg-white",
   "bg-black",
 ];
-
-/*
-* yes, this is button
-*/
-export type ButtonType = {
-	text: string,
-	path: string,
-	color: Color,
-	fullWidth: boolean,
-	external: boolean,
-}
-
-export type NavBarLinkType = {
-	text: string,
-	url: string,
-	external: boolean,
-}
-
-export type logoType = {
-	logo: StrapiImageType,
-	url: string,
-	external: boolean,
-}
-
-export type socialType = {
-	icon: StrapiImageType,
-	url: string,
-	external: boolean,
-}
-
-export type NavBarType = {
-	logo: logoType,
-	navBarMenu: NavBarLinkType[],
-	cta: ButtonType,
-	social: socialType[],
-}
-
-/*
-* Hero section (Landing section) for every page
-*/
-export type HeroType = {
-	heroHeading: string,
-	heroSubHeading: string,
-	heroButton: ButtonType,
-	heroBackground: StrapiImageType,
-}
-
-/*
-* Text section
-* Compose of side image, title, long text and a button
-*/
-export type TextSectionType = {
-	textSectionTitle: string,
-	textSectionText: string,
-	textSectionImage: StrapiImageType,
-	textSectionButton: ButtonType,
-	textSectionTextColor: Color,
-	textSectionBackgroundColor: Color,
-}
-
-export type FooterCTAType = {
-	footerCTAText: string,
-	footerCTAButton: ButtonType,
-}
 
 /*
 * Strapi Image

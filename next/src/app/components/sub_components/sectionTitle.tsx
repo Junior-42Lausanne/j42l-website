@@ -1,8 +1,8 @@
-import {Color} from "@/app/utils/type";
+import { ThemeColor } from "@/app/utils/type";
 
-export interface titleProps {
-	text: string;
-	color?: Color
+export type SectionTitleProps = {
+	text: string,
+	color?: ThemeColor,
 }
 
 /*
@@ -13,7 +13,7 @@ export interface titleProps {
 export default function SectionTitle({
 	text,
 	color = 'black'
-}: Readonly<titleProps>) {
+}: Readonly<SectionTitleProps>) {
 	return ( 
 		<div className="flex flex-row justify-center">
 			<div className="flex flex-col justify-start items-start">
