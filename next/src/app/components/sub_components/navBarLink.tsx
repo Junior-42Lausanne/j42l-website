@@ -9,9 +9,10 @@ export type NavBarLinkProps = {
 
 /*
 * Component for button
-* text: link text
+* id: use as key for map()
 * url: where the link point to
 * external: external link or not
+* children: text
 */
 export default function NavBarLink({
 	id,

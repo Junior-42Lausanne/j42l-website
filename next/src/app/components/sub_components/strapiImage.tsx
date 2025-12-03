@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ComponentProps } from "react";
 import { getStrapiMedia } from '@/app/utils/utils'; 
 
 /*
@@ -7,27 +8,22 @@ import { getStrapiMedia } from '@/app/utils/utils';
 export type StrapiImageProps = {
 	id?: string,
 	url: string,
-	alternativeText: string,
-	height?: number,
-	width?: number,
-	className?: string,
-}
+	alternativeText: string | null,
+} & Omit<ComponentProps<typeof Image>, "src" | "alt">;
 
 /*
 * Component for image
+* id: use as key for map()
 * url: path to image
 * alternativeText: alt text for image
-* height: image height, currently not used, fill is used. Optional field
-* width: image width, currently not used, fill is used. Optional field
 * className: Tailwind. Optional field
 */
 export default function StrapiImage({
 	id,
 	url,
 	alternativeText,
-	height,
-	width,
-	className
+	className,
+	...rest
 }: Readonly<StrapiImageProps>) {
 	const isRemote = typeof url === "string" && url.startsWith("/uploads");
 	const imageUrl = isRemote ? getStrapiMedia(url) : url;
@@ -35,7 +31,7 @@ export default function StrapiImage({
 	return (
 		<Image
 			src={imageUrl}
-			alt={alternativeText}
+			alt={alternativeText ?? "No alternative text provided"}
 			fill
 			className={className}
 			unoptimized

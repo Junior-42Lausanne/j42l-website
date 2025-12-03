@@ -14,11 +14,11 @@ export type ButtonLinkProps = {
 
 /*
 * Component for button
-* text: button text
-* path: where the button point to
+* url: where the button point to
 * color: color of the text.
 * fullwidth: button width fill the container or not.
 * external: external link or not
+* children: text
 */
 export default function ButtonLink({
 	url,

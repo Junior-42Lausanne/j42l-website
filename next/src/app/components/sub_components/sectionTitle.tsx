@@ -14,13 +14,21 @@ export default function SectionTitle({
 	color = 'black',
 	children,
 }: Readonly<SectionTitleProps>) {
+	const styles = {
+		wrap: "flex flex-row justify-center",
+		leftTriangleWrap: "flex flex-col justify-start items-start",
+		text: `font-poppins text-${color} text-h2 text-center pr-[50px] pl-[50px]`,
+		rightTriangleWrap: "flex flex-col justify-end items-end",
+	}
 	return ( 
-		<div className="flex flex-row justify-center">
-			<div className="flex flex-col justify-start items-start">
+		<div className={styles.wrap}>
+			<div className={styles.leftTriangleWrap}>
 				<div className={`w-0 h-0 border-t-[2rem] border-r-[2rem] border-${color} border-r-transparent`}></div>
 			</div>
-			<h2 className={`font-poppins text-${color} text-h2 text-center pr-[50px] pl-[50px]`}>{children}</h2>
-			<div className="flex flex-col justify-end items-end">
+			<h2 className={styles.text}>
+				{children}
+			</h2>
+			<div className={styles.rightTriangleWrap}>
 				<div className={`w-0 h-0 border-l-[2rem] border-b-[2rem] border-${color} border-l-transparent`}></div>
 			</div>
 		</div>

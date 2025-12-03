@@ -3,9 +3,8 @@ import { getStrapiData, query, blockRenderer } from "@/app/utils/utils"
 
 /*
 * The logic:
-* API call for corresponse page
-* parse the data for each section object
-* pass the object to corresponse component
+* API call for current page
+* loop through the blocks to call corresponse section component
 */
 export default async function Home() {
 	try {
@@ -31,4 +30,3 @@ export default async function Home() {
 		)
 	}
 }
-

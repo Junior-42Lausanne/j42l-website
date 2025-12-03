@@ -2,6 +2,7 @@ import NavBarLink from "@/app/components/sub_components/navBarLink";
 import ButtonLink from "@/app/components/sub_components/button";
 import StrapiImage, { StrapiImageProps } from "@/app/components/sub_components/strapiImage";
 import { ThemeColor } from "../utils/type";
+import Link from 'next/link';
 
 export type logoProps = {
 	logo: StrapiImageProps,
@@ -37,18 +38,43 @@ export type NavBarProps = {
 
 export default function NavBar( {blocks}: NavBarProps) {
 	const {logo, navBarMenu, cta, social} = blocks;
+	const styles = {
+		navBar: "fixed top-0 z-10 w-full flex flex-row justify-between items-center bg-[#14120e4d] px-[50px] py-[10px] backdrop-blur-[30px]",
+		logoWrap: "flex items-center w-[100px] h-[42px]",
+		logo: "relative w-full h-full",
+		contentWrap: "flex flex-row h-full justify-end items-center gap-[20px]",
+		navLinkWrap: "flex flex-row gap-[10px]",
+		iconWrap: "flex flex-row gap-[10px] justify-end items-center",
+		icon: "relative w-[25px] h-[25px]",
+	}
+
 	return (
-		<div className="flex-no-wrap fixed top-0 z-10 w-full flex justify-between items-center content-between bg-[#14120e4d] pl-[50px] pr-[50px] pt-[10px] pb-[10px] backdrop-blur-[30px]">
-			<div className="">
-				<StrapiImage
-					alternativeText={logo.logo.alternativeText}
-					className=""
-					height={logo.logo.height}
-					url={logo.logo.url}
-					width={logo.logo.width} />
+		<div className={styles.navBar}>
+			<div className={styles.logoWrap}>
+				<div className={styles.logo}>
+					{logo.external ? (
+						<a href={logo.url} target="_blank">
+							<StrapiImage
+								alternativeText={logo.logo.alternativeText}
+								className=""
+								height={logo.logo.height}
+								url={logo.logo.url}
+								width={logo.logo.width} />
+						</a>
+					) : (
+						<Link href={logo.url}>
+							<StrapiImage
+								alternativeText={logo.logo.alternativeText}
+								className=""
+								height={logo.logo.height}
+								url={logo.logo.url}
+								width={logo.logo.width} />
+						</Link>
+					)}
+				</div>
 			</div>
-			<div>
-				<div className="flex flex-row gap-[10px]">
+			<div className={styles.contentWrap}>
+				<div className={styles.navLinkWrap}>
 					{navBarMenu.map((menu) => (
 							<NavBarLink key={menu.id} {...menu}>
 								{menu.linkText}
@@ -57,15 +83,29 @@ export default function NavBar( {blocks}: NavBarProps) {
 				<ButtonLink {...cta}>
 					{cta.buttonText}
 				</ButtonLink>
-				<div>
-					{social.map((icon) => (
-						<StrapiImage
-							key={icon.icon.id}
-							alternativeText={icon.icon.alternativeText}
-							className=""
-							height={icon.icon.height}
-							url={icon.icon.url}
-							width={icon.icon.width} />
+				<div className={styles.iconWrap}>
+					{social.map((item) => (
+						<div key={item.icon.id} className={styles.icon}>
+							{item.external ? (
+								<a href={item.url} target="_blank">
+									<StrapiImage
+										alternativeText={item.icon.alternativeText}
+										className=""
+										height={item.icon.height}
+										url={item.icon.url}
+										width={item.icon.width} />
+								</a>
+							) : (
+								<Link href={item.url}>
+									<StrapiImage
+										alternativeText={item.icon.alternativeText}
+										className=""
+										height={item.icon.height}
+										url={item.icon.url}
+										width={item.icon.width} />
+								</Link>
+							)}
+						</div>
 					))}
 				</div>
 			</div>

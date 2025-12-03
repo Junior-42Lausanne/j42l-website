@@ -116,6 +116,8 @@ export function getStrapiURL(): string {
 * param1: media path
 */
 export function getStrapiMedia(url: string): string {
+	if (url.startsWith("data:"))
+		return url;
 	if (url.startsWith("http") || url.startsWith("//"))
 		return url;
 	return `${getStrapiURL()}${url}`;

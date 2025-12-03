@@ -36,11 +36,23 @@ export type TextSectionProps = {
 export default function TextSection({ blocks }: TextSectionProps) {
 	const {title, text, image, button, textColor, backgroundColor} = blocks;
 	const parsedText = convertStrapiText(text);
+
+	const styles = {
+		section: `flex bg-${backgroundColor} pt-[100px] pb-[100px] gap-[150px] items-center justify-center`,
+		imageWrap: "w-1/5",
+		image: {
+			className: "relative w-full",
+			style: { aspectRatio: `${image.width}/${image.height}` },
+		},
+		textWrap: "flex flex-col items-center w-2/5",
+		title: `font-poppins text-${textColor} text-h2 text-center`,
+		text: `pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
+	}
+
 	return(
-		<div className={`flex bg-${backgroundColor} pt-[100px] pb-[100px] gap-[150px] items-center justify-center`}>
-			<div className="w-1/5">
-				<div className="relative w-full"
-								style={{ aspectRatio: `${image.width}/${image.height}` }}>
+		<div className={styles.section}>
+			<div className={styles.imageWrap}>
+				<div className={styles.image.className} style={styles.image.style}>
 					<StrapiImage
 						alternativeText={image.alternativeText}
 						className=""
@@ -49,11 +61,11 @@ export default function TextSection({ blocks }: TextSectionProps) {
 						width={image.width} />
 				</div>
 			</div>
-			<div className="flex flex-col items-center w-2/5">
-				<div className={`font-poppins text-${textColor} text-h2 text-center`}>
+			<div className={styles.textWrap}>
+				<div className={styles.title}>
 					<h2>{title}</h2>
 				</div>
-				<div className={`pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`}>
+				<div className={styles.text}>
 					<p>{parsedText}</p>
 				</div>
 				<ButtonLink {...button}>
