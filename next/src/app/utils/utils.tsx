@@ -1,6 +1,18 @@
-import {StrapiRawText} from "./type";
+import { StrapiLongTextProps } from "../components/textSection";
+import TextSection from "../components/textSection";
+import FooterCTASection from "../components/footerCTASection";
 import qs from "qs";
 
+export function blockRenderer(block: any) {
+	switch (block.__component) {
+		case "layout.text-section":
+			return <TextSection key={block.id} blocks={block} />;
+		case "layout.footer-cta":
+			return <FooterCTASection key={block.id} blocks={block} />;
+		default:
+			return null;
+	}
+}
 
 const baseUrl = "http://strapi-app:1337";
 // const baseUrl = "http://localhost:1337";
@@ -12,14 +24,14 @@ const baseUrl = "http://strapi-app:1337";
 export const query = qs.stringify({
 	populate: {
 		hero: {
-			fields: ["heading", "subheading"],
+			fields: ["heading", "subheading", "triangleColor"],
 			populate: {
 				backgroundImage: {
-				fields: ["url", "alternativeText", "width", "height"]
+					fields: ["url", "alternativeText", "width", "height"]
 				},
 				button: {
-				fields: ["buttonText", "url", "color", "fullWidth"],
-				}
+					fields: ["buttonText", "url", "color", "fullWidth", "external"],
+				},
 			}
 		},
 		blocks: {
@@ -86,8 +98,6 @@ export function getStrapiURL(): string {
 * param1: media path
 */
 export function getStrapiMedia(url: string): string {
-	if (url.startsWith("data:"))
-		return url;
 	if (url.startsWith("http") || url.startsWith("//"))
 		return url;
 	return `${getStrapiURL()}${url}`;
@@ -99,7 +109,7 @@ export function getStrapiMedia(url: string): string {
 * 
 * this might be change later to for rich text support
 */
-export function convertStrapiText(strapiText: StrapiRawText) : string {
+export function convertStrapiText(strapiText: StrapiLongTextProps) : string {
 	const paragraphs = strapiText.map(block => {
 		const text = block.children?.map(c => c.text ?? "").join("");
 		return text ?? "";

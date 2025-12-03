@@ -14,26 +14,5 @@ const tailwindColor = [
   "bg-orange",
   "bg-white",
   "bg-black",
-];
+] as const;
 
-/*
-* Strapi Image
-*/
-export type StrapiImageType = {
-	source: string,
-	alt: string,
-	height?: number,
-	width?: number,
-	className?: string,
-}
-
-/*
-* Strapi long text
-*/
-export type StrapiRawText = {
-	type?: string,
-	children?: {
-		type?: string,
-		text?: string,
-	}[],
-}[]

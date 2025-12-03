@@ -1,33 +1,42 @@
 import Image from 'next/image';
 import { getStrapiMedia } from '@/app/utils/utils'; 
-import { StrapiImageType } from "@/app//utils/type";
+
+/*
+* Strapi Image
+*/
+export type StrapiImageProps = {
+	url: string,
+	alternativeText: string,
+	height?: number,
+	width?: number,
+	className?: string,
+}
 
 /*
 * Component for image
-* src: path to image
-* alt: alt text for image
+* url: path to image
+* alternativeText: alt text for image
 * height: image height, currently not used, fill is used. Optional field
 * width: image width, currently not used, fill is used. Optional field
 * className: Tailwind. Optional field
 */
-export function StrapiImage({
-	source,
-	alt,
+export default function StrapiImage({
+	url,
+	alternativeText,
 	height,
 	width,
 	className
-}: Readonly<StrapiImageType>) {
-	const isRemote = typeof source === "string" && source.startsWith("/uploads");
-	const imageUrl = isRemote ? getStrapiMedia(source) : source;
+}: Readonly<StrapiImageProps>) {
+	const isRemote = typeof url === "string" && url.startsWith("/uploads");
+	const imageUrl = isRemote ? getStrapiMedia(url) : url;
 
 	return (
 		<Image
 			src={imageUrl}
-			alt={alt}
+			alt={alternativeText}
 			fill
 			className={className}
 			unoptimized
 		/>
 	)
-
 }

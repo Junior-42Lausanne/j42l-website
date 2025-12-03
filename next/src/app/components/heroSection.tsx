@@ -1,51 +1,35 @@
-import ButtonLink, { ButtonProps } from "./sub_components/button";
-import { ThemeColor, StrapiImageType } from "@/app/utils/type";
-import { StrapiImage } from "./sub_components/strapiImage"
+import ButtonLink from "./sub_components/button";
+import { ThemeColor } from "@/app/utils/type";
+import StrapiImage, { StrapiImageProps } from "./sub_components/strapiImage"
 
-
-/*
-* Hero section (Landing section) for every page
-*/
-export type HeroType = {
-	heroHeading: string,
-	heroSubHeading: string,
-	heroButton: ButtonProps,
-	heroBackground: StrapiImageType,
-}
-
-export interface HeroSectionProps {
-	background: StrapiImageType,
-	title: string,
-	subTitle: string,
-	haveSubtitle?: boolean,
-	triangleColor?: ThemeColor,
-	button: ButtonProps,
+export type HeroSectionProps = {
+	hero: {
+		heading: string,
+		subheading: string,
+		backgroundImage: StrapiImageProps,
+		button: {
+			url: string;
+			color: ThemeColor;
+			fullWidth?: boolean;
+			external?: boolean;
+			buttonText: string;
+		},
+		triangleColor: ThemeColor,
+	},
 }
 
 /*
 * Component for hero section of every page
-* background: background image
-* title: Big H1 text
-* subTitle: smaller H5 text
-* haveSubtitle: have subtitle or not
-* triangleColor: color of the triangles. Optional field, default is white
-* button: button
 */
-export default function HeroSection({
-	background,
-	title,
-	subTitle,
-	haveSubtitle = false,
-	triangleColor = 'white',
-	button,
-}: HeroSectionProps) {
+export default function HeroSection({ hero }: Readonly<HeroSectionProps> ) {
+	const { heading, subheading, backgroundImage, button, triangleColor } = hero;
 	return (
 		<div className="relative h-screen">
 			<StrapiImage
-					alt={background.alt}
+					alternativeText={backgroundImage.alternativeText}
 					className="absolute inset-0 object-cover w-full h-full -z-10"
 					height={1080}
-					source={background.source}
+					url={backgroundImage.url}
 					width={1920}
 			/>
 			<div className="flex flex-row bg-cover bg-center pl-[100px] pr-[100px] pt-[100px] pb-[60px] gap-[80px] h-full">
@@ -54,11 +38,13 @@ export default function HeroSection({
 				</div>
 				<div className="flex flex-col font-poppins text-white text-center justify-center items-center gap-[80px]">
 					<div className="flex flex-col items-center">
-						<h1 className="text-h1 leading-[1.1]">{title}</h1>
-						{haveSubtitle && (
-						<div className="text-h5 pt-[40px] w-4/5">{subTitle}</div>)}
+						<h1 className="text-h1 leading-[1.1]">{heading}</h1>
+						{subheading && (
+						<div className="text-h5 pt-[40px] w-4/5">{subheading}</div>)}
 					</div>
-					<ButtonLink {...button}/>
+					<ButtonLink {...button}>
+						{button.buttonText}
+					</ButtonLink>
 				</div>
 				<div className="flex flex-col justify-end items-end">
 					<div className={`w-0 h-0 border-l-[6rem] border-b-[6rem] border-${triangleColor} border-l-transparent`}></div>

@@ -95,6 +95,7 @@ export interface LayoutHero extends Struct.ComponentSchema {
     button: Schema.Attribute.Component<'composants.lien', false>;
     heading: Schema.Attribute.String & Schema.Attribute.Required;
     subheading: Schema.Attribute.Text;
+    triangleColor: Schema.Attribute.Enumeration<['orange', 'white']>;
   };
 }
 

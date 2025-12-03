@@ -1,10 +1,5 @@
-import TextSection from "./components/textSection"
-import HeroSection from "./components/heroSection"
-import FooterCTA from "./components/footerCTA"
-import getHero from "./logic/hero"
-import getTextSection from "./logic/textSection"
-import getfooterCTA from "./logic/footerCTASection"
-import { getStrapiData, query } from "./utils/utils"
+import HeroSection from "@/app/components/heroSection"
+import { getStrapiData, query, blockRenderer } from "@/app/utils/utils"
 
 /*
 * The logic:
@@ -14,21 +9,17 @@ import { getStrapiData, query } from "./utils/utils"
 */
 export default async function Home() {
 	const strapiData = await getStrapiData("/api/accueil", query);
-	const {blocks} = strapiData.data;
-	const hero = getHero(strapiData);
-	const textSection1 = getTextSection(blocks[0]);
-	const footerCTA = getfooterCTA(blocks[1]);
+	const hero = strapiData.data.hero;
+	const { blocks } = strapiData.data;
 	
 	return (
 		<div>
-			<HeroSection background={hero.heroBackground}
-							title={hero.heroHeading}
-							subTitle={hero.heroSubHeading}
-							haveSubtitle={true}
-							triangleColor='orange'
-							button={{...hero.heroButton}} />
-			<TextSection {...textSection1} />
-			<FooterCTA {...footerCTA} />
+			<HeroSection hero={hero} />
+			{
+				blocks
+					? blocks.map((block: any) => blockRenderer(block))	
+					: <div>No block!</div>
+			}
 		</div>
 	)
 }

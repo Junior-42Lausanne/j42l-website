@@ -23,6 +23,13 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "triangleColor": {
+      "type": "enumeration",
+      "enum": [
+        "orange",
+        "white"
+      ]
     }
   },
   "config": {}

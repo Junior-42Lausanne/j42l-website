@@ -6,6 +6,12 @@ export type NavBarLinkProps = {
 	external: boolean,
 }
 
+/*
+* Component for button
+* text: link text
+* url: where the link point to
+* external: external link or not
+*/
 export default function NavBarLink({
 	text,
 	url,
