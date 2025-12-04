@@ -19,11 +19,9 @@ export type StrapiImageProps = {
 * className: Tailwind. Optional field
 */
 export default function StrapiImage({
-	id,
 	url,
 	alternativeText,
 	className,
-	...rest
 }: Readonly<StrapiImageProps>) {
 	const isRemote = typeof url === "string" && url.startsWith("/uploads");
 	const imageUrl = isRemote ? getStrapiMedia(url) : url;

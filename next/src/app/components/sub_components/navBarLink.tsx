@@ -15,7 +15,6 @@ export type NavBarLinkProps = {
 * children: text
 */
 export default function NavBarLink({
-	id,
 	url,
 	external,
 	children,

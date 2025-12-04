@@ -1,9 +1,21 @@
 import { StrapiLongTextProps } from "../components/textSection";
-import TextSection from "../components/textSection";
-import FooterCTASection from "../components/footerCTASection";
+import TextSection, { TextSectionProps } from "../components/textSection";
+import FooterCTASection, { FooterCTASectionProps } from "../components/footerCTASection";
 import qs from "qs";
 
-export function blockRenderer(block: any) {
+type TextSectionBlock = TextSectionProps["blocks"] & {
+	id: string;
+	__component: "layout.text-section";
+};
+
+type FooterCTASectionBlock = FooterCTASectionProps["blocks"] & {
+	id: string;
+	__component: "layout.footer-cta";
+};
+
+export type Block = TextSectionBlock | FooterCTASectionBlock;
+
+export function blockRenderer(block: Block) {
 	switch (block.__component) {
 		case "layout.text-section":
 			return <TextSection key={block.id} blocks={block} />;
@@ -60,7 +72,8 @@ export async function getStrapiData(path: string, query: string) {
 }
 
 /*
-* Strapi API call for global single type, uncomment the console.dir() to log the returned json
+* Strapi API call for global single type, 
+* uncomment the console.dir() to log the returned json
 */
 export async function getStrapiGlobalData() {
 	const url = new URL("/api/global", baseUrl);

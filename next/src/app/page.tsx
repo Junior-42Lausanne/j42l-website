@@ -1,5 +1,5 @@
 import HeroSection from "@/app/components/heroSection"
-import { getStrapiData, query, blockRenderer } from "@/app/utils/utils"
+import { getStrapiData, query, blockRenderer, Block } from "@/app/utils/utils"
 
 /*
 * The logic:
@@ -16,13 +16,13 @@ export default async function Home() {
 				<HeroSection hero={hero} />
 				{
 					blocks
-						? blocks.map((block: any) => blockRenderer(block))	
+						? blocks.map((block: Block) => blockRenderer(block))	
 						: <div>No block!</div>
 				}
 			</div>
 		)
 	} catch (error) {
-		console.log("Error loading page");
+		console.log(`Error loading page. Error: ${error}`);
 		return (
 			<div>
 				<h1>Problem loading the page content</h1>
