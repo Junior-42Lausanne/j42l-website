@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_composants_section_titles",
+  "info": {
+    "displayName": "Section title"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
+    }
+  },
+  "config": {}
+}

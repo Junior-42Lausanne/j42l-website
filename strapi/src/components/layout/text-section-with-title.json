@@ -1,0 +1,54 @@
+{
+  "collectionName": "components_layout_text_section_with_titles",
+  "info": {
+    "displayName": "textSectionWithTitle"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "component",
+      "component": "composants.section-title",
+      "repeatable": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right"
+      ]
+    },
+    "text": {
+      "type": "blocks"
+    },
+    "button": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false
+    },
+    "textColor": {
+      "type": "enumeration",
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "orange",
+        "white",
+        "black",
+        "pale_orange"
+      ]
+    }
+  },
+  "config": {}
+}

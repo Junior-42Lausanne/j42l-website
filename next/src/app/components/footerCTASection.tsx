@@ -1,4 +1,4 @@
-import ButtonLink from "./sub_components/button";
+import ButtonLink from "./sub_components/Button";
 import { ThemeColor } from "../utils/type";
 
 export type FooterCTASectionProps = {
@@ -19,7 +19,7 @@ export default function FooterCTASection({ blocks } : FooterCTASectionProps) {
 	const styles = {
 		section: "flex flex-row pt-[100px] pb-[100px] justify-center",
 		leftTriangleDiv: "flex flex-col justify-start items-start",
-		conteintWrap: "flex flex-col items-center justify-center gap-[80px] mt-[100px] mb-[100px]",
+		conteintWrap: "flex flex-col items-center justify-center gap-[80px] mt-[100px] mb-[100px] min-w-[900px]",
 		text: "font-poppins text-center text-black text-h2 place-items-center w-4/5",
 		rightTriangleDiv: "flex flex-col justify-end items-end",
 	}

@@ -51,6 +51,30 @@ export interface ComposantsLogo extends Struct.ComponentSchema {
   };
 }
 
+export interface ComposantsMemberCard extends Struct.ComponentSchema {
+  collectionName: 'components_composants_member_cards';
+  info: {
+    displayName: 'Member card';
+  };
+  attributes: {
+    function: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<'images'>;
+    social: Schema.Attribute.Component<'composants.social', true>;
+  };
+}
+
+export interface ComposantsSectionTitle extends Struct.ComponentSchema {
+  collectionName: 'components_composants_section_titles';
+  info: {
+    displayName: 'Section title';
+  };
+  attributes: {
+    color: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ComposantsSocial extends Struct.ComponentSchema {
   collectionName: 'components_composants_socials';
   info: {
@@ -109,6 +133,17 @@ export interface LayoutHero extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutMemberSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_member_sections';
+  info: {
+    displayName: 'memberSection';
+  };
+  attributes: {
+    members: Schema.Attribute.Component<'composants.member-card', true>;
+    title: Schema.Attribute.Component<'composants.section-title', false>;
+  };
+}
+
 export interface LayoutNavBar extends Struct.ComponentSchema {
   collectionName: 'components_layout_nav_bars';
   info: {
@@ -137,6 +172,24 @@ export interface LayoutTextSection extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutTextSectionWithTitle extends Struct.ComponentSchema {
+  collectionName: 'components_layout_text_section_with_titles';
+  info: {
+    displayName: 'textSectionWithTitle';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['orange', 'white', 'black', 'pale_orange']
+    >;
+    button: Schema.Attribute.Component<'composants.lien', false>;
+    image: Schema.Attribute.Media<'images'>;
+    imagePosition: Schema.Attribute.Enumeration<['left', 'right']>;
+    text: Schema.Attribute.Blocks;
+    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
+    title: Schema.Attribute.Component<'composants.section-title', false>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -144,13 +197,17 @@ declare module '@strapi/strapi' {
       'composants.lien': ComposantsLien;
       'composants.link': ComposantsLink;
       'composants.logo': ComposantsLogo;
+      'composants.member-card': ComposantsMemberCard;
+      'composants.section-title': ComposantsSectionTitle;
       'composants.social': ComposantsSocial;
       'layout.card-section': LayoutCardSection;
       'layout.footer': LayoutFooter;
       'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;
+      'layout.member-section': LayoutMemberSection;
       'layout.nav-bar': LayoutNavBar;
       'layout.text-section': LayoutTextSection;
+      'layout.text-section-with-title': LayoutTextSectionWithTitle;
     }
   }
 }

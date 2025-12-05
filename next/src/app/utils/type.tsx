@@ -1,4 +1,4 @@
-export type ThemeColor = 'orange' | 'white' | 'black';
+export type ThemeColor = 'orange' | 'white' | 'black' | 'pale_orange';
 
 /*
 * Do not delete
@@ -9,11 +9,14 @@ export type ThemeColor = 'orange' | 'white' | 'black';
 //   "border-orange",
 //   "border-white",
 //   "border-black",
+//   "border-pale_orange",
 //   "text-orange",
 //   "text-white",
-//   "text-black",
+//   "text-black"
+//   "text-pale_orange",
 //   "bg-orange",
 //   "bg-white",
 //   "bg-black",
+//   "bg-pale_orange",
 // ] as const;
 

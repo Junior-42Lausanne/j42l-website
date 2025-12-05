@@ -1,22 +1,30 @@
-import { StrapiLongTextProps } from "../components/textSection";
-import TextSection, { TextSectionProps } from "../components/textSection";
-import FooterCTASection, { FooterCTASectionProps } from "../components/footerCTASection";
 import qs from "qs";
+import { StrapiLongTextProps } from "../components/TextSection";
+import TextSection, { TextSectionProps } from "../components/TextSection";
+import FooterCTASection, { FooterCTASectionProps } from "../components/FooterCTASection";
+import TextSectionWithTitle, { TextSectionWithTitleProps } from "../components/TextSectionWithTitle";
+
+type TextSectionWithTitleBlock = TextSectionWithTitleProps["blocks"] & {
+	id: string,
+	__component: "layout.text-section-with-title"
+};
 
 type TextSectionBlock = TextSectionProps["blocks"] & {
-	id: string;
-	__component: "layout.text-section";
+	id: string,
+	__component: "layout.text-section",
 };
 
 type FooterCTASectionBlock = FooterCTASectionProps["blocks"] & {
-	id: string;
-	__component: "layout.footer-cta";
+	id: string,
+	__component: "layout.footer-cta",
 };
 
-export type Block = TextSectionBlock | FooterCTASectionBlock;
+export type Block = TextSectionBlock | FooterCTASectionBlock | TextSectionWithTitleBlock;
 
 export function blockRenderer(block: Block) {
 	switch (block.__component) {
+		case "layout.text-section-with-title":
+			return <TextSectionWithTitle key={block.id} blocks={block} />;
 		case "layout.text-section":
 			return <TextSection key={block.id} blocks={block} />;
 		case "layout.footer-cta":

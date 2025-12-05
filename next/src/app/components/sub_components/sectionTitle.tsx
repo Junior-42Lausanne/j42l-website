@@ -1,7 +1,7 @@
 import { ThemeColor } from "@/app/utils/type";
 
 export type SectionTitleProps = {
-	color?: ThemeColor,
+	color: ThemeColor,
 	children: React.ReactNode,
 }
 
@@ -11,7 +11,7 @@ export type SectionTitleProps = {
 * color: color of the triangles. Optional field, default is black
 */
 export default function SectionTitle({
-	color = 'black',
+	color,
 	children,
 }: Readonly<SectionTitleProps>) {
 	const styles = {

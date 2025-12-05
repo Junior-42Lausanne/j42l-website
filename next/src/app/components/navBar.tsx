@@ -1,6 +1,6 @@
-import NavBarLink from "@/app/components/sub_components/navBarLink";
-import ButtonLink from "@/app/components/sub_components/button";
-import StrapiImage, { StrapiImageProps } from "@/app/components/sub_components/strapiImage";
+import NavBarLink from "@/app/components/sub_components/NavBarLink";
+import ButtonLink from "@/app/components/sub_components/Button";
+import StrapiImage, { StrapiImageProps } from "@/app/components/sub_components/StrapiImage";
 import { ThemeColor } from "../utils/type";
 import Link from 'next/link';
 

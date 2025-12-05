@@ -1,5 +1,5 @@
-import ButtonLink from "./sub_components/button"
-import StrapiImage, { StrapiImageProps } from "./sub_components/strapiImage";
+import ButtonLink from "./sub_components/Button"
+import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage";
 import { ThemeColor } from "@/app/utils/type"
 import { convertStrapiText } from "@/app/utils/utils";
 

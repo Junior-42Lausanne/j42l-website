@@ -1,4 +1,4 @@
-import HeroSection from "@/app/components/heroSection"
+import HeroSection from "@/app/components/HeroSection"
 import { getStrapiData, query, blockRenderer, Block } from "@/app/utils/utils"
 
 /*

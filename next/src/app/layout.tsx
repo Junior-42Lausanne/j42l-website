@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { getStrapiGlobalData } from "./utils/utils";
-import NavBar from "./components/navBar";
+import NavBar from "./components/NavBar";
 
 export const metadata: Metadata = {
 	title: "Create Next App",

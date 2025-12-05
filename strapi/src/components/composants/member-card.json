@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_composants_member_cards",
+  "info": {
+    "displayName": "Member card"
+  },
+  "options": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "function": {
+      "type": "string"
+    },
+    "social": {
+      "type": "component",
+      "component": "composants.social",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
