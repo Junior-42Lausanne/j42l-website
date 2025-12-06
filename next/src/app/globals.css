@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --* : initial;
   --color-background: var(--background);
@@ -31,19 +26,6 @@
   --text-button--font-weight: 600;
   --text-navButton: 1rem;
   --text-navButton--font-weight: 400;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--color-white);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* UL bullet marker */

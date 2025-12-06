@@ -383,6 +383,11 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
@@ -390,14 +395,23 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
         'layout.text-section-with-title',
         'layout.member-section',
       ]
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    hero: Schema.Attribute.Component<'layout.hero', false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
-      Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'layout.hero', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -484,6 +498,54 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLinkLink extends Struct.CollectionTypeSchema {
+  collectionName: 'links';
+  info: {
+    displayName: 'Link';
+    pluralName: 'links';
+    singularName: 'link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    external: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    label: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    link: Schema.Attribute.Relation<'manyToOne', 'api::link.link'>;
+    links: Schema.Attribute.Relation<'oneToMany', 'api::link.link'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::link.link'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
 export interface ApiStudentStudent extends Struct.SingleTypeSchema {
   collectionName: 'students';
   info: {
@@ -494,20 +556,34 @@ export interface ApiStudentStudent extends Struct.SingleTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       ['layout.footer-cta', 'layout.text-section-with-title']
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    hero: Schema.Attribute.Component<'layout.hero', false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'layout.hero', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::student.student'
-    > &
-      Schema.Attribute.Private;
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1027,6 +1103,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::accueil.accueil': ApiAccueilAccueil;
       'api::global.global': ApiGlobalGlobal;
+      'api::link.link': ApiLinkLink;
       'api::student.student': ApiStudentStudent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

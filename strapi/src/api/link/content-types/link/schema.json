@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "links",
+  "info": {
+    "singularName": "link",
+    "pluralName": "links",
+    "displayName": "Link"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "url": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "external": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "link": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::link.link",
+      "inversedBy": "links"
+    },
+    "links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::link.link",
+      "mappedBy": "link"
+    }
+  }
+}
