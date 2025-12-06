@@ -1,16 +1,8 @@
 import ButtonLink from "./sub_components/Button"
 import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage";
 import { ThemeColor } from "@/app/utils/type"
-import { convertStrapiText } from "@/app/utils/utils";
-
-
-export type StrapiLongTextProps = {
-	type?: string,
-	children?: {
-		type?: string,
-		text?: string,
-	}[],
-}[];
+// BlocksRenderer to render JSON Rich text
+import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 /*
 * Text section
@@ -19,9 +11,9 @@ export type StrapiLongTextProps = {
 export type TextSectionProps = {
 	blocks: {
 		title: string,
-		text: StrapiLongTextProps,
+		text: BlocksContent,
 		image: StrapiImageProps,
-		button: {
+		button?: {
 			url: string;
 			color: ThemeColor;
 			fullWidth?: boolean;
@@ -35,7 +27,6 @@ export type TextSectionProps = {
 
 export default function TextSection({ blocks }: TextSectionProps) {
 	const {title, text, image, button, textColor, backgroundColor} = blocks;
-	const parsedText = convertStrapiText(text);
 
 	const styles = {
 		section: `flex bg-${backgroundColor} pt-[100px] pb-[100px] gap-[150px] items-center justify-center`,
@@ -46,7 +37,7 @@ export default function TextSection({ blocks }: TextSectionProps) {
 		},
 		textWrap: "flex flex-col items-center w-2/5",
 		title: `font-poppins text-${textColor} text-h2 text-center`,
-		text: `pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
+		text: `prose pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
 	}
 
 	return(
@@ -66,11 +57,16 @@ export default function TextSection({ blocks }: TextSectionProps) {
 					<h2>{title}</h2>
 				</div>
 				<div className={styles.text}>
-					<p>{parsedText}</p>
+					<BlocksRenderer content={text} />
 				</div>
-				<ButtonLink {...button}>
-					{button.buttonText}
-				</ButtonLink>
+				{ button
+					? (<ButtonLink {...button}>
+						{button.buttonText}
+						</ButtonLink>
+					) : (
+						null
+					)
+				}
 			</div>	
 		</div>
 	)

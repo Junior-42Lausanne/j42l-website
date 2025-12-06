@@ -1,5 +1,4 @@
 import qs from 'qs';
-import { StrapiLongTextProps } from "../components/TextSection";
 import TextSection, { TextSectionProps } from "../components/TextSection";
 import FooterCTASection, { FooterCTASectionProps } from "../components/FooterCTASection";
 import TextSectionWithTitle, { TextSectionWithTitleProps } from "../components/TextSectionWithTitle";
@@ -132,18 +131,4 @@ export function getStrapiMedia(url: string): string {
 	if (url.startsWith("http") || url.startsWith("//"))
 		return url;
 	return `${getStrapiURL()}${url}`;
-}
-
-/*
-* Convert Strapi long text to string
-* param1: Strapi text object to convert
-* 
-* this might be change later to for rich text support
-*/
-export function convertStrapiText(strapiText: StrapiLongTextProps) : string {
-	const paragraphs = strapiText.map(block => {
-		const text = block.children?.map(c => c.text ?? "").join("");
-		return text ?? "";
-	}).filter(p => p.length > 0);
-	return paragraphs.join("\n");
 }

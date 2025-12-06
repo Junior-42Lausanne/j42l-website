@@ -1,9 +1,10 @@
 import ButtonLink from "./sub_components/Button"
 import StrapiImage from "./sub_components/StrapiImage";
 import { TextSectionProps } from "@/app/components/TextSection"
-import { convertStrapiText } from "@/app/utils/utils";
 import SectionTitle from "./sub_components/SectionTitle";
 import { ThemeColor } from "../utils/type";
+// BlocksRenderer to render JSON Rich text
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 /*
 * Text section
@@ -21,7 +22,6 @@ export type TextSectionWithTitleProps = {
 
 export default function TextSectionWithTitle({ blocks }: TextSectionWithTitleProps) {
 	const {title, text, image, button, textColor, backgroundColor, imagePosition} = blocks;
-	const parsedText = convertStrapiText(text);
 
 	const styles = {
 		section: `flex flex-col bg-${backgroundColor} gap-[50px] py-[150px]`,
@@ -32,7 +32,7 @@ export default function TextSectionWithTitle({ blocks }: TextSectionWithTitlePro
 			style: { aspectRatio: `${image.width}/${image.height}` },
 		},
 		textWrap: "flex flex-col items-center w-2/5",
-		text: `pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
+		text: `prose pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
 	}
 
 	return(
@@ -57,11 +57,16 @@ export default function TextSectionWithTitle({ blocks }: TextSectionWithTitlePro
 				)}
 				<div className={styles.textWrap}>
 					<div className={styles.text}>
-						<p>{parsedText}</p>
+						<BlocksRenderer content={text} />
 					</div>
-					<ButtonLink {...button}>
-						{button.buttonText}
-					</ButtonLink>
+					{ button
+						? (<ButtonLink {...button}>
+							{button.buttonText}
+							</ButtonLink>
+						) : (
+							null
+						)
+					}
 				</div>	
 				{ imagePosition === "right" && (
 					<div className={styles.imageWrap}>

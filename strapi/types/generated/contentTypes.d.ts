@@ -495,7 +495,9 @@ export interface ApiStudentStudent extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['layout.footer-cta']>;
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.footer-cta', 'layout.text-section-with-title']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

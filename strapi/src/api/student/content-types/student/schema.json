@@ -19,7 +19,8 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "layout.footer-cta"
+        "layout.footer-cta",
+        "layout.text-section-with-title"
       ]
     }
   }
