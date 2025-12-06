@@ -25,7 +25,6 @@ export default function TextSectionWithTitle({ blocks }: TextSectionWithTitlePro
 
 	const styles = {
 		section: `flex flex-col bg-${backgroundColor} gap-[50px] py-[150px]`,
-		title: `font-poppins text-${textColor} text-h2 text-center`,
 		contentWrap: `flex gap-[80px] items-center justify-center`,
 		imageWrap: "w-1/3",
 		image: {

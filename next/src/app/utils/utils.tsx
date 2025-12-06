@@ -1,12 +1,18 @@
-import qs from "qs";
+import qs from 'qs';
 import { StrapiLongTextProps } from "../components/TextSection";
 import TextSection, { TextSectionProps } from "../components/TextSection";
 import FooterCTASection, { FooterCTASectionProps } from "../components/FooterCTASection";
 import TextSectionWithTitle, { TextSectionWithTitleProps } from "../components/TextSectionWithTitle";
+import MemberSection, { MemberSectionProps } from "../components/MemberSection";
+
+type MemberSectionBlock = MemberSectionProps["blocks"] & {
+	id: string,
+	__component: "layout.member-section",
+}
 
 type TextSectionWithTitleBlock = TextSectionWithTitleProps["blocks"] & {
 	id: string,
-	__component: "layout.text-section-with-title"
+	__component: "layout.text-section-with-title",
 };
 
 type TextSectionBlock = TextSectionProps["blocks"] & {
@@ -19,10 +25,15 @@ type FooterCTASectionBlock = FooterCTASectionProps["blocks"] & {
 	__component: "layout.footer-cta",
 };
 
-export type Block = TextSectionBlock | FooterCTASectionBlock | TextSectionWithTitleBlock;
+export type Block = TextSectionBlock | 
+					FooterCTASectionBlock | 
+					TextSectionWithTitleBlock |
+					MemberSectionBlock;
 
 export function blockRenderer(block: Block) {
 	switch (block.__component) {
+		case "layout.member-section":
+			return <MemberSection key={block.id} blocks={block} />;
 		case "layout.text-section-with-title":
 			return <TextSectionWithTitle key={block.id} blocks={block} />;
 		case "layout.text-section":
@@ -36,27 +47,6 @@ export function blockRenderer(block: Block) {
 
 const baseUrl = "http://strapi-app:1337";
 // const baseUrl = "http://localhost:1337";
-
-/*
-* query for Strapi API call
-* this query is converted by qs and then append to the url
-*/
-export const query = qs.stringify({
-	populate: {
-		hero: {
-			fields: ["heading", "subheading", "triangleColor"],
-			populate: {
-				backgroundImage: {
-					fields: ["url", "alternativeText", "width", "height"]
-				},
-				button: true,
-			}
-		},
-		blocks: {
-			populate: "*",
-		},
-	}
-})
 
 /*
 * Strapi API call, uncomment the console.dir() to log the returned json

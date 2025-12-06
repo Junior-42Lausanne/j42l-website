@@ -17,7 +17,7 @@ export default function SectionTitle({
 	const styles = {
 		wrap: "flex flex-row justify-center",
 		leftTriangleWrap: "flex flex-col justify-start items-start",
-		text: `font-poppins text-${color} text-h2 text-center pr-[50px] pl-[50px]`,
+		text: `font-poppins text-${color} text-h2 text-center px-[50px]`,
 		rightTriangleWrap: "flex flex-col justify-end items-end",
 	}
 	return ( 

@@ -1,14 +1,27 @@
-import HeroSection from "@/app/components/HeroSection"
-import { getStrapiData, query, blockRenderer, Block } from "@/app/utils/utils"
+import qs from 'qs';
+import HeroSection from "@/app/components/HeroSection";
+import { getStrapiData, blockRenderer, Block } from "@/app/utils/utils";
 
-/*
-* The logic:
-* API call for current page
-* loop through the blocks to call corresponse section component
-*/
+const queryStudent = qs.stringify({
+	populate: {
+		hero: {
+			fields: ["heading", "subheading", "triangleColor"],
+			populate: {
+				backgroundImage: {
+					fields: ["url", "alternativeText", "width", "height"]
+				},
+				button: true,
+			}
+		},
+		blocks: {
+			populate: "*",
+		},
+	}
+})
+
 export default async function Student() {
 	try {
-		const strapiData = await getStrapiData("/api/student", query);
+		const strapiData = await getStrapiData("/api/student", queryStudent);
 		const hero = strapiData.data.hero;
 		const { blocks } = strapiData.data;
 		return (

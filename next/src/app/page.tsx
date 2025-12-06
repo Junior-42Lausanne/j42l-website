@@ -1,5 +1,23 @@
+import qs from "qs";
 import HeroSection from "@/app/components/HeroSection"
-import { getStrapiData, query, blockRenderer, Block } from "@/app/utils/utils"
+import { getStrapiData, blockRenderer, Block } from "@/app/utils/utils"
+
+const queryHero = qs.stringify({
+	populate: {
+		hero: {
+			fields: ["heading", "subheading", "triangleColor"],
+			populate: {
+				backgroundImage: {
+					fields: ["url", "alternativeText", "width", "height"]
+				},
+				button: true,
+			}
+		},
+		blocks: {
+			populate: "*",
+		},
+	}
+})
 
 /*
 * The logic:
@@ -8,7 +26,7 @@ import { getStrapiData, query, blockRenderer, Block } from "@/app/utils/utils"
 */
 export default async function Home() {
 	try {
-		const strapiData = await getStrapiData("/api/accueil", query);
+		const strapiData = await getStrapiData("/api/accueil", queryHero);
 		const hero = strapiData.data.hero;
 		const { blocks } = strapiData.data;
 		return (

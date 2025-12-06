@@ -20,7 +20,8 @@
       "type": "dynamiczone",
       "components": [
         "layout.footer-cta",
-        "layout.text-section-with-title"
+        "layout.text-section-with-title",
+        "layout.member-section"
       ]
     }
   }

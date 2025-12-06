@@ -57,9 +57,9 @@ export interface ComposantsMemberCard extends Struct.ComponentSchema {
     displayName: 'Member card';
   };
   attributes: {
-    function: Schema.Attribute.String;
     name: Schema.Attribute.String;
     photo: Schema.Attribute.Media<'images'>;
+    role: Schema.Attribute.String;
     social: Schema.Attribute.Component<'composants.social', true>;
   };
 }
