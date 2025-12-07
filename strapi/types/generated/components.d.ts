@@ -13,6 +13,38 @@ export interface ComposantsCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ComposantsContactDetails extends Struct.ComponentSchema {
+  collectionName: 'components_composants_contact_details';
+  info: {
+    displayName: 'Contact details';
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    number: Schema.Attribute.String;
+  };
+}
+
+export interface ComposantsInformation extends Struct.ComponentSchema {
+  collectionName: 'components_composants_information';
+  info: {
+    displayName: 'Information';
+  };
+  attributes: {
+    contactDetails: Schema.Attribute.Component<
+      'composants.contact-details',
+      false
+    >;
+    copyright: Schema.Attribute.String;
+    designer: Schema.Attribute.String;
+    gameJam: Schema.Attribute.Component<'composants.link', false>;
+    logo: Schema.Attribute.Media<'images'>;
+    navItems: Schema.Attribute.Component<'composants.link', true>;
+    services: Schema.Attribute.Component<'composants.link', true>;
+    socialLinks: Schema.Attribute.Component<'composants.link', true>;
+  };
+}
+
 export interface ComposantsLien extends Struct.ComponentSchema {
   collectionName: 'components_composants_liens';
   info: {
@@ -20,6 +52,17 @@ export interface ComposantsLien extends Struct.ComponentSchema {
   };
   attributes: {
     buttonText: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ComposantsLink extends Struct.ComponentSchema {
+  collectionName: 'components_composants_links';
+  info: {
+    displayName: 'Link';
+  };
+  attributes: {
+    text: Schema.Attribute.String;
     url: Schema.Attribute.String;
   };
 }
@@ -76,7 +119,10 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'composants.card': ComposantsCard;
+      'composants.contact-details': ComposantsContactDetails;
+      'composants.information': ComposantsInformation;
       'composants.lien': ComposantsLien;
+      'composants.link': ComposantsLink;
       'composants.sub-menu': ComposantsSubMenu;
       'layout.card-section': LayoutCardSection;
       'layout.hero': LayoutHero;

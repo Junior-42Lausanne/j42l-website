@@ -38,6 +38,16 @@
         "composants.lien",
         "composants.sub-menu"
       ]
+    },
+    "footer": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "composants.information",
+      "repeatable": false
     }
   }
 }

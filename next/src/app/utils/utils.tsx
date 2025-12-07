@@ -38,12 +38,22 @@ export async function getStrapiData<T>(path: string, query: string): Promise<T |
 		const data = await response.json();
 
 		// console.dir(data, {depth: null});
-		
 		return data
 	} catch (error) {
 		console.error(error);
 		return null;
   }
+}
+
+export async function getStrapiGlobalData<T>(): Promise<T | null> {
+	try {
+		const response = await fetch("http://strapi-app:1337/api/global");
+		const data = await response.json();
+		return data
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
 }
 
 /*
@@ -70,7 +80,7 @@ export function getStrapiMedia(url: string | null): string | null {
 /*
 * Convert Strapi long text to string
 * param1: Strapi text object to convert
-* 
+*
 * this might be change later to for rich text support
 */
 export function convertStrapiText(strapiText?: StrapiRawText) : string | null {

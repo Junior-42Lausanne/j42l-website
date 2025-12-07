@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_composants_information",
+  "info": {
+    "displayName": "Information"
+  },
+  "options": {},
+  "attributes": {
+    "navItems": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true
+    },
+    "services": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true
+    },
+    "gameJam": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": false
+    },
+    "contactDetails": {
+      "type": "component",
+      "component": "composants.contact-details",
+      "repeatable": false
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "copyright": {
+      "type": "string"
+    },
+    "designer": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
