@@ -24,8 +24,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-	const strapiGlobalData = await getStrapiGlobalData();
-	console.log(strapiGlobalData);
+	const GlobalData = await getStrapiGlobalData();
+	console.log(GlobalData);
 
   return (
     <html lang="en">

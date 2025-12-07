@@ -7,7 +7,7 @@ export interface footerCtaProps {
 	button: ButtonType;
 }
 
-export default function FooterCTA({
+export default function ContactSection({
 	text,
 	button
 	} : footerCtaProps) {

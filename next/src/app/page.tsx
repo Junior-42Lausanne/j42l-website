@@ -2,7 +2,7 @@ import TextSection from "./components/textSection"
 import ServiceSection from "./components/serviceSection"
 import HeroSection from "./components/heroSection"
 import PortfolioSection from "./components/portfolioSection"
-import FooterCTA from "./components/footerCTA"
+import ContactSection from "./components/ContactSection"
 import Footer from "./components/footer"
 import getHero from "./logic/hero"
 import getTextSection from "./logic/textSection"
@@ -26,7 +26,7 @@ export default async function Home() {
 
   const hero = getHero(strapiData, homeHeroDefault);
   const textSection1 = getTextSection(strapiData, textSectionDefault);
-  
+
   return (
     <div>
       <HeroSection background={hero.heroBackground}
@@ -43,7 +43,7 @@ export default async function Home() {
       <ServiceSection />
       <PortfolioSection />
       <div className="h-[700px] bg-black"></div>
-      <FooterCTA  text= "Réalisez votre projet de rêve avec nous!" 
+      <ContactSection  text= "Réalisez votre projet de rêve avec nous!"
                   button={{
                     text: "Contactez-Nous",
                     path: "https://www.google.com",
