@@ -38,7 +38,7 @@ export async function getStrapiData<T>(path: string, query: string): Promise<T |
 		const data = await response.json();
 
 		// console.dir(data, {depth: null});
-		return data
+		return data;
 	} catch (error) {
 		console.error(error);
 		return null;

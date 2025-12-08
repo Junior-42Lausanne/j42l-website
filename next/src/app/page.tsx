@@ -3,7 +3,6 @@ import ServiceSection from "./components/serviceSection"
 import HeroSection from "./components/heroSection"
 import PortfolioSection from "./components/portfolioSection"
 import ContactSection from "./components/ContactSection"
-import Footer from "./components/footer"
 import getHero from "./logic/hero"
 import getTextSection from "./logic/textSection"
 import {homeHeroDefault, textSectionDefault} from "./homeDefault"
@@ -43,13 +42,14 @@ export default async function Home() {
       <ServiceSection />
       <PortfolioSection />
       <div className="h-[700px] bg-black"></div>
-      <ContactSection  text= "Réalisez votre projet de rêve avec nous!"
-                  button={{
-                    text: "Contactez-Nous",
-                    path: "https://www.google.com",
-                    color: 'orange'
-                   }} />
-      <Footer />
+      <ContactSection
+				text= "Réalisez votre projet de rêve avec nous!"
+				button={{
+					text: "Contactez-Nous",
+					path: "https://www.google.com",
+					color: 'orange'
+					}}
+			/>
     </div>
   )
 }

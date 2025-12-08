@@ -11,8 +11,14 @@
     "number": {
       "type": "string"
     },
-    "address": {
-      "type": "text"
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
     }
   },
   "config": {}

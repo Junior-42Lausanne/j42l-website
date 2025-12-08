@@ -1,35 +1,58 @@
 import FooterNavButton from "./footerNavButton";
 import Image from 'next/image'
+import { getStrapiGlobalData } from "../utils/utils";
 
-export default function Footer() {
+interface GlobalData {
+  data: {
+    footer: {
+			copyright: string;
+			designer: string;
+      navItems: Array<{ id: number; url: string; text: string }>;
+      services: Array<{ id: number; url: string; text: string }>;
+      socialLinks: Array<{ id: number; url: string; text: string }>;
+      gameJam: { id: number; url: string; text: string };
+      contactDetails: { id: number; email: string; street: string; city: string; country: string; number: string };
+      logo: { id: number; url: string; alternativeText: string; width: number; height: number };
+    };
+  };
+}
+
+export default async function Footer() {
+
+	const data: GlobalData | null = await getStrapiGlobalData();
+	if (!data) {
+		return;
+	}
+	const footer = data.data.footer;
+	console.dir(footer);
+
 	const currentYear = new Date().getFullYear();
 	const footerNav1 = (
 			<ul className="flex flex-col gap-[20px]">
-				<li><FooterNavButton text="Accueil" buttonPath="https://www.google.com"/></li>
-				<li><FooterNavButton text="À propos" buttonPath="https://www.google.com"/></li>
-				<li><FooterNavButton text="Jobs" buttonPath="https://www.google.com"/></li>
+				{footer.navItems?.map((item) => (
+					<li key={item.id}>
+						<FooterNavButton text={item.text ?? ""} buttonPath={item.url ?? ""} />
+					</li>
+				))}
 			</ul>
 	)
 	const footerNav2 = (
 			<ul className="flex flex-col gap-[20px]">
-				<li><FooterNavButton text="Website" buttonPath="https://www.google.com"/></li>
-				<li><FooterNavButton text="Prototype" buttonPath="https://www.google.com"/></li>
-				<li><FooterNavButton text="Automation" buttonPath="https://www.google.com"/></li>
+				{footer.services?.map((item) => (
+					<li key={item.id}>
+						<FooterNavButton text={item.text ?? ""} buttonPath={item.url ?? ""} />
+					</li>
+				))}
 			</ul>
 	)
 	const footerNav3 = (
 			<ul className="flex flex-col gap-[20px]">
-				<li><FooterNavButton text="GameJam" buttonPath="https://www.google.com"/></li>
+				<li><FooterNavButton text={footer.gameJam.text ?? ""} buttonPath={footer.gameJam.url ?? ""} /></li>
 			</ul>
 	)
 	const footerNav4 = (
 			<ul className="flex flex-col gap-[20px]">
 				<li><FooterNavButton text="Contact" buttonPath="https://www.google.com"/></li>
-			</ul>
-	)
-	const footerNav5 = (
-			<ul className="flex flex-col gap-[20px]">
-				<li><FooterNavButton text="Linkedin" buttonPath="https://www.google.com"/></li>
 			</ul>
 	)
 	return (
@@ -41,23 +64,22 @@ export default function Footer() {
 						<div>{footerNav2}</div>
 						<div>{footerNav3}</div>
 						<div>{footerNav4}</div>
-						<div>{footerNav5}</div>
 					</div>
 					<div className="flex flex-col gap-[20px] font-poppins text-h5 text-white">
-						<div>Rue de Lausanne 64<br/>1020 Renens<br/>LAUSANNE</div>
-						<div>contact@j42l.ch<br/>079 305 53 37</div>
+						<div>{footer.contactDetails.street ?? ""}<br/>{footer.contactDetails.city ?? ""}<br/>{footer.contactDetails.country ?? ""}</div>
+						<div>{footer.contactDetails.email ?? ""}<br/>{footer.contactDetails.number ?? ""}</div>
 					</div>
 				</div>
 				<div>
 					<div className="flex flex-row justify-end">
-						<Image className="w-[550px]" src="/graphic/elements/svg/Junior Orange.svg" alt="junior alt logo" width={550} height={1000}/>
+						<Image className="w-[550px]" src={footer.logo.url} alt={footer.logo.alternativeText} width={footer.logo.width} height={footer.logo.height}/>
 					</div>
 				</div>
 			</div>
 			<div className="border border-white"></div>
 			<div className="flex flex-row justify-between pr-[200px] pl-[200px] pt-[5px]">
-				<div>® {currentYear} JUNIOR ENTREPRISE 42 LAUSANNE. Tous droits réservés.</div>
-				<div>Design: NguyenNGUYEN.ch</div>
+				<div>® {currentYear} {footer.copyright}</div>
+				<div>Design: {footer.designer}</div>
 			</div>
 		</footer>
 	)

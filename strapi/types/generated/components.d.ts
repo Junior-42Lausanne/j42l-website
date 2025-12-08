@@ -19,9 +19,11 @@ export interface ComposantsContactDetails extends Struct.ComponentSchema {
     displayName: 'Contact details';
   };
   attributes: {
-    address: Schema.Attribute.Text;
+    city: Schema.Attribute.String;
+    country: Schema.Attribute.String;
     email: Schema.Attribute.Email;
     number: Schema.Attribute.String;
+    street: Schema.Attribute.String;
   };
 }
 
