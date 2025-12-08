@@ -48,7 +48,7 @@ export default async function Home() {
 					text: "Contactez-Nous",
 					path: "https://www.google.com",
 					color: 'orange'
-					}}
+				}}
 			/>
     </div>
   )

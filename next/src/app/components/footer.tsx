@@ -3,18 +3,18 @@ import Image from 'next/image'
 import { getStrapiGlobalData } from "../utils/utils";
 
 interface GlobalData {
-  data: {
-    footer: {
+	data: {
+		footer: {
 			copyright: string;
 			designer: string;
-      navItems: Array<{ id: number; url: string; text: string }>;
-      services: Array<{ id: number; url: string; text: string }>;
-      socialLinks: Array<{ id: number; url: string; text: string }>;
-      gameJam: { id: number; url: string; text: string };
-      contactDetails: { id: number; email: string; street: string; city: string; country: string; number: string };
-      logo: { id: number; url: string; alternativeText: string; width: number; height: number };
-    };
-  };
+			navItems: Array<{ id: number; url: string; text: string }>;
+			services: Array<{ id: number; url: string; text: string }>;
+			socialLinks: Array<{ id: number; url: string; text: string }>;
+			gameJam: { id: number; url: string; text: string };
+			contactDetails: { id: number; email: string; street: string; city: string; country: string; number: string };
+			logo: { id: number; url: string; alternativeText: string; width: number; height: number };
+		};
+	};
 }
 
 export default async function Footer() {
@@ -24,7 +24,6 @@ export default async function Footer() {
 		return;
 	}
 	const footer = data.data.footer;
-	console.dir(footer);
 
 	const currentYear = new Date().getFullYear();
 	const footerNav1 = (
