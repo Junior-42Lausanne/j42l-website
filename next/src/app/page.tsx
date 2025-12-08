@@ -25,18 +25,18 @@ export const metadata = async () => {
 export default async function Home() {
 	try {
 		const strapiData = await getStrapiData(path, queryHero);
+		if (!strapiData?.data?.blocks)
+			throw new Error("No Home page content");
 		const { blocks } = strapiData.data;
 		return (
 			<div>
 				{
-					blocks
-						? blocks.map((block: Block) => blockRenderer(block))	
-						: null
+					blocks.map((block: Block) => blockRenderer(block))
 				}
 			</div>
 		)
 	} catch(error) {
-		console.log(`Error: ${error}`);
+		console.log(`${error}`);
 		return (
 			<div>
 				<h1>Problem loading the page content</h1>

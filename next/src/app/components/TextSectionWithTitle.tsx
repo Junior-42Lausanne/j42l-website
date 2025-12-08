@@ -24,15 +24,15 @@ export default function TextSectionWithTitle({ blocks }: TextSectionWithTitlePro
 	const {title, text, image, button, textColor, backgroundColor, imagePosition} = blocks;
 
 	const styles = {
-		section: `flex flex-col bg-${backgroundColor} gap-[50px] py-[150px]`,
-		contentWrap: `flex gap-[80px] items-center justify-center`,
+		section: `flex flex-col bg-${backgroundColor} gap-[3.125rem] py-[9.375rem]`,
+		contentWrap: `flex gap-[5rem] items-center justify-center`,
 		imageWrap: "w-1/3",
 		image: {
 			className: "relative h-full",
 			style: { aspectRatio: `${image.width}/${image.height}` },
 		},
 		textWrap: "flex flex-col items-center w-2/5",
-		text: `prose pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
+		text: `prose pt-[1.25rem] mb-[3.75rem] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
 	}
 
 	return(

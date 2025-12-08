@@ -19,9 +19,9 @@ export default function NavBarDropdown( {
 	const styles = {
 		linkWrap: "relative group",
 		label: `inline-flex font-poppins text-navButton text-navButton--font-weight 
-				text-center text-white pt-[5px] pb-[5px] pl-[10px] pr-[10px]
+				text-center text-white pt-[0.315rem] pb-[0.315rem] pl-[0.625rem] pr-[0.625rem]
 				cursor-pointer`,
-		submenuWrap: `absolute left-0 top-full hidden
+		submenuWrap: `absolute left-0 top-full pt-[0.625rem] hidden
 						group-hover:block`,
 	};
 

@@ -12,20 +12,23 @@ export default function NavBarDropdownLink({
 	url,
 	external,
 } : Readonly<NavBarLinkProps>) {
-const styles = `inline-flex font-poppins text-navButton text-navButton--font-weight 
-				text-center text-white pt-[5px] pb-[5px] pl-[10px] pr-[10px]`;
+	const styles = {
+		text: `inline-flex font-poppins text-navButton font-normal 
+					text-center text-black bg-pale_orange w-[12.5rem] pt-[0.625rem] pb-[0.625rem] pl-[0.625rem]
+					hover:bg-orange hover:text-white hover:font-bold`,
+	}
 
 	if (external) {
 		return (
 			<a href={url}
 				target="_blank"
-				className={styles} >
+				className={styles.text} >
 				{linkText}
 			</a>
 		);
 	}
 	return (
-		<Link href={url} className={styles} >
+		<Link href={url} className={styles.text} >
 			{linkText}
 		</Link>
 	);

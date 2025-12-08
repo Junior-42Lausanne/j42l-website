@@ -24,12 +24,12 @@ export default function HeroSection({ blocks }: Readonly<HeroSectionProps> ) {
 	const styles = {
 		section: "relative h-screen overflow-hidden",
 		background: "absolute inset-0 object-cover w-full h-full -z-10",
-		centerDiv: "flex flex-row bg-cover bg-center pl-[100px] pr-[100px] pt-[100px] pb-[60px] gap-[80px] h-full",
+		centerDiv: "flex flex-row bg-cover bg-center pl-[6.25rem] pr-[6.25rem] pt-[6.25rem] pb-[3.75rem] gap-[5rem] h-full",
 		leftTriangleDiv: "flex flex-col justify-start items-start",
-		contentWrap: "flex flex-col font-poppins text-white text-center justify-center items-center gap-[80px]",
+		contentWrap: "flex flex-col font-poppins text-white text-center justify-center items-center gap-[5rem]",
 		textWrap: "flex flex-col items-center",
 		heading: "text-h1 leading-[1.1]",
-		subheading: "text-h5 pt-[40px] w-4/5",
+		subheading: "text-h5 pt-[2.5rem] w-4/5",
 		rightTriangleDiv: "flex flex-col justify-end items-end",
 	}
 	

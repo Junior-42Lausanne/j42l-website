@@ -17,9 +17,9 @@ export type FooterCTASectionProps = {
 export default function FooterCTASection({ blocks } : FooterCTASectionProps) {
 	const {text, button} = blocks;
 	const styles = {
-		section: "flex flex-row pt-[100px] pb-[100px] justify-center",
+		section: "flex flex-row pt-[6.25rem] pb-[6.25rem] justify-center",
 		leftTriangleDiv: "flex flex-col justify-start items-start",
-		conteintWrap: "flex flex-col items-center justify-center gap-[80px] mt-[100px] mb-[100px] min-w-[900px]",
+		conteintWrap: "flex flex-col items-center justify-center gap-[5rem] mt-[6.25rem] mb-[6.25rem] min-w-[56.25rem]",
 		text: "font-poppins text-center text-black text-h2 place-items-center w-4/5",
 		rightTriangleDiv: "flex flex-col justify-end items-end",
 	}

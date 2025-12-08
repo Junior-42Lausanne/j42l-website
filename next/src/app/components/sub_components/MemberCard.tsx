@@ -17,17 +17,17 @@ export default function MemberCard( {
 	social
 } : MemberCardProps) {
 	const styles = {
-		section: "flex flex-col items-center w-[300px] px-[20px] py-[20px] gap-[30px] border-2 border-pale_orange",
-		photoWrap: "flex w-[200px] h-[200px] rounded-full overflow-hidden",
+		section: "flex flex-col items-center w-[18.75rem] px-[1.25rem] py-[1.25rem] gap-[1.875rem] border-2 border-pale_orange",
+		photoWrap: "flex w-[12.5rem] h-[12.5rem] rounded-full overflow-hidden",
 		photo: {
 			className: "relative w-full h-full",
 			style: { aspectRatio: `${photo.width}/${photo.height}` },
 		},
-		contentWrap: "flex flex-col gap-[10px] font-poppins text-black text-center px-[30px]",
+		contentWrap: "flex flex-col gap-[0.625rem] font-poppins text-black text-center px-[1.875rem]",
 		name: "text-h4",
 		role: "text-h5",
-		socialWrap: "flex flex-row gap-[10px] justify-center items-center",
-		icon: "relative w-[25px] h-[25px]",
+		socialWrap: "flex flex-row gap-[0.625rem] justify-center items-center",
+		icon: "relative w-[30px] h-[30px]",
 	}
 
 	return (

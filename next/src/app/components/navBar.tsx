@@ -38,13 +38,13 @@ export default async function NavBar( {blocks}: NavBarProps) {
 
 		const {logo, cta, social} = blocks;
 		const styles = {
-			navBar: "fixed top-0 z-10 w-full flex flex-row justify-between items-center bg-[#14120e4d] px-[50px] py-[10px] backdrop-blur-[30px]",
-			logoWrap: "flex items-center w-[100px] h-[42px]",
+			navBar: "fixed top-0 z-10 w-full flex flex-row justify-between items-center bg-[#14120e4d] px-[3.125rem] py-[0.625rem] backdrop-blur-[1.875rem]",
+			logoWrap: "flex items-center w-[6.25rem] h-[42px]",
 			logo: "relative w-full h-full",
-			contentWrap: "flex flex-row h-full justify-end items-center gap-[20px]",
-			navLinkWrap: "flex flex-row gap-[10px]",
-			iconWrap: "flex flex-row gap-[10px] justify-end items-center",
-			icon: "relative w-[25px] h-[25px]",
+			contentWrap: "flex flex-row h-full justify-end items-center gap-[1.25rem]",
+			navLinkWrap: "flex flex-row gap-[0.625rem]",
+			iconWrap: "flex flex-row gap-[0.625rem] justify-end items-center",
+			icon: "relative w-[30px] h-[30px]",
 		}
 
 		return (

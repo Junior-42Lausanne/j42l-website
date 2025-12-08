@@ -16,8 +16,8 @@ export default function MemberSection( {blocks} : MemberSectionProps) {
 	const {title, members} = blocks;
 
 	const styles = {
-		section: "flex flex-col gap-[60px] py-[150px] mx-[100px] items-center",
-		cardWrap: "flex flex-row flex-wrap justify-center gap-[20px]",
+		section: "flex flex-col gap-[3.75rem] py-[9.375rem] mx-[6.25rem] items-center",
+		cardWrap: "flex flex-row flex-wrap justify-center gap-[1.25rem]",
 	}
 
 	return (

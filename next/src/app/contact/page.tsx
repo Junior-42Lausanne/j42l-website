@@ -1,7 +1,7 @@
 import qs from 'qs';
 import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
 
-const path = "/api/automation-service";
+const path = "/api/contact";
 const queryStudent = qs.stringify({
 	populate: {
 		blocks: {
@@ -12,15 +12,15 @@ const queryStudent = qs.stringify({
 
 export const metadata = async () => {
 	return getStrapiMetadata(path,
-							"Automation - J42L",
+							"Contact - J42L",
 							"Junior 42 Lausanne");
 }
 
-export default async function Automation() {
+export default async function Prototype() {
 	try {
 		const strapiData = await getStrapiData(path, queryStudent);
 		if (!strapiData?.data?.blocks)
-			throw new Error("No Automation page content");
+			throw new Error("No Contact page Content");
 		const { blocks } = strapiData.data;
 		return (
 			<div>
@@ -29,7 +29,7 @@ export default async function Automation() {
 				}
 			</div>
 		)
-	} catch (error) {
+	} catch(error) {
 		console.log(`${error}`);
 		return (
 			<div>

@@ -26,6 +26,7 @@
   --text-button--font-weight: 600;
   --text-navButton: 1rem;
   --text-navButton--font-weight: 400;
+  --text-navButton--font-weight-bold: 600;
 }
 
 /* UL bullet marker */

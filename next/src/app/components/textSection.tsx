@@ -29,7 +29,7 @@ export default function TextSection({ blocks }: TextSectionProps) {
 	const {title, text, image, button, textColor, backgroundColor} = blocks;
 
 	const styles = {
-		section: `flex bg-${backgroundColor} pt-[100px] pb-[100px] gap-[150px] items-center justify-center`,
+		section: `flex bg-${backgroundColor} pt-[6.25rem] pb-[6.25rem] gap-[9.375rem] items-center justify-center`,
 		imageWrap: "w-1/5",
 		image: {
 			className: "relative w-full",
@@ -37,7 +37,7 @@ export default function TextSection({ blocks }: TextSectionProps) {
 		},
 		textWrap: "flex flex-col items-center w-2/5",
 		title: `font-poppins text-${textColor} text-h2 text-center`,
-		text: `prose pt-[20px] mb-[60px] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
+		text: `prose pt-[1.25rem] mb-[3.75rem] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
 	}
 
 	return(
