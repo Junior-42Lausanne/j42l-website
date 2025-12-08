@@ -1,24 +1,18 @@
+import { NavBarLinkProps } from "./NavBarLink";
 import Link from 'next/link';
 
-export type NavBarLinkProps = {
-	id?: number,
-	linkText: string,
-	url: string,
-	external: boolean,
-}
-
 /*
-* Component for nav bar single link
+* Component for nav bar dropdown link
 * linkText: link label
 * url: where the link point to
 * external: external link or not
 */
-export default function NavBarLink({
+export default function NavBarDropdownLink({
 	linkText,
 	url,
 	external,
-} : Readonly<NavBarLinkProps> ){
-	const styles = `inline-flex font-poppins text-navButton text-navButton--font-weight 
+} : Readonly<NavBarLinkProps>) {
+const styles = `inline-flex font-poppins text-navButton text-navButton--font-weight 
 				text-center text-white pt-[5px] pb-[5px] pl-[10px] pr-[10px]`;
 
 	if (external) {
@@ -31,7 +25,7 @@ export default function NavBarLink({
 		);
 	}
 	return (
-		<Link href={url} className={styles}>
+		<Link href={url} className={styles} >
 			{linkText}
 		</Link>
 	);

@@ -19,9 +19,9 @@ const queryStudent = qs.stringify({
 	}
 })
 
-export default async function Student() {
+export default async function Automation() {
 	try {
-		const strapiData = await getStrapiData("/api/student", queryStudent);
+		const strapiData = await getStrapiData("/api/automation-service", queryStudent);
 		const hero = strapiData.data.hero;
 		const { blocks } = strapiData.data;
 		return (
@@ -34,7 +34,7 @@ export default async function Student() {
 				}
 			</div>
 		)
-	} catch(error) {
+	} catch (error) {
 		console.log(`Error: ${error}`);
 		return (
 			<div>

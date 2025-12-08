@@ -18,7 +18,9 @@ export default async function RootLayout({
 }>) {
 	try {
 		const globalData = await getStrapiGlobalData();
+
 		// console.dir(globalData, {depth: null});
+
 		const {global} = globalData.data;
 		return (
 			<html lang="en">
@@ -32,7 +34,8 @@ export default async function RootLayout({
 				</body>
 			</html>
 		);
-	} catch {
+	} catch(error) {
+		console.log(`Error: ${error}`);
 		return (
 		<html lang="en">
 			<body className={inter.className}>

@@ -45,3 +45,7 @@
 .prose.text-white li > * { color: var(--color-white) !important; }
 .prose.text-orange li > * { color: var(--color-orange) !important; }
 .prose.text-pale_orange li > * { color: var(--color-pale_orange) !important; }
+
+.group:hover .group-hover\:block {
+  display: block;
+}

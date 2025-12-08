@@ -3,11 +3,11 @@ import { iconProps } from "../NavBar";
 import StrapiImage, { StrapiImageProps } from "./StrapiImage";
 
 export type MemberCardProps = {
-	id: string,
+	id: number,
 	photo: StrapiImageProps,
 	name: string,
 	role: string,
-	social: iconProps[],
+	social?: iconProps[],
 }
 
 export default function MemberCard( {
@@ -46,29 +46,32 @@ export default function MemberCard( {
 				<h4 className={styles.name}>{name}</h4>
 				<h5 className={styles.role}>{role}</h5>
 				<div className={styles.socialWrap}>
-					{social.map((item) => (
-						<div key={item.icon.id} className={styles.icon}>
-							{item.external ? (
-								<a href={item.url} target="_blank">
-									<StrapiImage
-										alternativeText={item.icon.alternativeText}
-										className=""
-										height={item.icon.height}
-										url={item.icon.url}
-										width={item.icon.width} />
-								</a>
-							) : (
-								<Link href={item.url}>
-									<StrapiImage
-										alternativeText={item.icon.alternativeText}
-										className=""
-										height={item.icon.height}
-										url={item.icon.url}
-										width={item.icon.width} />
-								</Link>
-							)}
-						</div>
-					))}
+					{
+						social
+						? (social.map((item) => (
+								<div key={item.icon.id} className={styles.icon}>
+									{item.external ? (
+										<a href={item.url} target="_blank">
+											<StrapiImage
+												alternativeText={item.icon.alternativeText}
+												className=""
+												height={item.icon.height}
+												url={item.icon.url}
+												width={item.icon.width} />
+										</a>
+									) : (
+										<Link href={item.url}>
+											<StrapiImage
+												alternativeText={item.icon.alternativeText}
+												className=""
+												height={item.icon.height}
+												url={item.icon.url}
+												width={item.icon.width} />
+										</Link>
+									)}
+							</div>))
+						) : null
+					}
 				</div>
 			</div>
 		</div>

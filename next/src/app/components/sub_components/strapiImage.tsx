@@ -6,7 +6,7 @@ import { getStrapiMedia } from '@/app/utils/utils';
 * Strapi Image
 */
 export type StrapiImageProps = {
-	id?: string,
+	id?: number,
 	url: string,
 	alternativeText: string | null,
 } & Omit<ComponentProps<typeof Image>, "src" | "alt">;

@@ -1,8 +1,10 @@
 import qs from 'qs';
-import TextSection, { TextSectionProps } from "../components/TextSection";
-import FooterCTASection, { FooterCTASectionProps } from "../components/FooterCTASection";
-import TextSectionWithTitle, { TextSectionWithTitleProps } from "../components/TextSectionWithTitle";
-import MemberSection, { MemberSectionProps } from "../components/MemberSection";
+import TextSection, { TextSectionProps } from "@/app/components/TextSection";
+import FooterCTASection, { FooterCTASectionProps } from "@/app/components/FooterCTASection";
+import TextSectionWithTitle, { TextSectionWithTitleProps } from "@/app/components/TextSectionWithTitle";
+import MemberSection, { MemberSectionProps } from "@/app/components/MemberSection";
+import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/NavBarLink';
+import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
 
 type MemberSectionBlock = MemberSectionProps["blocks"] & {
 	id: string,
@@ -44,6 +46,34 @@ export function blockRenderer(block: Block) {
 	}
 }
 
+type SingleLink = NavBarLinkProps & {
+	id: string,
+	__component: "composants.link",
+}
+
+type DropdownLink = NavBarDropdownProps & {
+	id: string,
+	__component: "composants.dropdown-link",
+}
+
+export type menuItem = SingleLink | DropdownLink;
+
+export function menuRenderer(item: menuItem) {
+	switch (item.__component) {
+		case "composants.link":
+			return <NavBarLink key={item.id} 
+								linkText={item.linkText}
+								url={item.url}
+								external={item.external} />;
+		case "composants.dropdown-link":
+			return <NavBarDropdown key={item.id}
+									label={item.label}
+									links={item.links} />;
+		default:
+			return null;
+	}
+}
+
 const baseUrl = "http://strapi-app:1337";
 // const baseUrl = "http://localhost:1337";
 
@@ -63,8 +93,8 @@ export async function getStrapiData(path: string, query: string) {
 		
 		return data;
 	} catch (error) {
-		console.error(error);
-		return null;
+		console.log(`Error loading page.`);
+		throw error;
 	}
 }
 
@@ -109,8 +139,41 @@ export async function getStrapiGlobalData() {
 		
 		return data;
 	} catch (error) {
-		console.error(error);
-		return null;
+		console.log(`Fail to load global content (navbar/footer).`)
+		throw error;
+	}
+}
+
+/*
+* Strapi API call for NavBarMenu single type, 
+* uncomment the console.dir() to log the returned json
+*/
+export async function getStrapiNavBarMenuData() {
+	const url = new URL("/api/navbar-menu", baseUrl);
+	url.search = qs.stringify({
+		populate: {
+			menu: {
+				on: {
+					"composants.dropdown-link": {
+						populate: "*",
+					},
+					'composants.link': {
+						populate: "*",
+					},
+				}
+			},
+		},
+	});
+	try {
+		const response = await fetch(url.href);
+		const data = await response.json();
+
+		// console.dir(data, {depth: null});
+		
+		return data;
+	} catch (error) {
+		console.log(`Fail to get navBar menu.`);
+		throw error;
 	}
 }
 
@@ -132,3 +195,4 @@ export function getStrapiMedia(url: string): string {
 		return url;
 	return `${getStrapiURL()}${url}`;
 }
+

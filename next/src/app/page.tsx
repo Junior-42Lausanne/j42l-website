@@ -35,12 +35,12 @@ export default async function Home() {
 				{
 					blocks
 						? blocks.map((block: Block) => blockRenderer(block))	
-						: <div>No block!</div>
+						: null
 				}
 			</div>
 		)
-	} catch (error) {
-		console.log(`Error loading page. Error: ${error}`);
+	} catch(error) {
+		console.log(`Error: ${error}`);
 		return (
 			<div>
 				<h1>Problem loading the page content</h1>

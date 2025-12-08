@@ -5,9 +5,9 @@ import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage"
 export type HeroSectionProps = {
 	hero: {
 		heading: string,
-		subheading: string,
+		subheading?: string,
 		backgroundImage: StrapiImageProps,
-		button: {
+		button?: {
 			url: string;
 			color: ThemeColor;
 			fullWidth?: boolean;
@@ -49,12 +49,17 @@ export default function HeroSection({ hero }: Readonly<HeroSectionProps> ) {
 				<div className={styles.contentWrap}>
 					<div className={styles.textWrap}>
 						<h1 className={styles.heading}>{heading}</h1>
-						{subheading && (
-						<div className={styles.subheading}>{subheading}</div>)}
+						{subheading
+							? (<div className={styles.subheading}>{subheading}</div>)
+							: null
+						}
 					</div>
-					<ButtonLink {...button}>
-						{button.buttonText}
-					</ButtonLink>
+					{button
+						? (<ButtonLink {...button}>
+							{button.buttonText}
+							</ButtonLink>
+						) : null
+					}
 				</div>
 				<div className={styles.rightTriangleDiv}>
 					<div className={`w-0 h-0 border-l-[6rem] border-b-[6rem] border-${triangleColor} border-l-transparent`}></div>

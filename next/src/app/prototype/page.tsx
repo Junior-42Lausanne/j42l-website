@@ -19,9 +19,9 @@ const queryStudent = qs.stringify({
 	}
 })
 
-export default async function Student() {
+export default async function Prototype() {
 	try {
-		const strapiData = await getStrapiData("/api/student", queryStudent);
+		const strapiData = await getStrapiData("/api/prototype-service", queryStudent);
 		const hero = strapiData.data.hero;
 		const { blocks } = strapiData.data;
 		return (
