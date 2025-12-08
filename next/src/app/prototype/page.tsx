@@ -1,32 +1,27 @@
 import qs from 'qs';
-import HeroSection from "@/app/components/HeroSection";
-import { getStrapiData, blockRenderer, Block } from "@/app/utils/utils";
+import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
 
+const path = "/api/prototype-service";
 const queryStudent = qs.stringify({
 	populate: {
-		hero: {
-			fields: ["heading", "subheading", "triangleColor"],
-			populate: {
-				backgroundImage: {
-					fields: ["url", "alternativeText", "width", "height"]
-				},
-				button: true,
-			}
-		},
 		blocks: {
 			populate: "*",
 		},
 	}
 })
 
+export const metadata = async () => {
+	return getStrapiMetadata(path,
+							"Prototype - J42L",
+							"Junior 42 Lausanne");
+}
+
 export default async function Prototype() {
 	try {
-		const strapiData = await getStrapiData("/api/prototype-service", queryStudent);
-		const hero = strapiData.data.hero;
+		const strapiData = await getStrapiData(path, queryStudent);
 		const { blocks } = strapiData.data;
 		return (
 			<div>
-				<HeroSection hero={hero} />
 				{
 					blocks
 						? blocks.map((block: Block) => blockRenderer(block))	

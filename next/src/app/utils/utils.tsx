@@ -5,34 +5,43 @@ import TextSectionWithTitle, { TextSectionWithTitleProps } from "@/app/component
 import MemberSection, { MemberSectionProps } from "@/app/components/MemberSection";
 import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/NavBarLink';
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
+import HeroSection, { HeroSectionProps } from '../components/HeroSection';
+
+type HeroSectionBlock = HeroSectionProps["blocks"] & {
+	id: number,
+	__component: "layout.hero",
+}
 
 type MemberSectionBlock = MemberSectionProps["blocks"] & {
-	id: string,
+	id: number,
 	__component: "layout.member-section",
 }
 
 type TextSectionWithTitleBlock = TextSectionWithTitleProps["blocks"] & {
-	id: string,
+	id: number,
 	__component: "layout.text-section-with-title",
 };
 
 type TextSectionBlock = TextSectionProps["blocks"] & {
-	id: string,
+	id: number,
 	__component: "layout.text-section",
 };
 
 type FooterCTASectionBlock = FooterCTASectionProps["blocks"] & {
-	id: string,
+	id: number,
 	__component: "layout.footer-cta",
 };
 
-export type Block = TextSectionBlock | 
+export type Block = HeroSectionBlock |
+					TextSectionBlock | 
 					FooterCTASectionBlock | 
 					TextSectionWithTitleBlock |
 					MemberSectionBlock;
 
 export function blockRenderer(block: Block) {
 	switch (block.__component) {
+		case "layout.hero":
+			return <HeroSection key={block.id} blocks={block} />;
 		case "layout.member-section":
 			return <MemberSection key={block.id} blocks={block} />;
 		case "layout.text-section-with-title":
@@ -47,12 +56,12 @@ export function blockRenderer(block: Block) {
 }
 
 type SingleLink = NavBarLinkProps & {
-	id: string,
+	id: number,
 	__component: "composants.link",
 }
 
 type DropdownLink = NavBarDropdownProps & {
-	id: string,
+	id: number,
 	__component: "composants.dropdown-link",
 }
 
@@ -111,9 +120,6 @@ export async function getStrapiGlobalData() {
 					'layout.nav-bar': {
 						populate: {
 							'logo': {
-								populate: "*",
-							},
-							'navBarMenu': {
 								populate: "*",
 							},
 							'cta': {
@@ -196,3 +202,20 @@ export function getStrapiMedia(url: string): string {
 	return `${getStrapiURL()}${url}`;
 }
 
+export async function getStrapiMetadata(path: string, fallbackTitle: string, fallbackDescription: string) {
+	const url = new URL(path, baseUrl);
+	url.search = qs.stringify({
+		fields: ["title", "description"],
+	})
+	try {
+		const response = await fetch(url.href);
+		const data = await response.json();
+		return {
+			title: data?.data?.title || fallbackTitle,
+			description: data?.data?.description || fallbackDescription,
+		};
+	} catch (error) {
+		console.log(`Fail to get metadata. Error: ${error}`);
+		return null;
+	}
+}

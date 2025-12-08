@@ -3,7 +3,7 @@ import { ThemeColor } from "@/app/utils/type";
 import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage"
 
 export type HeroSectionProps = {
-	hero: {
+	blocks: {
 		heading: string,
 		subheading?: string,
 		backgroundImage: StrapiImageProps,
@@ -18,8 +18,8 @@ export type HeroSectionProps = {
 	},
 }
 
-export default function HeroSection({ hero }: Readonly<HeroSectionProps> ) {
-	const { heading, subheading, backgroundImage, button, triangleColor } = hero;
+export default function HeroSection({ blocks }: Readonly<HeroSectionProps> ) {
+	const { heading, subheading, backgroundImage, button, triangleColor } = blocks;
 
 	const styles = {
 		section: "relative h-screen overflow-hidden",
