@@ -60,7 +60,7 @@ export async function getStrapiGlobalData<T>(): Promise<T | null> {
 * get the correct Strapi domain based on dev or prod
 */
 export function getStrapiURL(): string {
-	return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
+	return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://strapi-app:1337";
 }
 
 /*

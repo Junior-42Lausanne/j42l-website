@@ -1,7 +1,7 @@
 {
   "collectionName": "components_composants_information",
   "info": {
-    "displayName": "Information"
+    "displayName": "Contact information"
   },
   "options": {},
   "attributes": {
@@ -30,7 +30,7 @@
       "component": "composants.contact-details",
       "repeatable": false
     },
-    "logo": {
+    "altLogo": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -42,6 +42,16 @@
     },
     "designer": {
       "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "halfLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   },
   "config": {}

@@ -45,8 +45,8 @@ export default async function Home() {
       <ContactSection
 				text= "Réalisez votre projet de rêve avec nous!"
 				button={{
-					text: "Contactez-Nous",
-					path: "https://www.google.com",
+					text: "Contactez-nous",
+					path: "/contact",
 					color: 'orange'
 				}}
 			/>

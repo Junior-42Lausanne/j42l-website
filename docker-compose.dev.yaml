@@ -15,6 +15,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - CHOKIDAR_INTERVAL=100
       - WATCHPACK_POLLING=true
+      - NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
     env_file: "./next/.env"
     restart: unless-stopped
     depends_on:

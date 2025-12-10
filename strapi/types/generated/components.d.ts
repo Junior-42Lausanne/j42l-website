@@ -30,9 +30,10 @@ export interface ComposantsContactDetails extends Struct.ComponentSchema {
 export interface ComposantsInformation extends Struct.ComponentSchema {
   collectionName: 'components_composants_information';
   info: {
-    displayName: 'Information';
+    displayName: 'Contact information';
   };
   attributes: {
+    altLogo: Schema.Attribute.Media<'images'>;
     contactDetails: Schema.Attribute.Component<
       'composants.contact-details',
       false
@@ -40,10 +41,11 @@ export interface ComposantsInformation extends Struct.ComponentSchema {
     copyright: Schema.Attribute.String;
     designer: Schema.Attribute.String;
     gameJam: Schema.Attribute.Component<'composants.link', false>;
-    logo: Schema.Attribute.Media<'images'>;
+    halfLogo: Schema.Attribute.Media<'images'>;
     navItems: Schema.Attribute.Component<'composants.link', true>;
     services: Schema.Attribute.Component<'composants.link', true>;
     socialLinks: Schema.Attribute.Component<'composants.link', true>;
+    text: Schema.Attribute.Text;
   };
 }
 

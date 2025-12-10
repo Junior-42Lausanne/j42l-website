@@ -12,7 +12,10 @@ const populate = {
 			socialLinks: true,
 			gameJam: true,
 			contactDetails: true,
-			logo: {
+			altLogo: {
+				fields: ['url', 'alternativeText', 'width', 'height']
+			},
+			halfLogo: {
 				fields: ['url', 'alternativeText', 'width', 'height']
 			}
 		}
