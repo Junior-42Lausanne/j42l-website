@@ -14,7 +14,7 @@ export default async function Home() {
 
 	return (
 		<>
-			<div className="flex flex-wrap text-black relative p-[40px] gap-[30px]">
+			<div className="flex flex-wrap bg-pale_orange text-black relative p-[40px] gap-[30px]">
 				<div className="w-full font-poppins text-h2">
 					<h2>Contactez-nous</h2>
 				</div>
