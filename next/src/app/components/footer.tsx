@@ -1,33 +1,19 @@
 import FooterNavButton from "./footerNavButton";
-import Image from 'next/image'
+import { StrapiImage } from "./sub_components/strapiImage";
 import { getStrapiGlobalData } from "../utils/utils";
-
-interface GlobalData {
-	data: {
-		footer: {
-			copyright: string;
-			designer: string;
-			navItems: Array<{ id: number; url: string; text: string }>;
-			services: Array<{ id: number; url: string; text: string }>;
-			socialLinks: Array<{ id: number; url: string; text: string }>;
-			gameJam: { id: number; url: string; text: string };
-			contactDetails: { id: number; email: string; street: string; city: string; country: string; number: string };
-			logo: { id: number; url: string; alternativeText: string; width: number; height: number };
-		};
-	};
-}
+import FooterInfo from "../logic/footerInfo";
 
 export default async function Footer() {
 
-	const data: GlobalData | null = await getStrapiGlobalData();
+	const data: FooterInfo | null = await getStrapiGlobalData();
 	if (!data) {
 		return;
 	}
 	const footer = data.data.footer;
 
 	const currentYear = new Date().getFullYear();
-	const footerNav1 = (
-			<ul className="flex flex-col gap-[20px]">
+	const navItems = (
+			<ul className="flex flex-col gap-[8px]">
 				{footer.navItems?.map((item) => (
 					<li key={item.id}>
 						<FooterNavButton text={item.text ?? ""} buttonPath={item.url ?? ""} />
@@ -35,8 +21,8 @@ export default async function Footer() {
 				))}
 			</ul>
 	)
-	const footerNav2 = (
-			<ul className="flex flex-col gap-[20px]">
+	const services = (
+			<ul className="flex flex-col gap-[8px]">
 				{footer.services?.map((item) => (
 					<li key={item.id}>
 						<FooterNavButton text={item.text ?? ""} buttonPath={item.url ?? ""} />
@@ -44,41 +30,49 @@ export default async function Footer() {
 				))}
 			</ul>
 	)
-	const footerNav3 = (
-			<ul className="flex flex-col gap-[20px]">
+	const gameJam = (
+			<ul>
 				<li><FooterNavButton text={footer.gameJam.text ?? ""} buttonPath={footer.gameJam.url ?? ""} /></li>
 			</ul>
 	)
-	const footerNav4 = (
-			<ul className="flex flex-col gap-[20px]">
-				<li><FooterNavButton text="Contact" buttonPath="https://www.google.com"/></li>
-			</ul>
-	)
 	return (
-		<footer className="flex flex-col bg-black pb-[50px]">
-			<div className="flex flex-col gap-[60px] justify-center pr-[200px] pl-[200px] pt-[50px] pb-[40px]">
-				<div className="flex flex-row justify-between">
-					<div className="flex flex-row gap-[50px]">
-						<div>{footerNav1}</div>
-						<div>{footerNav2}</div>
-						<div>{footerNav3}</div>
-						<div>{footerNav4}</div>
-					</div>
-					<div className="flex flex-col gap-[20px] font-poppins text-h5 text-white">
-						<div>{footer.contactDetails.street ?? ""}<br/>{footer.contactDetails.city ?? ""}<br/>{footer.contactDetails.country ?? ""}</div>
-						<div>{footer.contactDetails.email ?? ""}<br/>{footer.contactDetails.number ?? ""}</div>
-					</div>
+		<footer className="bg-black py-[30px] px-[80px]">
+			<div className="flex justify-between gap-x-[60px] gap-y-[30px] flex-wrap">
+				<div>
+					{navItems}
 				</div>
 				<div>
-					<div className="flex flex-row justify-end">
-						<Image className="w-[550px]" src={footer.logo.url} alt={footer.logo.alternativeText} width={footer.logo.width} height={footer.logo.height}/>
+					{services}
+				</div>
+				<div>
+					{gameJam}
+				</div>
+				<div className="flex flex-col gap-[16px]">
+					<div className="flex flex-col gap-[8px]">
+						<div>{footer.contactDetails.street ?? ""}</div>
+						<div>{footer.contactDetails.city ?? ""}</div>
+						<div>{footer.contactDetails.country ?? ""}</div>
+					</div>
+					<div className="flex flex-col gap-[8px]">
+						<div>{footer.contactDetails.email ?? ""}</div>
+						<div>{footer.contactDetails.number ?? ""}</div>
 					</div>
 				</div>
 			</div>
-			<div className="border border-white"></div>
-			<div className="flex flex-row justify-between pr-[200px] pl-[200px] pt-[5px]">
-				<div>® {currentYear} {footer.copyright}</div>
-				<div>Design: {footer.designer}</div>
+			<div className="flex flex-row justify-end my-[30px]">
+				<div className="relative w-[300px] h-[50px] shrink">
+					<StrapiImage
+						src={footer.altLogo.url}
+						alt={footer.altLogo.alternativeText}
+						width={footer.altLogo.width}
+						height={footer.altLogo.height}
+						className="object-contain"
+						/>
+				</div>
+			</div>
+			<div className="flex flex-row flex-wrap justify-between gap-x-[50px] border-t-2 pb-[10px]">
+				<p className="pt-[8px]">® {currentYear} {footer.copyright}</p>
+				<p className="pt-[8px]">Design : {footer.designer}</p>
 			</div>
 		</footer>
 	)
