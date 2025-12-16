@@ -30,6 +30,9 @@ export default async function Contact() {
 			return notFound();
 		}
 		const { blocks } = strapiData.data;
+		if (blocks.length === 0) {
+			return notFound();
+		}
 		return (
 			<div>
 				{

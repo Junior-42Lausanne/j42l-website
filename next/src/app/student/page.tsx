@@ -14,7 +14,7 @@ const queryStudent = qs.stringify({
 
 const strapiMetadata = await getStrapiMetadata(
 	path,
-	"Contact - J42L",
+	"Student - J42L",
 	"Junior 42 Lausanne",
 );
 
@@ -30,6 +30,9 @@ export default async function Student() {
 			return notFound();
 		}
 		const { blocks } = strapiData.data;
+		if (blocks.length === 0) {
+			return notFound();
+		}
 		return (
 			<div>
 				{

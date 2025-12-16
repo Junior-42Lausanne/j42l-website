@@ -8,22 +8,26 @@
     "logo": {
       "type": "component",
       "component": "composants.logo",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "navBarMenu": {
       "type": "component",
       "component": "composants.link",
-      "repeatable": true
+      "repeatable": true,
+      "required": true
     },
     "cta": {
       "type": "component",
       "component": "composants.lien",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "social": {
       "type": "component",
       "component": "composants.social",
-      "repeatable": true
+      "repeatable": true,
+      "required": true
     }
   },
   "config": {}

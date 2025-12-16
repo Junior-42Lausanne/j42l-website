@@ -6,13 +6,16 @@
   "options": {},
   "attributes": {
     "buttonText": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "color": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "orange",
         "white"
@@ -20,10 +23,12 @@
     },
     "fullWidth": {
       "type": "boolean",
+      "required": true,
       "default": false
     },
     "external": {
       "type": "boolean",
+      "required": true,
       "default": false
     }
   },

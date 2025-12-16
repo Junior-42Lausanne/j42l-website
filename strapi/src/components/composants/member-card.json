@@ -8,15 +8,18 @@
     "photo": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "role": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "social": {
       "type": "component",

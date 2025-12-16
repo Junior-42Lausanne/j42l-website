@@ -6,12 +6,14 @@
   "options": {},
   "attributes": {
     "text": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "button": {
       "type": "component",
       "component": "composants.lien",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     }
   },
   "config": {}

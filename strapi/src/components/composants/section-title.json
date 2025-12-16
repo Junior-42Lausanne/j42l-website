@@ -6,10 +6,12 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "color": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "orange",
         "white",

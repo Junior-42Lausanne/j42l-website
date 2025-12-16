@@ -15,16 +15,6 @@
     }
   },
   "attributes": {
-    "hero": {
-      "type": "component",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "layout.hero",
-      "repeatable": false
-    },
     "blocks": {
       "type": "dynamiczone",
       "pluginOptions": {
@@ -34,8 +24,29 @@
       },
       "components": [
         "layout.footer-cta",
-        "layout.text-section-with-title"
+        "layout.text-section-with-title",
+        "layout.hero"
       ]
+    },
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": true
     }
   }
 }

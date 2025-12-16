@@ -14,7 +14,7 @@ const queryWeb = qs.stringify({
 
 const strapiMetadata = await getStrapiMetadata(
 	path,
-	"Contact - J42L",
+	"Web - J42L",
 	"Junior 42 Lausanne",
 );
 
@@ -30,6 +30,9 @@ export default async function Web() {
 			return notFound();
 		}
 		const { blocks } = strapiData.data;
+		if (blocks.length === 0) {
+			return notFound();
+		}
 		return (
 			<div>
 				{

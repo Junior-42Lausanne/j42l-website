@@ -13,17 +13,34 @@ export interface ComposantsCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ComposantsDropdownLink extends Struct.ComponentSchema {
+  collectionName: 'components_composants_dropdown_links';
+  info: {
+    displayName: 'Dropdown link';
+  };
+  attributes: {
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    links: Schema.Attribute.Component<'composants.link', true> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface ComposantsLien extends Struct.ComponentSchema {
   collectionName: 'components_composants_liens';
   info: {
     displayName: 'Button';
   };
   attributes: {
-    buttonText: Schema.Attribute.String;
-    color: Schema.Attribute.Enumeration<['orange', 'white']>;
-    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    fullWidth: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    url: Schema.Attribute.String;
+    buttonText: Schema.Attribute.String & Schema.Attribute.Required;
+    color: Schema.Attribute.Enumeration<['orange', 'white']> &
+      Schema.Attribute.Required;
+    external: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    fullWidth: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -33,7 +50,9 @@ export interface ComposantsLink extends Struct.ComponentSchema {
     displayName: 'Link';
   };
   attributes: {
-    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    external: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     linkText: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -45,9 +64,13 @@ export interface ComposantsLogo extends Struct.ComponentSchema {
     displayName: 'Logo';
   };
   attributes: {
-    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    external: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    url: Schema.Attribute.String & Schema.Attribute.DefaultTo<'/'>;
+    url: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'/'>;
   };
 }
 
@@ -57,9 +80,9 @@ export interface ComposantsMemberCard extends Struct.ComponentSchema {
     displayName: 'Member card';
   };
   attributes: {
-    name: Schema.Attribute.String;
-    photo: Schema.Attribute.Media<'images'>;
-    role: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    photo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    role: Schema.Attribute.String & Schema.Attribute.Required;
     social: Schema.Attribute.Component<'composants.social', true>;
   };
 }
@@ -70,8 +93,9 @@ export interface ComposantsSectionTitle extends Struct.ComponentSchema {
     displayName: 'Section title';
   };
   attributes: {
-    color: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
-    title: Schema.Attribute.String;
+    color: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -81,9 +105,11 @@ export interface ComposantsSocial extends Struct.ComponentSchema {
     displayName: 'Social';
   };
   attributes: {
-    external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    icon: Schema.Attribute.Media<'images'>;
-    url: Schema.Attribute.String;
+    external: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -94,7 +120,7 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
   };
   attributes: {
     cards: Schema.Attribute.Component<'composants.card', true>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -114,8 +140,9 @@ export interface LayoutFooterCta extends Struct.ComponentSchema {
     displayName: 'footerCta';
   };
   attributes: {
-    button: Schema.Attribute.Component<'composants.lien', false>;
-    text: Schema.Attribute.String;
+    button: Schema.Attribute.Component<'composants.lien', false> &
+      Schema.Attribute.Required;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -139,8 +166,10 @@ export interface LayoutMemberSection extends Struct.ComponentSchema {
     displayName: 'memberSection';
   };
   attributes: {
-    members: Schema.Attribute.Component<'composants.member-card', true>;
-    title: Schema.Attribute.Component<'composants.section-title', false>;
+    members: Schema.Attribute.Component<'composants.member-card', true> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.Component<'composants.section-title', false> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -150,10 +179,14 @@ export interface LayoutNavBar extends Struct.ComponentSchema {
     displayName: 'navBar';
   };
   attributes: {
-    cta: Schema.Attribute.Component<'composants.lien', false>;
-    logo: Schema.Attribute.Component<'composants.logo', false>;
-    navBarMenu: Schema.Attribute.Component<'composants.link', true>;
-    social: Schema.Attribute.Component<'composants.social', true>;
+    cta: Schema.Attribute.Component<'composants.lien', false> &
+      Schema.Attribute.Required;
+    logo: Schema.Attribute.Component<'composants.logo', false> &
+      Schema.Attribute.Required;
+    navBarMenu: Schema.Attribute.Component<'composants.link', true> &
+      Schema.Attribute.Required;
+    social: Schema.Attribute.Component<'composants.social', true> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -163,12 +196,17 @@ export interface LayoutTextSection extends Struct.ComponentSchema {
     displayName: 'textSection';
   };
   attributes: {
-    backgroundColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
-    button: Schema.Attribute.Component<'composants.lien', false>;
-    image: Schema.Attribute.Media<'images'>;
-    text: Schema.Attribute.Blocks;
-    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
-    title: Schema.Attribute.String;
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['orange', 'white', 'black']
+    > &
+      Schema.Attribute.Required;
+    button: Schema.Attribute.Component<'composants.lien', false> &
+      Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -180,13 +218,17 @@ export interface LayoutTextSectionWithTitle extends Struct.ComponentSchema {
   attributes: {
     backgroundColor: Schema.Attribute.Enumeration<
       ['orange', 'white', 'black', 'pale_orange']
-    >;
+    > &
+      Schema.Attribute.Required;
     button: Schema.Attribute.Component<'composants.lien', false>;
-    image: Schema.Attribute.Media<'images'>;
-    imagePosition: Schema.Attribute.Enumeration<['left', 'right']>;
-    text: Schema.Attribute.Blocks;
-    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']>;
-    title: Schema.Attribute.Component<'composants.section-title', false>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    imagePosition: Schema.Attribute.Enumeration<['left', 'right']> &
+      Schema.Attribute.Required;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.Component<'composants.section-title', false> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -194,6 +236,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'composants.card': ComposantsCard;
+      'composants.dropdown-link': ComposantsDropdownLink;
       'composants.lien': ComposantsLien;
       'composants.link': ComposantsLink;
       'composants.logo': ComposantsLogo;

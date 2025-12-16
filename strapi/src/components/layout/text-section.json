@@ -6,25 +6,30 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "text": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "button": {
       "type": "component",
       "component": "composants.lien",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "image": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "textColor": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "orange",
         "white",
@@ -33,6 +38,7 @@
     },
     "backgroundColor": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "orange",
         "white",

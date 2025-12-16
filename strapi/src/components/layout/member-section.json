@@ -8,12 +8,14 @@
     "title": {
       "type": "component",
       "component": "composants.section-title",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "members": {
       "type": "component",
       "component": "composants.member-card",
-      "repeatable": true
+      "repeatable": true,
+      "required": true
     }
   },
   "config": {}

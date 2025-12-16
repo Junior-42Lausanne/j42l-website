@@ -15,10 +15,12 @@
     },
     "url": {
       "type": "string",
-      "default": "/"
+      "default": "/",
+      "required": true
     },
     "external": {
       "type": "boolean",
+      "required": true,
       "default": false
     }
   },

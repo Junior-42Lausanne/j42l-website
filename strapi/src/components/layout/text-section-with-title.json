@@ -8,32 +8,38 @@
     "title": {
       "type": "component",
       "component": "composants.section-title",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "image": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "imagePosition": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "left",
         "right"
       ]
     },
     "text": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "button": {
       "type": "component",
       "component": "composants.lien",
-      "repeatable": false
+      "repeatable": false,
+      "required": false
     },
     "textColor": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "orange",
         "white",
@@ -42,6 +48,7 @@
     },
     "backgroundColor": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "orange",
         "white",

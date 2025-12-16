@@ -14,7 +14,7 @@ const queryHero = qs.stringify({
 
 const strapiMetadata = await getStrapiMetadata(
 	path,
-	"Contact - J42L",
+	"Home - J42L",
 	"Junior 42 Lausanne",
 );
 

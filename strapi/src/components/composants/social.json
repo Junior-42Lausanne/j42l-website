@@ -8,15 +8,18 @@
     "icon": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "external": {
       "type": "boolean",
+      "required": true,
       "default": true
     }
   },

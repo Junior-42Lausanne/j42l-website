@@ -11,10 +11,10 @@ services:
       - next-build:/app/.next
       # - /app/node_modules
     # Do not remove, env for WSL to correctly hot load
-    #environment:
-    #  - CHOKIDAR_USEPOLLING=true
-    #  - CHOKIDAR_INTERVAL=100
-    # - WATCHPACK_POLLING=true
+    environment:
+     - CHOKIDAR_USEPOLLING=true
+     - CHOKIDAR_INTERVAL=100
+     - WATCHPACK_POLLING=true
     env_file: "./next/.env"
     restart: unless-stopped
     depends_on:
@@ -29,6 +29,7 @@ services:
       - "1337:1337"
     volumes:
       - ./strapi:/opt/app
+      - /opt/app/node_modules
     env_file: "./strapi/.env"
     environment:
       - NODE_ENV=development
