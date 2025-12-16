@@ -1,4 +1,6 @@
 import qs from 'qs';
+import type { Metadata } from "next";
+import { notFound } from 'next/navigation';
 import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
 
 const path = "/api/about";
@@ -35,17 +37,23 @@ const queryAbout = qs.stringify({
 	}
 })
 
-export const metadata = async () => {
-	return getStrapiMetadata(path,
-							"About - J42L",
-							"Junior 42 Lausanne");
-}
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Contact - J42L",
+	"Junior 42 Lausanne",
+);
+
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
 
 export default async function About() {
 	try {
 		const strapiData = await getStrapiData(path, queryAbout);
-		if (!strapiData?.data?.blocks)
-			throw new Error("No About page content");
+		if (!strapiData?.data?.blocks) {
+			return notFound();
+		}
 		const { blocks } = strapiData.data;
 		return (
 			<div>
@@ -55,11 +63,7 @@ export default async function About() {
 			</div>
 		)
 	} catch (error) {
-		console.log(`${error}`);
-		return (
-			<div>
-				<h1>Problem loading the page content</h1>
-			</div>
-		)
+		console.error(`${error}`);
+		return notFound();
 	}
 }

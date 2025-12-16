@@ -1,7 +1,7 @@
 import ButtonLink from "@/app/components/sub_components/Button";
 import StrapiImage, { StrapiImageProps } from "@/app/components/sub_components/StrapiImage";
 import { ThemeColor } from "@/app/utils/type";
-import { getStrapiNavBarMenuData, menuRenderer, menuItem} from "@/app/utils/utils";
+import { getStrapiNavBarMenuData, menuRenderer, menuItem } from "@/app/utils/utils";
 import Link from 'next/link';
 
 export type logoProps = {
@@ -34,9 +34,24 @@ export default async function NavBar( {blocks}: NavBarProps) {
 
 	try {
 		const navBarMenuData = await getStrapiNavBarMenuData();
-		const { menu } = navBarMenuData.data;
+		if (!navBarMenuData?.data?.menu) {
+			return (
+				<div> { null } </div>
+			);
+		}
 
+		const { menu } = navBarMenuData.data;
+		if (!menu ) {
+			return (
+				<div> { null } </div>
+			);
+		}
 		const {logo, cta, social} = blocks;
+		if (!logo || !cta || !social) {
+			return (
+				<div> { null } </div>
+			);
+		}
 		const styles = {
 			navBar: "fixed top-0 z-10 w-full flex flex-row justify-between items-center bg-[#14120e4d] px-[3.125rem] py-[0.625rem] backdrop-blur-[1.875rem]",
 			logoWrap: "flex items-center w-[6.25rem] h-[42px]",
@@ -112,6 +127,8 @@ export default async function NavBar( {blocks}: NavBarProps) {
 			</div>
 		)
 	} catch(error) {
-		throw error;
+		return (
+			<div> { null } </div>
+		);
 	}
 }

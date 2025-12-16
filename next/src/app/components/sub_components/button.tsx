@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import { ThemeColor } from '@/app/utils/type';
 
-/*
-* yes, this is button
-*/
 export type ButtonLinkProps = {
 	url: string,
 	color: ThemeColor,

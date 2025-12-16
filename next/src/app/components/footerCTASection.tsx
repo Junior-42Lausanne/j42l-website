@@ -16,6 +16,9 @@ export type FooterCTASectionProps = {
 
 export default function FooterCTASection({ blocks } : FooterCTASectionProps) {
 	const {text, button} = blocks;
+	if (!text || !button) {
+		return null;
+	}
 	const styles = {
 		section: "flex flex-row pt-[6.25rem] pb-[6.25rem] justify-center",
 		leftTriangleDiv: "flex flex-col justify-start items-start",

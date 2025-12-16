@@ -39,6 +39,9 @@ export type Block = HeroSectionBlock |
 					MemberSectionBlock;
 
 export function blockRenderer(block: Block) {
+	if (!block) {
+		return null;
+	}
 	switch (block.__component) {
 		case "layout.hero":
 			return <HeroSection key={block.id} blocks={block} />;
@@ -68,6 +71,9 @@ type DropdownLink = NavBarDropdownProps & {
 export type menuItem = SingleLink | DropdownLink;
 
 export function menuRenderer(item: menuItem) {
+	if (!item) {
+		return null;
+	}
 	switch (item.__component) {
 		case "composants.link":
 			return <NavBarLink key={item.id} 
@@ -96,14 +102,19 @@ export async function getStrapiData(path: string, query: string) {
 	url.search = query;
 	try {
 		const response = await fetch(url.href);
+		if (!response.ok) {
+			console.error(`HTTP error! status: ${response.status}`);
+			console.error(`Error loading page.`);
+			return null;
+		}
 		const data = await response.json();
 
 		// console.dir(data, {depth: null});
 		
 		return data;
 	} catch (error) {
-		console.log(`Error loading page.`);
-		throw error;
+		console.error(`Error loading page.`);
+		return null;
 	}
 }
 
@@ -139,14 +150,19 @@ export async function getStrapiGlobalData() {
 	});
 	try {
 		const response = await fetch(url.href);
+		if (!response.ok) {
+			console.error(`HTTP error! status: ${response.status}`);
+			console.error(`Fail to load global content (navbar/footer).`);
+			return null;
+		}
 		const data = await response.json();
 
 		// console.dir(data, {depth: null});
 		
 		return data;
 	} catch (error) {
-		console.log(`Fail to load global content (navbar/footer).`)
-		throw error;
+		console.error(`Fail to load global content (navbar/footer).`)
+		return null;
 	}
 }
 
@@ -172,14 +188,19 @@ export async function getStrapiNavBarMenuData() {
 	});
 	try {
 		const response = await fetch(url.href);
+		if (!response.ok) {
+			console.error(`HTTP error! status: ${response.status}`);
+			console.error(`Fail to get navBar menu.`);
+			return null;
+		}
 		const data = await response.json();
 
 		// console.dir(data, {depth: null});
 		
 		return data;
 	} catch (error) {
-		console.log(`Fail to get navBar menu.`);
-		throw error;
+		console.error(`Fail to get navBar menu.`);
+		return null;
 	}
 }
 
@@ -209,13 +230,24 @@ export async function getStrapiMetadata(path: string, fallbackTitle: string, fal
 	})
 	try {
 		const response = await fetch(url.href);
+		if (!response.ok) {
+			console.error(`HTTP error! status: ${response.status}`);
+			console.error(`Fail to get metadata`);
+			return {
+				title: fallbackTitle,
+				description: fallbackDescription,
+			};
+		}
 		const data = await response.json();
 		return {
 			title: data?.data?.title || fallbackTitle,
 			description: data?.data?.description || fallbackDescription,
 		};
 	} catch (error) {
-		console.log(`Fail to get metadata. Error: ${error}`);
-		return null;
+		console.error(`Fail to get metadata`);
+		return {
+				title: fallbackTitle,
+				description: fallbackDescription,
+		};
 	}
 }

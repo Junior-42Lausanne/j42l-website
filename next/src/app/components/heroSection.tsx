@@ -20,6 +20,9 @@ export type HeroSectionProps = {
 
 export default function HeroSection({ blocks }: Readonly<HeroSectionProps> ) {
 	const { heading, subheading, backgroundImage, button, triangleColor } = blocks;
+	if (!heading || !subheading || !backgroundImage || !triangleColor) {
+		return null;
+	}
 
 	const styles = {
 		section: "relative h-screen overflow-hidden",

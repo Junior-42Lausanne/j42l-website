@@ -1,8 +1,10 @@
 import qs from 'qs';
+import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
 import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
 
 const path = "/api/automation-service";
-const queryStudent = qs.stringify({
+const queryAutomation = qs.stringify({
 	populate: {
 		blocks: {
 			populate: "*",
@@ -10,17 +12,23 @@ const queryStudent = qs.stringify({
 	}
 })
 
-export const metadata = async () => {
-	return getStrapiMetadata(path,
-							"Automation - J42L",
-							"Junior 42 Lausanne");
-}
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Contact - J42L",
+	"Junior 42 Lausanne",
+);
+
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
 
 export default async function Automation() {
 	try {
-		const strapiData = await getStrapiData(path, queryStudent);
-		if (!strapiData?.data?.blocks)
-			throw new Error("No Automation page content");
+		const strapiData = await getStrapiData(path, queryAutomation);
+		if (!strapiData?.data?.blocks) {
+			return notFound();
+		}
 		const { blocks } = strapiData.data;
 		return (
 			<div>
@@ -30,11 +38,7 @@ export default async function Automation() {
 			</div>
 		)
 	} catch (error) {
-		console.log(`${error}`);
-		return (
-			<div>
-				<h1>Problem loading the page content</h1>
-			</div>
-		)
+		console.error(`${error}`);
+		return notFound();
 	}
 }

@@ -10,22 +10,23 @@
   },
   "dependencies": {
     "@strapi/blocks-react-renderer": "^1.0.2",
-    "next": "^15.5.6",
+    "next": "15.4.6",
     "qs": "^6.14.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/qs": "^6.14.0",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
-    "tailwindcss": "^4.1.17",
+    "husky": "^9.1.7",
+    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }

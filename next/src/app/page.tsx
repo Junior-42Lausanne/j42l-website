@@ -1,8 +1,9 @@
 import qs from "qs";
+import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
 import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils"
 
 const path = "/api/accueil";
-
 const queryHero = qs.stringify({
 	populate: {
 		blocks: {
@@ -11,11 +12,17 @@ const queryHero = qs.stringify({
 	}
 })
 
-export const metadata = async () => {
-	return getStrapiMetadata(path,
-							"Home - J42L",
-							"Junior 42 Lausanne");
-}
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Contact - J42L",
+	"Junior 42 Lausanne",
+);
+
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
+
 
 /*
 * The logic:
@@ -25,9 +32,13 @@ export const metadata = async () => {
 export default async function Home() {
 	try {
 		const strapiData = await getStrapiData(path, queryHero);
-		if (!strapiData?.data?.blocks)
-			throw new Error("No Home page content");
+		if (!strapiData?.data?.blocks) {
+			return notFound();
+		}
 		const { blocks } = strapiData.data;
+		if (blocks.length === 0) {
+			return notFound();
+		}
 		return (
 			<div>
 				{
@@ -37,10 +48,6 @@ export default async function Home() {
 		)
 	} catch(error) {
 		console.log(`${error}`);
-		return (
-			<div>
-				<h1>Problem loading the page content</h1>
-			</div>
-		)
+		return notFound();
 	}
 }

@@ -1,8 +1,10 @@
 import qs from 'qs';
+import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
 import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
 
 const path = "/api/contact";
-const queryStudent = qs.stringify({
+const queryContact = qs.stringify({
 	populate: {
 		blocks: {
 			populate: "*",
@@ -10,17 +12,23 @@ const queryStudent = qs.stringify({
 	}
 })
 
-export const metadata = async () => {
-	return getStrapiMetadata(path,
-							"Contact - J42L",
-							"Junior 42 Lausanne");
-}
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Contact - J42L",
+	"Junior 42 Lausanne",
+);
 
-export default async function Prototype() {
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
+
+export default async function Contact() {
 	try {
-		const strapiData = await getStrapiData(path, queryStudent);
-		if (!strapiData?.data?.blocks)
-			throw new Error("No Contact page Content");
+		const strapiData = await getStrapiData(path, queryContact);
+		if (!strapiData?.data?.blocks) {
+			return notFound();
+		}
 		const { blocks } = strapiData.data;
 		return (
 			<div>
@@ -30,11 +38,7 @@ export default async function Prototype() {
 			</div>
 		)
 	} catch(error) {
-		console.log(`${error}`);
-		return (
-			<div>
-				<h1>Problem loading the page content</h1>
-			</div>
-		)
+		console.error(`${error}`);
+		return notFound();
 	}
 }
