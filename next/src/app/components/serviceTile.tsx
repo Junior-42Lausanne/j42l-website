@@ -46,8 +46,8 @@ export default function ServiceTile({
 		return null;
 	}
 	return (
-		<div className="flex flex-col justify-end h-[650px] w-[400px] font-poppins 
-						text-white bg-cover bg-center 
+		<div className="flex flex-col justify-end h-[650px] w-[400px] font-poppins
+						text-white bg-cover bg-center
 						pl-[20px] pr-[20px] pt-[30px] pb-[30px] gap-[20px]"
     	style={{backgroundImage:`url("${image}")`}}>
 			<h2 className="text-h2">{type}</h2>

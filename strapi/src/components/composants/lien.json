@@ -5,7 +5,7 @@
   },
   "options": {},
   "attributes": {
-    "buttonText": {
+    "text": {
       "type": "string"
     },
     "url": {

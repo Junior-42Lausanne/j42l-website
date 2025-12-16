@@ -6,23 +6,36 @@ import qs from "qs";
 * this query is converted by qs and then append to the url
 */
 export const query = qs.stringify({
-  populate: {
+	populate: {
 	hero: {
-	  fields: ["heading", "subheading"],
-	  populate: {
+		fields: ["heading", "subheading"],
+		populate: {
 		backgroundImage: {
-		  fields: ["url", "alternativeText", "width", "height"]
+			fields: ["url", "alternativeText", "width", "height"]
 		},
 		button: {
-		  fields: ["buttonText", "url"],
+			fields: ["text", "url"],
 		}
-	  }
+		}
 	},
 	blocks: {
-	  populate: "*",
+			on: {
+				'layout.card-section': {
+					populate: {
+						cards: {
+							populate: {
+								link: true,
+								backgroundImage: {
+									fields: ['url', 'alternativeText']
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
-  }
-})
+	})
 
 /*
 * Strapi API call, uncomment the console.dir() to log the returned json
@@ -37,7 +50,7 @@ export async function getStrapiData<T>(path: string, query: string): Promise<T |
 		const response = await fetch(url.href);
 		const data = await response.json();
 
-		// console.dir(data, {depth: null});
+		console.dir(data, {depth: null});
 		return data;
 	} catch (error) {
 		console.error(error);

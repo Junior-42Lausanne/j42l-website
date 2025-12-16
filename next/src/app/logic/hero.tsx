@@ -18,20 +18,20 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 				width?: number,
 			};
 			button?: {
-				buttonText?: string,
+				text?: string,
 				url?: string,
 			};
 			}[];
 		};
 	};
-	
+
 	const heroArray = data.data?.hero;
 	if (heroArray && heroArray.length > 0) {
 		return {
 			heroHeading: heroArray[0].heading ?? defaultHero.heroHeading,
 			heroSubHeading: heroArray[0].subheading ?? defaultHero.heroSubHeading,
 			heroButton: {
-				text: heroArray[0].button?.buttonText ?? defaultHero.heroButton.text,
+				text: heroArray[0].button?.text ?? defaultHero.heroButton.text,
 				path: heroArray[0].button?.url ?? defaultHero.heroButton.path,
 			},
 			heroBackground: {
@@ -42,6 +42,6 @@ export default function getHero(strapiData: unknown, defaultHero: Hero): Hero {
 			}
 		}
 	}
-	  
+
 	return defaultHero;
 }

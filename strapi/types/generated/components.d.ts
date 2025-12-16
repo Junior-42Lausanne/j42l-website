@@ -7,9 +7,9 @@ export interface ComposantsCard extends Struct.ComponentSchema {
   };
   attributes: {
     backgroundImage: Schema.Attribute.Media<'images'>;
+    heading: Schema.Attribute.String;
     link: Schema.Attribute.Component<'composants.lien', false>;
     text: Schema.Attribute.Blocks;
-    title: Schema.Attribute.String;
   };
 }
 
@@ -55,7 +55,7 @@ export interface ComposantsLien extends Struct.ComponentSchema {
     displayName: 'Button';
   };
   attributes: {
-    buttonText: Schema.Attribute.String;
+    text: Schema.Attribute.String;
     url: Schema.Attribute.String;
   };
 }

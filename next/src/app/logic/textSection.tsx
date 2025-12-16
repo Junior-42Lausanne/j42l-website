@@ -26,7 +26,7 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 					width?: number,
 				}
 				button?: {
-					buttonText?: string,
+					text?: string,
 					url?: string,
 				}
 			}[];
@@ -50,11 +50,11 @@ export default function getTextSection(strapiData: unknown, defaultTextSection: 
 				width: textSection.image?.width ?? defaultTextSection.textSectionImage.width,
 			},
 			textSectionButton: {
-				text: textSection.button?.buttonText ?? defaultTextSection.textSectionButton.text,
+				text: textSection.button?.text ?? defaultTextSection.textSectionButton.text,
 				path:textSection.button?.url ?? defaultTextSection.textSectionButton.path,
 			}
 		}
 	}
-	
+
 	return defaultTextSection;
 }
