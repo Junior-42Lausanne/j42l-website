@@ -50,7 +50,7 @@ export async function getStrapiData<T>(path: string, query: string): Promise<T |
 		const response = await fetch(url.href);
 		const data = await response.json();
 
-		console.dir(data, {depth: null});
+		// console.dir(data, {depth: null});
 		return data;
 	} catch (error) {
 		console.error(error);

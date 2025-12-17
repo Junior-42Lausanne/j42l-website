@@ -7,6 +7,7 @@ import getHero from "./logic/hero"
 import getTextSection from "./logic/textSection"
 import {homeHeroDefault, textSectionDefault} from "./homeDefault"
 import {getStrapiData, query} from "./utils/utils"
+import {getCardSection} from "./logic/getCardSection"
 
 /*
 * The logic:
@@ -25,6 +26,7 @@ export default async function Home() {
 
   const hero = getHero(strapiData, homeHeroDefault);
   const textSection1 = getTextSection(strapiData, textSectionDefault);
+	const cardSection = getCardSection(strapiData);
 
   return (
     <div>
@@ -39,7 +41,7 @@ export default async function Home() {
                     image={textSection1.textSectionImage}
                     button={{...textSection1.textSectionButton}} />
 
-      <ServiceSection />
+      <ServiceSection cards={cardSection} />
       <PortfolioSection />
       <div className="h-[700px] bg-black"></div>
       <ContactSection
