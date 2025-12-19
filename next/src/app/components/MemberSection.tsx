@@ -3,17 +3,19 @@ import SectionTitle from "./sub_components/SectionTitle";
 import { ThemeColor } from "../utils/type";
 
 export type MemberSectionProps = {
-	blocks: {
-		title: {
-			title: string,
-			color: ThemeColor,
-		},
-		members: MemberCardProps[],
-	}
+	id: number,
+	__component: "layout.member-section",
+	title: {
+		title: string,
+		color: ThemeColor,
+	},
+	members: MemberCardProps[],
 }
 
-export default function MemberSection( {blocks} : MemberSectionProps) {
-	const {title, members} = blocks;
+export default function MemberSection( {
+	title,
+	members,
+} : MemberSectionProps) {
 
 	const styles = {
 		section: "flex flex-col gap-[3.75rem] py-[9.375rem] mx-[6.25rem] items-center",

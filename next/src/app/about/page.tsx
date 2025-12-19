@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 export default async function About() {
 	try {
 		const strapiData = await getStrapiData(path, queryAbout);
-		if (!strapiData?.data?.blocks) {
+		if (!strapiData || !strapiData.data || !Array.isArray(strapiData.data.blocks)) {
 			return notFound();
 		}
 		const { blocks } = strapiData.data;

@@ -2,20 +2,22 @@ import ButtonLink from "./sub_components/Button";
 import { ThemeColor } from "../utils/type";
 
 export type FooterCTASectionProps = {
-	blocks: {
-		text: string,
-		button: {
-			url: string;
-			color: ThemeColor;
-			fullWidth?: boolean;
-			external?: boolean;
-			buttonText: string;
-		},
-	}
+	id: number,
+	__component: "layout.footer-cta",
+	text: string,
+	button: {
+		url: string;
+		color: ThemeColor;
+		fullWidth?: boolean;
+		external?: boolean;
+		buttonText: string;
+	},
 }
 
-export default function FooterCTASection({ blocks } : FooterCTASectionProps) {
-	const {text, button} = blocks;
+export default function FooterCTASection({
+	text,
+	button,
+} : FooterCTASectionProps) {
 	if (!text || !button) {
 		return null;
 	}

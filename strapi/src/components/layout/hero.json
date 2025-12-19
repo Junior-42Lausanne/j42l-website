@@ -20,12 +20,14 @@
     "backgroundImage": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "triangleColor": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "orange",
         "white"

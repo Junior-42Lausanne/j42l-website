@@ -152,11 +152,13 @@ export interface LayoutHero extends Struct.ComponentSchema {
     displayName: 'hero';
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
+    backgroundImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
     button: Schema.Attribute.Component<'composants.lien', false>;
     heading: Schema.Attribute.String & Schema.Attribute.Required;
     subheading: Schema.Attribute.Text;
-    triangleColor: Schema.Attribute.Enumeration<['orange', 'white']>;
+    triangleColor: Schema.Attribute.Enumeration<['orange', 'white']> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -182,8 +184,6 @@ export interface LayoutNavBar extends Struct.ComponentSchema {
     cta: Schema.Attribute.Component<'composants.lien', false> &
       Schema.Attribute.Required;
     logo: Schema.Attribute.Component<'composants.logo', false> &
-      Schema.Attribute.Required;
-    navBarMenu: Schema.Attribute.Component<'composants.link', true> &
       Schema.Attribute.Required;
     social: Schema.Attribute.Component<'composants.social', true> &
       Schema.Attribute.Required;

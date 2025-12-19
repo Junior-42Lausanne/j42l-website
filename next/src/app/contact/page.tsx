@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default async function Contact() {
 	try {
 		const strapiData = await getStrapiData(path, queryContact);
-		if (!strapiData?.data?.blocks) {
+		if (!strapiData || !strapiData.data || !Array.isArray(strapiData.data.blocks)) {
 			return notFound();
 		}
 		const { blocks } = strapiData.data;

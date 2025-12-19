@@ -1,27 +1,40 @@
 import ButtonLink from "./sub_components/Button"
-import StrapiImage from "./sub_components/StrapiImage";
-import { TextSectionProps } from "@/app/components/TextSection"
+import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage";
 import SectionTitle from "./sub_components/SectionTitle";
 import { ThemeColor } from "../utils/type";
 // BlocksRenderer to render JSON Rich text
-import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
-/*
-* Text section
-* Compose of side image, title, long text and a button
-*/
 export type TextSectionWithTitleProps = {
-	blocks: Omit<TextSectionProps["blocks"], "title"> & {
-		title: {
-			title: string;
-			color: ThemeColor;
-		};
-		imagePosition: string,
+	id: number,
+	__component: "layout.text-section-with-title",
+	title: {
+		title: string;
+		color: ThemeColor;
 	};
-};
+	text: BlocksContent,
+	image: StrapiImageProps,
+	button?: {
+		url: string;
+		color: ThemeColor;
+		fullWidth?: boolean;
+		external?: boolean;
+		buttonText: string;
+	},
+	textColor: ThemeColor,
+	backgroundColor: ThemeColor,
+	imagePosition: string,
+}
 
-export default function TextSectionWithTitle({ blocks }: TextSectionWithTitleProps) {
-	const {title, text, image, button, textColor, backgroundColor, imagePosition} = blocks;
+export default function TextSectionWithTitle({
+	title,
+	text,
+	image,
+	button,
+	textColor,
+	backgroundColor,
+	imagePosition,
+}: TextSectionWithTitleProps) {
 
 	const styles = {
 		section: `flex flex-col bg-${backgroundColor} gap-[3.125rem] py-[9.375rem]`,

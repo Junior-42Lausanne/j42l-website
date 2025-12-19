@@ -7,36 +7,11 @@ import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/Nav
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
 import HeroSection, { HeroSectionProps } from '../components/HeroSection';
 
-type HeroSectionBlock = HeroSectionProps["blocks"] & {
-	id: number,
-	__component: "layout.hero",
-}
-
-type MemberSectionBlock = MemberSectionProps["blocks"] & {
-	id: number,
-	__component: "layout.member-section",
-}
-
-type TextSectionWithTitleBlock = TextSectionWithTitleProps["blocks"] & {
-	id: number,
-	__component: "layout.text-section-with-title",
-};
-
-type TextSectionBlock = TextSectionProps["blocks"] & {
-	id: number,
-	__component: "layout.text-section",
-};
-
-type FooterCTASectionBlock = FooterCTASectionProps["blocks"] & {
-	id: number,
-	__component: "layout.footer-cta",
-};
-
-export type Block = HeroSectionBlock |
-					TextSectionBlock | 
-					FooterCTASectionBlock | 
-					TextSectionWithTitleBlock |
-					MemberSectionBlock;
+export type Block = HeroSectionProps |
+					TextSectionProps |
+					FooterCTASectionProps | 
+					TextSectionWithTitleProps |
+					MemberSectionProps;
 
 export function blockRenderer(block: Block) {
 	if (!block) {
@@ -44,31 +19,21 @@ export function blockRenderer(block: Block) {
 	}
 	switch (block.__component) {
 		case "layout.hero":
-			return <HeroSection key={block.id} blocks={block} />;
+			return <HeroSection key={block.id} {...block} />;
 		case "layout.member-section":
-			return <MemberSection key={block.id} blocks={block} />;
+			return <MemberSection key={block.id} {...block} />;
 		case "layout.text-section-with-title":
-			return <TextSectionWithTitle key={block.id} blocks={block} />;
+			return <TextSectionWithTitle key={block.id} {...block} />;
 		case "layout.text-section":
-			return <TextSection key={block.id} blocks={block} />;
+			return <TextSection key={block.id} {...block} />;
 		case "layout.footer-cta":
-			return <FooterCTASection key={block.id} blocks={block} />;
+			return <FooterCTASection key={block.id} {...block} />;
 		default:
 			return null;
 	}
 }
 
-type SingleLink = NavBarLinkProps & {
-	id: number,
-	__component: "composants.link",
-}
-
-type DropdownLink = NavBarDropdownProps & {
-	id: number,
-	__component: "composants.dropdown-link",
-}
-
-export type menuItem = SingleLink | DropdownLink;
+export type menuItem = NavBarLinkProps | NavBarDropdownProps;
 
 export function menuRenderer(item: menuItem) {
 	if (!item) {
@@ -76,14 +41,9 @@ export function menuRenderer(item: menuItem) {
 	}
 	switch (item.__component) {
 		case "composants.link":
-			return <NavBarLink key={item.id} 
-								linkText={item.linkText}
-								url={item.url}
-								external={item.external} />;
+			return <NavBarLink key={item.id} {...item} />;
 		case "composants.dropdown-link":
-			return <NavBarDropdown key={item.id}
-									label={item.label}
-									links={item.links} />;
+			return <NavBarDropdown key={item.id} {...item} />;
 		default:
 			return null;
 	}

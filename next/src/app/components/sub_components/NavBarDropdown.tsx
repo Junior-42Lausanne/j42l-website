@@ -2,6 +2,8 @@ import { NavBarLinkProps } from "./NavBarLink";
 import NavBarDropdownLink from "./NavBarDropdownLink";
 
 export type NavBarDropdownProps = {
+	id: number,
+	__component: "composants.dropdown-link",
 	label: string,
 	links: NavBarLinkProps[];
 }
@@ -33,9 +35,7 @@ export default function NavBarDropdown( {
 			<div className={styles.submenuWrap}>
 				{
 					links
-					? links.map((link : NavBarLinkProps) => <NavBarDropdownLink key={link.id} linkText={link.linkText}
-																								url={link.url}
-																								external={link.external} />)
+					? links.map((link : NavBarLinkProps) => <NavBarDropdownLink key={link.id} {...link} />)
 					: null
 				}
 			</div>

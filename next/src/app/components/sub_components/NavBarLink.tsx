@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
 export type NavBarLinkProps = {
-	id?: number,
+	id: number,
+	__component: "composants.link",
 	linkText: string,
 	url: string,
 	external: boolean,

@@ -3,23 +3,28 @@ import { ThemeColor } from "@/app/utils/type";
 import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage"
 
 export type HeroSectionProps = {
-	blocks: {
-		heading: string,
-		subheading?: string,
-		backgroundImage: StrapiImageProps,
-		button?: {
-			url: string;
-			color: ThemeColor;
-			fullWidth?: boolean;
-			external?: boolean;
-			buttonText: string;
-		},
-		triangleColor: ThemeColor,
+	id: number,
+	__component: "layout.hero",
+	heading: string,
+	subheading?: string,
+	backgroundImage: StrapiImageProps,
+	button?: {
+		url: string;
+		color: ThemeColor;
+		fullWidth?: boolean;
+		external?: boolean;
+		buttonText: string;
 	},
+	triangleColor: ThemeColor,
 }
 
-export default function HeroSection({ blocks }: Readonly<HeroSectionProps> ) {
-	const { heading, subheading, backgroundImage, button, triangleColor } = blocks;
+export default function HeroSection({
+	heading,
+	subheading,
+	backgroundImage,
+	button,
+	triangleColor,
+}: Readonly<HeroSectionProps> ) {
 	if (!heading || !backgroundImage || !triangleColor) {
 		return null;
 	}

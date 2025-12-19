@@ -9,25 +9,30 @@ import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-rendere
 * Compose of side image, title, long text and a button
 */
 export type TextSectionProps = {
-	blocks: {
-		title: string,
-		text: BlocksContent,
-		image: StrapiImageProps,
-		button?: {
-			url: string;
-			color: ThemeColor;
-			fullWidth?: boolean;
-			external?: boolean;
-			buttonText: string;
-		},
-		textColor: ThemeColor,
-		backgroundColor: ThemeColor,
-	};
+	id: number,
+	__component: "layout.text-section",
+	title: string,
+	text: BlocksContent,
+	image: StrapiImageProps,
+	button?: {
+		url: string;
+		color: ThemeColor;
+		fullWidth?: boolean;
+		external?: boolean;
+		buttonText: string;
+	},
+	textColor: ThemeColor,
+	backgroundColor: ThemeColor,
 }
 
-export default function TextSection({ blocks }: TextSectionProps) {
-	const {title, text, image, button, textColor, backgroundColor} = blocks;
-
+export default function TextSection({
+	title,
+	text,
+	image,
+	button,
+	textColor,
+	backgroundColor,
+}: TextSectionProps) {
 	const styles = {
 		section: `flex bg-${backgroundColor} pt-[6.25rem] pb-[6.25rem] gap-[9.375rem] items-center justify-center`,
 		imageWrap: "w-1/5",

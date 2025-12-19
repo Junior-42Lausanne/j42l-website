@@ -11,12 +11,6 @@
       "repeatable": false,
       "required": true
     },
-    "navBarMenu": {
-      "type": "component",
-      "component": "composants.link",
-      "repeatable": true,
-      "required": true
-    },
     "cta": {
       "type": "component",
       "component": "composants.lien",
