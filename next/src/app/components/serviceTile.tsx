@@ -10,8 +10,7 @@ export default function ServiceTile({service}: {service: Service}) {
 	return (
 		<div
 			className="flex flex-col h-[650px] font-poppins justify-between
-						text-white bg-cover bg-center pt-[10%] pb-[30px] px-[30px] gap-[20px] w-full max-w-[420px]
-						[text-shadow:0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black,0_0_1px_black]"
+						text-white bg-cover bg-center pt-[10%] pb-[30px] px-[30px] gap-[20px] w-full max-w-[420px]"
 			style={{backgroundImage:`url("${image}")`}}>
 			<div className="flex flex-col gap-[30px] mt-[55%]">
 				<h3 className="text-h3 font-[1000]">{service.heading}</h3>
@@ -25,9 +24,3 @@ export default function ServiceTile({service}: {service: Service}) {
 		</div>
 	);
 }
-
-/*
-"flex flex-col justify-end h-[650px] w-[400px] font-poppins
-						text-white bg-cover bg-center
-						pl-[20px] pr-[20px] pt-[30px] pb-[30px] gap-[20px]"
-*/
