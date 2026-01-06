@@ -25,6 +25,7 @@ export type ButtonType = {
 	path: string,
 	color?: Color,
 	fullWidth?: boolean,
+	className?: string
 }
 
 /*

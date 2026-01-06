@@ -20,7 +20,13 @@ export default function ServiceTile({service}: {service: Service}) {
 				))}
 				</ul>
 			</div>
-			<Button text="Découvrir" path={target} color='white' fullWidth={true} />
+			<Button
+				text="Découvrir"
+				path={target}
+				color='white'
+				fullWidth={true}
+				className="hover:bg-orange hover:text-black!
+					transition-colors duration-400 ease-out"/>
 		</div>
 	);
 }
