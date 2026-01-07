@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_layout_heroes",
+  "info": {
+    "displayName": "hero"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "button": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "triangleColor": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "orange",
+        "white"
+      ]
+    }
+  },
+  "config": {}
+}

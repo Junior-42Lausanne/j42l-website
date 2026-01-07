@@ -1,29 +1,53 @@
-import WelcomeSection from "./components/welcomeSection"
-import ServiceSection from "./components/serviceSection"
-import HeroSection from "./components/heroSection"
-import PortfolioSection from "./components/portfolioSection"
-import FooterCTA from "./components/footerCTA"
-import Footer from "./components/footer"
+import qs from "qs";
+import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
+import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils"
 
-export default function Home() {
-  return (
-    <div>
-      <HeroSection background="/stock photo/home background.jpg" 
-                    title="Votre vision réalisée par les étudiants de 42 Lausanne"
-                    subTitle="Propulsant l'innovation en tant que plus grande Junior Entreprise du réseau 42 – où de jeunes consultants IT donnent vie à vos projets digitaux."
-                    buttonText="Nos Services"
-                    buttonPath="https://www.google.com" 
-                    triangleColor="orange"
-                    haveSubtile />
-      <WelcomeSection />
-      <ServiceSection />
-      <PortfolioSection />
-      <div className="h-[700px] bg-black"></div>
-      <FooterCTA text="Réalisez votre projet de rêve avec nous!"
-                buttonText="Contactez-Nous"
-                buttonPath="https://www.google.com" />
-      <Footer />
-    </div>
-  )
+const path = "/api/accueil";
+const queryHero = qs.stringify({
+	populate: {
+		blocks: {
+			populate: "*",
+		},
+	}
+})
+
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Home - J42L",
+	"Junior 42 Lausanne",
+);
+
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
+
+
+/*
+* The logic:
+* API call for current page
+* loop through the blocks to call corresponse section component
+*/
+export default async function Home() {
+	try {
+		const strapiData = await getStrapiData(path, queryHero);
+		if (!strapiData || !strapiData.data || !Array.isArray(strapiData.data.blocks)) {
+			return notFound();
+		}
+		const { blocks } = strapiData.data;
+		if (blocks.length === 0) {
+			return notFound();
+		}
+		return (
+			<div>
+				{
+					blocks.map((block: Block) => blockRenderer(block))
+				}
+			</div>
+		)
+	} catch(error) {
+		console.log(`${error}`);
+		return notFound();
+	}
 }
-
