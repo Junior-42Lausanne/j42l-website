@@ -51,11 +51,11 @@ export const metadata: Metadata = {
 export default async function About() {
 	try {
 		const strapiData = await getStrapiData(path, queryAbout);
-		if (!strapiData || !strapiData.data || !Array.isArray(strapiData.data.blocks)) {
+		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}
-		const { blocks } = strapiData.data;
-		if (blocks.length === 0) {
+		const { blocks } = strapiData.data?.data;
+		if (!Array.isArray(blocks) || blocks.length === 0) {
 			return notFound();
 		}
 		return (
@@ -65,8 +65,8 @@ export default async function About() {
 				}
 			</div>
 		)
-	} catch (error) {
-		console.error(`${error}`);
-		return notFound();
+	} catch(error) {
+		console.error("Strapi fetch error: page About");
+		throw error;
 	}
 }

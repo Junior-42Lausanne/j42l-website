@@ -8,30 +8,24 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	let global = null;
 	try {
 		const globalData = await getStrapiGlobalData();
-		if (!globalData?.data?.global) {
-			return notFound();
-		}
-		// console.dir(globalData, {depth: null});
-		const {global} = globalData?.data;
-		if (!global || global.length === 0 || !global[0]) {
-			return notFound();
-		}
-		return (
-			<html lang="en">
-				<body>
-				{
-					global
-						? <NavBar blocks={global[0]} />
-						: null
-				}
-				<div>{children}</div>
-				</body>
-			</html>
-		);
-	} catch(error) {
-		console.log(`Error: ${error}`);
-		return notFound();
+		global = globalData?.data?.global ?? null;
+	} catch (err) {
+		console.error("Strapi fetch error: global");
+		global = null;
 	}
+	return (
+		<html lang="en">
+			<body>
+			{
+				global
+					? <NavBar blocks={global[0]} />
+					: null
+			}
+			<div>{children}</div>
+			</body>
+		</html>
+	);
 }

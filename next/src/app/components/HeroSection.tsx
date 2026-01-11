@@ -1,4 +1,4 @@
-import ButtonLink from "./sub_components/Button";
+import ButtonLink from "./sub_components/ButtonLink";
 import { ThemeColor } from "@/app/utils/type";
 import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage"
 

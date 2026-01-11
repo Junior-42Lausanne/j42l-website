@@ -17,21 +17,25 @@ export function blockRenderer(block: Block) {
 	if (!block) {
 		return null;
 	}
+
+	const key = `${block.__component}-${block.id}`;
+
 	switch (block.__component) {
 		case "layout.hero":
-			return <HeroSection key={block.id} {...block} />;
+			return <HeroSection key={key} {...block} />;
 		case "layout.member-section":
-			return <MemberSection key={block.id} {...block} />;
+			return <MemberSection key={key} {...block} />;
 		case "layout.text-section-with-title":
-			return <TextSectionWithTitle key={block.id} {...block} />;
+			return <TextSectionWithTitle key={key} {...block} />;
 		case "layout.text-section":
-			return <TextSection key={block.id} {...block} />;
+			return <TextSection key={key} {...block} />;
 		case "layout.footer-cta":
-			return <FooterCTASection key={block.id} {...block} />;
+			return <FooterCTASection key={key} {...block} />;
 		default:
 			return null;
 	}
 }
+
 
 export type menuItem = NavBarLinkProps | NavBarDropdownProps;
 
@@ -60,22 +64,20 @@ const baseUrl = "http://strapi-app:1337";
 export async function getStrapiData(path: string, query: string) {
 	const url = new URL(path, baseUrl);
 	url.search = query;
-	try {
-		const response = await fetch(url.href);
-		if (!response.ok) {
-			console.error(`HTTP error! status: ${response.status}`);
-			console.error(`Error loading page.`);
-			return null;
-		}
-		const data = await response.json();
-
-		// console.dir(data, {depth: null});
-		
-		return data;
-	} catch (error) {
-		console.error(`Error loading page.`);
-		return null;
+	const response = await fetch(url.href);
+	if (response.status == 404) {
+		console.error("Ressources not found");
+		return {type: "NOT_FOUND" as const};
 	}
+	if (!response.ok) {
+		console.error("Strapi error");
+		throw new Error(`STRAPI_ERROR_${response.status}`);
+	}
+	const data = await response.json();
+
+	// console.dir(data, {depth: null});
+	
+	return {type: "OK" as const, data};
 }
 
 /*
@@ -108,22 +110,16 @@ export async function getStrapiGlobalData() {
 			},
 		},
 	});
-	try {
-		const response = await fetch(url.href);
-		if (!response.ok) {
-			console.error(`HTTP error! status: ${response.status}`);
-			console.error(`Fail to load global content (navbar/footer).`);
-			return null;
-		}
-		const data = await response.json();
-
-		// console.dir(data, {depth: null});
-		
-		return data;
-	} catch (error) {
-		console.error(`Fail to load global content (navbar/footer).`)
-		return null;
+	const response = await fetch(url.href);
+	if (!response.ok) {
+		console.error("Strapi fetch error: global");
+		throw new Error(`STRAPI_GLOBAL_ERROR_${response.status}`);
 	}
+	const data = await response.json();
+
+	// console.dir(data, {depth: null});
+	
+	return data;
 }
 
 /*
@@ -146,22 +142,16 @@ export async function getStrapiNavBarMenuData() {
 			},
 		},
 	});
-	try {
-		const response = await fetch(url.href);
-		if (!response.ok) {
-			console.error(`HTTP error! status: ${response.status}`);
-			console.error(`Fail to get navBar menu.`);
-			return null;
-		}
-		const data = await response.json();
-
-		// console.dir(data, {depth: null});
-		
-		return data;
-	} catch (error) {
-		console.error(`Fail to get navBar menu.`);
-		return null;
+	const response = await fetch(url.href);
+	if (!response.ok) {
+		console.error("Strapi navbar error");
+		throw new Error(`STRAPI_NAVBAR_ERROR_${response.status}`);
 	}
+	const data = await response.json();
+
+	// console.dir(data, {depth: null});
+	
+	return data;
 }
 
 /*
@@ -203,8 +193,8 @@ export async function getStrapiMetadata(path: string, fallbackTitle: string, fal
 			title: data?.data?.title || fallbackTitle,
 			description: data?.data?.description || fallbackDescription,
 		};
-	} catch (error) {
-		console.error(`Fail to get metadata`);
+	} catch (err) {
+		console.error("Strapi fetch metadata failed");
 		return {
 				title: fallbackTitle,
 				description: fallbackDescription,

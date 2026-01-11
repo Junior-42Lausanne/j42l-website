@@ -1,4 +1,4 @@
-import ButtonLink from "@/app/components/sub_components/Button";
+import ButtonLink from "@/app/components/sub_components/ButtonLink";
 import StrapiImage, { StrapiImageProps } from "@/app/components/sub_components/StrapiImage";
 import { ThemeColor } from "@/app/utils/type";
 import { getStrapiNavBarMenuData, menuRenderer, menuItem } from "@/app/utils/utils";
@@ -127,6 +127,7 @@ export default async function NavBar( {blocks}: NavBarProps) {
 			</div>
 		)
 	} catch(error) {
+		console.error("Strapi fetch error: nav bar");
 		return (
 			<div> { null } </div>
 		);
