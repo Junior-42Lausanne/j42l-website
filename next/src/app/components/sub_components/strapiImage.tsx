@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {getStrapiMedia} from '../../utils/utils'; 
+import {getStrapiMedia} from '../../utils/utils';
 import {StrapiImageType} from "../../utils/type";
 
 /*
@@ -13,8 +13,6 @@ import {StrapiImageType} from "../../utils/type";
 export function StrapiImage({
 	src,
 	alt,
-	height,
-	width,
 	className
 }: Readonly<StrapiImageType>) {
 	const fallback = "/stock_photo/home_background.jpg";

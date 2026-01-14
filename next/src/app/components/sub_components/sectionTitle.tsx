@@ -14,7 +14,7 @@ export default function SectionTitle({
 	text,
 	color = 'black'
 	}: Readonly<titleProps>) {
-	return ( 
+	return (
 		<div className="flex flex-row justify-center">
 			<div className="flex flex-col justify-start items-start">
 				<div className={`w-0 h-0 border-t-[2rem] border-r-[2rem] border-${color} border-r-transparent`}></div>
@@ -25,4 +25,4 @@ export default function SectionTitle({
 			</div>
 		</div>
 	)
-}
+} 
