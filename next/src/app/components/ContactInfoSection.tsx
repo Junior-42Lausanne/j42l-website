@@ -1,22 +1,27 @@
 import Image from "next/image";
-import type { Metadata } from "next";
-import { getStrapiGlobalData } from "@/app/utils/utils";
-import StrapiImage from "@/app/components/sub_components/StrapiImage";
-import type { FooterInfo } from "@/app/utils/utils";
+import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage";
 
-export const metadata: Metadata = {
-	title: "Contact - J42L",
-	description: "Junior 42 Lausanne",
-};
+export type ContactInfoSectionProps = {
+	id: number,
+	__component: "layout.contact-info",
+	text: string,
+	email: string,
+	phone: string,
+	street: string,
+	city: string,
+	country: string,
+	logo: StrapiImageProps,
+}
 
-export default async function Contact() {
-	const data: FooterInfo | null = await getStrapiGlobalData();
-	if (!data) {
-		return null;
-	}
-
-	const contact = data.data.footer;
-
+export default function ContactInfoSection({
+	text,
+	email,
+	phone,
+	street,
+	city,
+	country,
+	logo,
+}: ContactInfoSectionProps) {
 	return (
 		<div className="flex flex-wrap bg-pale_orange text-black relative p-[40px] gap-[30px]">
 			<div className="w-full font-poppins text-h2">
@@ -25,26 +30,26 @@ export default async function Contact() {
 
 			<div className="flex flex-col gap-[30px] items-start flex-[1_1_350px]">
 				<div className="font-poppins text-h5 whitespace-normal">
-					<p className="text-justify">{contact.linkText}</p>
+					<p className="text-justify">{text}</p>
 				</div>
 
 				<div className="flex flex-col gap-[30px]">
 					<div className="flex gap-[20px] items-center">
 						<Image src="/graphic/icon/png/mail_black.png" alt="Mail icon" width={40} height={40} className="object-contain" />
-						<p>{contact.contactDetails.email}</p>
+						<p>{email}</p>
 					</div>
 
 					<div className="flex gap-[20px] items-center">
 						<Image src="/graphic/icon/png/phone_black.png" alt="Phone icon" width={40} height={40} className="object-contain" />
-						<p>{contact.contactDetails.number}</p>
+						<p>{phone}</p>
 					</div>
 
 					<div className="flex gap-[20px] items-center">
 						<Image src="/graphic/icon/png/home_black.png" alt="Home icon" width={40} height={40} className="object-contain" />
 						<div className="flex flex-col">
-							<p>{contact.contactDetails.street}</p>
-							<p>{contact.contactDetails.city}</p>
-							<p>{contact.contactDetails.country}</p>
+							<p>{street}</p>
+							<p>{city}</p>
+							<p>{country}</p>
 						</div>
 					</div>
 				</div>
@@ -52,10 +57,10 @@ export default async function Contact() {
 
 			<div className="relative flex-[1_1_200px] max-w-full h-[250px] mx-auto">
 				<StrapiImage
-					url={contact.halfLogo.url}
-					alternativeText={contact.halfLogo.alternativeText}
-					width={contact.halfLogo.width}
-					height={contact.halfLogo.height}
+					url={logo.url}
+					alternativeText={logo.alternativeText}
+					width={logo.width}
+					height={logo.height}
 					className="object-contain"
 				/>
 			</div>

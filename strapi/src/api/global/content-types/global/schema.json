@@ -15,19 +15,7 @@
     }
   },
   "attributes": {
-    "logo": {
-      "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "menu": {
+    "global": {
       "type": "dynamiczone",
       "pluginOptions": {
         "i18n": {
@@ -35,8 +23,8 @@
         }
       },
       "components": [
-        "composants.lien",
-        "composants.sub-menu"
+        "layout.nav-bar",
+        "layout.footer"
       ]
     },
     "footer": {

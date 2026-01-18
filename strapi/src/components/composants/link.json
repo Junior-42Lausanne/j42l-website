@@ -5,11 +5,18 @@
   },
   "options": {},
   "attributes": {
-    "url": {
-      "type": "string"
+    "linkText": {
+      "type": "string",
+      "required": true
     },
-    "text": {
-      "type": "string"
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "external": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   },
   "config": {}

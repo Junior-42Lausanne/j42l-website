@@ -1,72 +1,22 @@
-export type Color = 'orange' | 'white' | 'black';
+export type ThemeColor = 'orange' | 'white' | 'black' | 'pale_orange';
 
 /*
+* Do not delete
 * this is for Tailwind reference
 * because eg:`border-{$color}` won't be expanded correctly without
 */
-const tailwindColor = [
-  "border-orange",
-  "border-white",
-  "border-black",
-  "text-orange",
-  "text-white",
-  "text-black",
-  "bg-orange",
-  "bg-white",
-  "bg-black",
-];
+// const tailwindColor = [
+//   "border-orange",
+//   "border-white",
+//   "border-black",
+//   "border-pale_orange",
+//   "text-orange",
+//   "text-white",
+//   "text-black"
+//   "text-pale_orange",
+//   "bg-orange",
+//   "bg-white",
+//   "bg-black",
+//   "bg-pale_orange",
+// ] as const;
 
-/*
-* Read the name
-* If unclear, read again
-*/
-export type ButtonType = {
-	text: string,
-	path: string,
-	color?: Color,
-	fullWidth?: boolean,
-}
-
-/*
-* Hero section (Landing section) for every page
-*/
-export type Hero = {
-	heroHeading: string,
-	heroSubHeading: string,
-	heroButton: ButtonType,
-	heroBackground: StrapiImageType,
-}
-
-/*
-* Text section
-* Compose of side image, title, long text and a button
-*/
-export type TextSectionType = {
-	textSectionTitle: string,
-	textSectionText: string,
-	textSectionImage: StrapiImageType,
-	textSectionButton: ButtonType,
-}
-
-/*
-* Read the name
-* If unclear, read again
-*/
-export type StrapiImageType = {
-	src: string | null,
-	alt: string,
-	height?: number,
-	width?: number,
-	className?: string,
-}
-
-/*
-* Strapi long text (rich text)
-*/
-export type StrapiRawText = {
-	type?: string,
-	children?: {
-		type?: string,
-		text?: string,
-	}[],
-}[]

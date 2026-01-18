@@ -15,16 +15,6 @@
     }
   },
   "attributes": {
-    "hero": {
-      "type": "component",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "layout.hero",
-      "repeatable": true
-    },
     "blocks": {
       "type": "dynamiczone",
       "pluginOptions": {
@@ -34,8 +24,30 @@
       },
       "components": [
         "layout.text-section",
-        "layout.card-section"
+        "layout.card-section",
+        "layout.footer-cta",
+        "layout.hero"
       ]
+    },
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": false,
+      "unique": true
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": false,
+      "unique": true
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "collectionName": "components_layout_heroes",
   "info": {
-    "displayName": "Hero"
+    "displayName": "hero"
   },
   "options": {},
   "attributes": {
@@ -20,8 +20,17 @@
     "backgroundImage": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
+      ]
+    },
+    "triangleColor": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "orange",
+        "white"
       ]
     }
   },

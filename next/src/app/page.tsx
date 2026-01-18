@@ -1,56 +1,53 @@
-import TextSection from "./components/textSection"
-import ServiceSection from "./components/serviceSection"
-import HeroSection from "./components/heroSection"
-import PortfolioSection from "./components/portfolioSection"
-import ContactSection from "./components/ContactSection"
-import getHero from "./logic/hero"
-import getTextSection from "./logic/textSection"
-import {homeHeroDefault, textSectionDefault} from "./homeDefault"
-import {getStrapiData, query} from "./utils/utils"
+import qs from "qs";
+import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
+import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils"
+
+const path = "/api/accueil";
+const queryHero = qs.stringify({
+	populate: {
+		blocks: {
+			populate: "*",
+		},
+	}
+})
+
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Home - J42L",
+	"Junior 42 Lausanne",
+);
+
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
+
 
 /*
 * The logic:
-* API call for corresponse page
-* parse the data for each section object
-* pass the object to corresponse component
+* API call for current page
+* loop through the blocks to call corresponse section component
 */
 export default async function Home() {
-  let strapiData: unknown;
-
-  try {
-    strapiData = await getStrapiData("/api/accueil", query);
-  } catch (err) {
-    console.error(`Strapi unreachable, using default value. Error: ${err}`);
-  }
-
-  const hero = getHero(strapiData, homeHeroDefault);
-  const textSection1 = getTextSection(strapiData, textSectionDefault);
-
-  return (
-    <div>
-      <HeroSection background={hero.heroBackground}
-                    title={hero.heroHeading}
-                    subTitle={hero.heroSubHeading}
-                    haveSubtitle={true}
-                    triangleColor='orange'
-                    button={{...hero.heroButton, color: 'white'}} />
-      <TextSection title={textSection1.textSectionTitle}
-                    text={textSection1.textSectionText}
-                    image={textSection1.textSectionImage}
-                    button={{...textSection1.textSectionButton}} />
-
-      <ServiceSection />
-      <PortfolioSection />
-      <div className="h-[700px] bg-black"></div>
-      <ContactSection
-				text= "Réalisez votre projet de rêve avec nous!"
-				button={{
-					text: "Contactez-nous",
-					path: "/contact",
-					color: 'orange'
-				}}
-			/>
-    </div>
-  )
+	try {
+		const strapiData = await getStrapiData(path, queryHero);
+		if (strapiData.type == "NOT_FOUND") {
+			return notFound();
+		}
+		const { blocks } = strapiData.data?.data;
+		if (!Array.isArray(blocks) || blocks.length === 0) {
+			return notFound();
+		}
+		return (
+			<div>
+				{
+					blocks.map((block: Block) => blockRenderer(block))
+				}
+			</div>
+		)
+	} catch(error) {
+		console.error("Strapi fetch error: page Home");
+		throw error;
+	}
 }
-
