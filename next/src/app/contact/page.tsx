@@ -16,31 +16,32 @@ export default async function Contact() {
 	}
 
 	const contact = data.data.footer;
+	console.log(contact);
 
 	return (
-		<div className="flex flex-wrap bg-pale_orange text-black relative p-[40px] gap-[30px]">
-			<div className="w-full font-poppins text-h2">
-				<h2>Contactez-nous</h2>
+		<div className="flex flex-wrap bg-pale_orange text-black relative p-[150px] gap-[30px] min-h-[66.67vh]">
+			<div className="w-full font-poppins text-h1">
+				<h1>Contactez-nous</h1>
 			</div>
 
-			<div className="flex flex-col gap-[30px] items-start flex-[1_1_350px]">
-				<div className="font-poppins text-h5 whitespace-normal">
-					<p className="text-justify">{contact.linkText}</p>
+			<div className="flex flex-col gap-[80px] items-start flex-[1_1_350px]">
+				<div className="font-poppins text-h4 whitespace-normal">
+					<p className="text-justify">{contact.text}</p>
 				</div>
 
-				<div className="flex flex-col gap-[30px]">
+				<div className="flex flex-col text-h4 gap-[30px]">
 					<div className="flex gap-[20px] items-center">
-						<Image src="/graphic/icon/png/mail_black.png" alt="Mail icon" width={40} height={40} className="object-contain" />
+						<Image src="/graphic/icon/png/mail_black.png" alt="Mail icon" width={70} height={70} className="object-contain" />
 						<p>{contact.contactDetails.email}</p>
 					</div>
 
 					<div className="flex gap-[20px] items-center">
-						<Image src="/graphic/icon/png/phone_black.png" alt="Phone icon" width={40} height={40} className="object-contain" />
+						<Image src="/graphic/icon/png/phone_black.png" alt="Phone icon" width={70} height={70} className="object-contain" />
 						<p>{contact.contactDetails.number}</p>
 					</div>
 
 					<div className="flex gap-[20px] items-center">
-						<Image src="/graphic/icon/png/home_black.png" alt="Home icon" width={40} height={40} className="object-contain" />
+						<Image src="/graphic/icon/png/home_black.png" alt="Home icon" width={70} height={70} className="object-contain" />
 						<div className="flex flex-col">
 							<p>{contact.contactDetails.street}</p>
 							<p>{contact.contactDetails.city}</p>
@@ -50,7 +51,7 @@ export default async function Contact() {
 				</div>
 			</div>
 
-			<div className="relative flex-[1_1_200px] max-w-full h-[250px] mx-auto">
+			<div className="relative flex-[1_1_200px] max-w-full h-[400px] mx-auto">
 				<StrapiImage
 					url={contact.halfLogo.url}
 					alternativeText={contact.halfLogo.alternativeText}

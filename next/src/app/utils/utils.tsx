@@ -218,7 +218,7 @@ export interface FooterInfo {
 			contactDetails: { id: number; email: string; street: string; city: string; country: string; number: string };
 			altLogo: { id: number; url: string; alternativeText: string; width: number; height: number };
 			halfLogo: { id: number; url: string; alternativeText: string; width: number; height: number };
-			linkText: string;
+			text: string;
 		};
 	};
 };
