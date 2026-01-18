@@ -6,10 +6,10 @@ import FooterInfo from "../logic/footerInfo";
 export default async function Footer() {
 
 	const data: FooterInfo | null = await getStrapiGlobalData();
-	if (!data) {
-		return;
+	const footer = data?.data?.footer;
+	if (!footer) {
+		return null;
 	}
-	const footer = data.data.footer;
 
 	const currentYear = new Date().getFullYear();
 	const navItems = (
@@ -32,7 +32,11 @@ export default async function Footer() {
 	)
 	const gameJam = (
 			<ul>
-				<li><FooterNavButton text={footer.gameJam.text ?? ""} buttonPath={footer.gameJam.url ?? ""} /></li>
+				{footer.gameJam && (
+					<li>
+						<FooterNavButton text={footer.gameJam.text ?? ""} buttonPath={footer.gameJam.url ?? ""} />
+					</li>
+				)}
 			</ul>
 	)
 	return (
@@ -49,26 +53,28 @@ export default async function Footer() {
 				</div>
 				<div className="flex flex-col gap-[16px]">
 					<div className="flex flex-col gap-[8px]">
-						<div>{footer.contactDetails.street ?? ""}</div>
-						<div>{footer.contactDetails.city ?? ""}</div>
-						<div>{footer.contactDetails.country ?? ""}</div>
+						<div>{footer.contactDetails?.street ?? ""}</div>
+						<div>{footer.contactDetails?.city ?? ""}</div>
+						<div>{footer.contactDetails?.country ?? ""}</div>
 					</div>
 					<div className="flex flex-col gap-[8px]">
-						<div>{footer.contactDetails.email ?? ""}</div>
-						<div>{footer.contactDetails.number ?? ""}</div>
+						<div>{footer.contactDetails?.email ?? ""}</div>
+						<div>{footer.contactDetails?.number ?? ""}</div>
 					</div>
 				</div>
 			</div>
 			<div className="flex flex-row justify-end my-[30px]">
-				<div className="relative w-[300px] h-[50px] shrink">
-					<StrapiImage
-						src={footer.altLogo.url}
-						alt={footer.altLogo.alternativeText}
-						width={footer.altLogo.width}
-						height={footer.altLogo.height}
-						className="object-contain"
-						/>
-				</div>
+				{footer.altLogo && (
+					<div className="relative w-[300px] h-[50px] shrink">
+						<StrapiImage
+							src={footer.altLogo.url}
+							alt={footer.altLogo.alternativeText}
+							width={footer.altLogo.width}
+							height={footer.altLogo.height}
+							className="object-contain"
+							/>
+					</div>
+				)}
 			</div>
 			<div className="flex flex-row flex-wrap justify-between gap-x-[50px] border-t-2 pb-[10px]">
 				<p className="pt-[8px]">® {currentYear} {footer.copyright}</p>
