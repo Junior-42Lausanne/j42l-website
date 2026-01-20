@@ -25,7 +25,7 @@ export default function FooterCTASection({
 		section: "flex flex-row py-[100px] justify-between min-h-[600px] max-w-[70%] mx-auto",
 		leftTriangleDiv: "flex flex-ol justify-start items-start",
 		leftTriangle: "w-0 h-0 border-t-[6rem] border-r-[6rem] border-orange border-r-transparent",
-		conteintWrap: "flex flex-col items-center justify-center gap-[80px]",
+		conteintWrap: "flex flex-col items-center justify-center gap-[40px]",
 		text: "font-poppins text-center text-black text-h2 place-items-center",
 		rightTriangleDiv: "flex flex-col justify-end items-end",
 		rightTriangle: "w-0 h-0 border-l-[6rem] border-b-[6rem] border-orange border-l-transparent",

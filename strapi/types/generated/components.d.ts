@@ -156,7 +156,7 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
   };
   attributes: {
     cards: Schema.Attribute.Component<'composants.card', true>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.Component<'composants.section-title', false>;
   };
 }
 

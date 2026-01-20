@@ -4,6 +4,7 @@ import FooterCTASection, { FooterCTASectionProps } from "@/app/components/Footer
 import TextSectionWithTitle, { TextSectionWithTitleProps } from "@/app/components/TextSectionWithTitle";
 import MemberSection, { MemberSectionProps } from "@/app/components/MemberSection";
 import ContactInfoSection, { ContactInfoSectionProps } from "@/app/components/ContactInfoSection";
+import ServiceSection, { ServiceSectionProps } from "@/app/components/ServiceSection";
 import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/NavBarLink';
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
 import HeroSection, { HeroSectionProps } from '../components/HeroSection';
@@ -13,7 +14,8 @@ export type Block = HeroSectionProps |
 					FooterCTASectionProps |
 					TextSectionWithTitleProps |
 					MemberSectionProps |
-					ContactInfoSectionProps;
+					ContactInfoSectionProps |
+					ServiceSectionProps;
 
 export function blockRenderer(block: Block) {
 	if (!block) {
@@ -35,6 +37,8 @@ export function blockRenderer(block: Block) {
 			return <FooterCTASection key={key} {...block} />;
 		case "layout.contact-info":
 			return <ContactInfoSection key={key} {...block} />;
+		case "layout.card-section":
+			return <ServiceSection key={key} {...block} />;
 		default:
 			return null;
 	}
@@ -74,7 +78,9 @@ export async function getStrapiData(path: string, query: string) {
 		return {type: "NOT_FOUND" as const};
 	}
 	if (!response.ok) {
-		console.error("Strapi error");
+		console.error("Strapi error", response.status, response.statusText);
+		const errorText = await response.text();
+		console.error("Error details:", errorText);
 		throw new Error(`STRAPI_ERROR_${response.status}`);
 	}
 	const data = await response.json();
