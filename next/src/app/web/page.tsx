@@ -10,7 +10,34 @@ const queryWeb = qs.stringify({
 			populate: "*",
 		},
 	}
-})
+});
+
+/**
+ * When populating each services page this query needs to be used to fetch data
+ */
+// const queryHero = qs.stringify(
+//   {
+//     populate: {
+//       blocks: {
+//         on: {
+//           "layout.services": {
+//             populate: {
+//               servicesTitle: true,
+//               servicesAccordions: {
+//                 populate: {
+//                   image: true,
+//                   triggerbg: true,
+//                   ctaButton: true,
+//                 },
+//               },
+//             },
+//           },
+//         },
+//       },
+//     },
+//   },
+//   { encodeValuesOnly: true }
+// );
 
 const strapiMetadata = await getStrapiMetadata(
 	path,

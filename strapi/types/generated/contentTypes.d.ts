@@ -452,6 +452,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
         'layout.card-section',
         'layout.footer-cta',
         'layout.hero',
+        'layout.services',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

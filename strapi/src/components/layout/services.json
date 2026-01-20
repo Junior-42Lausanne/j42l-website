@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_layout_services",
+  "info": {
+    "displayName": "services"
+  },
+  "options": {},
+  "attributes": {
+    "servicesTitle": {
+      "type": "component",
+      "component": "composants.section-title",
+      "repeatable": false
+    },
+    "servicesAccordions": {
+      "type": "component",
+      "component": "composants.services-accordion",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
