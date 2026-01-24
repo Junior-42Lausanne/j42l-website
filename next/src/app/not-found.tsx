@@ -25,7 +25,7 @@ export default function NotFound() {
                         <div className={styles.subheading}>Oops! Page non trouvée. <br></br>
                             La page que vous recherchez n'existe pas ou a été déplacée.</div>
                     </div>
-                    <ButtonLink url={"/"} color={"orange"} children={"Accueil"}></ButtonLink>
+                    <ButtonLink url={"/"} color={"orange"}>Accueil</ButtonLink>
                 </div>
                 <div className={styles.rightTriangleDiv}>
                     <div className={`w-0 h-0 border-l-[6rem] border-b-[6rem] border-white border-l-transparent`}></div>

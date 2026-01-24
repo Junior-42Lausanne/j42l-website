@@ -25,7 +25,7 @@ export default function Error() {
                         <div className={styles.subheading}>Aye! Erreur du serveur. <br></br>
                             Veuillez réessayer ultérieurement.</div>
                     </div>
-                    <ButtonLink url={"/"} color={"orange"} children={"Accueil"}></ButtonLink>
+                    <ButtonLink url={"/"} color={"orange"}>Accueil</ButtonLink>
                 </div>
                 <div className={styles.rightTriangleDiv}>
                     <div className={`w-0 h-0 border-l-[6rem] border-b-[6rem] border-white border-l-transparent`}></div>
