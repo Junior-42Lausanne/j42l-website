@@ -126,7 +126,7 @@ export default async function NavBar( {blocks}: NavBarProps) {
 				</div>
 			</div>
 		)
-	} catch(error) {
+	} catch(err) {
 		console.error("Strapi fetch error: nav bar");
 		return (
 			<div> { null } </div>
