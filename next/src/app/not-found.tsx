@@ -23,7 +23,7 @@ export default function NotFound() {
                     <div className={styles.textWrap}>
                         <h1 className={styles.heading}>404</h1>
                         <div className={styles.subheading}>Oops! Page non trouvée. <br></br>
-                            La page que vous recherchez n'existe pas ou a été déplacée.</div>
+                            La page que vous recherchez n&#39;existe pas ou a été déplacée.</div>
                     </div>
                     <ButtonLink url={"/"} color={"orange"}>Accueil</ButtonLink>
                 </div>

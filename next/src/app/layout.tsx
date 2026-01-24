@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import "./globals.css";
 import { getStrapiGlobalData } from "./utils/utils";
 import NavBar from "./components/NavBar";
