@@ -22,10 +22,15 @@ export default function FooterCTASection({
 		return null;
 	}
 	const styles = {
-		section: "flex flex-row pt-[6.25rem] pb-[6.25rem] justify-center",
+		section: "flex flex-col px-[1.25rem] py-[6.25rem] justify-center \
+				md:px-[2rem]\
+				lg:px-[4.25rem] \
+				xl:px-[15rem]",
 		leftTriangleDiv: "flex flex-col justify-start items-start",
-		conteintWrap: "flex flex-col items-center justify-center gap-[5rem] mt-[6.25rem] mb-[6.25rem] min-w-[56.25rem]",
-		text: "font-poppins text-center text-black text-h2 place-items-center w-4/5",
+		containtWrap: "flex flex-col items-center justify-center my-[3.25rem] gap-[5rem] px-[2rem] \
+				xl:min-w-[25rem]",
+		text: "font-poppins text-center text-black text-h2 place-items-center leading-[1.1] \
+				xl:w-4/5",
 		rightTriangleDiv: "flex flex-col justify-end items-end",
 	}
 
@@ -34,7 +39,7 @@ export default function FooterCTASection({
 			<div className={styles.leftTriangleDiv}>
 				<div className="w-0 h-0 border-t-[4rem] border-r-[4rem] border-orange border-r-transparent"></div>
 			</div>
-			<div className={styles.conteintWrap}>
+			<div className={styles.containtWrap}>
 				<h1 className={styles.text}>{text}</h1>
 				<ButtonLink {...button}>
 					{button.buttonText}
