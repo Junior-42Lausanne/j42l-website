@@ -34,15 +34,21 @@ export default function TextSection({
 	backgroundColor,
 }: TextSectionProps) {
 	const styles = {
-		section: `flex bg-${backgroundColor} pt-[6.25rem] pb-[6.25rem] gap-[9.375rem] items-center justify-center`,
-		imageWrap: "w-1/5",
+		section: `flex flex-row flex-wrap-reverse bg-${backgroundColor} px-[1.25rem] py-[2.25rem] gap-[9rem] items-center justify-center \
+				md:px-[2rem] md:gap-[5rem] md:pt-[4rem] \
+				lg:px-[4.25rem] lg:pt-[6rem] \
+				xl:px-[6.25rem]`,
+		imageWrap: "w-3/5 \
+				md:w-1/5",
 		image: {
 			className: "relative w-full",
 			style: { aspectRatio: `${image.width}/${image.height}` },
 		},
-		textWrap: "flex flex-col items-center w-2/5",
+		textWrap: "flex flex-col items-center text-justify \
+				md:w-3/5",
 		title: `font-poppins text-${textColor} text-h2 text-center`,
-		text: `prose pt-[1.25rem] mb-[3.75rem] font-poppins text-${textColor} text-h5 whitespace-pre-wrap`,
+		text: `prose pt-[1.25rem] mb-[3.75rem] font-poppins text-${textColor} text-h5 whitespace-pre-wrap \
+				xl:text-h4`,
 	}
 
 	return(
