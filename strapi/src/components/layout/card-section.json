@@ -6,8 +6,9 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "component",
+      "component": "composants.section-title",
+      "repeatable": false
     },
     "cards": {
       "type": "component",

@@ -2,4 +2,10 @@
 *.env.production
 shell.nix
 .envrc
+node_modules/
+.next/
+dist/
+build/
+*.log
+.DS_Store
 node_modules

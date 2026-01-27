@@ -115,7 +115,7 @@ export default function TextSectionWithTitle({
 								width={image.width} />
 						</div>
 					</div>
-				</div>	
+				</div>
 			) }
 		</div>
 	)

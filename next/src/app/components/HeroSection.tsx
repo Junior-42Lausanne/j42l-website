@@ -52,7 +52,7 @@ export default function HeroSection({
 		rightTriangle: `w-0 h-0 border-b-[4.5rem] border-l-[4.5rem] border-${triangleColor} border-l-transparent \
 					md:border-b-[6rem] md:border-l-[6rem]`,
 	}
-	
+
 	return (
 		<div className={styles.section}>
 			<StrapiImage

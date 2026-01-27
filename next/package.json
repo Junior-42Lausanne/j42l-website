@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^15.5.9",
     "@strapi/blocks-react-renderer": "^1.0.2",
+    "next": "^15.5.9",
     "qs": "^6.14.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
@@ -21,8 +21,8 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/qs": "^6.14.0",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "husky": "^9.1.7",

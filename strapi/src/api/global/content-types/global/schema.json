@@ -26,6 +26,16 @@
         "layout.nav-bar",
         "layout.footer"
       ]
+    },
+    "footer": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "composants.information",
+      "repeatable": false
     }
   }
 }

@@ -24,7 +24,7 @@ export default function SectionTitle({
 				md:border-b-[3rem] md:border-l-[3rem]
 				lg:border-b-[4rem] lg:border-l-[4rem]`,
 	}
-	return ( 
+	return (
 		<div className={styles.wrap}>
 			<div className={styles.leftTriangleWrap}>
 				<div className={styles.leftTriabgle}></div>

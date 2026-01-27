@@ -78,7 +78,7 @@ export default function TextSection({
 						null
 					)
 				}
-			</div>	
+			</div>
 		</div>
 	)
 }

@@ -13,6 +13,20 @@ export interface ComposantsCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ComposantsContactDetails extends Struct.ComponentSchema {
+  collectionName: 'components_composants_contact_details';
+  info: {
+    displayName: 'Contact details';
+  };
+  attributes: {
+    city: Schema.Attribute.String;
+    country: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    number: Schema.Attribute.String;
+    street: Schema.Attribute.String;
+  };
+}
+
 export interface ComposantsDropdownLink extends Struct.ComponentSchema {
   collectionName: 'components_composants_dropdown_links';
   info: {
@@ -22,6 +36,28 @@ export interface ComposantsDropdownLink extends Struct.ComponentSchema {
     label: Schema.Attribute.String & Schema.Attribute.Required;
     links: Schema.Attribute.Component<'composants.link', true> &
       Schema.Attribute.Required;
+  };
+}
+
+export interface ComposantsInformation extends Struct.ComponentSchema {
+  collectionName: 'components_composants_information';
+  info: {
+    displayName: 'Contact information';
+  };
+  attributes: {
+    altLogo: Schema.Attribute.Media<'images'>;
+    contactDetails: Schema.Attribute.Component<
+      'composants.contact-details',
+      false
+    >;
+    copyright: Schema.Attribute.String;
+    designer: Schema.Attribute.String;
+    gameJam: Schema.Attribute.Component<'composants.link', false>;
+    halfLogo: Schema.Attribute.Media<'images'>;
+    navItems: Schema.Attribute.Component<'composants.link', true>;
+    services: Schema.Attribute.Component<'composants.link', true>;
+    socialLinks: Schema.Attribute.Component<'composants.link', true>;
+    text: Schema.Attribute.Text;
   };
 }
 
@@ -120,7 +156,7 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
   };
   attributes: {
     cards: Schema.Attribute.Component<'composants.card', true>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.Component<'composants.section-title', false>;
   };
 }
 
@@ -236,7 +272,9 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'composants.card': ComposantsCard;
+      'composants.contact-details': ComposantsContactDetails;
       'composants.dropdown-link': ComposantsDropdownLink;
+      'composants.information': ComposantsInformation;
       'composants.lien': ComposantsLien;
       'composants.link': ComposantsLink;
       'composants.logo': ComposantsLogo;
