@@ -5,19 +5,27 @@ import ButtonLink from "./components/sub_components/ButtonLink";
 export default function NotFound() {
     const styles = {
         section: "w-full h-screen overflow-hidden flex justify-center items-center bg-black",
-        centerDiv: "flex flex-row w-full px-[6.25rem] py-[6.25rem] justify-between",
+        centerDiv: "flex flex-col gap-[2rem] w-full px-[1.25rem] py-[6.25rem] justify-between \
+                    md:px-[2.25rem] \
+					lg:px-[4.25rem] \
+					xl:px-[6.25rem]",
         leftTriangleDiv: "flex flex-col justify-start items-start",
+        leftTriangle: `w-0 h-0 border-t-[4.5rem] border-r-[4.5rem] border-white border-r-transparent \
+					md:border-t-[6rem] md:border-r-[6rem]`,
         textWrap: "flex flex-col font-poppins text-white text-center justify-center items-center",
         contentWrap: "flex flex-col gap-[2rem] items-center",
-        heading: "text-[15rem] font-bold",
+        heading: "text-[7rem] font-bold \
+                md:text-[15rem]",
         subheading: "text-h5 pb-[2.5rem]",
         rightTriangleDiv: "flex flex-col justify-end items-end",
+        rightTriangle: `w-0 h-0 border-b-[4.5rem] border-l-[4.5rem] border-white border-l-transparent \
+					md:border-b-[6rem] md:border-l-[6rem]`,
 	}
     return (
         <div className = {styles.section}>
             <div className={styles.centerDiv}>
                 <div className={styles.leftTriangleDiv}>
-                    <div className={`w-0 h-0 border-t-[6rem] border-r-[6rem] border-white border-r-transparent`}></div>
+                    <div className={styles.leftTriangle}></div>
                 </div>
                 <div className={styles.contentWrap}>
                     <div className={styles.textWrap}>
@@ -25,10 +33,10 @@ export default function NotFound() {
                         <div className={styles.subheading}>Oops! Page non trouvée. <br></br>
                             La page que vous recherchez n&#39;existe pas ou a été déplacée.</div>
                     </div>
-                    <ButtonLink url={"/"} color={"orange"}>Accueil</ButtonLink>
+                    <ButtonLink url={"/"} color={"orange"}>Retourne à la page d&#39;accueil</ButtonLink>
                 </div>
                 <div className={styles.rightTriangleDiv}>
-                    <div className={`w-0 h-0 border-l-[6rem] border-b-[6rem] border-white border-l-transparent`}></div>
+                    <div className={styles.rightTriangle}></div>
                 </div>
             </div>
         </div>

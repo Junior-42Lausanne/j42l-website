@@ -7,7 +7,8 @@ import ContactInfoSection, { ContactInfoSectionProps } from "@/app/components/Co
 import ServiceSection, { ServiceSectionProps } from "@/app/components/ServiceSection";
 import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/NavBarLink';
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
-import HeroSection, { HeroSectionProps } from '../components/HeroSection';
+import HeroSection, { HeroSectionProps } from '@/app/components/HeroSection';
+import { Mode } from '@/app/utils/type';
 
 export type Block = HeroSectionProps |
 					TextSectionProps |
@@ -47,15 +48,15 @@ export function blockRenderer(block: Block) {
 
 export type menuItem = NavBarLinkProps | NavBarDropdownProps;
 
-export function menuRenderer(item: menuItem) {
+export function menuRenderer(item: menuItem, mode: Mode) {
 	if (!item) {
 		return null;
 	}
 	switch (item.__component) {
 		case "composants.link":
-			return <NavBarLink key={item.id} {...item} />;
+			return <NavBarLink key={item.id} {...item} mode={mode} />;
 		case "composants.dropdown-link":
-			return <NavBarDropdown key={item.id} {...item} />;
+			return <NavBarDropdown key={item.id} {...item} mode={mode} />;
 		default:
 			return null;
 	}
