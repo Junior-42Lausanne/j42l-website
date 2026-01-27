@@ -60,7 +60,6 @@ export default function HeroSection({
 					className={styles.background}
 					height={1080}
 					url={backgroundImage.url}
-					// url="/stock_photo/home_background.jpg"
 					width={1920}
 			/>
 			<div className={styles.centerDiv}>

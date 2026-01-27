@@ -2,6 +2,13 @@
 @plugin '@tailwindcss/typography';
 
 @theme inline {
+  --animate-pulse: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
