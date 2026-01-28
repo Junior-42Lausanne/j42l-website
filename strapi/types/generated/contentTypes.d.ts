@@ -463,6 +463,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text &
+      Schema.Attribute.Required &
       Schema.Attribute.Unique &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -476,6 +477,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
+      Schema.Attribute.Required &
       Schema.Attribute.Unique &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -594,12 +596,6 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    footer: Schema.Attribute.Component<'composants.information', false> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     global: Schema.Attribute.DynamicZone<['layout.nav-bar', 'layout.footer']> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

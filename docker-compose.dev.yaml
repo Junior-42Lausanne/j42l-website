@@ -12,10 +12,9 @@ services:
       # - /app/node_modules
     # Do not remove, env for WSL to correctly hot load
     environment:
-      - CHOKIDAR_USEPOLLING=true
-      - CHOKIDAR_INTERVAL=100
-      - WATCHPACK_POLLING=true
-      - NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
+     - CHOKIDAR_USEPOLLING=true
+     - CHOKIDAR_INTERVAL=100
+     - WATCHPACK_POLLING=true
     env_file: "./next/.env"
     restart: unless-stopped
     depends_on:

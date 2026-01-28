@@ -35,7 +35,7 @@ export default function MemberSection( {
 			</div>
 			<div className={styles.cardWrap}>
 				{
-					members.map((member) =>
+					members.map((member) => 
 						<MemberCard key={member.id} {...member}></MemberCard>)
 				}
 			</div>

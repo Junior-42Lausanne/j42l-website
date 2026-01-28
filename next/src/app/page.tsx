@@ -9,36 +9,7 @@ const path = "/api/accueil";
 const queryHero = qs.stringify({
 	populate: {
 		blocks: {
-			on: {
-				"layout.hero": {
-					populate: "*",
-				},
-				"layout.text-section": {
-					populate: "*",
-				},
-				"layout.text-section-with-title": {
-					populate: "*",
-				},
-				"layout.member-section": {
-					populate: "*",
-				},
-				"layout.footer-cta": {
-					populate: "*",
-				},
-				"layout.card-section": {
-					populate: {
-						title: true,
-						cards: {
-							populate: {
-								link: true,
-								backgroundImage: {
-									fields: ["url", "alternativeText"],
-								},
-							},
-						},
-					},
-				},
-			},
+			populate: "*",
 		},
 	}
 })

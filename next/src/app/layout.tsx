@@ -1,7 +1,6 @@
 import "./globals.css";
 import { getStrapiGlobalData } from "./utils/utils";
 import NavBar from "./components/NavBar";
-import Footer from './components/Footer';
 
 export default async function RootLayout({
 	children,
@@ -25,7 +24,6 @@ export default async function RootLayout({
 					: null
 			}
 			<div>{children}</div>
-			<Footer />
 			</body>
 		</html>
 	);
