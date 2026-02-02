@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { iconProps } from "../NavBar";
+import { IconProps } from "../NavBar";
 import StrapiImage, { StrapiImageProps } from "./StrapiImage";
 
 export type MemberCardProps = {
@@ -7,7 +7,7 @@ export type MemberCardProps = {
 	photo: StrapiImageProps,
 	name: string,
 	role: string,
-	social?: iconProps[],
+	social?: IconProps[],
 }
 
 export default function MemberCard( {
