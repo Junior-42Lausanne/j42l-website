@@ -452,7 +452,6 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
         'layout.card-section',
         'layout.footer-cta',
         'layout.hero',
-        'layout.services',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -776,7 +775,9 @@ export interface ApiWebServiceWebService extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['layout.footer-cta', 'layout.hero']> &
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.footer-cta', 'layout.hero', 'layout.services']
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

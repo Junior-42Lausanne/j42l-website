@@ -30,15 +30,16 @@ export default function ServicesAccordion({
 }: ServicesAccordionProps) {
 
   const styles = {
-		section: "w-[400px] md:w-[600px] lg:w-[960px] mx-auto px-4 sm:px-6 lg:px-8 py-12",
+		section: "w-full md:w-[760px] lg:w-[960px] xl:w-[1130px] mx-auto",
 		accordionContainer: "space-y-6 sm:space-y-12",
-		accordionItem: "border-0 overflow-hidden rounded-none",
-		accordionTrigger: "relative h-[120px] sm:h-[150px] lg:h-[200px] px-6 sm:px-12 lg:px-[75px] py-6 sm:py-8 lg:py-[25px] hover:no-underline group transition-all duration-300",
+		accordionItem: "border-0 rounded-none",
+		accordionTrigger: "relative h-[120px] sm:h-[150px] lg:h-[200px] px-6 sm:px-12 lg:px-[75px] py-6 sm:py-8 lg:py-[25px] hover:no-underline group transition-all duration-200 shadow-black hover:shadow-md",
     triggerBgImg: "absolute inset-0 w-full h-full object-cover pointer-events-none",
-    triggerContainer: "relative z-10 flex h-full w-full items-start",
+    triggerContainer: "relative flex h-full w-full items-start",
     triggerHeader: "text-white font-bold text-[24px] md:text-[36px] lg:text-[48px] leading-tight text-left pr-4",
     triggerChevron: "pointer-events-none absolute",
-    triggerChevronSvg: "text-white transition-transform duration-300 w-8 h-8 sm:w-10 sm:h-10 lg:w-[42px] lg:h-[42px] group-data-[state=open]:rotate-90",
+    triggerChevronSvg: "text-white w-8 h-8 sm:w-10 sm:h-10 lg:w-[42px] lg:h-[42px] transition-transform duration-300 [transform-box:fill-box] [transform-origin:25%] group-data-[state=open]:rotate-90",
+    triggerChevronPath: "",
     accordionContent: "bg-white p-[2em] flex flex-col gap-12 sm:gap-16 lg:gap-20 items-center",
     accordionContentContainer: "flex flex-col lg:flex-row gap-8 lg:gap-[81px] items-start w-full",
     accordionContentBlock: "flex-1 flex flex-col gap-8 lg:gap-[50px]",
@@ -66,7 +67,9 @@ export default function ServicesAccordion({
                     preserveAspectRatio="none"
                     aria-hidden="true"
                   >
-                    <path d="M3.07324e-05 42.2632L21.2132 21.05L0.163208 0L3.07324e-05 42.2632Z" />
+                    <path
+                      className={styles.triggerChevronPath}
+                      d="M3.07324e-05 42.2632L21.2132 21.05L0.163208 0L3.07324e-05 42.2632Z" />
                   </svg>
                 </div>
                </div>

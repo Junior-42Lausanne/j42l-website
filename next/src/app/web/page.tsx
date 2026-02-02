@@ -6,40 +6,35 @@ import type { Metadata } from "next";
 import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
 
 const path = "/api/web-service";
-const queryWeb = qs.stringify({
-	populate: {
-		blocks: {
-			populate: "*",
-		},
-	}
-});
-
-/**
- * When populating each services page this query needs to be used to fetch data
- */
-// const queryHero = qs.stringify(
-//   {
-//     populate: {
-//       blocks: {
-//         on: {
-//           "layout.services": {
-//             populate: {
-//               servicesTitle: true,
-//               servicesAccordions: {
-//                 populate: {
-//                   image: true,
-//                   triggerbg: true,
-//                   ctaButton: true,
-//                 },
-//               },
-//             },
-//           },
-//         },
-//       },
-//     },
-//   },
-//   { encodeValuesOnly: true }
-// );
+const queryWeb = qs.stringify(
+  {
+    populate: {
+      blocks: {
+        on: {
+          'layout.hero': {
+					  populate: "*",
+				  },
+          "layout.services": {
+            populate: {
+              servicesTitle: true,
+              servicesAccordions: {
+                populate: {
+                  image: true,
+                  triggerbg: true,
+                  ctaButton: true,
+                },
+              },
+            },
+          },
+          'layout.footer-cta': {
+					populate: "*",
+				},
+        },
+      },
+    },
+  },
+  { encodeValuesOnly: true }
+);
 
 const strapiMetadata = await getStrapiMetadata(
 	path,

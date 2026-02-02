@@ -26,8 +26,7 @@
         "layout.text-section",
         "layout.card-section",
         "layout.footer-cta",
-        "layout.hero",
-        "layout.services"
+        "layout.hero"
       ]
     },
     "title": {
