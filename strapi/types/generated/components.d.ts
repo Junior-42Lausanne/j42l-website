@@ -6,10 +6,12 @@ export interface ComposantsCard extends Struct.ComponentSchema {
     displayName: 'Card';
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.Component<'composants.lien', false>;
-    text: Schema.Attribute.Blocks;
-    title: Schema.Attribute.String;
+    backgroundImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    button: Schema.Attribute.Component<'composants.lien', false> &
+      Schema.Attribute.Required;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -155,8 +157,10 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
     displayName: 'Card section';
   };
   attributes: {
-    cards: Schema.Attribute.Component<'composants.card', true>;
-    title: Schema.Attribute.Component<'composants.section-title', false>;
+    cards: Schema.Attribute.Component<'composants.card', true> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.Component<'composants.section-title', false> &
+      Schema.Attribute.Required;
   };
 }
 

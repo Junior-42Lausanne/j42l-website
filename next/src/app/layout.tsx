@@ -17,7 +17,7 @@ export default async function RootLayout({
 		global = null;
 	}
 	return (
-		<html lang="en">
+		<html lang="fr">
 			<body>
 			{
 				global

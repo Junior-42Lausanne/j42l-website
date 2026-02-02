@@ -28,7 +28,7 @@ const queryHero = qs.stringify({
 						title: true,
 						cards: {
 							populate: {
-								link: true,
+								button: true,
 								backgroundImage: {
 									fields: ["url", "alternativeText"],
 								},

@@ -1,31 +1,54 @@
 import ButtonLink from "./ButtonLink";
 import { Service } from "../ServiceSection";
 import { getStrapiMedia } from "@/app/utils/utils";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import StrapiImage from "@/app/components/sub_components/StrapiImage"
 
 export default function ServiceCard({service}: {service: Service}) {
-
-	const image = getStrapiMedia(service.backgroundImage.url);
-	const target = service.link.url;
-
 	return (
-		<div
-			className="flex flex-col h-[650px] font-poppins justify-between
-						text-white bg-cover bg-center pt-[10%] pb-[30px] px-[30px] gap-[20px] w-full max-w-[420px]"
-			style={{backgroundImage:`url("${image}")`}}>
-			<div className="flex flex-col gap-[30px] mt-[55%]">
-				<h3 className="text-h3 font-[1000]">{service.title}</h3>
-				<ul className="list-disc pl-[20px] space-y-2 mb-[20px]">
-				{service.text[0].children.map((item, i) => (
-					<li key={i}>{item.children[0].text}</li>
-				))}
-				</ul>
+		<div className="relative overflow-hidden h-[40rem] w-full \
+						md:h-[30rem] \
+						lg:h-[40rem] \
+						xl:h-[50rem]">
+			<div className="absolute inset-0 -z-10">
+				<StrapiImage
+						alternativeText={service.backgroundImage.alternativeText}
+						className="absolute inset-0 object-cover w-full h-full"
+						height={1080}
+						url={service.backgroundImage.url}
+						width={1920}
+				/>
+				 <div
+					className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/50 to-transparent"
+					style={{
+						bottom: '0',
+						height: '100%'
+					}}
+            	/>
 			</div>
-			<ButtonLink
-				url={target}
-				color="white"
-				fullWidth={true}>
-				Découvrir
-			</ButtonLink>
+			<div className="flex flex-col justify-end gap-[2rem] h-full w-full px-[1.5rem] py-[2rem] \
+							md:px-[3rem] \
+							lg:px-[1.75rem] \
+							xl:px-[2rem]">				
+				<div className="flex flex-col gap-[0.5rem] font-poppins text-white \
+								md:flex-row md:gap-[3rem] \
+								lg:flex-col lg:gap-[0.5rem]">
+					<h3 className="text-h3 font-bold \
+								xl:text-h2">
+						{service.title}
+					</h3>
+					<div className="prose font-poppins text-h5 whitespace-pre-wrap text-white \
+								xl:text-h4">
+						<BlocksRenderer content={service.text} />
+					</div>
+				</div>
+				{service.button
+					? (<ButtonLink {...service.button}>
+						{service.button.buttonText}
+						</ButtonLink>
+					) : null
+				}
+			</div>
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 import ButtonLink from "./sub_components/ButtonLink";
 import { ThemeColor } from "@/app/utils/type";
-import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage"
+import StrapiImage, { StrapiImageProps } from "@/app/components/sub_components/StrapiImage"
 
 export type HeroSectionProps = {
 	id: number,

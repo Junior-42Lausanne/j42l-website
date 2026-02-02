@@ -1,34 +1,23 @@
 import SectionTitle from "./sub_components/SectionTitle";
 import ServiceCard from "./sub_components/ServiceCard";
 import { ThemeColor } from "../utils/type";
+import { type BlocksContent } from "@strapi/blocks-react-renderer";
+import { StrapiImageProps } from "./sub_components/StrapiImage"
 
-export interface RichTextBlock {
-	type: string;
-	format: string;
-	children: Array<{
-		type: string;
-		children: Array<{
-			text: string;
-			type: string;
-		}>;
-	}>;
-}
 
-export interface Service {
+export type Service = {
 	id: number;
-	text: RichTextBlock[];
 	title: string;
-	link: {
+	text: BlocksContent;
+	button: {
 		id: number;
 		url: string;
-		text: string;
+		buttonText: string;
+		color: ThemeColor;
+		external?: boolean;
+		fullWidth?: boolean;
 	};
-	backgroundImage: {
-		id: number;
-		documentId: string;
-		url: string;
-		alternativeText: string;
-	};
+	backgroundImage: StrapiImageProps;
 }
 
 export type ServiceSectionProps = {
@@ -46,11 +35,16 @@ export default function ServiceSection({
 	cards,
 }: ServiceSectionProps) {
 	return (
-		<div className="mx-[30px]">
+		<div className="flex flex-col gap-[2rem] px-[1.25rem] py-[6rem] \
+				md:px-[2.25rem] md:py-[6rem] md:gap-[2.125rem] \
+				lg:px-[4.25rem] lg:gap-[3.125rem] lg:py-[10rem]\
+				xl:px-[6.25rem]`">
 			<SectionTitle color={title?.color ?? "black"}>
 				{title?.title}
 			</SectionTitle>
-			<div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-center gap-[30px] pt-[50px]">
+			<div className="grid grid-cols-1 justify-items-center gap-[2rem] \
+							lg:grid-cols-2 \
+							xl:grid-cols-3">
 				{cards.map((card) => (
 					<ServiceCard key={card.id} service={card}/>
 				))}
