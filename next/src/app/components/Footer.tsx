@@ -1,19 +1,19 @@
 import NavBarLink from "./sub_components/NavBarLink"; 
 import StrapiImage from "./sub_components/StrapiImage";
-import { logoProps, iconProps } from "./NavBar";
+import { LogoProps, IconProps } from "./NavBar";
 import { NavBarLinkProps } from "./sub_components/NavBarLink";
-import ButtonLink, { ButtonLinkProps } from "./sub_components/ButtonLink";
+import ButtonLink from "./sub_components/ButtonLink";
 import { getStrapiContactDefailsData } from "../utils/utils";
 import { ThemeColor } from "../utils/type";
 import Link from "next/link";
 
 export type FooterProps = {
 	blocks: {
-		logo: logoProps;
+		logo: LogoProps;
 		generalNavigation?: NavBarLinkProps[],
 		serviceNavigation?: NavBarLinkProps[],
 		externalNavigation?: NavBarLinkProps[],
-		social?: iconProps[],
+		social?: IconProps[],
 		cta: {
 			url: string;
 			color: ThemeColor;

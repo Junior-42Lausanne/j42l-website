@@ -1,6 +1,5 @@
 import ButtonLink from "./ButtonLink";
 import { Service } from "../ServiceSection";
-import { getStrapiMedia } from "@/app/utils/utils";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import StrapiImage from "@/app/components/sub_components/StrapiImage"
 

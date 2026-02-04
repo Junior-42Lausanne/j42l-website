@@ -26,6 +26,7 @@ export default function ButtonLink({
 }: Readonly<ButtonLinkProps>) {
 	const styles = `block font-poppins text-h5 font-semibold text-center text-${color}
 					pt-[0.625rem] pb-[0.625rem] pl-[1.25rem] pr-[1.25rem] border-2 border-orange ${fullWidth ? "w-full" : "inline-block"}
+					active:bg-orange active:text-black
 					hover:bg-orange hover:text-black`;
 	
 	if (external) {

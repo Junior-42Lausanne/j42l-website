@@ -3,19 +3,16 @@ import TextSection, { TextSectionProps } from "@/app/components/TextSection";
 import FooterCTASection, { FooterCTASectionProps } from "@/app/components/FooterCTASection";
 import TextSectionWithTitle, { TextSectionWithTitleProps } from "@/app/components/TextSectionWithTitle";
 import MemberSection, { MemberSectionProps } from "@/app/components/MemberSection";
-import ContactInfoSection, { ContactInfoSectionProps } from "@/app/components/ContactInfoSection";
-import ServiceSection, { ServiceSectionProps } from "@/app/components/ServiceSection";
 import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/NavBarLink';
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
-import HeroSection, { HeroSectionProps } from '../components/HeroSection';
+import HeroSection, { HeroSectionProps } from '@/app/components/HeroSection';
+import { Mode } from '@/app/utils/type';
 
 export type Block = HeroSectionProps |
 					TextSectionProps |
-					FooterCTASectionProps |
+					FooterCTASectionProps | 
 					TextSectionWithTitleProps |
-					MemberSectionProps |
-					ContactInfoSectionProps |
-					ServiceSectionProps;
+					MemberSectionProps;
 
 export function blockRenderer(block: Block) {
 	if (!block) {
@@ -35,10 +32,6 @@ export function blockRenderer(block: Block) {
 			return <TextSection key={key} {...block} />;
 		case "layout.footer-cta":
 			return <FooterCTASection key={key} {...block} />;
-		case "layout.contact-info":
-			return <ContactInfoSection key={key} {...block} />;
-		case "layout.card-section":
-			return <ServiceSection key={key} {...block} />;
 		default:
 			return null;
 	}
@@ -47,15 +40,15 @@ export function blockRenderer(block: Block) {
 
 export type menuItem = NavBarLinkProps | NavBarDropdownProps;
 
-export function menuRenderer(item: menuItem) {
+export function menuRenderer(item: menuItem, mode: Mode) {
 	if (!item) {
 		return null;
 	}
 	switch (item.__component) {
 		case "composants.link":
-			return <NavBarLink key={item.id} {...item} />;
+			return <NavBarLink key={item.id} {...item} mode={mode} />;
 		case "composants.dropdown-link":
-			return <NavBarDropdown key={item.id} {...item} />;
+			return <NavBarDropdown key={item.id} {...item} mode={mode} />;
 		default:
 			return null;
 	}
@@ -78,20 +71,18 @@ export async function getStrapiData(path: string, query: string) {
 		return {type: "NOT_FOUND" as const};
 	}
 	if (!response.ok) {
-		console.error("Strapi error", response.status, response.statusText);
-		const errorText = await response.text();
-		console.error("Error details:", errorText);
+		console.error("Strapi error");
 		throw new Error(`STRAPI_ERROR_${response.status}`);
 	}
 	const data = await response.json();
 
 	// console.dir(data, {depth: null});
-
+	
 	return {type: "OK" as const, data};
 }
 
 /*
-* Strapi API call for global single type,
+* Strapi API call for global single type, 
 * uncomment the console.dir() to log the returned json
 */
 export async function getStrapiGlobalData() {
@@ -150,12 +141,12 @@ export async function getStrapiGlobalData() {
 	const data = await response.json();
 
 	// console.dir(data, {depth: null});
-
+	
 	return data;
 }
 
 /*
-* Strapi API call for NavBarMenu single type,
+* Strapi API call for NavBarMenu single type, 
 * uncomment the console.dir() to log the returned json
 */
 export async function getStrapiNavBarMenuData() {
@@ -182,7 +173,7 @@ export async function getStrapiNavBarMenuData() {
 	const data = await response.json();
 
 	// console.dir(data, {depth: null});
-
+	
 	return data;
 }
 
@@ -207,7 +198,7 @@ export async function getStrapiContactDefailsData() {
 * get the correct Strapi domain based on dev or prod
 */
 export function getStrapiURL(): string {
-	return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://strapi-app:1337";
+	return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
 }
 
 /*
