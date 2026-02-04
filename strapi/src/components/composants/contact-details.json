@@ -6,19 +6,36 @@
   "options": {},
   "attributes": {
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true
     },
-    "number": {
+    "phone": {
       "type": "string"
     },
-    "street": {
+    "streetName": {
       "type": "string"
+    },
+    "streetNumber": {
+      "type": "string"
+    },
+    "zipCode": {
+      "type": "biginteger",
+      "required": false,
+      "default": "1020"
+    },
+    "municipal": {
+      "type": "string",
+      "default": "Renens"
     },
     "city": {
-      "type": "string"
+      "type": "string",
+      "default": "lausanne",
+      "required": false
     },
     "country": {
-      "type": "string"
+      "type": "string",
+      "default": "Suisse",
+      "required": false
     }
   },
   "config": {}

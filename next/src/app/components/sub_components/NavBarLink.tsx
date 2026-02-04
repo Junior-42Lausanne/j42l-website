@@ -19,7 +19,7 @@ export default function NavBarLink({
 	url,
 	external,
 } : Readonly<NavBarLinkProps> ){
-	const styles = `inline-flex font-poppins text-navButton font-normal
+	const styles = `inline-flex font-poppins text-h5 font-normal
 				text-center text-white pt-[0.3125rem] pb-[0.3125rem] pl-[0.625rem] pr-[0.625rem]
 				hover:underline hover:font-bold`;
 

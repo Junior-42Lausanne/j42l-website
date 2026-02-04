@@ -114,7 +114,29 @@ export async function getStrapiGlobalData() {
 						},
 					},
 					'layout.footer': {
-						populate: "*",
+						populate: {
+							'logo': {
+								populate: "*",
+							},
+							'generalNavigation': {
+								populate: "*",
+							},
+							'serviceNavigation': {
+								populate: "*",
+							},
+							'externalNavigation': {
+								populate: "*",
+							},
+							'social': {
+								populate: "*",
+							},
+							'cta': {
+								populate: "*",
+							},
+							'legalNavigation': {
+								populate: "*",
+							}
+						},
 					},
 				},
 			},
@@ -156,6 +178,23 @@ export async function getStrapiNavBarMenuData() {
 	if (!response.ok) {
 		console.error("Strapi navbar error");
 		throw new Error(`STRAPI_NAVBAR_ERROR_${response.status}`);
+	}
+	const data = await response.json();
+
+	// console.dir(data, {depth: null});
+
+	return data;
+}
+
+export async function getStrapiContactDefailsData() {
+	const url = new URL("/api/contact-information", baseUrl);
+	url.search = qs.stringify({
+		populate: "*",
+	});
+	const response = await fetch(url.href);
+	if (!response.ok) {
+		console.error("Strapi contact details error");
+		throw new Error(`STRAPI_CONTACT_INFORMATION_ERROR_${response.status}`);
 	}
 	const data = await response.json();
 
@@ -211,20 +250,3 @@ export async function getStrapiMetadata(path: string, fallbackTitle: string, fal
 		};
 	}
 }
-
-export interface FooterInfo {
-	data: {
-		footer: {
-			copyright: string;
-			designer: string;
-			navItems: Array<{ id: number; url: string; linkText: string }>;
-			services: Array<{ id: number; url: string; linkText: string }>;
-			socialLinks: Array<{ id: number; url: string; linkText: string }>;
-			gameJam: { id: number; url: string; linkText: string };
-			contactDetails: { id: number; email: string; street: string; city: string; country: string; number: string };
-			altLogo: { id: number; url: string; alternativeText: string; width: number; height: number };
-			halfLogo: { id: number; url: string; alternativeText: string; width: number; height: number };
-			text: string;
-		};
-	};
-};

@@ -9,23 +9,38 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	let global = null;
+	let navBar = null;
+	let footer = null;
 	try {
 		const globalData = await getStrapiGlobalData();
 		global = globalData?.data?.global ?? null;
+		for (let i = 0; i < global.length; i++) {
+			if (global[i].__component === 'layout.nav-bar') {
+				navBar = global[i];
+				continue;
+			}
+			if (global[i].__component === "layout.footer") {
+				footer = global[i];
+				continue;
+			}
+		}
 	} catch (err) {
 		console.error("Strapi fetch error: global");
-		global = null;
 	}
 	return (
 		<html lang="fr">
 			<body>
 			{
 				global
-					? <NavBar blocks={global[0]} />
+					? <NavBar blocks={navBar} />
 					: null
 			}
 			<div>{children}</div>
-			<Footer />
+			{
+				global
+					? <Footer blocks={footer} />
+					: null
+			}
 			</body>
 		</html>
 	);

@@ -21,11 +21,14 @@ export interface ComposantsContactDetails extends Struct.ComponentSchema {
     displayName: 'Contact details';
   };
   attributes: {
-    city: Schema.Attribute.String;
-    country: Schema.Attribute.String;
-    email: Schema.Attribute.Email;
-    number: Schema.Attribute.String;
-    street: Schema.Attribute.String;
+    city: Schema.Attribute.String & Schema.Attribute.DefaultTo<'lausanne'>;
+    country: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Suisse'>;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    municipal: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Renens'>;
+    phone: Schema.Attribute.String;
+    streetName: Schema.Attribute.String;
+    streetNumber: Schema.Attribute.String;
+    zipCode: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'1020'>;
   };
 }
 
@@ -170,7 +173,17 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     displayName: 'footer';
   };
   attributes: {
-    footerImage: Schema.Attribute.Media<'images'>;
+    cta: Schema.Attribute.Component<'composants.lien', false> &
+      Schema.Attribute.Required;
+    externalNavigation: Schema.Attribute.Component<'composants.link', true>;
+    generalNavigation: Schema.Attribute.Component<'composants.link', true>;
+    legalNavigation: Schema.Attribute.Component<'composants.link', true> &
+      Schema.Attribute.Required;
+    logo: Schema.Attribute.Component<'composants.logo', false> &
+      Schema.Attribute.Required;
+    serviceNavigation: Schema.Attribute.Component<'composants.link', true>;
+    social: Schema.Attribute.Component<'composants.social', true> &
+      Schema.Attribute.Required;
   };
 }
 

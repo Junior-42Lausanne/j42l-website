@@ -544,10 +544,42 @@ export interface ApiAutomationServiceAutomationService
   };
 }
 
+export interface ApiContactInformationContactInformation
+  extends Struct.SingleTypeSchema {
+  collectionName: 'contact_informations';
+  info: {
+    displayName: 'Contact Information';
+    pluralName: 'contact-informations';
+    singularName: 'contact-information';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contactDetails: Schema.Attribute.Component<
+      'composants.contact-details',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-information.contact-information'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactContact extends Struct.SingleTypeSchema {
   collectionName: 'contacts';
   info: {
-    displayName: 'Contact';
+    displayName: 'Contact Page';
     pluralName: 'contacts';
     singularName: 'contact';
   };
@@ -596,13 +628,8 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    footer: Schema.Attribute.Component<'composants.information', false> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     global: Schema.Attribute.DynamicZone<['layout.nav-bar', 'layout.footer']> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1330,6 +1357,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::accueil.accueil': ApiAccueilAccueil;
       'api::automation-service.automation-service': ApiAutomationServiceAutomationService;
+      'api::contact-information.contact-information': ApiContactInformationContactInformation;
       'api::contact.contact': ApiContactContact;
       'api::global.global': ApiGlobalGlobal;
       'api::navbar-menu.navbar-menu': ApiNavbarMenuNavbarMenu;
