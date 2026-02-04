@@ -47,7 +47,7 @@ export default function TextSection({
 		textWrap: "flex flex-col items-center text-justify \
 				md:w-3/5",
 		title: `font-poppins text-${textColor} text-h2 text-center`,
-		text: `prose pt-[1.25rem] mb-[3.75rem] font-poppins text-${textColor} text-h5 whitespace-pre-wrap \
+		text: `prose pt-[1.25rem] mb-[3.75rem] font-poppins text-${textColor} text-h5 \
 				xl:text-h4`,
 	}
 

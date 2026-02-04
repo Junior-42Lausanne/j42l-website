@@ -15,7 +15,6 @@ export interface ComposantsCard extends Struct.ComponentSchema {
   };
 }
 
-<<<<<<< HEAD
 export interface ComposantsContactDetails extends Struct.ComponentSchema {
   collectionName: 'components_composants_contact_details';
   info: {
@@ -33,8 +32,6 @@ export interface ComposantsContactDetails extends Struct.ComponentSchema {
   };
 }
 
-=======
->>>>>>> dev
 export interface ComposantsDropdownLink extends Struct.ComponentSchema {
   collectionName: 'components_composants_dropdown_links';
   info: {
@@ -141,15 +138,32 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
     displayName: 'Card section';
   };
   attributes: {
-<<<<<<< HEAD
     cards: Schema.Attribute.Component<'composants.card', true> &
       Schema.Attribute.Required;
     title: Schema.Attribute.Component<'composants.section-title', false> &
       Schema.Attribute.Required;
-=======
-    cards: Schema.Attribute.Component<'composants.card', true>;
+  };
+}
+
+export interface LayoutContactSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_contact_sections';
+  info: {
+    displayName: 'contactSection';
+  };
+  attributes: {
+    addressIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['orange', 'white', 'black', 'pale_orange']
+    > &
+      Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    emailIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    illustration: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    phoneIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
->>>>>>> dev
   };
 }
 
@@ -275,6 +289,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'composants.card': ComposantsCard;
+      'composants.contact-details': ComposantsContactDetails;
       'composants.dropdown-link': ComposantsDropdownLink;
       'composants.lien': ComposantsLien;
       'composants.link': ComposantsLink;
@@ -283,6 +298,7 @@ declare module '@strapi/strapi' {
       'composants.section-title': ComposantsSectionTitle;
       'composants.social': ComposantsSocial;
       'layout.card-section': LayoutCardSection;
+      'layout.contact-section': LayoutContactSection;
       'layout.footer': LayoutFooter;
       'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;

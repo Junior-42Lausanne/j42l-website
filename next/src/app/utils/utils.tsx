@@ -6,13 +6,17 @@ import MemberSection, { MemberSectionProps } from "@/app/components/MemberSectio
 import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/NavBarLink';
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
 import HeroSection, { HeroSectionProps } from '@/app/components/HeroSection';
+import ContactSection, { ContactSectionProps } from '@/app/components/ContactSection';
+import ServiceSection, { ServiceSectionProps } from '@/app/components/ServiceSection';
 import { Mode } from '@/app/utils/type';
 
 export type Block = HeroSectionProps |
 					TextSectionProps |
 					FooterCTASectionProps | 
 					TextSectionWithTitleProps |
-					MemberSectionProps;
+					MemberSectionProps |
+					ServiceSectionProps |
+					ContactSectionProps;
 
 export function blockRenderer(block: Block) {
 	if (!block) {
@@ -32,6 +36,10 @@ export function blockRenderer(block: Block) {
 			return <TextSection key={key} {...block} />;
 		case "layout.footer-cta":
 			return <FooterCTASection key={key} {...block} />;
+		case "layout.card-section":
+			return <ServiceSection key={key} {...block} />;
+		case "layout.contact-section":
+			return <ContactSection key={key} {...block} />;
 		default:
 			return null;
 	}
