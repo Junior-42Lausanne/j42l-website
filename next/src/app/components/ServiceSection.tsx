@@ -20,7 +20,7 @@ export type Service = {
 	backgroundImage: StrapiImageProps;
 }
 
-export type ServiceSectionProps = {
+export type ServiceCardSectionProps = {
 	id: number;
 	__component: "layout.card-section";
 	title: {
@@ -30,10 +30,10 @@ export type ServiceSectionProps = {
 	cards: Service[];
 }
 
-export default function ServiceSection({
+export default function ServiceCardSection({
 	title,
 	cards,
-}: ServiceSectionProps) {
+}: ServiceCardSectionProps) {
 	return (
 		<div className="flex flex-col gap-[2rem] px-[1.25rem] py-[6rem] \
 				md:px-[2.25rem] md:py-[6rem] md:gap-[2.125rem] \

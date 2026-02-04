@@ -7,7 +7,8 @@ import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/Nav
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
 import HeroSection, { HeroSectionProps } from '@/app/components/HeroSection';
 import ContactSection, { ContactSectionProps } from '@/app/components/ContactSection';
-import ServiceSection, { ServiceSectionProps } from '@/app/components/ServiceSection';
+import ServiceCardSection, { ServiceCardSectionProps } from '@/app/components/ServiceSection';
+import ServicesSection, { ServicesSectionProps } from '@/app/components/ServicesSection';
 import { Mode } from '@/app/utils/type';
 
 export type Block = HeroSectionProps |
@@ -15,7 +16,8 @@ export type Block = HeroSectionProps |
 					FooterCTASectionProps | 
 					TextSectionWithTitleProps |
 					MemberSectionProps |
-					ServiceSectionProps |
+					ServiceCardSectionProps |
+					ServicesSectionProps |
 					ContactSectionProps;
 
 export function blockRenderer(block: Block) {
@@ -37,9 +39,11 @@ export function blockRenderer(block: Block) {
 		case "layout.footer-cta":
 			return <FooterCTASection key={key} {...block} />;
 		case "layout.card-section":
-			return <ServiceSection key={key} {...block} />;
+			return <ServiceCardSection key={key} {...block} />;
 		case "layout.contact-section":
 			return <ContactSection key={key} {...block} />;
+		case "layout.services":
+			return <ServicesSection key={key} {...block} />;
 		default:
 			return null;
 	}
