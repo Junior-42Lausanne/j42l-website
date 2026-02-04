@@ -507,7 +507,9 @@ export interface ApiAutomationServiceAutomationService
     };
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['layout.hero', 'layout.footer-cta']> &
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.hero', 'layout.footer-cta', 'layout.services']
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -667,7 +669,9 @@ export interface ApiPrototypeServicePrototypeService
     };
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['layout.hero', 'layout.footer-cta']> &
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.hero', 'layout.footer-cta', 'layout.services']
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -775,7 +779,9 @@ export interface ApiWebServiceWebService extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['layout.footer-cta', 'layout.hero']> &
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.footer-cta', 'layout.hero', 'layout.services']
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

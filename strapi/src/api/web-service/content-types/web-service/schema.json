@@ -44,7 +44,8 @@
       },
       "components": [
         "layout.footer-cta",
-        "layout.hero"
+        "layout.hero",
+        "layout.services"
       ]
     }
   }

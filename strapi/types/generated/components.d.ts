@@ -99,6 +99,20 @@ export interface ComposantsSectionTitle extends Struct.ComponentSchema {
   };
 }
 
+export interface ComposantsServicesAccordion extends Struct.ComponentSchema {
+  collectionName: 'components_composants_services_accordions';
+  info: {
+    displayName: 'ServicesAccordion';
+  };
+  attributes: {
+    ctaButton: Schema.Attribute.Component<'composants.lien', false>;
+    image: Schema.Attribute.Media<'images'>;
+    text: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+    triggerbg: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
 export interface ComposantsSocial extends Struct.ComponentSchema {
   collectionName: 'components_composants_socials';
   info: {
@@ -190,6 +204,23 @@ export interface LayoutNavBar extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutServices extends Struct.ComponentSchema {
+  collectionName: 'components_layout_services';
+  info: {
+    displayName: 'services';
+  };
+  attributes: {
+    servicesAccordions: Schema.Attribute.Component<
+      'composants.services-accordion',
+      true
+    >;
+    servicesTitle: Schema.Attribute.Component<
+      'composants.section-title',
+      false
+    >;
+  };
+}
+
 export interface LayoutTextSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_text_sections';
   info: {
@@ -242,6 +273,7 @@ declare module '@strapi/strapi' {
       'composants.logo': ComposantsLogo;
       'composants.member-card': ComposantsMemberCard;
       'composants.section-title': ComposantsSectionTitle;
+      'composants.services-accordion': ComposantsServicesAccordion;
       'composants.social': ComposantsSocial;
       'layout.card-section': LayoutCardSection;
       'layout.footer': LayoutFooter;
@@ -249,6 +281,7 @@ declare module '@strapi/strapi' {
       'layout.hero': LayoutHero;
       'layout.member-section': LayoutMemberSection;
       'layout.nav-bar': LayoutNavBar;
+      'layout.services': LayoutServices;
       'layout.text-section': LayoutTextSection;
       'layout.text-section-with-title': LayoutTextSectionWithTitle;
     }

@@ -6,13 +6,35 @@ import { notFound } from 'next/navigation';
 import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
 
 const path = "/api/prototype-service";
-const queryPrototype = qs.stringify({
-	populate: {
-		blocks: {
-			populate: "*",
-		},
-	}
-})
+const queryPrototype = qs.stringify(
+  {
+    populate: {
+      blocks: {
+        on: {
+          'layout.hero': {
+            populate: "*",
+          },
+          "layout.services": {
+            populate: {
+              servicesTitle: true,
+              servicesAccordions: {
+                populate: {
+                  image: true,
+                  triggerbg: true,
+                  ctaButton: true,
+                },
+              },
+            },
+          },
+          'layout.footer-cta': {
+          populate: "*",
+        },
+        },
+      },
+    },
+  },
+  { encodeValuesOnly: true }
+);
 
 const strapiMetadata = await getStrapiMetadata(
 	path,
