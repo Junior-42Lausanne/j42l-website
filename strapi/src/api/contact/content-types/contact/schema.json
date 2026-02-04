@@ -4,7 +4,7 @@
   "info": {
     "singularName": "contact",
     "pluralName": "contacts",
-    "displayName": "Contact"
+    "displayName": "Contact Page"
   },
   "options": {
     "draftAndPublish": true
@@ -20,6 +20,13 @@
       "type": "text",
       "required": true,
       "unique": true
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.contact-section"
+      ],
+      "required": true
     }
   }
 }

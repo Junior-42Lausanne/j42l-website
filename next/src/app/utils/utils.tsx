@@ -6,7 +6,9 @@ import MemberSection, { MemberSectionProps } from "@/app/components/MemberSectio
 import NavBarLink, { NavBarLinkProps } from '@/app/components/sub_components/NavBarLink';
 import NavBarDropdown, {NavBarDropdownProps} from "@/app/components/sub_components/NavBarDropdown";
 import HeroSection, { HeroSectionProps } from '@/app/components/HeroSection';
-import ServicesSection, { ServicesSectionProps } from '../components/ServicesSection';
+import ContactSection, { ContactSectionProps } from '@/app/components/ContactSection';
+import ServiceCardSection, { ServiceCardSectionProps } from '@/app/components/ServiceSection';
+import ServicesSection, { ServicesSectionProps } from '@/app/components/ServicesSection';
 import { Mode } from '@/app/utils/type';
 
 export type Block = HeroSectionProps |
@@ -14,7 +16,9 @@ export type Block = HeroSectionProps |
 					FooterCTASectionProps | 
 					TextSectionWithTitleProps |
 					MemberSectionProps |
-          ServicesSectionProps;
+					ServiceCardSectionProps |
+					ServicesSectionProps |
+					ContactSectionProps;
 
 export function blockRenderer(block: Block) {
 	if (!block) {
@@ -34,6 +38,10 @@ export function blockRenderer(block: Block) {
 			return <TextSection key={key} {...block} />;
 		case "layout.footer-cta":
 			return <FooterCTASection key={key} {...block} />;
+		case "layout.card-section":
+			return <ServiceCardSection key={key} {...block} />;
+		case "layout.contact-section":
+			return <ContactSection key={key} {...block} />;
 		case "layout.services":
 			return <ServicesSection key={key} {...block} />;
 		default:
@@ -109,7 +117,29 @@ export async function getStrapiGlobalData() {
 						},
 					},
 					'layout.footer': {
-						populate: "*",
+						populate: {
+							'logo': {
+								populate: "*",
+							},
+							'generalNavigation': {
+								populate: "*",
+							},
+							'serviceNavigation': {
+								populate: "*",
+							},
+							'externalNavigation': {
+								populate: "*",
+							},
+							'social': {
+								populate: "*",
+							},
+							'cta': {
+								populate: "*",
+							},
+							'legalNavigation': {
+								populate: "*",
+							}
+						},
 					},
 				},
 			},
@@ -156,6 +186,23 @@ export async function getStrapiNavBarMenuData() {
 
 	// console.dir(data, {depth: null});
 	
+	return data;
+}
+
+export async function getStrapiContactDefailsData() {
+	const url = new URL("/api/contact-information", baseUrl);
+	url.search = qs.stringify({
+		populate: "*",
+	});
+	const response = await fetch(url.href);
+	if (!response.ok) {
+		console.error("Strapi contact details error");
+		throw new Error(`STRAPI_CONTACT_INFORMATION_ERROR_${response.status}`);
+	}
+	const data = await response.json();
+
+	// console.dir(data, {depth: null});
+
 	return data;
 }
 

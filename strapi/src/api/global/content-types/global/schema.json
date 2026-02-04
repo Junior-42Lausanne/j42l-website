@@ -25,7 +25,8 @@
       "components": [
         "layout.nav-bar",
         "layout.footer"
-      ]
+      ],
+      "required": true
     }
   }
 }

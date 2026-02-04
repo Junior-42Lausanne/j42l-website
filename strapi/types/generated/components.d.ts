@@ -6,10 +6,29 @@ export interface ComposantsCard extends Struct.ComponentSchema {
     displayName: 'Card';
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.Component<'composants.lien', false>;
-    text: Schema.Attribute.Blocks;
-    title: Schema.Attribute.String;
+    backgroundImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    button: Schema.Attribute.Component<'composants.lien', false> &
+      Schema.Attribute.Required;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ComposantsContactDetails extends Struct.ComponentSchema {
+  collectionName: 'components_composants_contact_details';
+  info: {
+    displayName: 'Contact details';
+  };
+  attributes: {
+    city: Schema.Attribute.String & Schema.Attribute.DefaultTo<'lausanne'>;
+    country: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Suisse'>;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    municipal: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Renens'>;
+    phone: Schema.Attribute.String;
+    streetName: Schema.Attribute.String;
+    streetNumber: Schema.Attribute.String;
+    zipCode: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'1020'>;
   };
 }
 
@@ -133,7 +152,31 @@ export interface LayoutCardSection extends Struct.ComponentSchema {
     displayName: 'Card section';
   };
   attributes: {
-    cards: Schema.Attribute.Component<'composants.card', true>;
+    cards: Schema.Attribute.Component<'composants.card', true> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.Component<'composants.section-title', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface LayoutContactSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_contact_sections';
+  info: {
+    displayName: 'contactSection';
+  };
+  attributes: {
+    addressIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['orange', 'white', 'black', 'pale_orange']
+    > &
+      Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    emailIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    illustration: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    phoneIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -144,7 +187,17 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     displayName: 'footer';
   };
   attributes: {
-    footerImage: Schema.Attribute.Media<'images'>;
+    cta: Schema.Attribute.Component<'composants.lien', false> &
+      Schema.Attribute.Required;
+    externalNavigation: Schema.Attribute.Component<'composants.link', true>;
+    generalNavigation: Schema.Attribute.Component<'composants.link', true>;
+    legalNavigation: Schema.Attribute.Component<'composants.link', true> &
+      Schema.Attribute.Required;
+    logo: Schema.Attribute.Component<'composants.logo', false> &
+      Schema.Attribute.Required;
+    serviceNavigation: Schema.Attribute.Component<'composants.link', true>;
+    social: Schema.Attribute.Component<'composants.social', true> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -267,6 +320,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'composants.card': ComposantsCard;
+      'composants.contact-details': ComposantsContactDetails;
       'composants.dropdown-link': ComposantsDropdownLink;
       'composants.lien': ComposantsLien;
       'composants.link': ComposantsLink;
@@ -276,6 +330,7 @@ declare module '@strapi/strapi' {
       'composants.services-accordion': ComposantsServicesAccordion;
       'composants.social': ComposantsSocial;
       'layout.card-section': LayoutCardSection;
+      'layout.contact-section': LayoutContactSection;
       'layout.footer': LayoutFooter;
       'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;
