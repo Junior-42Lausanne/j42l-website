@@ -9,6 +9,8 @@ services:
     env_file:
       - path: ./next/.env
         required: true
+    environment:
+      NODE_ENV: production
     depends_on:
       - strapi-app
     restart: unless-stopped
@@ -34,6 +36,8 @@ services:
   db:
     image: postgres:17-alpine
     container_name: strapi-db-prod
+    ports:
+      - "5432:5432"
     env_file:
       - path: ./strapi/.env
         required: true

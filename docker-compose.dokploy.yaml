@@ -3,11 +3,11 @@ services:
     container_name: nextjs-prod
     image: theorangecake/nextjs-app:latest
     ports:
-      - "3001:3001"
+      - 3001
     environment:
       - PORT=3001
       - HOST=0.0.0.0
-    # env_file: "./next/.env"
+      - NODE_ENV=production
     networks:
       - dokploy-network
     depends_on:
@@ -18,8 +18,9 @@ services:
     container_name: strapi-prod
     image: theorangecake/strapi-app:latest
     ports:
-      - "1337:1337"
-    # env_file: "./strapi/.env"
+      - 1337
+    environment:
+      - NODE_ENV=production
     volumes:
       - strapi-uploads:/opt/app/public/uploads
     networks:
@@ -31,6 +32,8 @@ services:
   db:
     image: postgres:17-alpine
     container_name: strapi-db-prod
+    ports:
+      - 5432
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
