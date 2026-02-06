@@ -1,7 +1,7 @@
-import { ThemeColor } from "@/app/utils/type"
-import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage"
-import { getStrapiContactDefailsData } from "../utils/utils";
-import { ContactInfomationProps } from "./Footer";
+import { type ThemeColor } from "../utils/type"
+import StrapiImage, { type StrapiImageProps } from "../components/StrapiImage"
+import { getStrapiContactDetailsData } from "../utils/fetchStrapiData";
+import { type ContactInfomationProps } from "./Footer";
 
 export type ContactSectionProps = {
     id: number,
@@ -27,7 +27,7 @@ export default async function ContactSection({
     backgroundColor
     } : ContactSectionProps) {
         try {
-            const contactInformationData = await getStrapiContactDefailsData();
+            const contactInformationData = await getStrapiContactDetailsData();
             if (!contactInformationData?.data?.contactDetails) 
                 return null;
             const { contactDetails } : ContactInfomationProps = contactInformationData.data;
@@ -118,7 +118,7 @@ export default async function ContactSection({
             </section>
         )
         } catch(error) {
-            console.error(error);
+            console.error(`Contact Information. ${error}`);
 		    return null;
         }
 }

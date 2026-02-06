@@ -3,7 +3,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import ButtonLink from "./ButtonLink"
 import StrapiImage, { StrapiImageProps } from "./StrapiImage";
-import { ThemeColor } from "@/app/utils/type"
+import { type ThemeColor } from "../utils/type"
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 export type ServicesAccordionProps = {

@@ -1,5 +1,5 @@
-import ButtonLink from "./sub_components/ButtonLink";
-import { ThemeColor } from "../utils/type";
+import ButtonLink from "../components/ButtonLink";
+import { type ThemeColor } from "../utils/type";
 
 export type FooterCTASectionProps = {
 	id: number,

@@ -1,8 +1,9 @@
-import ButtonLink from "@/app/components/sub_components/ButtonLink";
-import StrapiImage, { StrapiImageProps } from "@/app/components/sub_components/StrapiImage";
-import { ThemeColor } from "@/app/utils/type";
-import { getStrapiNavBarMenuData, menuRenderer, menuItem } from "@/app/utils/utils";
-import HamburgerMenu from "@/app/components/sub_components/HamburgerMenu";
+import ButtonLink from "../components/ButtonLink";
+import StrapiImage, { type StrapiImageProps } from "../components/StrapiImage";
+import { type ThemeColor } from "../utils/type";
+import { getStrapiNavBarMenuData } from "../utils/fetchStrapiData";
+import { menuRenderer, type menuItem } from "../utils/render";
+import HamburgerMenu from "../components/HamburgerMenu";
 import Link from 'next/link';
 
 export type LogoProps = {
@@ -17,7 +18,7 @@ export type IconProps = {
 	external: boolean,
 }
 
-export type Cta = {
+export type CtaProps = {
 	url: string;
 	color: ThemeColor;
 	fullWidth?: boolean;
@@ -28,7 +29,7 @@ export type Cta = {
 export type NavBarProps = {
 	blocks: {
 		logo: LogoProps,
-		cta: Cta,
+		cta: CtaProps,
 		social: IconProps[],
 	},
 }
@@ -130,8 +131,8 @@ export default async function NavBar( {blocks}: NavBarProps) {
 				<HamburgerMenu menu={menu} cta={cta} social={social}></HamburgerMenu>
 			</div>
 		)
-	} catch(err) {
-		console.error("Strapi fetch error: nav bar");
+	} catch(error) {
+		console.error(`Nav bar. ${error}`);
 		return null;
 	}
 }

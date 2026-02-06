@@ -1,7 +1,7 @@
 import "./globals.css";
-import { getStrapiGlobalData } from "./utils/utils";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import { getStrapiGlobalData } from "../utils/fetchStrapiData";
+import NavBar from "../sections/NavBar";
+import Footer from "../sections/Footer";
 
 export default async function RootLayout({
 	children,
@@ -24,8 +24,8 @@ export default async function RootLayout({
 				continue;
 			}
 		}
-	} catch (err) {
-		console.error("Strapi fetch error: global");
+	} catch (error) {
+		console.error(`Global data. ${error}`);
 	}
 	return (
 		<html lang="fr">

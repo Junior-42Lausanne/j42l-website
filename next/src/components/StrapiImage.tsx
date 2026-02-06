@@ -1,10 +1,7 @@
 import Image from 'next/image';
-import { ComponentProps } from "react";
-import { getStrapiMedia } from '@/app/utils/utils'; 
+import { type ComponentProps } from "react";
+import { getStrapiMedia } from '../utils/utils'; 
 
-/*
-* Strapi Image
-*/
 export type StrapiImageProps = {
 	id?: number,
 	url: string,
@@ -29,7 +26,7 @@ export default function StrapiImage({
 	return (
 		<Image
 			src={imageUrl}
-			alt={alternativeText ?? "No alternative text provided"}
+			alt={alternativeText ?? "Aucun texte alternatif fourni"}
 			fill
 			className={className}
 			unoptimized

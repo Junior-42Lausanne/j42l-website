@@ -1,6 +1,6 @@
-import ServicesAccordion, { ServicesAccordionProps } from './sub_components/ServicesAccordion';
-import SectionTitle from "./sub_components/SectionTitle";
-import { ThemeColor } from "../utils/type";
+import ServicesAccordion, { type ServicesAccordionProps } from '../components/ServicesAccordion';
+import SectionTitle from "../components/SectionTitle";
+import { type ThemeColor } from "../utils/type";
 
 export type ServicesSectionProps = {
   id: number,

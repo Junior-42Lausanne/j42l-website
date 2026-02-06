@@ -1,6 +1,6 @@
 "use client";
 
-import ButtonLink from "./components/sub_components/ButtonLink";
+import ButtonLink from "../components/ButtonLink";
 
 export default function NotFound() {
     const styles = {

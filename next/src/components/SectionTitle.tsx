@@ -1,6 +1,6 @@
 "use client";
 
-import { ThemeColor } from "@/app/utils/type";
+import { type ThemeColor } from "../utils/type";
 import { useState, useEffect, useRef } from "react";
 
 export type SectionTitleProps = {

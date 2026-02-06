@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { IconProps } from "../NavBar";
-import StrapiImage, { StrapiImageProps } from "./StrapiImage";
+import { type IconProps } from "../sections/NavBar";
+import StrapiImage, { type StrapiImageProps } from "./StrapiImage";
 
 export type MemberCardProps = {
 	id: number,

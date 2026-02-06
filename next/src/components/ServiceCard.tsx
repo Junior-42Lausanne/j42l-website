@@ -1,9 +1,9 @@
 import ButtonLink from "./ButtonLink";
-import { Service } from "../ServiceSection";
+import { type ServiceProps } from "../sections/ServiceSection";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import StrapiImage from "@/app/components/sub_components/StrapiImage"
+import StrapiImage from "../components/StrapiImage"
 
-export default function ServiceCard({service}: {service: Service}) {
+export default function ServiceCard({service}: {service: ServiceProps}) {
 	return (
 		<div className="relative overflow-hidden h-[40rem] w-full \
 						md:h-[30rem] \

@@ -1,10 +1,10 @@
-import NavBarLink from "./sub_components/NavBarLink"; 
-import StrapiImage from "./sub_components/StrapiImage";
-import { LogoProps, IconProps } from "./NavBar";
-import { NavBarLinkProps } from "./sub_components/NavBarLink";
-import ButtonLink from "./sub_components/ButtonLink";
-import { getStrapiContactDefailsData } from "../utils/utils";
-import { ThemeColor } from "../utils/type";
+import NavBarLink from "../components/NavBarLink"; 
+import StrapiImage from "../components/StrapiImage";
+import { type LogoProps, type IconProps } from "./NavBar";
+import { type NavBarLinkProps } from "../components/NavBarLink";
+import ButtonLink from "../components/ButtonLink";
+import { getStrapiContactDetailsData } from "../utils/fetchStrapiData";
+import { type ThemeColor } from "../utils/type";
 import Link from "next/link";
 
 export type FooterProps = {
@@ -40,7 +40,7 @@ export type ContactInfomationProps = {
 
 export default async function Footer({blocks}: FooterProps) {
 	try {
-		const contactInformationData = await getStrapiContactDefailsData();
+		const contactInformationData = await getStrapiContactDetailsData();
 		if (!contactInformationData?.data?.contactDetails) 
 			return null;
 		const { contactDetails } : ContactInfomationProps = contactInformationData.data;
@@ -214,7 +214,7 @@ export default async function Footer({blocks}: FooterProps) {
 			</footer>
 		)
 	} catch(error) {
-		console.error(error);
+		console.error(`Contact Information. ${error}`);
 		return null;
 	}
 }
