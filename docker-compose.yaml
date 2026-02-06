@@ -4,13 +4,16 @@ services:
     build:
       context: ./next
       dockerfile: Dockerfile
-    env_file:
-      - path: ./next/.env.production
     ports:
-      - "3000:3000"
-    restart: unless-stopped
+      - "3001:3001"
+    env_file:
+      - path: ./next/.env
+        required: true
+    environment:
+      NODE_ENV: production
     depends_on:
       - strapi-app
+    restart: unless-stopped
 
   strapi-app:
     container_name: strapi-prod
@@ -19,25 +22,25 @@ services:
       dockerfile: Dockerfile
     ports:
       - "1337:1337"
-    environment:
-      - NODE_ENV=production
     env_file:
-      - path: ./strapi/.env.production
+      - path: ./strapi/.env
         required: true
     volumes:
       - /data/storage/strapi:/opt/app/public/uploads
-    restart: unless-stopped
+    environment:
+      NODE_ENV: production
     depends_on:
       - db
+    restart: unless-stopped
 
   db:
-    image: postgres:15-alpine
+    image: postgres:17-alpine
     container_name: strapi-db-prod
     ports:
       - "5432:5432"
     env_file:
-      - path: ./strapi/.env.production
+      - path: ./strapi/.env
         required: true
     volumes:
-    - /data/storage/postgresql:/var/lib/postgresql/data:rw
+      - /data/storage/postgresql:/var/lib/postgresql/data:rw
     restart: unless-stopped

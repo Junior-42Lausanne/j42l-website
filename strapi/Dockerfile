@@ -1,8 +1,10 @@
-# Creating multi-stage build for production
+# Builder
 FROM node:22-alpine AS build
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+
+RUN apk add --no-cache \
+  build-base gcc autoconf automake \
+  zlib-dev libpng-dev nasm bash vips-dev git
+ENV NODE_ENV=production
 
 WORKDIR /opt/
 COPY package.json yarn.lock ./
@@ -13,11 +15,12 @@ WORKDIR /opt/app
 COPY . .
 RUN yarn build
 
-# Creating final production image
+# Runer
 FROM node:22-alpine
+
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+
 WORKDIR /opt/
 COPY --from=build /opt/node_modules ./node_modules
 WORKDIR /opt/app
