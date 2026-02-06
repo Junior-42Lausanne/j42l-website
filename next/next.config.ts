@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'knifechopstudio.com',
         pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.knifechopstudio.com',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.knifechopstudio.com',
+        pathname: '/uploads/**',
       }
     ],
   },
