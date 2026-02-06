@@ -1,11 +1,11 @@
-import SectionTitle from "./sub_components/SectionTitle";
-import ServiceCard from "./sub_components/ServiceCard";
-import { ThemeColor } from "../utils/type";
+import SectionTitle from "../components/SectionTitle";
+import ServiceCard from "../components/ServiceCard";
+import { type ThemeColor } from "../utils/type";
 import { type BlocksContent } from "@strapi/blocks-react-renderer";
-import { StrapiImageProps } from "./sub_components/StrapiImage"
+import { type StrapiImageProps } from "../components/StrapiImage"
 
 
-export type Service = {
+export type ServiceProps = {
 	id: number;
 	title: string;
 	text: BlocksContent;
@@ -27,7 +27,7 @@ export type ServiceCardSectionProps = {
 		title: string;
 		color: ThemeColor;
 	};
-	cards: Service[];
+	cards: ServiceProps[];
 }
 
 export default function ServiceCardSection({

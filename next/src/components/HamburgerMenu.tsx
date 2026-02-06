@@ -1,17 +1,16 @@
 'use client';
 
-import { menuItem, menuRenderer } from "@/app/utils/utils";
-import { IconProps, Cta } from "@/app/components/NavBar";
-import ButtonLink from "@/app/components/sub_components/ButtonLink";
-import StrapiImage from "@/app/components/sub_components/StrapiImage";
+import { menuRenderer, type menuItem } from "../utils/render";
+import { type IconProps, type CtaProps } from "../sections/NavBar";
+import ButtonLink from "../components/ButtonLink";
+import StrapiImage from "../components/StrapiImage";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export type HamburgerProp = {
     menu: menuItem[],
-    cta: Cta,
+    cta: CtaProps,
     social: IconProps[],
 }
 

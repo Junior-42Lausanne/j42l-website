@@ -1,6 +1,6 @@
 'use client';
 
-import { Mode } from '@/app/utils/type';
+import { type Mode } from '../utils/type';
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
 

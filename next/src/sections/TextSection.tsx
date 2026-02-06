@@ -1,7 +1,6 @@
-import ButtonLink from "./sub_components/ButtonLink"
-import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage";
-import { ThemeColor } from "@/app/utils/type"
-// BlocksRenderer to render JSON Rich text
+import ButtonLink from "../components/ButtonLink"
+import StrapiImage, { type StrapiImageProps } from "../components/StrapiImage";
+import { type ThemeColor } from "../utils/type"
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 /*

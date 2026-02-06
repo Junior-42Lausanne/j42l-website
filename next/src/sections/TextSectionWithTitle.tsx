@@ -1,7 +1,7 @@
-import ButtonLink from "./sub_components/ButtonLink"
-import StrapiImage, { StrapiImageProps } from "./sub_components/StrapiImage";
-import SectionTitle from "./sub_components/SectionTitle";
-import { ThemeColor } from "../utils/type";
+import ButtonLink from "../components/ButtonLink"
+import StrapiImage, { type StrapiImageProps } from "../components/StrapiImage";
+import SectionTitle from "../components/SectionTitle";
+import { type ThemeColor } from "../utils/type";
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 export type TextSectionWithTitleProps = {

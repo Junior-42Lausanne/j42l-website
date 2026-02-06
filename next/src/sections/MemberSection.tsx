@@ -1,6 +1,6 @@
-import MemberCard, { MemberCardProps } from "./sub_components/MemberCard";
-import SectionTitle from "./sub_components/SectionTitle";
-import { ThemeColor } from "../utils/type";
+import MemberCard, { type MemberCardProps } from "../components/MemberCard";
+import SectionTitle from "../components/SectionTitle";
+import { type ThemeColor } from "../utils/type";
 
 export type MemberSectionProps = {
 	id: number,

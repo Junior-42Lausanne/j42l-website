@@ -3,7 +3,8 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
-import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
+import { getStrapiData, getStrapiMetadata } from "../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../utils/render"
 
 const path = "/api/web-service";
 const queryWeb = qs.stringify(
@@ -65,7 +66,7 @@ export default async function Web() {
 			</div>
 		)
 	} catch(error) {
-		console.error("Strapi fetch error: page Web");
+		console.error(`Page Web. ${error}`);
 		throw error;
 	}
 }

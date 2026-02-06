@@ -3,7 +3,8 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
-import { getStrapiData, blockRenderer, Block, getStrapiMetadata } from "@/app/utils/utils";
+import { getStrapiData, getStrapiMetadata } from "../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../utils/render"
 
 const path = "/api/contact";
 const queryContact = qs.stringify({
@@ -28,7 +29,6 @@ export const metadata: Metadata = {
 export default async function Contact() {
 	try {
 		const strapiData = await getStrapiData(path, queryContact);
-		// console.dir(strapiData, {depth: null});
 		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}
@@ -44,7 +44,7 @@ export default async function Contact() {
 			</div>
 		)
 	} catch(error) {
-		console.error("Strapi fetch error: page Contact");
+		console.error(`Page Contact. ${error}`);
 		throw error;
 	}
 }

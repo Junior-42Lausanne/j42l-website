@@ -1,8 +1,8 @@
 'use client'
 
-import { NavBarLinkProps } from "./NavBarLink";
+import { type NavBarLinkProps } from "./NavBarLink";
 import NavBarDropdownLink from "./NavBarDropdownLink";
-import { Mode } from "@/app/utils/type";
+import { type Mode } from "@/utils/type";
 import { usePathname } from "next/navigation";
 
 export type NavBarDropdownProps = {

@@ -1,6 +1,6 @@
 'use client'
 
-import { NavBarLinkProps } from "./NavBarLink";
+import { type NavBarLinkProps } from "./NavBarLink";
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
 
