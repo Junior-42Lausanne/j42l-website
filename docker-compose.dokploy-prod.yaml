@@ -13,8 +13,6 @@ services:
       - PORT=3001
       - HOST=0.0.0.0
       - NODE_ENV=production
-    networks:
-      - dokploy-network
     depends_on:
       - strapi-app
     restart: unless-stopped
@@ -35,8 +33,6 @@ services:
         required: true
     volumes:
       - production-strapi-uploads:/opt/app/public/uploads
-    networks:
-      - dokploy-network
     depends_on:
       - db
     restart: unless-stopped
@@ -54,10 +50,6 @@ services:
     networks:
       - dokploy-network
     restart: unless-stopped
-
-networks:
-  dokploy-network:
-    external: true
 
 volumes:
   production-strapi-uploads:
