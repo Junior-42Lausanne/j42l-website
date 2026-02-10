@@ -50,7 +50,7 @@ services:
       - path: .env
         required: true
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data/production
     networks:
       - dokploy-network
     restart: unless-stopped
