@@ -43,7 +43,7 @@ export default function SectionTitle({ color, children }: SectionTitleProps) {
 			md:border-t-[3rem] md:border-r-[3rem]
 			lg:border-t-[4rem] lg:border-r-[4rem]
 			transition-all duration-1000 ${isVisible ? "" : "translate-x-[50%] opacity-0"}`,
-		text: `font-poppins text-${color} text-h3 font-bold text-center px-[0rem]
+		text: `font-poppins text-${color} text-h3 font-bold text-center px-[0rem] px-[1rem]
 			md:text-h2 md:px-[3.125rem]
 			xl:px-[10rem]
 			transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`,

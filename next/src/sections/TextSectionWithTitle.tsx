@@ -35,7 +35,7 @@ export default function TextSectionWithTitle({
 	imagePosition,
 }: TextSectionWithTitleProps) {
 	const styles = {
-		section: `flex flex-col px-[1.25rem] gap-[2rem] py-[6rem] \
+		section: `flex flex-col px-[1.25rem] gap-[1rem] py-[6rem] \
 				md:px-[2rem] md:py-[6rem] md:gap-[2.125rem] \
 				lg:px-[4.25rem] lg:gap-[3.125rem] lg:py-[10rem]\
 				xl:px-[6.25rem]`,
