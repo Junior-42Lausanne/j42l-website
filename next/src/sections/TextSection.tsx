@@ -33,7 +33,7 @@ export default function TextSection({
 	backgroundColor,
 }: TextSectionProps) {
 	const styles = {
-		section: `flex flex-row flex-wrap-reverse bg-${backgroundColor} px-[1.25rem] py-[2.25rem] gap-[9rem] items-center justify-center \
+		section: `flex flex-row flex-wrap-reverse px-[1.25rem] py-[2.25rem] gap-[9rem] items-center justify-center \
 				md:px-[2rem] md:gap-[5rem] md:pt-[4rem] \
 				lg:px-[4.25rem] lg:pt-[6rem] \
 				xl:px-[6.25rem]`,
@@ -51,7 +51,7 @@ export default function TextSection({
 	}
 
 	return(
-		<div className={styles.section}>
+		<div className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
 			<div className={styles.imageWrap}>
 				<div className={styles.image.className} style={styles.image.style}>
 					<StrapiImage
