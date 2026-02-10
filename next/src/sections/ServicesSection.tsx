@@ -22,12 +22,13 @@ export default function ServicesSection( {
 					md:px-[2.25rem] \
 					lg:px-[4.25rem] \
 					xl:px-[6.25rem]",
+    titleWrap: "w-full",
     accordions: "flex flex-row flex-wrap justify-center gap-[1.25rem]",
   }
 
   return (
     <div className={styles.section}>
-      <div>
+      <div className={styles.titleWrap}>
         <SectionTitle color={servicesTitle.color}>
           {servicesTitle.title}
         </SectionTitle>

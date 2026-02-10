@@ -31,6 +31,7 @@ export default function HeroSection({
 
 	const styles = {
 		section: "relative h-screen overflow-hidden",
+		overlay: "absolute inset-0 bg-black/75 -z-10",
 		background: "absolute inset-0 object-cover w-full h-full -z-10",
 		centerDiv: "flex flex-col bg-cover bg-center px-[1.25rem] pt-[6.25rem] pb-[3.75rem] gap-[1rem] h-full \
 					md:px-[2.25rem] \
@@ -62,6 +63,7 @@ export default function HeroSection({
 					url={backgroundImage.url}
 					width={1920}
 			/>
+			<div className={styles.overlay}></div>
 			<div className={styles.centerDiv}>
 				<div className={styles.leftTriangleDiv}>
 					<div className={styles.leftTriangle}></div>

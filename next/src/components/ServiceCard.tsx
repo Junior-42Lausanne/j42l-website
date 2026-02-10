@@ -18,7 +18,7 @@ export default function ServiceCard({service}: {service: ServiceProps}) {
 						width={1920}
 				/>
 				 <div
-					className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/50 to-transparent"
+					className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/75 to-transparent"
 					style={{
 						bottom: '0',
 						height: '100%'
