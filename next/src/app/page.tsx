@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import qs from "qs";
 import { notFound } from 'next/navigation';
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import { getStrapiData, getStrapiMetadata } from "../utils/fetchStrapiData";
 import { blockRenderer, Block, } from "../utils/render"
 
@@ -44,20 +44,7 @@ const queryHero = qs.stringify({
 	}
 })
 
-// const strapiMetadata = await getStrapiMetadata(
-// 	path,
-// 	"Home - J42L",
-// 	"Junior 42 Lausanne",
-// );
-
-// export const metadata: Metadata = {
-// 	title: strapiMetadata.title,
-// 	description: strapiMetadata.description,
-// };
-export async function generateMetadata(
-  { params, searchParams }: { params: { id: string }, searchParams: { [key: string]: string | string[] | undefined } },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getStrapiMetadata(
     path,
     "Home - J42L",
@@ -69,8 +56,6 @@ export async function generateMetadata(
     description: metadata.description,
   };
 }
-
-
 
 /*
 * The logic:
