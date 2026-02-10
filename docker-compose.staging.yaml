@@ -26,7 +26,7 @@ services:
       - path: ./strapi/.env
         required: true
     volumes:
-      - /data/storage/strapi:/opt/app/public/uploads
+      - staging-strapi-uploads:/opt/app/public/uploads
     environment:
       NODE_ENV: production
     depends_on:
@@ -42,5 +42,9 @@ services:
       - path: ./strapi/.env
         required: true
     volumes:
-      - /data/storage/postgresql:/var/lib/postgresql/data:rw
+      - staging-postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
+
+volumes:
+  staging-strapi-uploads:
+  staging-postgres-data:

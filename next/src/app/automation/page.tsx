@@ -37,16 +37,18 @@ const queryAutomation = qs.stringify(
   { encodeValuesOnly: true }
 );
 
-const strapiMetadata = await getStrapiMetadata(
-	path,
-	"Automation - J42L",
-	"Junior 42 Lausanne",
-);
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await getStrapiMetadata(
+    path,
+    "Automation - J42L",
+    "Junior 42 Lausanne",
+  );
 
-export const metadata: Metadata = {
-	title: strapiMetadata.title,
-	description: strapiMetadata.description,
-};
+  return {
+    title: metadata.title,
+    description: metadata.description,
+  };
+}
 
 export default async function Automation() {
 	try {

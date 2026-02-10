@@ -138,7 +138,7 @@ export async function getStrapiMetadata(path: string, fallbackTitle: string, fal
 		fields: ["title", "description"],
 	})
 	try {
-		const response = await fetch(url.href);
+		const response = await fetch(url.href, { cache: 'no-store' });
 		if (!response.ok) {
 			console.error(`HTTP error! status: ${response.status}`);
 			console.error(`Fail to get metadata, using default.`);
