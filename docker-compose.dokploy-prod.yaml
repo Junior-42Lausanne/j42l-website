@@ -34,7 +34,11 @@ services:
       - path: .env
         required: true
     volumes:
+<<<<<<< HEAD
       - production-strapi-uploads:/opt/app/public/uploads
+=======
+      - strapi-uploads:/opt/app/public/uploads
+>>>>>>> main
     networks:
       - dokploy-network
     depends_on:
@@ -50,7 +54,11 @@ services:
       - path: .env
         required: true
     volumes:
+<<<<<<< HEAD
       - production-postgres-data:/var/lib/postgresql/data
+=======
+      - postgres-data:/var/lib/postgresql/data
+>>>>>>> main
     networks:
       - dokploy-network
     restart: unless-stopped
@@ -60,5 +68,10 @@ networks:
     external: true
 
 volumes:
+<<<<<<< HEAD
   production-strapi-uploads:
   production-postgres-data:
+=======
+  strapi-uploads:
+  postgres-data:
+>>>>>>> main
