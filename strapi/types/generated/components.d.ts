@@ -21,7 +21,7 @@ export interface ComposantsContactDetails extends Struct.ComponentSchema {
     displayName: 'Contact details';
   };
   attributes: {
-    city: Schema.Attribute.String & Schema.Attribute.DefaultTo<'lausanne'>;
+    city: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Lausanne'>;
     country: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Suisse'>;
     email: Schema.Attribute.Email & Schema.Attribute.Required;
     municipal: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Renens'>;
@@ -281,15 +281,17 @@ export interface LayoutTextSection extends Struct.ComponentSchema {
   };
   attributes: {
     backgroundColor: Schema.Attribute.Enumeration<
-      ['orange', 'white', 'black']
+      ['orange', 'white', 'black', 'pale_orange']
     > &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'white'>;
     button: Schema.Attribute.Component<'composants.lien', false> &
       Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     text: Schema.Attribute.Blocks & Schema.Attribute.Required;
     textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
