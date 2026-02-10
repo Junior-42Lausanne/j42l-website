@@ -1,10 +1,9 @@
 services:
   next-app:
     container_name: nextjs-prod
-    # build:
-    #   context: ./next
-    #   dockerfile: Dockerfile
-    image: theorangecake/nextjs-app:v0.1.0
+    build:
+      context: ./next
+      dockerfile: Dockerfile
     ports:
       - 3001
     env_file:
@@ -13,8 +12,7 @@ services:
     environment:
       - PORT=3001
       - HOST=0.0.0.0
-    #   - NODE_ENV=production
-      # - NEXT_PUBLIC_STRAPI_URL=https://admin.knifechopstudio.com
+      - NODE_ENV=production
     networks:
       - dokploy-network
     depends_on:
@@ -23,10 +21,9 @@ services:
 
   strapi-app:
     container_name: strapi-prod
-    # build:
-    #   context: ./strapi
-    #   dockerfile: Dockerfile
-    image: theorangecake/strapi-app:v0.1.0
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile
     ports:
       - 1337
     environment:
