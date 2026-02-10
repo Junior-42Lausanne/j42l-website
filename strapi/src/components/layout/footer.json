@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_layout_footers",
+  "info": {
+    "displayName": "footer"
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "component",
+      "component": "composants.logo",
+      "repeatable": false,
+      "required": true
+    },
+    "generalNavigation": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true
+    },
+    "serviceNavigation": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true
+    },
+    "externalNavigation": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true
+    },
+    "social": {
+      "type": "component",
+      "component": "composants.social",
+      "repeatable": true,
+      "required": true
+    },
+    "cta": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false,
+      "required": true
+    },
+    "legalNavigation": {
+      "type": "component",
+      "component": "composants.link",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

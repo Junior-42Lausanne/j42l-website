@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_layout_text_sections",
+  "info": {
+    "displayName": "textSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "blocks",
+      "required": true
+    },
+    "button": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false,
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "textColor": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -1,14 +1,85 @@
-import { customButton } from "./components/button"
-import WelcomeSection from "./components/welcome"
+export const dynamic = "force-dynamic";
 
-export default function Home() {
-  return (
-    <div>
-      <div className="text-orange font-poppins text-h5">
-        <h1>This is a test</h1>
-      </div>
-      <WelcomeSection />
-    </div>
-  )
+import qs from "qs";
+import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
+import { getStrapiData, getStrapiMetadata } from "../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../utils/render"
+
+const path = "/api/accueil";
+const queryHero = qs.stringify({
+	populate: {
+		blocks: {
+			on: {
+				"layout.hero": {
+					populate: "*",
+				},
+				"layout.text-section": {
+					populate: "*",
+				},
+				"layout.text-section-with-title": {
+					populate: "*",
+				},
+				"layout.member-section": {
+					populate: "*",
+				},
+				"layout.footer-cta": {
+					populate: "*",
+				},
+				"layout.card-section": {
+					populate: {
+						title: true,
+						cards: {
+							populate: {
+								button: true,
+								backgroundImage: {
+									fields: ["url", "alternativeText"],
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+})
+
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Home - J42L",
+	"Junior 42 Lausanne",
+);
+
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
+
+
+/*
+* The logic:
+* API call for current page
+* loop through the blocks to call corresponse section component
+*/
+export default async function Home() {
+	try {
+		const strapiData = await getStrapiData(path, queryHero);
+		if (strapiData.type == "NOT_FOUND") {
+			return notFound();
+		}
+		const { blocks } = strapiData.data?.data;
+		if (!Array.isArray(blocks) || blocks.length === 0) {
+			return notFound();
+		}
+		return (
+			<div>
+				{
+					blocks.map((block: Block) => blockRenderer(block))
+				}
+			</div>
+		)
+	} catch(error) {
+		console.error(`Page Home. ${error}`);
+		throw error;
+	}
 }
-

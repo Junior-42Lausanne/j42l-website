@@ -1,0 +1,72 @@
+export const dynamic = "force-dynamic";
+
+import qs from 'qs';
+import type { Metadata } from "next";
+import { notFound } from 'next/navigation';
+import { getStrapiData, getStrapiMetadata } from "../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../utils/render"
+
+const path = "/api/prototype-service";
+const queryPrototype = qs.stringify(
+  {
+    populate: {
+      blocks: {
+        on: {
+          'layout.hero': {
+            populate: "*",
+          },
+          "layout.services": {
+            populate: {
+              servicesTitle: true,
+              servicesAccordions: {
+                populate: {
+                  image: true,
+                  triggerbg: true,
+                  ctaButton: true,
+                },
+              },
+            },
+          },
+          'layout.footer-cta': {
+          populate: "*",
+        },
+        },
+      },
+    },
+  },
+  { encodeValuesOnly: true }
+);
+
+const strapiMetadata = await getStrapiMetadata(
+	path,
+	"Prototype - J42L",
+	"Junior 42 Lausanne",
+);
+
+export const metadata: Metadata = {
+	title: strapiMetadata.title,
+	description: strapiMetadata.description,
+};
+
+export default async function Prototype() {
+	try {
+		const strapiData = await getStrapiData(path, queryPrototype);
+		if (strapiData.type == "NOT_FOUND") {
+			return notFound();
+		}
+		const { blocks } = strapiData.data?.data;
+		if (!Array.isArray(blocks) || blocks.length === 0) {
+			return notFound();
+		}
+		return (
+			<div>
+				{
+					blocks.map((block: Block) => blockRenderer(block))
+				}
+			</div>
+		)
+	} catch(error) {
+		console.error(`Page Prototype. ${error}`);
+		throw error;
+	}
+}
