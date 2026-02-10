@@ -1,0 +1,64 @@
+services:
+  next-app:
+    container_name: J42Lweb-nextjs-staging
+    build:
+      context: ./next
+      dockerfile: Dockerfile
+    ports:
+      - 3001
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      - PORT=3001
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+    networks:
+      - dokploy-network
+    depends_on:
+      - strapi-app
+    restart: unless-stopped
+
+  strapi-app:
+    container_name: J42Lweb-strapi-staging
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile
+    ports:
+      - 1337
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
+      - NODE_ENV=production
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - strapi-uploads:/opt/app/public/uploads
+    networks:
+      - dokploy-network
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:17-alpine
+    container_name: J42Lweb-strapi-db-staging
+    ports:
+      - 5432
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - dokploy-network
+    restart: unless-stopped
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  strapi-uploads:
+  postgres-data:
