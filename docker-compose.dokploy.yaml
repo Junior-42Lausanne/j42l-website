@@ -1,6 +1,6 @@
 services:
   next-app:
-    container_name: nextjs-prod
+    container_name: nextjs-staging
     build:
       context: ./next
       dockerfile: Dockerfile
@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
 
   strapi-app:
-    container_name: strapi-prod
+    container_name: strapi-staging
     build:
       context: ./strapi
       dockerfile: Dockerfile
@@ -43,7 +43,7 @@ services:
 
   db:
     image: postgres:17-alpine
-    container_name: strapi-db-prod
+    container_name: strapi-db-staging
     ports:
       - 5432
     env_file:
