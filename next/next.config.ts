@@ -12,17 +12,32 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'knifechopstudio.com',
+        hostname: 'j42l.ch',
         pathname: '/uploads/**',
       },
       {
         protocol: 'https',
-        hostname: 'www.knifechopstudio.com',
+        hostname: 'www.j42l.ch',
         pathname: '/uploads/**',
       },
       {
         protocol: 'https',
-        hostname: 'admin.knifechopstudio.com',
+        hostname: 'admin.j42l.ch',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'staging.j42l.ch',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.staging.j42l.ch',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.staging.j42l.ch',
         pathname: '/uploads/**',
       }
     ],
