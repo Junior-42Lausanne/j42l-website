@@ -10,7 +10,7 @@ services:
       - path: ./next/.env
         required: true
     environment:
-      NODE_ENV: production
+      - NODE_ENV=production
     depends_on:
       - strapi-app
     restart: unless-stopped
