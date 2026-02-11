@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_layout_anchor_tags",
+  "info": {
+    "displayName": "anchorTag",
+    "icon": "hashtag"
+  },
+  "options": {},
+  "attributes": {
+    "anchorId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^[a-zA-Z0-9]+$"
+    },
+    "how_to_use": {
+      "type": "text",
+      "private": true,
+      "default": "Add this block before the section you want to link to, then use #{anchor_id} in the button’s URL field. Only alphanumeric characters (a-z, A-Z, 0 - 9)."
+    }
+  },
+  "config": {}
+}

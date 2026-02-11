@@ -26,6 +26,9 @@ const queryHero = qs.stringify({
 				"layout.footer-cta": {
 					populate: "*",
 				},
+				'layout.anchor-tag': {
+					populate: "*",
+				},
 				"layout.card-section": {
 					populate: {
 						title: true,

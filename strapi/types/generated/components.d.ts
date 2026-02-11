@@ -146,6 +146,22 @@ export interface ComposantsSocial extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutAnchorTag extends Struct.ComponentSchema {
+  collectionName: 'components_layout_anchor_tags';
+  info: {
+    displayName: 'anchorTag';
+    icon: 'hashtag';
+  };
+  attributes: {
+    anchorId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    how_to_use: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'Add this block before the section you want to link to, then use #{anchor_id} in the button\u2019s URL field. Only alphanumeric characters (a-z, A-Z, 0 - 9).'>;
+  };
+}
+
 export interface LayoutCardSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_card_sections';
   info: {
@@ -173,6 +189,9 @@ export interface LayoutContactSection extends Struct.ComponentSchema {
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     emailIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     illustration: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    Note: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'For contact details, fill Contact Information page.'>;
     phoneIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
       Schema.Attribute.Required &
@@ -195,6 +214,9 @@ export interface LayoutFooter extends Struct.ComponentSchema {
       Schema.Attribute.Required;
     logo: Schema.Attribute.Component<'composants.logo', false> &
       Schema.Attribute.Required;
+    Note: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'For contact details, fill Contact Information page.'>;
     serviceNavigation: Schema.Attribute.Component<'composants.link', true>;
     social: Schema.Attribute.Component<'composants.social', true> &
       Schema.Attribute.Required;
@@ -252,6 +274,9 @@ export interface LayoutNavBar extends Struct.ComponentSchema {
       Schema.Attribute.Required;
     logo: Schema.Attribute.Component<'composants.logo', false> &
       Schema.Attribute.Required;
+    Note: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'For Nav Bar Menu, fill Navbar Menu page.'>;
     social: Schema.Attribute.Component<'composants.social', true> &
       Schema.Attribute.Required;
   };
@@ -331,6 +356,7 @@ declare module '@strapi/strapi' {
       'composants.section-title': ComposantsSectionTitle;
       'composants.services-accordion': ComposantsServicesAccordion;
       'composants.social': ComposantsSocial;
+      'layout.anchor-tag': LayoutAnchorTag;
       'layout.card-section': LayoutCardSection;
       'layout.contact-section': LayoutContactSection;
       'layout.footer': LayoutFooter;

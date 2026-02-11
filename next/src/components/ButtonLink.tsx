@@ -28,8 +28,14 @@ export default function ButtonLink({
 					pt-[0.625rem] pb-[0.625rem] pl-[1.25rem] pr-[1.25rem] border-2 border-orange ${fullWidth ? "w-full" : "inline-block"}
 					active:bg-orange active:text-black
 					hover:bg-orange hover:text-black`;
-	
-	if (external) {
+	if (url.startsWith("#")) {
+		return (
+			<Link href={url} className={styles}>
+				{children}
+			</Link>
+		);
+
+	} else if (external) {
 		return (
 			<a href={url}
 				target="_blank"

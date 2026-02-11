@@ -452,6 +452,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
         'layout.text-section-with-title',
         'layout.member-section',
         'layout.hero',
+        'layout.anchor-tag',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -509,6 +510,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
         'layout.card-section',
         'layout.footer-cta',
         'layout.hero',
+        'layout.anchor-tag',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -565,7 +567,12 @@ export interface ApiAutomationServiceAutomationService
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.hero', 'layout.footer-cta', 'layout.services']
+      [
+        'layout.hero',
+        'layout.footer-cta',
+        'layout.services',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -646,7 +653,9 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['layout.contact-section']> &
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.contact-section', 'layout.anchor-tag']
+    > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -762,7 +771,12 @@ export interface ApiPrototypeServicePrototypeService
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.hero', 'layout.footer-cta', 'layout.services']
+      [
+        'layout.hero',
+        'layout.footer-cta',
+        'layout.services',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -817,7 +831,12 @@ export interface ApiStudentStudent extends Struct.SingleTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.footer-cta', 'layout.text-section-with-title', 'layout.hero']
+      [
+        'layout.footer-cta',
+        'layout.text-section-with-title',
+        'layout.hero',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -872,7 +891,12 @@ export interface ApiWebServiceWebService extends Struct.SingleTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.footer-cta', 'layout.hero', 'layout.services']
+      [
+        'layout.footer-cta',
+        'layout.hero',
+        'layout.services',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

@@ -14,6 +14,9 @@ const queryAbout = qs.stringify({
 				'layout.hero': {
 					populate: "*",
 				},
+				'layout.anchor-tag': {
+					populate: "*",
+				},
 				'layout.member-section': {
 					populate: {
 						title: true,

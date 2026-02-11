@@ -13,9 +13,12 @@ const queryWeb = qs.stringify(
       blocks: {
         on: {
           'layout.hero': {
-					  populate: "*",
-				  },
-          "layout.services": {
+			populate: "*",
+		  },
+		  'layout.anchor-tag': {
+			populate: "*",
+		  },
+          'layout.services': {
             populate: {
               servicesTitle: true,
               servicesAccordions: {

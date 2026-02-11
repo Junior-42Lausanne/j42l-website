@@ -5,6 +5,11 @@
   },
   "options": {},
   "attributes": {
+    "Note": {
+      "type": "text",
+      "private": true,
+      "default": "For contact details, fill Contact Information page."
+    },
     "title": {
       "type": "string",
       "required": true
