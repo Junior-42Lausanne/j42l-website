@@ -15,6 +15,9 @@ const queryAutomation = qs.stringify(
           'layout.hero': {
             populate: "*",
           },
+          'layout.anchor-tag': {
+          populate: "*",
+          },
           "layout.services": {
             populate: {
               servicesTitle: true,

@@ -24,7 +24,8 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "layout.contact-section"
+        "layout.contact-section",
+        "layout.anchor-tag"
       ],
       "required": true
     }
