@@ -30,17 +30,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'yearly',
             priority: 0.5,
         },{
-            url: `${url}/web`,
+            url: `${url}/services/web`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
         },{
-            url: `${url}/prototype`,
+            url: `${url}/services/prototype`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
         },{
-            url: `${url}/automation`,
+            url: `${url}/services/automation`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,

@@ -51,7 +51,7 @@ export interface ComposantsLien extends Struct.ComponentSchema {
   };
   attributes: {
     buttonText: Schema.Attribute.String & Schema.Attribute.Required;
-    color: Schema.Attribute.Enumeration<['orange', 'white']> &
+    color: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
       Schema.Attribute.Required;
     external: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -251,6 +251,25 @@ export interface LayoutHero extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutLegalSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_legal_sections';
+  info: {
+    displayName: 'legalSection';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['white', 'black', 'orange', 'pale_orange']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pale_orange'>;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    textColor: Schema.Attribute.Enumeration<['white', 'black', 'orange']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface LayoutMemberSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_member_sections';
   info: {
@@ -362,6 +381,7 @@ declare module '@strapi/strapi' {
       'layout.footer': LayoutFooter;
       'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;
+      'layout.legal-section': LayoutLegalSection;
       'layout.member-section': LayoutMemberSection;
       'layout.nav-bar': LayoutNavBar;
       'layout.services': LayoutServices;

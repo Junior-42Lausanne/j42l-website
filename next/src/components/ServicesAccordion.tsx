@@ -41,7 +41,7 @@ export default function ServicesAccordion({
     triggerChevronPath: "",
     accordionContent: "bg-[#FFE6C433] p-6 flex flex-col gap-12 sm:gap-16 lg:gap-20 items-center",
     accordionContentContainer: "flex flex-col lg:flex-row gap-8 lg:gap-10 items-start w-full",
-    accordionContentBlock: "flex-1 flex flex-col gap-8 lg:gap-10 text-h5 xl:text-h4",
+    accordionContentBlock: "prose flex-1 flex flex-col gap-8 lg:gap-10 text-h5 xl:text-h4",
     accordionContentImage: "w-full h-[18.75rem] lg:w-md  sm:h-[21.875rem] lg:h-[26.7rem] shrink-0 relative overflow-hidden",
 	};
 

@@ -15,6 +15,7 @@ export default function robots(): MetadataRoute.Robots {
             rules: {
                 userAgent: '*',
                 allow: '/',
+                disallow: '/legals',
             },
             sitemap: 'https://j42l.ch/sitemap.xml',
         }
