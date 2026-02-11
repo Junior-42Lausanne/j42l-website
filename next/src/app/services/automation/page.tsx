@@ -3,22 +3,22 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
-import { getStrapiData, getStrapiMetadata } from "../../utils/fetchStrapiData";
-import { blockRenderer, Block, } from "../../utils/render"
+import { getStrapiData, getStrapiMetadata } from "../../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../../utils/render"
 
-const path = "/api/web-service";
-const queryWeb = qs.stringify(
+const path = "/api/automation-service";
+const queryAutomation = qs.stringify(
   {
     populate: {
       blocks: {
         on: {
           'layout.hero': {
-			populate: "*",
-		  },
-		  'layout.anchor-tag': {
-			populate: "*",
-		  },
-          'layout.services': {
+            populate: "*",
+          },
+          'layout.anchor-tag': {
+          populate: "*",
+          },
+          "layout.services": {
             populate: {
               servicesTitle: true,
               servicesAccordions: {
@@ -31,8 +31,8 @@ const queryWeb = qs.stringify(
             },
           },
           'layout.footer-cta': {
-					populate: "*",
-				},
+          populate: "*",
+        },
         },
       },
     },
@@ -42,20 +42,20 @@ const queryWeb = qs.stringify(
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getStrapiMetadata(
-	path,
-	"Web - J42L",
-	"Junior 42 Lausanne",
+    path,
+    "Automation - J42L",
+    "Junior 42 Lausanne",
   );
 
   return {
-	title: metadata.title,
-	description: metadata.description,
+    title: metadata.title,
+    description: metadata.description,
   };
 }
 
-export default async function Web() {
+export default async function Automation() {
 	try {
-		const strapiData = await getStrapiData(path, queryWeb);
+		const strapiData = await getStrapiData(path, queryAutomation);
 		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}
@@ -71,7 +71,7 @@ export default async function Web() {
 			</div>
 		)
 	} catch(error) {
-		console.error(`Page Web. ${error}`);
+		console.error(`Page Automation. ${error}`);
 		throw error;
 	}
 }

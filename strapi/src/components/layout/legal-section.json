@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_layout_legal_sections",
+  "info": {
+    "displayName": "legalSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "blocks",
+      "required": true
+    },
+    "textColor": {
+      "type": "enumeration",
+      "required": true,
+      "default": "black",
+      "enum": [
+        "white",
+        "black",
+        "orange"
+      ]
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "required": true,
+      "default": "pale_orange",
+      "enum": [
+        "white",
+        "black",
+        "orange",
+        "pale_orange"
+      ]
+    }
+  },
+  "config": {}
+}
