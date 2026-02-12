@@ -25,7 +25,8 @@
       "components": [
         "layout.footer-cta",
         "layout.text-section-with-title",
-        "layout.hero"
+        "layout.hero",
+        "layout.anchor-tag"
       ]
     },
     "title": {

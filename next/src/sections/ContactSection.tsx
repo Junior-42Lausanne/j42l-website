@@ -119,6 +119,6 @@ export default async function ContactSection({
         )
         } catch(error) {
             console.error(`Contact Information. ${error}`);
-		    return null;
+		    throw error;
         }
 }

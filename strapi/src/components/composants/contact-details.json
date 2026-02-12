@@ -29,7 +29,7 @@
     },
     "city": {
       "type": "string",
-      "default": "lausanne",
+      "default": "Lausanne",
       "required": false
     },
     "country": {

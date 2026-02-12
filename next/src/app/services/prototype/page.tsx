@@ -3,8 +3,8 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import type { Metadata } from "next";
 import { notFound } from 'next/navigation';
-import { getStrapiData, getStrapiMetadata } from "../../utils/fetchStrapiData";
-import { blockRenderer, Block, } from "../../utils/render"
+import { getStrapiData, getStrapiMetadata } from "../../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../../utils/render"
 
 const path = "/api/prototype-service";
 const queryPrototype = qs.stringify(
@@ -13,6 +13,9 @@ const queryPrototype = qs.stringify(
       blocks: {
         on: {
           'layout.hero': {
+            populate: "*",
+          },
+          'layout.anchor-tag': {
             populate: "*",
           },
           "layout.services": {
@@ -37,16 +40,18 @@ const queryPrototype = qs.stringify(
   { encodeValuesOnly: true }
 );
 
-const strapiMetadata = await getStrapiMetadata(
-	path,
-	"Prototype - J42L",
-	"Junior 42 Lausanne",
-);
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await getStrapiMetadata(
+    path,
+    "Prototype - J42L",
+    "Junior 42 Lausanne",
+  );
 
-export const metadata: Metadata = {
-	title: strapiMetadata.title,
-	description: strapiMetadata.description,
-};
+  return {
+    title: metadata.title,
+    description: metadata.description,
+  };
+}
 
 export default async function Prototype() {
 	try {

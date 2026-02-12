@@ -8,7 +8,14 @@ import HeroSection, { type HeroSectionProps } from '../sections/HeroSection';
 import ContactSection, { type ContactSectionProps } from '../sections/ContactSection';
 import ServiceCardSection, { type ServiceCardSectionProps } from '../sections/ServiceSection';
 import ServicesSection, { type ServicesSectionProps } from '../sections/ServicesSection';
+import LegalSection, { type LegalSectionProps } from '../sections/LegalSection';
 import { type Mode } from '../utils/type';
+
+export type AnchorTagProps = {
+    id: number,
+    __component: "layout.anchor-tag",
+    anchorId: string,
+}
 
 export type Block = HeroSectionProps |
                     TextSectionProps |
@@ -17,7 +24,9 @@ export type Block = HeroSectionProps |
                     MemberSectionProps |
                     ServiceCardSectionProps |
                     ServicesSectionProps |
-                    ContactSectionProps;
+                    ContactSectionProps |
+                    LegalSectionProps |
+                    AnchorTagProps;
 
 export function blockRenderer(block: Block) {
     if (!block) {
@@ -43,6 +52,10 @@ export function blockRenderer(block: Block) {
             return <ContactSection key={key} {...block} />;
         case "layout.services":
             return <ServicesSection key={key} {...block} />;
+        case "layout.legal-section":
+            return <LegalSection key={key} {...block} />;
+        case "layout.anchor-tag":
+            return <div key={key} id={block.anchorId}/>
         default:
             return null;
     }

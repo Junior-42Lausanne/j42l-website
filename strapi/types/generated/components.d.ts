@@ -21,7 +21,7 @@ export interface ComposantsContactDetails extends Struct.ComponentSchema {
     displayName: 'Contact details';
   };
   attributes: {
-    city: Schema.Attribute.String & Schema.Attribute.DefaultTo<'lausanne'>;
+    city: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Lausanne'>;
     country: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Suisse'>;
     email: Schema.Attribute.Email & Schema.Attribute.Required;
     municipal: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Renens'>;
@@ -51,7 +51,7 @@ export interface ComposantsLien extends Struct.ComponentSchema {
   };
   attributes: {
     buttonText: Schema.Attribute.String & Schema.Attribute.Required;
-    color: Schema.Attribute.Enumeration<['orange', 'white']> &
+    color: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
       Schema.Attribute.Required;
     external: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -146,6 +146,22 @@ export interface ComposantsSocial extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutAnchorTag extends Struct.ComponentSchema {
+  collectionName: 'components_layout_anchor_tags';
+  info: {
+    displayName: 'anchorTag';
+    icon: 'hashtag';
+  };
+  attributes: {
+    anchorId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    how_to_use: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'Add this block before the section you want to link to, then use #{anchor_id} in the button\u2019s URL field. Only alphanumeric characters (a-z, A-Z, 0 - 9).'>;
+  };
+}
+
 export interface LayoutCardSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_card_sections';
   info: {
@@ -173,6 +189,9 @@ export interface LayoutContactSection extends Struct.ComponentSchema {
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     emailIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     illustration: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    Note: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'For contact details, fill Contact Information page.'>;
     phoneIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
       Schema.Attribute.Required &
@@ -195,6 +214,9 @@ export interface LayoutFooter extends Struct.ComponentSchema {
       Schema.Attribute.Required;
     logo: Schema.Attribute.Component<'composants.logo', false> &
       Schema.Attribute.Required;
+    Note: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'For contact details, fill Contact Information page.'>;
     serviceNavigation: Schema.Attribute.Component<'composants.link', true>;
     social: Schema.Attribute.Component<'composants.social', true> &
       Schema.Attribute.Required;
@@ -229,6 +251,25 @@ export interface LayoutHero extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutLegalSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_legal_sections';
+  info: {
+    displayName: 'legalSection';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['white', 'black', 'orange', 'pale_orange']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pale_orange'>;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    textColor: Schema.Attribute.Enumeration<['white', 'black', 'orange']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface LayoutMemberSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_member_sections';
   info: {
@@ -252,6 +293,9 @@ export interface LayoutNavBar extends Struct.ComponentSchema {
       Schema.Attribute.Required;
     logo: Schema.Attribute.Component<'composants.logo', false> &
       Schema.Attribute.Required;
+    Note: Schema.Attribute.Text &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'For Nav Bar Menu, fill Navbar Menu page.'>;
     social: Schema.Attribute.Component<'composants.social', true> &
       Schema.Attribute.Required;
   };
@@ -281,15 +325,17 @@ export interface LayoutTextSection extends Struct.ComponentSchema {
   };
   attributes: {
     backgroundColor: Schema.Attribute.Enumeration<
-      ['orange', 'white', 'black']
+      ['orange', 'white', 'black', 'pale_orange']
     > &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'white'>;
     button: Schema.Attribute.Component<'composants.lien', false> &
       Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     text: Schema.Attribute.Blocks & Schema.Attribute.Required;
     textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -329,11 +375,13 @@ declare module '@strapi/strapi' {
       'composants.section-title': ComposantsSectionTitle;
       'composants.services-accordion': ComposantsServicesAccordion;
       'composants.social': ComposantsSocial;
+      'layout.anchor-tag': LayoutAnchorTag;
       'layout.card-section': LayoutCardSection;
       'layout.contact-section': LayoutContactSection;
       'layout.footer': LayoutFooter;
       'layout.footer-cta': LayoutFooterCta;
       'layout.hero': LayoutHero;
+      'layout.legal-section': LayoutLegalSection;
       'layout.member-section': LayoutMemberSection;
       'layout.nav-bar': LayoutNavBar;
       'layout.services': LayoutServices;

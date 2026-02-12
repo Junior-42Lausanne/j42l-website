@@ -26,7 +26,8 @@
         "layout.footer-cta",
         "layout.text-section-with-title",
         "layout.member-section",
-        "layout.hero"
+        "layout.hero",
+        "layout.anchor-tag"
       ]
     },
     "title": {

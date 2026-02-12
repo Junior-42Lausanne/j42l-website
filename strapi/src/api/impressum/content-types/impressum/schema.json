@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "impressums",
+  "info": {
+    "singularName": "impressum",
+    "pluralName": "impressums",
+    "displayName": "Impressum"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.legal-section",
+        "layout.anchor-tag",
+        "layout.footer-cta"
+      ],
+      "required": false
+    }
+  }
+}

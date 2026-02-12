@@ -452,6 +452,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
         'layout.text-section-with-title',
         'layout.member-section',
         'layout.hero',
+        'layout.anchor-tag',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -509,6 +510,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
         'layout.card-section',
         'layout.footer-cta',
         'layout.hero',
+        'layout.anchor-tag',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -565,7 +567,12 @@ export interface ApiAutomationServiceAutomationService
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.hero', 'layout.footer-cta', 'layout.services']
+      [
+        'layout.hero',
+        'layout.footer-cta',
+        'layout.services',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -646,7 +653,9 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['layout.contact-section']> &
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.contact-section', 'layout.anchor-tag']
+    > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -705,6 +714,38 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiImpressumImpressum extends Struct.SingleTypeSchema {
+  collectionName: 'impressums';
+  info: {
+    displayName: 'Impressum';
+    pluralName: 'impressums';
+    singularName: 'impressum';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.legal-section', 'layout.anchor-tag', 'layout.footer-cta']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::impressum.impressum'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiNavbarMenuNavbarMenu extends Struct.SingleTypeSchema {
   collectionName: 'navbar_menus';
   info: {
@@ -744,6 +785,38 @@ export interface ApiNavbarMenuNavbarMenu extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiPrivacyPolicyPrivacyPolicy extends Struct.SingleTypeSchema {
+  collectionName: 'privacy_policies';
+  info: {
+    displayName: 'Privacy policy';
+    pluralName: 'privacy-policies';
+    singularName: 'privacy-policy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.legal-section', 'layout.anchor-tag', 'layout.footer-cta']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::privacy-policy.privacy-policy'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPrototypeServicePrototypeService
   extends Struct.SingleTypeSchema {
   collectionName: 'prototype_services';
@@ -762,7 +835,12 @@ export interface ApiPrototypeServicePrototypeService
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.hero', 'layout.footer-cta', 'layout.services']
+      [
+        'layout.hero',
+        'layout.footer-cta',
+        'layout.services',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -817,7 +895,12 @@ export interface ApiStudentStudent extends Struct.SingleTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.footer-cta', 'layout.text-section-with-title', 'layout.hero']
+      [
+        'layout.footer-cta',
+        'layout.text-section-with-title',
+        'layout.hero',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -855,6 +938,39 @@ export interface ApiStudentStudent extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiTermsOfServiceTermsOfService
+  extends Struct.SingleTypeSchema {
+  collectionName: 'terms_of_services';
+  info: {
+    displayName: 'TermsOfService';
+    pluralName: 'terms-of-services';
+    singularName: 'terms-of-service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.legal-section', 'layout.anchor-tag', 'layout.footer-cta']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::terms-of-service.terms-of-service'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiWebServiceWebService extends Struct.SingleTypeSchema {
   collectionName: 'web_services';
   info: {
@@ -872,7 +988,12 @@ export interface ApiWebServiceWebService extends Struct.SingleTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.footer-cta', 'layout.hero', 'layout.services']
+      [
+        'layout.footer-cta',
+        'layout.hero',
+        'layout.services',
+        'layout.anchor-tag',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1427,9 +1548,12 @@ declare module '@strapi/strapi' {
       'api::contact-information.contact-information': ApiContactInformationContactInformation;
       'api::contact.contact': ApiContactContact;
       'api::global.global': ApiGlobalGlobal;
+      'api::impressum.impressum': ApiImpressumImpressum;
       'api::navbar-menu.navbar-menu': ApiNavbarMenuNavbarMenu;
+      'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
       'api::prototype-service.prototype-service': ApiPrototypeServicePrototypeService;
       'api::student.student': ApiStudentStudent;
+      'api::terms-of-service.terms-of-service': ApiTermsOfServiceTermsOfService;
       'api::web-service.web-service': ApiWebServiceWebService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

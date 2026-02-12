@@ -5,6 +5,11 @@
   },
   "options": {},
   "attributes": {
+    "Note": {
+      "type": "text",
+      "private": true,
+      "default": "For Nav Bar Menu, fill Navbar Menu page."
+    },
     "logo": {
       "type": "component",
       "component": "composants.logo",

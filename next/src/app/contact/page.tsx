@@ -15,16 +15,18 @@ const queryContact = qs.stringify({
 	}
 })
 
-const strapiMetadata = await getStrapiMetadata(
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await getStrapiMetadata(
 	path,
 	"Contact - J42L",
 	"Junior 42 Lausanne",
-);
+  );
 
-export const metadata: Metadata = {
-	title: strapiMetadata.title,
-	description: strapiMetadata.description,
-};
+  return {
+	title: metadata.title,
+	description: metadata.description,
+  };
+}
 
 export default async function Contact() {
 	try {
