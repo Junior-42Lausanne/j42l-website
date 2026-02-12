@@ -47,8 +47,6 @@ services:
         required: true
     volumes:
       - production-postgres-data:/var/lib/postgresql/data
-    networks:
-      - dokploy-network
     restart: unless-stopped
 
 volumes:
