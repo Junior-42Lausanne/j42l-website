@@ -157,3 +157,21 @@ Please refer to Dokploy documentation for general navigation and common usage. W
 			* Keep the rest default
 			* Select HTTPS and Let's encrypt
 * **Logs tab:** You can check container logs here. Very useful.
+* **Advanced tab:** Isolated deployment should be enabled. This option make the service use a special container network instead of dokploy-network, so the network is fully isolated even if there are other services in the same project.
+![Image of advanced tab isolated deployment option](./readme_images/advanced_tab.png)
+
+<br>
+
+## FAQ
+<details>
+<summary>Why Dokploy?</summary>
+	Dokploy simplifies deployment by using Github repository and offer a GUI for easier configuration. Their UX/UI is clear and easy to start.
+	<br>
+	It is also open sourced and can be self hosted, which J42L do! This setup cuts cost, offers infra team opportunity to train in infrastructure management and retains digital sovereignty.
+</details>
+<details>
+<summary>How do I log in Dokploy?</summary>
+	You can log in <a href="www.dokploy.j42l.ch"> here</a>
+	<br>
+	Ask infra team or your project manager for access.
+</details>
