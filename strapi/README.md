@@ -4,6 +4,32 @@
 
 <br>
 
+### Environment variables
+<details>
+<summary> Click to expand</summary>
+<pre>
+STRAPI_URL=
+HOST=
+PORT=
+APP_KEYS=
+API_TOKEN_SALT=
+ADMIN_JWT_SECRET=
+TRANSFER_TOKEN_SALT=
+ENCRYPTION_KEY=
+DATABASE_CLIENT=
+DATABASE_HOST=
+DATABASE_PORT=
+DATABASE_NAME=
+DATABASE_USERNAME=
+DATABASE_PASSWORD=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=s
+JWT_SECRET=</pre>
+</details>
+
+<br>
+
 ### First setup
 In the first run:
 * If you are running locally, navigate to Strapi admin at [localhost:1337/admin](http://localhost:1337/admin) to create a new local admin. If the site has already deployed on Dokploy, then the admin is likely already created (you can check at [admin.staging.j42l.ch](admin.staging.j42l.ch) for staging and [admin.j42l.ch](admin.j42l.ch) for production)

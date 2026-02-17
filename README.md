@@ -175,3 +175,27 @@ Please refer to Dokploy documentation for general navigation and common usage. W
 	<br>
 	Ask infra team or your project manager for access.
 </details>
+<details>
+<summary>What are the urls for legal pages?</summary>
+<ul>
+	<li>/legals/impressum</li>
+	<li>/legals/privacy-policy</li>
+	<li>/legals/terms-of-service</li>
+</ul>
+</details>
+<details>
+<summary>What are the urls for service pages?</summary>
+<ul>
+	<li>/services/web</li>
+	<li>/services/prototype</li>
+	<li>/services/automation</li>
+</ul>
+</details>
+<details>
+<summary>How do I change robot.txt?</summary>
+In <a href="./next/src/app/robots.ts">./next/src/app/robots.ts</a>
+</details>
+<details>
+<summary>How do I change sitemap.xml?</summary>
+In <a href="./next/src/app/sitemap.ts">./next/src/app/sitemap.ts</a>
+</details>
