@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Junior 42 Lausanne Official Website
 
-## Getting Started
+## Next.js module
 
-First, run the development server:
+<br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Environment variables
+<details>
+<summary>click to expand</summary>
+<pre>
+COMPOSE_BAKE=
+STRAPI_API_TOKEN=
+STRAPI_API_URL=
+STRAPI_URL=</pre>
+</details>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Utilisation
+In local, you can access the prototype at [localhost:3001](http://localhost:3001). When deployed, staging can be accesed at [staging.j42l.ch](staging.j42l.ch) and production at [j42l.ch](j42l.ch).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<br>
 
-## Learn More
+### How does this work?
+The general flow is as below:
+1. User requests home page (work the same for all page).
+2. [Middleware](./src/middleware.ts) prompts for login if it is staging, otherwise next.
+3. [Global elements](./src/app/layout.tsx) ([Navigation bar](./src/sections/NavBar.tsx), navigation menu (inside navigation bar using `getStrapiNavBarMenuData`), [footer](./src/sections/Footer.tsx) and contact information (inside footer using `getStrapiContactDetailsData()`)) are fetched with `getStrapiGlobalData()` to render navigation bar and footer. Navigation menu is rendered in a loop using `menuRenderer()`.
+4. The [Home](./src/app/page.tsx) page content is fetched by passing a path and a custom query to `getStrapiData()`. Meta data is also fetched by passing a path to `getStrapiMetadata()`. The path can be retrieve by going to Strapi admin panel -> Setting -> Roles -> Public.
+5. Meta data will be rendered automatically. Page content (which is correspond to Strapi dynamic content block) is an array of sections and will be rendered in a loop using `blockRenderer()`.
 
-To learn more about Next.js, take a look at the following resources:
+<br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### SEO: sitemap.xml and robots.txt
+- The sitemap.xml file is generated programatically from [sitemap.ts](./src/app/sitemap.ts).
+- The robots.txt file is generated programatically from [robots.ts](./src/app/robots.ts).
