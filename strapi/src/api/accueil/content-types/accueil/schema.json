@@ -27,7 +27,8 @@
         "layout.card-section",
         "layout.footer-cta",
         "layout.hero",
-        "layout.anchor-tag"
+        "layout.anchor-tag",
+        "layout.testimonial-section"
       ]
     },
     "title": {

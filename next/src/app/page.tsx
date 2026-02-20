@@ -29,6 +29,9 @@ const queryHero = qs.stringify({
 				'layout.anchor-tag': {
 					populate: "*",
 				},
+				"layout.testimonial-section": {
+					populate: "*",
+				},
 				"layout.card-section": {
 					populate: {
 						title: true,

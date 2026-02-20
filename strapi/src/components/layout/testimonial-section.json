@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_layout_testimonial_sections",
+  "info": {
+    "displayName": "testimonialSection"
+  },
+  "options": {},
+  "attributes": {
+    "clientLogo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "clientLink": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "author": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "required": true,
+      "default": "pale_orange",
+      "enum": [
+        "orange",
+        "black",
+        "pale_orange",
+        "white"
+      ]
+    },
+    "textColor": {
+      "type": "enumeration",
+      "required": true,
+      "default": "black",
+      "enum": [
+        "black",
+        "orange",
+        "white"
+      ]
+    }
+  },
+  "config": {}
+}
