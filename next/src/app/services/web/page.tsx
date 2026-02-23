@@ -30,6 +30,9 @@ const queryWeb = qs.stringify(
               },
             },
           },
+          "layout.testimonial-section": {
+            populate: "*",
+          },
           'layout.footer-cta': {
 					populate: "*",
 				},

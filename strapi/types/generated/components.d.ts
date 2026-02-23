@@ -318,6 +318,27 @@ export interface LayoutServices extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutTestimonialSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_testimonial_sections';
+  info: {
+    displayName: 'testimonialSection';
+  };
+  attributes: {
+    author: Schema.Attribute.String;
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['orange', 'black', 'pale_orange', 'white']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pale_orange'>;
+    clientLink: Schema.Attribute.String;
+    clientLogo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    textColor: Schema.Attribute.Enumeration<['black', 'orange', 'white']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
+  };
+}
+
 export interface LayoutTextSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_text_sections';
   info: {
@@ -385,6 +406,7 @@ declare module '@strapi/strapi' {
       'layout.member-section': LayoutMemberSection;
       'layout.nav-bar': LayoutNavBar;
       'layout.services': LayoutServices;
+      'layout.testimonial-section': LayoutTestimonialSection;
       'layout.text-section': LayoutTextSection;
       'layout.text-section-with-title': LayoutTextSectionWithTitle;
     }
