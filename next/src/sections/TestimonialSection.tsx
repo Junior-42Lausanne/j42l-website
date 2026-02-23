@@ -20,16 +20,15 @@ export default function TestimonialSection( {
 	backgroundColor,
 	textColor,
 } : TestimonialSectionProps){
-	const width : number = Number(clientLogo.width) * 1.5;
-	const height : number = Number(clientLogo.height) * 1.5;
 	
 	const styles = {
 		section: `flex flex-col px-[1.25rem] py-[2.25rem] gap-[1rem] items-center justify-center \
 				md:flex-row md:px-[2rem] md:gap-[2rem] md:pt-[4rem] \
-				lg:px-[4.25rem] lg:pt-[6rem] \
-				xl:px-[6.25rem]`,
-		imageWrap: "w-2/3 \
-				md:w-full",
+				lg:px-[4.25rem] \
+				xl:px-[10rem] xl:gap-[4rem]`,
+		imageWrap: "w-[20rem] \
+				md:w-[150rem] \
+				lg:w-[150rem]",
 		image: {
 			className: "relative w-full",
 			style: { aspectRatio: `${clientLogo.width}/${clientLogo.height}` },
@@ -66,7 +65,10 @@ export default function TestimonialSection( {
 			</div>
 			<div className={styles.textWrap}>
 				<p className={styles.text}>{text}</p>
-				<p className={styles.author}>{author}</p>
+				{ author ? (
+					<p className={styles.author}>{author}</p>
+				) : (null)
+				}
 			</div>
 		</div>
 	)
