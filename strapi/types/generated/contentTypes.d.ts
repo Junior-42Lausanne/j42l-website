@@ -511,6 +511,8 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
         'layout.footer-cta',
         'layout.hero',
         'layout.anchor-tag',
+        'layout.testimonial-section',
+        'layout.partner-carousel-section',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -572,6 +574,7 @@ export interface ApiAutomationServiceAutomationService
         'layout.footer-cta',
         'layout.services',
         'layout.anchor-tag',
+        'layout.testimonial-section',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -840,6 +843,7 @@ export interface ApiPrototypeServicePrototypeService
         'layout.footer-cta',
         'layout.services',
         'layout.anchor-tag',
+        'layout.testimonial-section',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -993,6 +997,7 @@ export interface ApiWebServiceWebService extends Struct.SingleTypeSchema {
         'layout.hero',
         'layout.services',
         'layout.anchor-tag',
+        'layout.testimonial-section',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

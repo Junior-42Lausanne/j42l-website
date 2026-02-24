@@ -46,7 +46,8 @@
         "layout.footer-cta",
         "layout.hero",
         "layout.services",
-        "layout.anchor-tag"
+        "layout.anchor-tag",
+        "layout.testimonial-section"
       ]
     }
   }

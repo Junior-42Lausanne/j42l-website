@@ -10,6 +10,14 @@ import ServiceCardSection, { type ServiceCardSectionProps } from '../sections/Se
 import ServicesSection, { type ServicesSectionProps } from '../sections/ServicesSection';
 import LegalSection, { type LegalSectionProps } from '../sections/LegalSection';
 import { type Mode } from '../utils/type';
+import TestimonialSection, { TestimonialSectionProps } from '../sections/TestimonialSection';
+import PartnerSection, { PartnerSectionProps } from '@/sections/PartnerSection';
+
+export type AnchorTagProps = {
+    id: number,
+    __component: "layout.anchor-tag",
+    anchorId: string,
+}
 
 export type AnchorTagProps = {
     id: number,
@@ -26,6 +34,8 @@ export type Block = HeroSectionProps |
                     ServicesSectionProps |
                     ContactSectionProps |
                     LegalSectionProps |
+                    TestimonialSectionProps |
+                    PartnerSectionProps |
                     AnchorTagProps;
 
 export function blockRenderer(block: Block) {
@@ -54,6 +64,10 @@ export function blockRenderer(block: Block) {
             return <ServicesSection key={key} {...block} />;
         case "layout.legal-section":
             return <LegalSection key={key} {...block} />;
+        case "layout.testimonial-section":
+            return <TestimonialSection key={key} {...block} />;
+        case "layout.partner-carousel-section":
+            return <PartnerSection key={key} {...block} />;
         case "layout.anchor-tag":
             return <div key={key} id={block.anchorId}/>
         default:
