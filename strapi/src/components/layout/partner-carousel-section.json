@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_layout_partner_carousel_sections",
+  "info": {
+    "displayName": "partnerSection"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "component",
+      "component": "composants.section-title",
+      "repeatable": false,
+      "required": true
+    },
+    "partners": {
+      "type": "component",
+      "component": "composants.partner-tile",
+      "repeatable": true,
+      "required": true
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "required": true,
+      "default": "white",
+      "enum": [
+        "orange",
+        "black",
+        "pale_orange",
+        "white"
+      ]
+    }
+  },
+  "config": {}
+}

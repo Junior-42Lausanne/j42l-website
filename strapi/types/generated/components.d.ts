@@ -106,6 +106,17 @@ export interface ComposantsMemberCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ComposantsPartnerTile extends Struct.ComponentSchema {
+  collectionName: 'components_composants_partner_tiles';
+  info: {
+    displayName: 'partnerTile';
+  };
+  attributes: {
+    partnerLink: Schema.Attribute.String;
+    partnerLogo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
 export interface ComposantsSectionTitle extends Struct.ComponentSchema {
   collectionName: 'components_composants_section_titles';
   info: {
@@ -301,6 +312,27 @@ export interface LayoutNavBar extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutPartnerCarouselSection extends Struct.ComponentSchema {
+  collectionName: 'components_layout_partner_carousel_sections';
+  info: {
+    displayName: 'partnerSection';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['orange', 'black', 'pale_orange', 'white']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'white'>;
+    partners: Schema.Attribute.Component<'composants.partner-tile', true> &
+      Schema.Attribute.Required;
+    sectionTitle: Schema.Attribute.Component<
+      'composants.section-title',
+      false
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface LayoutServices extends Struct.ComponentSchema {
   collectionName: 'components_layout_services';
   info: {
@@ -393,6 +425,7 @@ declare module '@strapi/strapi' {
       'composants.link': ComposantsLink;
       'composants.logo': ComposantsLogo;
       'composants.member-card': ComposantsMemberCard;
+      'composants.partner-tile': ComposantsPartnerTile;
       'composants.section-title': ComposantsSectionTitle;
       'composants.services-accordion': ComposantsServicesAccordion;
       'composants.social': ComposantsSocial;
@@ -405,6 +438,7 @@ declare module '@strapi/strapi' {
       'layout.legal-section': LayoutLegalSection;
       'layout.member-section': LayoutMemberSection;
       'layout.nav-bar': LayoutNavBar;
+      'layout.partner-carousel-section': LayoutPartnerCarouselSection;
       'layout.services': LayoutServices;
       'layout.testimonial-section': LayoutTestimonialSection;
       'layout.text-section': LayoutTextSection;

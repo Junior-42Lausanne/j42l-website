@@ -28,7 +28,8 @@
         "layout.footer-cta",
         "layout.hero",
         "layout.anchor-tag",
-        "layout.testimonial-section"
+        "layout.testimonial-section",
+        "layout.partner-carousel-section"
       ]
     },
     "title": {

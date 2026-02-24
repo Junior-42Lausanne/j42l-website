@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import { getStrapiData, getStrapiMetadata } from "../utils/fetchStrapiData";
 import { blockRenderer, Block, } from "../utils/render"
+import SectionTitle from "@/components/SectionTitle";
 
 const path = "/api/accueil";
 const queryHero = qs.stringify({
@@ -31,6 +32,14 @@ const queryHero = qs.stringify({
 				},
 				"layout.testimonial-section": {
 					populate: "*",
+				},
+				"layout.partner-carousel-section": {
+					populate: {
+						sectionTitle: true,
+						partners: {
+							populate: "*",
+						},
+					},
 				},
 				"layout.card-section": {
 					populate: {

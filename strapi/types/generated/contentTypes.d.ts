@@ -512,6 +512,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
         'layout.hero',
         'layout.anchor-tag',
         'layout.testimonial-section',
+        'layout.partner-carousel-section',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
