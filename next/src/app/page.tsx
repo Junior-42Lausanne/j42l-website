@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import { getStrapiData, getStrapiMetadata } from "../utils/fetchStrapiData";
 import { blockRenderer, Block, } from "../utils/render"
-import SectionTitle from "@/components/SectionTitle";
 
 const path = "/api/accueil";
 const queryHero = qs.stringify({

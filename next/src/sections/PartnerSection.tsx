@@ -1,11 +1,14 @@
-import SectionTitle, { SectionTitleProps } from "../components/SectionTitle";
+import SectionTitle from "../components/SectionTitle";
 import Partner, { PartnerProps } from "../components/Partner";
 import { ThemeColor } from "@/utils/type";
 
 export type PartnerSectionProps = {
 	id : number,
 	__component : "layout.partner-carousel-section",
-	sectionTitle : SectionTitleProps,
+	sectionTitle : {
+		color: ThemeColor,
+		title: string,
+	},
 	partners : PartnerProps[],
 	backgroundColor : ThemeColor,
 }
