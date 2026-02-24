@@ -19,12 +19,6 @@ export type AnchorTagProps = {
     anchorId: string,
 }
 
-export type AnchorTagProps = {
-    id: number,
-    __component: "layout.anchor-tag",
-    anchorId: string,
-}
-
 export type Block = HeroSectionProps |
                     TextSectionProps |
                     FooterCTASectionProps | 
