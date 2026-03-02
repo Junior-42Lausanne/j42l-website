@@ -35,7 +35,7 @@ export default function ServiceCardSection({
 	cards,
 }: ServiceCardSectionProps) {
 	return (
-		<div className="flex flex-col gap-[2rem] px-[1.25rem] py-[6rem] \
+		<section className="flex flex-col gap-[2rem] px-[1.25rem] py-[6rem] \
 				md:px-[2.25rem] md:py-[6rem] md:gap-[2.125rem] \
 				lg:px-[4.25rem] lg:gap-[3.125rem] lg:py-[10rem]\
 				xl:px-[6.25rem]`">
@@ -49,6 +49,6 @@ export default function ServiceCardSection({
 					<ServiceCard key={card.id} service={card}/>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }

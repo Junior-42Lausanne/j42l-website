@@ -27,18 +27,18 @@ export default function MemberSection( {
 	}
 
 	return (
-		<div className={styles.section}>
-			<div className={styles.titleWrap}>
+		<section className={styles.section}>
+			<header className={styles.titleWrap}>
 				<SectionTitle color={title.color}>
 					{title.title}
 				</SectionTitle>
-			</div>
+			</header>
 			<div className={styles.cardWrap}>
 				{
 					members.map((member) => 
 						<MemberCard key={member.id} {...member}></MemberCard>)
 				}
 			</div>
-		</div>
+		</section>
 	)
 }

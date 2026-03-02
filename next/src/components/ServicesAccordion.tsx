@@ -46,7 +46,7 @@ export default function ServicesAccordion({
 	};
 
   return (
-    <div className={styles.section}>
+    <section className={styles.section}>
       <Accordion type="single" collapsible className={styles.accordionContainer}>
           <AccordionItem value={title} className={styles.accordionItem}>
             <AccordionTrigger className={styles.accordionTrigger}>
@@ -77,9 +77,9 @@ export default function ServicesAccordion({
 
             <AccordionContent className={styles.accordionContent}>
               <div className={styles.accordionContentContainer}>
-                <div className={styles.accordionContentBlock}>
+                <article className={styles.accordionContentBlock}>
                   <BlocksRenderer content={text} />
-                </div>
+                </article>
                 <div className={styles.accordionContentImage}>
                   <StrapiImage
                     alternativeText={image?.alternativeText || ''}
@@ -100,6 +100,6 @@ export default function ServicesAccordion({
             </AccordionContent>
           </AccordionItem>
       </Accordion>
-    </div>
+    </section>
   );
 }

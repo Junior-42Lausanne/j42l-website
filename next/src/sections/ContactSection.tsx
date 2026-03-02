@@ -44,13 +44,13 @@ export default async function ContactSection({
                             color: `var(--color-${textColor})`,
                         }}>
                 <div className="flex flex-col gap-[4rem] font-poppins text-h5 xl:text-h4">
-                    <div className="flex flex-col gap-[1rem]
+                    <header className="flex flex-col gap-[1rem]
                                     md:gap-[2rem]
                                     lg:w-2/3">
                         <h1 className="text-h2 leading-[1.1]
                                     md:text-h1">{title}</h1>
                         <p>{description}</p>
-                    </div>
+                    </header>
                     <div className="flex flex-col gap-[2rem] pl-[2rem]
                                     md:pl-[4rem]
                                     xl:pl-[6rem]">

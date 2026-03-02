@@ -31,7 +31,7 @@ export default function MemberCard( {
 	}
 
 	return (
-		<div className={styles.section}>
+		<section className={styles.section}>
 			<div className={styles.photoWrap}>
 				<div className={styles.photo.className} style={styles.photo.style}>
 					<StrapiImage
@@ -74,6 +74,6 @@ export default function MemberCard( {
 					}
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }

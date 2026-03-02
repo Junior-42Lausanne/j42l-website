@@ -27,7 +27,7 @@ export default function ServicesSection( {
   }
 
   return (
-    <div className={styles.section}>
+    <section className={styles.section}>
       <div className={styles.titleWrap}>
         <SectionTitle color={servicesTitle.color}>
           {servicesTitle.title}
@@ -39,6 +39,6 @@ export default function ServicesSection( {
             <ServicesAccordion key={serviceAccordion.id} {...serviceAccordion}></ServicesAccordion>)
         }
       </div>
-    </div>
+    </section>
   )
 }
