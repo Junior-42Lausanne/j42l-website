@@ -55,7 +55,7 @@ export default function HeroSection({
 	}
 	
 	return (
-		<div className={styles.section}>
+		<section className={styles.section}>
 			<StrapiImage
 					alternativeText={backgroundImage.alternativeText}
 					className={styles.background}
@@ -69,13 +69,13 @@ export default function HeroSection({
 					<div className={styles.leftTriangle}></div>
 				</div>
 				<div className={styles.contentWrap}>
-					<div className={styles.textWrap}>
+					<header className={styles.textWrap}>
 						<h1 className={styles.heading}>{heading}</h1>
 						{subheading
 							? (<div className={styles.subheading}>{subheading}</div>)
 							: null
 						}
-					</div>
+					</header>
 					{button
 						? (<ButtonLink {...button}>
 							{button.buttonText}
@@ -87,6 +87,6 @@ export default function HeroSection({
 					<div className={styles.rightTriangle}></div>
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }

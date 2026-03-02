@@ -65,7 +65,7 @@ export default async function NavBar( {blocks}: NavBarProps) {
 		}
 
 		return (
-			<div className={styles.navBar}>
+			<nav className={styles.navBar}>
 				<div className={styles.logoWrap}>
 					<div className={styles.logo}>
 						{logo.external ? (
@@ -129,7 +129,7 @@ export default async function NavBar( {blocks}: NavBarProps) {
 					</div>
 				</div>
 				<HamburgerMenu menu={menu} cta={cta} social={social}></HamburgerMenu>
-			</div>
+			</nav>
 		)
 	} catch(error) {
 		console.error(`Nav bar. ${error}`);

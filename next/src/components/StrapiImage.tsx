@@ -24,12 +24,14 @@ export default function StrapiImage({
 	const imageUrl = isRemote ? getStrapiMedia(url) : url;
 
 	return (
-		<Image
-			src={imageUrl}
-			alt={alternativeText ?? "Aucun texte alternatif fourni"}
-			fill
-			className={className}
-			unoptimized
-		/>
+    <figure aria-label={alternativeText || ""}>
+      <Image
+        src={imageUrl}
+        alt={alternativeText ?? "Aucun texte alternatif fourni"}
+        fill
+        className={className}
+        unoptimized
+      />
+    </figure>
 	)
 }

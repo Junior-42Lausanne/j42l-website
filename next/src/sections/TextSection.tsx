@@ -51,7 +51,7 @@ export default function TextSection({
 	}
 
 	return(
-		<div className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
+		<section className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
 			<div className={styles.imageWrap}>
 				<div className={styles.image.className} style={styles.image.style}>
 					<StrapiImage
@@ -63,12 +63,12 @@ export default function TextSection({
 				</div>
 			</div>
 			<div className={styles.textWrap}>
-				<div className={styles.title}>
+				<header className={styles.title}>
 					<h2>{title}</h2>
-				</div>
-				<div className={styles.text}>
+				</header>
+				<article className={styles.text}>
 					<BlocksRenderer content={text} />
-				</div>
+				</article>
 				{ button
 					? (<ButtonLink {...button}>
 						{button.buttonText}
@@ -78,6 +78,6 @@ export default function TextSection({
 					)
 				}
 			</div>	
-		</div>
+		</section>
 	)
 }
