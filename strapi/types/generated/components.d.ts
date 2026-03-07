@@ -106,6 +106,20 @@ export interface ComposantsMemberCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ComposantsPageTitleTitleTagInHeaderForSeo
+  extends Struct.ComponentSchema {
+  collectionName: 'components_composants_page_title_title_tag_in_header_for_seo_s';
+  info: {
+    displayName: 'Page title (title tag in header for SEO)';
+    icon: 'search';
+  };
+  attributes: {
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+  };
+}
+
 export interface ComposantsPartnerTile extends Struct.ComponentSchema {
   collectionName: 'components_composants_partner_tiles';
   info: {
@@ -126,6 +140,25 @@ export interface ComposantsSectionTitle extends Struct.ComponentSchema {
     color: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
       Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ComposantsSeo extends Struct.ComponentSchema {
+  collectionName: 'components_composants_seos';
+  info: {
+    displayName: 'SEO';
+    icon: 'search';
+  };
+  attributes: {
+    metaDescription: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 120;
+      }>;
+    metaTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
   };
 }
 
@@ -425,8 +458,10 @@ declare module '@strapi/strapi' {
       'composants.link': ComposantsLink;
       'composants.logo': ComposantsLogo;
       'composants.member-card': ComposantsMemberCard;
+      'composants.page-title-title-tag-in-header-for-seo': ComposantsPageTitleTitleTagInHeaderForSeo;
       'composants.partner-tile': ComposantsPartnerTile;
       'composants.section-title': ComposantsSectionTitle;
+      'composants.seo': ComposantsSeo;
       'composants.services-accordion': ComposantsServicesAccordion;
       'composants.social': ComposantsSocial;
       'layout.anchor-tag': LayoutAnchorTag;

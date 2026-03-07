@@ -134,11 +134,17 @@ export async function getStrapiContactDetailsData() {
 */
 export async function getStrapiMetadata(path: string, fallbackTitle: string, fallbackDescription: string) {
 	const url = new URL(path, baseUrl);
-	url.search = qs.stringify({
-		fields: ["title", "description"],
-	})
+  url.search = qs.stringify({
+		populate: {
+			SEO: {
+				fields: ["metaTitle", "metaDescription"],
+			},
+		},
+	});
+
 	try {
 		const response = await fetch(url.href, { cache: 'no-store' });
+
 		if (!response.ok) {
 			console.error(`HTTP error! status: ${response.status}`);
 			console.error(`Fail to get metadata, using default.`);
@@ -147,13 +153,16 @@ export async function getStrapiMetadata(path: string, fallbackTitle: string, fal
 				description: fallbackDescription,
 			};
 		}
+
 		const data = await response.json();
+
 		return {
-			title: data?.data?.title || fallbackTitle,
-			description: data?.data?.description || fallbackDescription,
+			title: data?.data?.SEO.metaTitle || fallbackTitle,
+			description: data?.data?.SEO.metaDescription || fallbackDescription,
 		};
 	} catch (error) {
 		console.error(`Meta data, using default. ${error}`);
+    
 		return {
 				title: fallbackTitle,
 				description: fallbackDescription,

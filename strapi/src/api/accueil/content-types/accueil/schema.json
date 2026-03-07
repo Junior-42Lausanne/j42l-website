@@ -51,6 +51,17 @@
       },
       "required": true,
       "unique": true
+    },
+    "SEO": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "composants.seo",
+      "repeatable": false,
+      "required": true
     }
   }
 }

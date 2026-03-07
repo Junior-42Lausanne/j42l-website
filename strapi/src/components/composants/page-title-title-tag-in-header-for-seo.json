@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_composants_page_title_title_tag_in_header_for_seo_s",
+  "info": {
+    "displayName": "Page title (title tag in header for SEO)",
+    "icon": "search"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  },
+  "config": {}
+}

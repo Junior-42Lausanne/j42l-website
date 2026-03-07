@@ -537,6 +537,13 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
       'api::accueil.accueil'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    SEO: Schema.Attribute.Component<'composants.seo', false> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
