@@ -32,26 +32,6 @@
         "layout.partner-carousel-section"
       ]
     },
-    "title": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "unique": true
-    },
-    "description": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "unique": true
-    },
     "SEO": {
       "type": "component",
       "pluginOptions": {

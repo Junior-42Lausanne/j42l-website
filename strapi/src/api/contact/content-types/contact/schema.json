@@ -11,22 +11,18 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "description": {
-      "type": "text",
-      "required": true,
-      "unique": true
-    },
     "blocks": {
       "type": "dynamiczone",
       "components": [
         "layout.contact-section",
         "layout.anchor-tag"
       ],
+      "required": true
+    },
+    "SEO": {
+      "type": "component",
+      "component": "composants.seo",
+      "repeatable": false,
       "required": true
     }
   }

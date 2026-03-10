@@ -29,25 +29,16 @@
         "layout.anchor-tag"
       ]
     },
-    "title": {
-      "type": "string",
+    "SEO": {
+      "type": "component",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "required": true,
-      "unique": true
-    },
-    "description": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "unique": true
+      "component": "composants.seo",
+      "repeatable": false,
+      "required": true
     }
   }
 }

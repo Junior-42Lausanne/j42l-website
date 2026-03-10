@@ -15,26 +15,6 @@
     }
   },
   "attributes": {
-    "title": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "unique": true
-    },
-    "description": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "unique": true
-    },
     "blocks": {
       "type": "dynamiczone",
       "pluginOptions": {
@@ -49,6 +29,17 @@
         "layout.anchor-tag",
         "layout.testimonial-section"
       ]
+    },
+    "SEO": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "composants.seo",
+      "repeatable": false,
+      "required": true
     }
   }
 }

@@ -11,13 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "description": {
-      "type": "text"
-    },
     "blocks": {
       "type": "dynamiczone",
       "components": [
@@ -26,6 +19,12 @@
         "layout.footer-cta"
       ],
       "required": false
+    },
+    "SEO": {
+      "type": "component",
+      "component": "composants.seo",
+      "repeatable": false,
+      "required": true
     }
   }
 }
