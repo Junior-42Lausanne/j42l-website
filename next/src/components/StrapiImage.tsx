@@ -27,7 +27,7 @@ export default function StrapiImage({
     <figure aria-label={alternativeText || ""}>
       <Image
         src={imageUrl}
-        alt={alternativeText ?? "Aucun texte alternatif fourni"}
+        alt={alternativeText ?? ""}
         fill
         className={className}
         unoptimized
