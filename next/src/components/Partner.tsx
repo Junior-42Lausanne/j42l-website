@@ -13,7 +13,9 @@ export default function Partner({
 	return (
 		<div className="relative grayscale w-[10rem] \
 						md:w-[7rem] \
-						lg:w-[10rem]" style={{ aspectRatio: `${partnerLogo.width}/${partnerLogo.height}` }}>
+						lg:w-[10rem] \
+						hover:grayscale-0 transition duration-200 transform hover:scale-120 ease-out"
+				style={{ aspectRatio: `${partnerLogo.width}/${partnerLogo.height}` }}>
 			{
 				partnerLink ? (
 					<a href={partnerLink} target="_blank">
