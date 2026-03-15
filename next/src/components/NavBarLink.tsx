@@ -33,9 +33,11 @@ export default function NavBarLink({
 		normal: `inline-flex font-poppins text-navButton font-normal
 					text-center text-white py-[0.1rem] px-[0.1rem]
 					lg:py-[0.25rem] lg:px-[0.25rem] 
-					xl:py-[0.3125rem] xl:px-[0.625rem]`,
+					xl:py-[0.3125rem] xl:px-[0.625rem]
+					transition-[text-shadow] duration-200 whitespace-nowrap
+               		hover:[text-shadow:0.5px_0_0_theme(colors.white),-0.5px_0_0_theme(colors.white)]`,
 		currentPage: "border-b-[0.2rem] border-white",
-		hover: "hover:underline hover:font-bold",
+		hover: "hover:underline",
 		}
 
 		if (external) {
