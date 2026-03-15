@@ -34,10 +34,9 @@ export default function NavBarLink({
 					text-center text-white py-[0.1rem] px-[0.1rem]
 					lg:py-[0.25rem] lg:px-[0.25rem] 
 					xl:py-[0.3125rem] xl:px-[0.625rem]
-					transition-[text-shadow] duration-200 whitespace-nowrap
-               		hover:[text-shadow:0.5px_0_0_theme(colors.white),-0.5px_0_0_theme(colors.white)]`,
+					transition-[text-shadow] duration-200 whitespace-nowrap`,
 		currentPage: "border-b-[0.2rem] border-white",
-		hover: "hover:underline",
+		hover: "hover:underline,[text-shadow:0.5px_0_0_theme(colors.white),-0.5px_0_0_theme(colors.white)]",
 		}
 
 		if (external) {
