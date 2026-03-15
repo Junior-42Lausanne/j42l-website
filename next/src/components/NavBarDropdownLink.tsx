@@ -24,7 +24,8 @@ export default function NavBarDropdownLink({
 			text: `inline-flex font-poppins text-navButton 
 						text-center w-[12.5rem] pt-[0.625rem] pb-[0.625rem] pl-[0.625rem]`,
 			currentPage: "bg-orange text-white font-bold",
-			default: "bg-black text-white font-normal hover:bg-orange hover:text-white hover:font-bold",
+			default: "bg-black text-white font-bold hover:bg-orange hover:text-black \
+						opacity-80 hover:opacity-100",
 		}
 
 		if (external) {

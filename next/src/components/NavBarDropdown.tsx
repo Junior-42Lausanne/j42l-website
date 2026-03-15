@@ -29,10 +29,10 @@ export default function NavBarDropdown( {
 	if (mode === 'desktop') {
 		const styles = {
 			linkWrap: "relative group",
-			label: "inline-flex font-poppins text-navButton text-navButton--font-weight \
+			label: "inline-flex font-poppins text-navButton font-bold \
 					text-center text-white pt-[0.315rem] pb-[0.315rem] pl-[0.625rem] pr-[0.625rem] \
 					cursor-pointer",
-			hover: "hover:font-bold hover:underline",
+			hover: "opacity-80 hover:opacity-100 hover:underline",
 			active: "border-b-[0.2rem] border-white",
 			submenuWrap: `absolute left-0 top-full pt-[0.625rem] hidden
 						group-hover:block`,
