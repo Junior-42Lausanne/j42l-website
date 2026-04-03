@@ -36,7 +36,7 @@ export default function NavBarDropdown( {
 			linkWrap: "relative group",
 			label: "inline-flex font-poppins text-navButton font-bold \
 					text-center text-white pt-[0.315rem] pb-[0.315rem] pl-[0.625rem] pr-[0.625rem] \
-					cursor-pointer",
+					cursor-default",
 			hover: "opacity-80 hover:opacity-100 hover:underline",
 			active: "border-b-[0.2rem] border-white",
 			submenuWrap: `absolute left-0 top-full pt-[0.625rem] hidden

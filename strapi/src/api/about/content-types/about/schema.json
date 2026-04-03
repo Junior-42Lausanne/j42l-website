@@ -15,21 +15,6 @@
     }
   },
   "attributes": {
-    "blocks": {
-      "type": "dynamiczone",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "components": [
-        "layout.footer-cta",
-        "layout.text-section-with-title",
-        "layout.member-section",
-        "layout.hero",
-        "layout.anchor-tag"
-      ]
-    },
     "metaTitle": {
       "type": "string",
       "pluginOptions": {
