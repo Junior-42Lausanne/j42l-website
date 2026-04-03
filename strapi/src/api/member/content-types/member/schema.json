@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "automation_services",
+  "collectionName": "members",
   "info": {
-    "singularName": "automation-service",
-    "pluralName": "automation-services",
-    "displayName": "Page - Automation Service"
+    "singularName": "member",
+    "pluralName": "members",
+    "displayName": "Page - Members"
   },
   "options": {
     "draftAndPublish": true
@@ -37,18 +37,14 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "components": [
         "layout.hero",
         "layout.footer-cta",
-        "layout.services",
+        "layout.member-section",
         "layout.anchor-tag",
-        "layout.testimonial-section"
-      ]
+        "layout.text-section-with-title"
+      ],
+      "required": true
     }
   }
 }

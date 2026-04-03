@@ -4,15 +4,24 @@
   "info": {
     "singularName": "contact-information",
     "pluralName": "contact-informations",
-    "displayName": "Contact Information"
+    "displayName": "Data - Contact Information"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "contactDetails": {
       "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "composants.contact-details",
       "repeatable": false
     }

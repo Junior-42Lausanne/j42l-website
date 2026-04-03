@@ -4,7 +4,7 @@
   "info": {
     "singularName": "about",
     "pluralName": "abouts",
-    "displayName": "About"
+    "displayName": "Page - About"
   },
   "options": {
     "draftAndPublish": true
@@ -30,7 +30,7 @@
         "layout.anchor-tag"
       ]
     },
-    "title": {
+    "metaTitle": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -40,7 +40,7 @@
       "required": true,
       "unique": true
     },
-    "description": {
+    "metaDescription": {
       "type": "text",
       "pluginOptions": {
         "i18n": {

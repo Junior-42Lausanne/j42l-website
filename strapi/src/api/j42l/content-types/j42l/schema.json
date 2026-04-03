@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "automation_services",
+  "collectionName": "j42ls",
   "info": {
-    "singularName": "automation-service",
-    "pluralName": "automation-services",
-    "displayName": "Page - Automation Service"
+    "singularName": "j42l",
+    "pluralName": "j42ls",
+    "displayName": "Page - J42L"
   },
   "options": {
     "draftAndPublish": true
@@ -44,11 +44,12 @@
       },
       "components": [
         "layout.hero",
-        "layout.footer-cta",
-        "layout.services",
-        "layout.anchor-tag",
-        "layout.testimonial-section"
-      ]
+        "layout.text-section-with-title",
+        "layout.testimonial-section",
+        "layout.member-section",
+        "layout.footer-cta"
+      ],
+      "required": true
     }
   }
 }
