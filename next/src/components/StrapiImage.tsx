@@ -6,6 +6,7 @@ export type StrapiImageProps = {
 	id?: number,
 	url: string,
 	alternativeText: string | null,
+	wrapperClassName?: string,
 } & Omit<ComponentProps<typeof Image>, "src" | "alt">;
 
 /*
@@ -19,12 +20,13 @@ export default function StrapiImage({
 	url,
 	alternativeText,
 	className,
+	wrapperClassName,
 }: Readonly<StrapiImageProps>) {
 	const isRemote = typeof url === "string" && url.startsWith("/uploads");
 	const imageUrl = isRemote ? getStrapiMedia(url) : url;
 
 	return (
-    <figure aria-label={alternativeText || ""}>
+    <figure className={`relative w-full h-full ${wrapperClassName ?? ""}`} aria-label={alternativeText || ""}>
       <Image
         src={imageUrl}
         alt={alternativeText ?? ""}

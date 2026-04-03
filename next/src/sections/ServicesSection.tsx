@@ -18,12 +18,12 @@ export default function ServicesSection( {
 } : ServicesSectionProps) {
 
   const styles = {
-    section: "flex flex-col gap-[3.75rem] py-[9.375rem] px-[1.25rem] items-center \
+    section: "flex flex-col gap-[3.75rem] py-[9.375rem] px-[1.25rem] items-center w-full \
 					md:px-[2.25rem] \
 					lg:px-[4.25rem] \
 					xl:px-[6.25rem]",
     titleWrap: "w-full",
-    accordions: "flex flex-row flex-wrap justify-center gap-[1.25rem]",
+    accordions: "flex flex-row flex-wrap justify-center gap-[1.25rem] w-full",
   }
 
   return (

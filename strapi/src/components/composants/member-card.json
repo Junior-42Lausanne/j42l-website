@@ -25,6 +25,9 @@
       "type": "component",
       "component": "composants.social",
       "repeatable": true
+    },
+    "biography": {
+      "type": "text"
     }
   },
   "config": {}

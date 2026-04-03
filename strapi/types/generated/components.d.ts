@@ -99,6 +99,7 @@ export interface ComposantsMemberCard extends Struct.ComponentSchema {
     displayName: 'Member card';
   };
   attributes: {
+    biography: Schema.Attribute.Text;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     photo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     role: Schema.Attribute.String & Schema.Attribute.Required;
