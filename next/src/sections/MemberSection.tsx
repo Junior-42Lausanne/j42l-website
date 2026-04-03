@@ -19,11 +19,10 @@ export default function MemberSection( {
 
 	const styles = {
 		section: "flex flex-col gap-[3.75rem] py-[9.375rem] px-[1.25rem] items-center \
-					md:px-[2.25rem] \
 					lg:px-[4.25rem] \
 					xl:px-[6.25rem]",
 		titleWrap: "w-full",
-		cardWrap: "flex flex-row flex-wrap justify-center gap-[1.25rem]",
+		cardWrap: "flex flex-row flex-wrap justify-center gap-[0.7rem]",
 	}
 
 	return (
