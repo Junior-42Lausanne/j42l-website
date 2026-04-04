@@ -763,8 +763,8 @@ export interface ApiJ42LJ42L extends Struct.SingleTypeSchema {
         'layout.hero',
         'layout.text-section-with-title',
         'layout.testimonial-section',
-        'layout.member-section',
         'layout.footer-cta',
+        'layout.anchor-tag',
       ]
     > &
       Schema.Attribute.Required &

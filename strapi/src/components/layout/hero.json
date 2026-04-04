@@ -1,7 +1,7 @@
 {
   "collectionName": "components_layout_heroes",
   "info": {
-    "displayName": "hero"
+    "displayName": "heroSection"
   },
   "options": {},
   "attributes": {
@@ -28,6 +28,7 @@
     "triangleColor": {
       "type": "enumeration",
       "required": true,
+      "default": "white",
       "enum": [
         "orange",
         "white"
