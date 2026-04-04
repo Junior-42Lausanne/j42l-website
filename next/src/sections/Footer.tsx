@@ -207,7 +207,7 @@ export default async function Footer({blocks}: FooterProps) {
 						</div>
 						<div className="flex flex-row">
 							<div className="">Developpeurs:&nbsp;</div>
-							<div>Nguyen NGUYEN (hoannguy)<br />Zelalem ALEMU (zalemu)<br />Dianka MATAYI (dimatayi)<br />Piotr KONDRAC (pkondrac)</div>
+							<div>Nguyen NGUYEN (hoannguy)<br />Zelalem ALEMU (zalemu)<br />Dianka MATAYI (dimatayi)</div>
 						</div>
 					</div>
 				</div>

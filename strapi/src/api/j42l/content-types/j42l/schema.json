@@ -46,8 +46,8 @@
         "layout.hero",
         "layout.text-section-with-title",
         "layout.testimonial-section",
-        "layout.member-section",
-        "layout.footer-cta"
+        "layout.footer-cta",
+        "layout.anchor-tag"
       ],
       "required": true
     }
