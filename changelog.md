@@ -1,4 +1,4 @@
-# Changes log
+# Change log
 
 ## v.0.4.0 ( Not live )
 Date: 04 April 2026

@@ -36,7 +36,7 @@ export default function ServicesAccordion({
     triggerBgWrapper: "absolute inset-0 z-0",
     triggerBgImg: "absolute inset-0 w-full h-full object-cover pointer-events-none",
     triggerContainer: "relative flex h-full w-full items-start",
-    triggerHeader: "text-white font-bold text-h2 xl:text-h2 leading-tight text-left pr-4",
+    triggerHeader: "text-white font-bold text-h4 xl:text-h2 leading-tight text-left pr-4",
     triggerChevron: "pointer-events-none absolute",
     triggerChevronSvg: "text-white w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 transition-transform duration-300 [transform-box:fill-box] [transform-origin:25%] group-data-[state=open]:rotate-90",
     triggerChevronPath: "",
