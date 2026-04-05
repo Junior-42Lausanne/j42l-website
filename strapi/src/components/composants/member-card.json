@@ -1,7 +1,7 @@
 {
   "collectionName": "components_composants_member_cards",
   "info": {
-    "displayName": "Member card"
+    "displayName": "MemberCard"
   },
   "options": {},
   "attributes": {
@@ -25,6 +25,9 @@
       "type": "component",
       "component": "composants.social",
       "repeatable": true
+    },
+    "biography": {
+      "type": "text"
     }
   },
   "config": {}

@@ -56,12 +56,12 @@ export default function TextSectionWithTitle({
 	}
 
 	return(
-		<div className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
-			<div>
+		<section className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
+			<header>
 				<SectionTitle color={title.color}>
 					{title.title}
 				</SectionTitle>
-			</div>
+			</header>
 			{ imagePosition === "left" && (
 				<div className={styles.contentWrapReverse}>
 					<div className={styles.imageWrap}>
@@ -75,9 +75,9 @@ export default function TextSectionWithTitle({
 						</div>
 					</div>
 					<div className={styles.textWrap}>
-						<div className={styles.text}>
+						<article className={styles.text}>
 							<BlocksRenderer content={text} />
-						</div>
+						</article>
 						{ button
 							? (<ButtonLink {...button}>
 								{button.buttonText}
@@ -92,9 +92,9 @@ export default function TextSectionWithTitle({
 			{ imagePosition === "right" && (
 				<div className={styles.contentWrap}>
 					<div className={styles.textWrap}>
-						<div className={styles.text}>
+						<article className={styles.text}>
 							<BlocksRenderer content={text} />
-						</div>
+						</article>
 						{ button
 							? (<ButtonLink {...button}>
 								{button.buttonText}
@@ -116,6 +116,6 @@ export default function TextSectionWithTitle({
 					</div>
 				</div>	
 			) }
-		</div>
+		</section>
 	)
 }

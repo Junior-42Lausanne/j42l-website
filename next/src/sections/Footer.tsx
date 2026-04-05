@@ -82,7 +82,7 @@ export default async function Footer({blocks}: FooterProps) {
 				</ul>
 		)
 		const legalNavigationDiv = (
-				<ul className="flex flex-row gap-[0.5rem]
+				<ul className="flex flex-row flex-wrap gap-[0.5rem]
 							lg:gap-[1rem]">
 					{legalNavigation?.map((item) => (
 						<li key={item.id}>
@@ -206,7 +206,7 @@ export default async function Footer({blocks}: FooterProps) {
 							<a href="https://nguyennguyen.ch" target="_blank" rel="noopener noreferrer" className="hover:underline"> NguyenNGUYEN.ch</a>
 						</div>
 						<div className="flex flex-row">
-							<div className="">Develop:&nbsp;</div>
+							<div className="">Developpeurs:&nbsp;</div>
 							<div>Nguyen NGUYEN (hoannguy)<br />Zelalem ALEMU (zalemu)<br />Dianka MATAYI (dimatayi)</div>
 						</div>
 					</div>

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "student",
     "pluralName": "students",
-    "displayName": "Student"
+    "displayName": "Page - Student"
   },
   "options": {
     "draftAndPublish": true
@@ -29,7 +29,7 @@
         "layout.anchor-tag"
       ]
     },
-    "title": {
+    "metaTitle": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -39,7 +39,7 @@
       "required": true,
       "unique": true
     },
-    "description": {
+    "metaDescription": {
       "type": "text",
       "pluginOptions": {
         "i18n": {

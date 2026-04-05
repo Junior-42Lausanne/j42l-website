@@ -40,6 +40,7 @@
     "textColor": {
       "type": "enumeration",
       "required": true,
+      "default": "black",
       "enum": [
         "orange",
         "white",
@@ -49,6 +50,7 @@
     "backgroundColor": {
       "type": "enumeration",
       "required": true,
+      "default": "white",
       "enum": [
         "orange",
         "white",

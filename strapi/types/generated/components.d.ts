@@ -3,7 +3,7 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface ComposantsCard extends Struct.ComponentSchema {
   collectionName: 'components_composants_cards';
   info: {
-    displayName: 'Card';
+    displayName: 'Service Card';
   };
   attributes: {
     backgroundImage: Schema.Attribute.Media<'images'> &
@@ -18,7 +18,7 @@ export interface ComposantsCard extends Struct.ComponentSchema {
 export interface ComposantsContactDetails extends Struct.ComponentSchema {
   collectionName: 'components_composants_contact_details';
   info: {
-    displayName: 'Contact details';
+    displayName: 'ContactDetails';
   };
   attributes: {
     city: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Lausanne'>;
@@ -35,7 +35,7 @@ export interface ComposantsContactDetails extends Struct.ComponentSchema {
 export interface ComposantsDropdownLink extends Struct.ComponentSchema {
   collectionName: 'components_composants_dropdown_links';
   info: {
-    displayName: 'Dropdown link';
+    displayName: 'DropdownLink';
   };
   attributes: {
     label: Schema.Attribute.String & Schema.Attribute.Required;
@@ -52,7 +52,8 @@ export interface ComposantsLien extends Struct.ComponentSchema {
   attributes: {
     buttonText: Schema.Attribute.String & Schema.Attribute.Required;
     color: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'orange'>;
     external: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -96,9 +97,10 @@ export interface ComposantsLogo extends Struct.ComponentSchema {
 export interface ComposantsMemberCard extends Struct.ComponentSchema {
   collectionName: 'components_composants_member_cards';
   info: {
-    displayName: 'Member card';
+    displayName: 'MemberCard';
   };
   attributes: {
+    biography: Schema.Attribute.Text;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     photo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     role: Schema.Attribute.String & Schema.Attribute.Required;
@@ -109,7 +111,7 @@ export interface ComposantsMemberCard extends Struct.ComponentSchema {
 export interface ComposantsPartnerTile extends Struct.ComponentSchema {
   collectionName: 'components_composants_partner_tiles';
   info: {
-    displayName: 'partnerTile';
+    displayName: 'PartnerTile';
   };
   attributes: {
     partnerLink: Schema.Attribute.String;
@@ -124,7 +126,8 @@ export interface ComposantsSectionTitle extends Struct.ComponentSchema {
   };
   attributes: {
     color: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -176,7 +179,7 @@ export interface LayoutAnchorTag extends Struct.ComponentSchema {
 export interface LayoutCardSection extends Struct.ComponentSchema {
   collectionName: 'components_layout_card_sections';
   info: {
-    displayName: 'Card section';
+    displayName: 'serviceCardSection';
   };
   attributes: {
     cards: Schema.Attribute.Component<'composants.card', true> &
@@ -249,7 +252,7 @@ export interface LayoutFooterCta extends Struct.ComponentSchema {
 export interface LayoutHero extends Struct.ComponentSchema {
   collectionName: 'components_layout_heroes';
   info: {
-    displayName: 'hero';
+    displayName: 'heroSection';
   };
   attributes: {
     backgroundImage: Schema.Attribute.Media<'images'> &
@@ -258,7 +261,8 @@ export interface LayoutHero extends Struct.ComponentSchema {
     heading: Schema.Attribute.String & Schema.Attribute.Required;
     subheading: Schema.Attribute.Text;
     triangleColor: Schema.Attribute.Enumeration<['orange', 'white']> &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'white'>;
   };
 }
 
@@ -402,14 +406,16 @@ export interface LayoutTextSectionWithTitle extends Struct.ComponentSchema {
     backgroundColor: Schema.Attribute.Enumeration<
       ['orange', 'white', 'black', 'pale_orange']
     > &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'white'>;
     button: Schema.Attribute.Component<'composants.lien', false>;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     imagePosition: Schema.Attribute.Enumeration<['left', 'right']> &
       Schema.Attribute.Required;
     text: Schema.Attribute.Blocks & Schema.Attribute.Required;
     textColor: Schema.Attribute.Enumeration<['orange', 'white', 'black']> &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'black'>;
     title: Schema.Attribute.Component<'composants.section-title', false> &
       Schema.Attribute.Required;
   };

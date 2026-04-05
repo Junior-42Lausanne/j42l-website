@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "abouts",
+  "collectionName": "members",
   "info": {
-    "singularName": "about",
-    "pluralName": "abouts",
-    "displayName": "About"
+    "singularName": "member",
+    "pluralName": "members",
+    "displayName": "Page - Members"
   },
   "options": {
     "draftAndPublish": true
@@ -15,22 +15,7 @@
     }
   },
   "attributes": {
-    "blocks": {
-      "type": "dynamiczone",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "components": [
-        "layout.footer-cta",
-        "layout.text-section-with-title",
-        "layout.member-section",
-        "layout.hero",
-        "layout.anchor-tag"
-      ]
-    },
-    "title": {
+    "metaTitle": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -40,7 +25,7 @@
       "required": true,
       "unique": true
     },
-    "description": {
+    "metaDescription": {
       "type": "text",
       "pluginOptions": {
         "i18n": {
@@ -49,6 +34,17 @@
       },
       "required": true,
       "unique": true
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.hero",
+        "layout.footer-cta",
+        "layout.member-section",
+        "layout.anchor-tag",
+        "layout.text-section-with-title"
+      ],
+      "required": true
     }
   }
 }

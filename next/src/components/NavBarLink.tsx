@@ -30,12 +30,12 @@ export default function NavBarLink({
 
 	if (mode === 'desktop') {
 		const styles = {
-		normal: `inline-flex font-poppins text-navButton font-normal
-					text-center text-white py-[0.1rem] px-[0.1rem]
-					lg:py-[0.25rem] lg:px-[0.25rem] 
-					xl:py-[0.3125rem] xl:px-[0.625rem]`,
+		normal: `inline-flex font-poppins text-navButton font-bold
+				text-center text-white py-[0.1rem] px-[0.1rem]
+				lg:py-[0.25rem] lg:px-[0.25rem] 
+				xl:py-[0.3125rem] xl:px-[0.625rem]`,
 		currentPage: "border-b-[0.2rem] border-white",
-		hover: "hover:underline hover:font-bold",
+		hover: "opacity-80 hover:opacity-100 hover:underline",
 		}
 
 		if (external) {

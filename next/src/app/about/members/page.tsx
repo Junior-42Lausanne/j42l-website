@@ -3,11 +3,11 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import type { Metadata } from "next";
 import { notFound } from 'next/navigation';
-import { getStrapiData, getStrapiMetadata } from "../../utils/fetchStrapiData";
-import { blockRenderer, Block, } from "../../utils/render"
+import { getStrapiData, getStrapiMetadata } from "@/utils/fetchStrapiData";
+import { blockRenderer, Block, } from "@/utils/render"
 
-const path = "/api/about";
-const queryAbout = qs.stringify({
+const path = "/api/member";
+const queryMembers = qs.stringify({
 	populate: {
 		blocks: {
 			on: {
@@ -46,7 +46,7 @@ const queryAbout = qs.stringify({
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getStrapiMetadata(
 	path,
-	"About - J42L",
+	"About Members - J42L",
 	"Junior 42 Lausanne",
   );
 
@@ -56,9 +56,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function About() {
+export default async function AboutMembers() {
 	try {
-		const strapiData = await getStrapiData(path, queryAbout);
+		const strapiData = await getStrapiData(path, queryMembers);
 		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}
@@ -74,7 +74,7 @@ export default async function About() {
 			</div>
 		)
 	} catch(error) {
-		console.error(`Page About. ${error}`);
+		console.error(`Page About/Members. ${error}`);
 		throw error;
 	}
 }

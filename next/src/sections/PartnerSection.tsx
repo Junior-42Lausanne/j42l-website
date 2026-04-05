@@ -27,7 +27,7 @@ export default function PartnerSection({
 	}
 	
 	return (
-		<div className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
+		<section className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
 			<SectionTitle color={sectionTitle.color}>{sectionTitle.title}</SectionTitle>
 			<div className={styles.logosWrapper}>
 				{
@@ -36,6 +36,6 @@ export default function PartnerSection({
 					))
 				}
 			</div>
-		</div>
+		</section>
 	)
 }
