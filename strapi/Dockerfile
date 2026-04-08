@@ -7,13 +7,15 @@ RUN apk add --no-cache \
 ENV NODE_ENV=production
 
 WORKDIR /opt/
-COPY package.json yarn.lock ./
-RUN yarn global add node-gyp
-RUN yarn config set network-timeout 600000 -g && yarn install --production
+COPY package.json package-lock.json ./
+RUN npm config set fetch-retries 5 && \
+    npm config set fetch-retry-mintimeout 60000 && \
+    npm config set fetch-retry-maxtimeout 600000 && \
+    npm ci --only=production
 ENV PATH=/opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
-RUN yarn build
+RUN npm run build
 
 # Runer
 FROM node:22-alpine
@@ -30,4 +32,4 @@ ENV PATH=/opt/node_modules/.bin:$PATH
 RUN chown -R node:node /opt/app
 USER node
 EXPOSE 1337
-CMD ["yarn", "start"]
+CMD ["npm", "run", "start"]

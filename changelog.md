@@ -11,4 +11,5 @@ Date: 04 April 2026
 - **Refactor**:
     - Semantic HTML
     - Enhance visual of some elements with Framer Motion 
+    - Remove Yarn in Strapi build to avoid confusion of 2 systems
 
