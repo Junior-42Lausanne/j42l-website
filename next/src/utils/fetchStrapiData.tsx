@@ -149,8 +149,8 @@ export async function getStrapiMetadata(path: string, fallbackTitle: string, fal
 		}
 		const data = await response.json();
 		return {
-			title: data?.data?.title || fallbackTitle,
-			description: data?.data?.description || fallbackDescription,
+			title: data?.data?.metaTitle || fallbackTitle,
+			description: data?.data?.metaDescription || fallbackDescription,
 		};
 	} catch (error) {
 		console.error(`Meta data, using default. ${error}`);
