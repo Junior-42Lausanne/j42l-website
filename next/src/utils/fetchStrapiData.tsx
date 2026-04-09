@@ -135,7 +135,7 @@ export async function getStrapiContactDetailsData() {
 export async function getStrapiMetadata(path: string, fallbackTitle: string, fallbackDescription: string) {
 	const url = new URL(path, baseUrl);
 	url.search = qs.stringify({
-		fields: ["metaTitle", "metaDescription"],
+		fields: ["title", "description"],
 	})
 	try {
 		const response = await fetch(url.href, { cache: 'no-store' });

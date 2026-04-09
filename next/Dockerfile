@@ -12,9 +12,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY package.json package-lock.json ./
 COPY . .
 
-ARG NEXT_PUBLIC_STRAPI_URL
-ENV NEXT_PUBLIC_STRAPI_URL=$NEXT_PUBLIC_STRAPI_URL
-
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV SKIP_PREFETCH=true
 

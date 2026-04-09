@@ -4,7 +4,7 @@
   "info": {
     "singularName": "global",
     "pluralName": "globals",
-    "displayName": "Data - Global"
+    "displayName": "Global"
   },
   "options": {
     "draftAndPublish": true

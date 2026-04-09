@@ -2,11 +2,7 @@
 * get the correct Strapi domain based on dev or prod
 */
 export function getStrapiURL(): string {
-	const base = process.env.NEXT_PUBLIC_STRAPI_URL;
-	if (!base) {
-		throw new Error("Missing NEXT_PUBLIC_STRAPI_URL");
-	}
-	return base;
+	return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
 }
 
 /*

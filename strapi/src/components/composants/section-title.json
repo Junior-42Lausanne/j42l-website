@@ -12,7 +12,6 @@
     "color": {
       "type": "enumeration",
       "required": true,
-      "default": "black",
       "enum": [
         "orange",
         "white",

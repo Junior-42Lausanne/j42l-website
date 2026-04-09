@@ -4,44 +4,22 @@
   "info": {
     "singularName": "impressum",
     "pluralName": "impressums",
-    "displayName": "Page - Impressum"
+    "displayName": "Impressum"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
-    "metaTitle": {
+    "title": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "unique": true
+      "required": true
     },
-    "metaDescription": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "unique": true
+    "description": {
+      "type": "text"
     },
     "blocks": {
       "type": "dynamiczone",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "components": [
         "layout.legal-section",
         "layout.anchor-tag",

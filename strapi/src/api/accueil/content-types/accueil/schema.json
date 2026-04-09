@@ -4,7 +4,7 @@
   "info": {
     "singularName": "accueil",
     "pluralName": "accueils",
-    "displayName": "Page - Home"
+    "displayName": "Home"
   },
   "options": {
     "draftAndPublish": true
@@ -32,7 +32,7 @@
         "layout.partner-carousel-section"
       ]
     },
-    "metaTitle": {
+    "title": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -42,7 +42,7 @@
       "required": true,
       "unique": true
     },
-    "metaDescription": {
+    "description": {
       "type": "text",
       "pluginOptions": {
         "i18n": {

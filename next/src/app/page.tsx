@@ -3,8 +3,8 @@ export const dynamic = "force-dynamic";
 import qs from "qs";
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
-import { getStrapiData, getStrapiMetadata } from "@/utils/fetchStrapiData";
-import { blockRenderer, Block, } from "@/utils/render"
+import { getStrapiData, getStrapiMetadata } from "../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../utils/render"
 
 const path = "/api/accueil";
 const queryHero = qs.stringify({

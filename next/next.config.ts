@@ -42,15 +42,6 @@ const nextConfig: NextConfig = {
       }
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: '/about',
-        destination: '/about/j42l',
-        permanent: true,
-      }
-    ];
-  }
 };
 
 export default nextConfig;

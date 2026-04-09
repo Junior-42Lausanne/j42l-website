@@ -4,7 +4,7 @@
   "info": {
     "singularName": "prototype-service",
     "pluralName": "prototype-services",
-    "displayName": "Page - Prototype Service"
+    "displayName": "Prototype Service"
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +15,7 @@
     }
   },
   "attributes": {
-    "metaTitle": {
+    "title": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -25,7 +25,7 @@
       "required": true,
       "unique": true
     },
-    "metaDescription": {
+    "description": {
       "type": "text",
       "pluginOptions": {
         "i18n": {

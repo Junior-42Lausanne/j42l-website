@@ -41,7 +41,7 @@ export default function TestimonialSection( {
 	}
 
 	return (
-		<section className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
+		<div className={styles.section} style={{backgroundColor: `var(--color-${backgroundColor})`}}>
 			<div className={styles.imageWrap}>
 				<div className={styles.image.className} style={styles.image.style}>
 					{clientLink ? (
@@ -63,13 +63,13 @@ export default function TestimonialSection( {
 					)}
 				</div>
 			</div>
-			<article className={styles.textWrap}>
+			<div className={styles.textWrap}>
 				<p className={styles.text}>{text}</p>
 				{ author ? (
 					<p className={styles.author}>{author}</p>
 				) : (null)
 				}
-			</article>
-		</section>
+			</div>
+		</div>
 	)
 }
