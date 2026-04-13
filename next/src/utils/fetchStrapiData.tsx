@@ -1,4 +1,5 @@
 import qs from 'qs';
+import type { Locale } from '@/utils/type';
 
 const baseUrl = "http://strapi-app:1337";
 // const baseUrl = "http://localhost:1337";
@@ -27,9 +28,10 @@ export async function getStrapiData(path: string, query: string) {
 /*
 * Strapi API call for Global
 */
-export async function getStrapiGlobalData() {
+export async function getStrapiGlobalData(locale : Locale) {
 	const url = new URL("/api/global", baseUrl);
 	url.search = qs.stringify({
+		locale: locale,
 		populate: {
 			global: {
 				on: {
@@ -87,9 +89,10 @@ export async function getStrapiGlobalData() {
 /*
 * Strapi API call for NavBar Menu
 */
-export async function getStrapiNavBarMenuData() {
+export async function getStrapiNavBarMenuData(locale: Locale) {
 	const url = new URL("/api/navbar-menu", baseUrl);
 	url.search = qs.stringify({
+		locale: locale,
 		populate: {
 			menu: {
 				on: {
@@ -115,9 +118,10 @@ export async function getStrapiNavBarMenuData() {
 /*
 * Strapi API call for Contact Detail
 */
-export async function getStrapiContactDetailsData() {
+export async function getStrapiContactDetailsData(locale: Locale) {
 	const url = new URL("/api/contact-information", baseUrl);
 	url.search = qs.stringify({
+		locale: locale,
 		populate: "*",
 	});
 	const response = await fetch(url.href);
@@ -125,16 +129,21 @@ export async function getStrapiContactDetailsData() {
 		throw new Error(`STRAPI_CONTACT_INFORMATION_ERROR_${response.status}`);
 	}
 	const data = await response.json();
-
 	return data;
 }
 
 /*
 * Strapi API call for Page Meta Data
 */
-export async function getStrapiMetadata(path: string, fallbackTitle: string, fallbackDescription: string) {
+export async function getStrapiMetadata(
+	path: string,
+	fallbackTitle: string,
+	fallbackDescription: string,
+	locale: Locale
+) {
 	const url = new URL(path, baseUrl);
 	url.search = qs.stringify({
+		locale: locale,
 		fields: ["metaTitle", "metaDescription"],
 	})
 	try {

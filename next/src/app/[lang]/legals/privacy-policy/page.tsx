@@ -3,10 +3,10 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
-import { getStrapiData, getStrapiMetadata } from "../../../utils/fetchStrapiData";
-import { blockRenderer, Block, } from "../../../utils/render"
+import { getStrapiData, getStrapiMetadata } from "../../../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../../../utils/render"
 
-const path = "/api/terms-of-service";
+const path = "/api/privacy-policy";
 const queryToS = qs.stringify({
 	populate: {
 		blocks: {
@@ -18,7 +18,7 @@ const queryToS = qs.stringify({
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getStrapiMetadata(
 	path,
-	"Terms of Service - J42L",
+	"Privacy Policy - J42L",
 	"Junior 42 Lausanne",
   );
 
@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function ToS() {
+export default async function PrivacyPolicy() {
 	try {
 		const strapiData = await getStrapiData(path, queryToS);
 		if (strapiData.type == "NOT_FOUND") {
@@ -46,7 +46,7 @@ export default async function ToS() {
 			</div>
 		)
 	} catch(error) {
-		console.error(`Page Terms of Service. ${error}`);
+		console.error(`Page Privacy Policy. ${error}`);
 		throw error;
 	}
 }

@@ -3,11 +3,11 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
-import { getStrapiData, getStrapiMetadata } from "../../../utils/fetchStrapiData";
-import { blockRenderer, Block, } from "../../../utils/render"
+import { getStrapiData, getStrapiMetadata } from "../../../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../../../utils/render"
 
-const path = "/api/privacy-policy";
-const queryToS = qs.stringify({
+const path = "/api/impressum";
+const queryImpressum = qs.stringify({
 	populate: {
 		blocks: {
 			populate: "*",
@@ -18,7 +18,7 @@ const queryToS = qs.stringify({
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getStrapiMetadata(
 	path,
-	"Privacy Policy - J42L",
+	"Impressum - J42L",
 	"Junior 42 Lausanne",
   );
 
@@ -28,9 +28,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function PrivacyPolicy() {
+export default async function Impressum() {
 	try {
-		const strapiData = await getStrapiData(path, queryToS);
+		const strapiData = await getStrapiData(path, queryImpressum);
 		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}
@@ -46,7 +46,7 @@ export default async function PrivacyPolicy() {
 			</div>
 		)
 	} catch(error) {
-		console.error(`Page Privacy Policy. ${error}`);
+		console.error(`Page Impressum. ${error}`);
 		throw error;
 	}
 }

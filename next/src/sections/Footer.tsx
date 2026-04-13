@@ -1,11 +1,12 @@
-import NavBarLink from "../components/NavBarLink"; 
-import StrapiImage from "../components/StrapiImage";
-import { type LogoProps, type IconProps } from "./NavBar";
-import { type NavBarLinkProps } from "../components/NavBarLink";
-import ButtonLink from "../components/ButtonLink";
-import { getStrapiContactDetailsData } from "../utils/fetchStrapiData";
-import { type ThemeColor } from "../utils/type";
+import NavBarLink from "@/components/NavBarLink"; 
+import StrapiImage from "@/components/StrapiImage";
+import { type LogoProps, type IconProps } from "@/sections/NavBar";
+import { type NavBarLinkProps } from "@/components/NavBarLink";
+import ButtonLink from "@/components/ButtonLink";
+import { getStrapiContactDetailsData } from "@/utils/fetchStrapiData";
+import { type ThemeColor } from "@/utils/type";
 import Link from "next/link";
+import type { Locale } from "@/utils/type";
 
 export type FooterProps = {
 	blocks: {
@@ -38,9 +39,15 @@ export type ContactInfomationProps = {
 	}
 }
 
-export default async function Footer({blocks}: FooterProps) {
+export default async function Footer({
+	locale,
+	blocks,
+}: {
+	locale: Locale;
+	blocks: FooterProps["blocks"];
+}) {
 	try {
-		const contactInformationData = await getStrapiContactDetailsData();
+		const contactInformationData = await getStrapiContactDetailsData(locale);
 		if (!contactInformationData?.data?.contactDetails) 
 			return null;
 		const { contactDetails } : ContactInfomationProps = contactInformationData.data;

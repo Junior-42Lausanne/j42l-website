@@ -1,13 +1,13 @@
 export const dynamic = "force-dynamic";
 
 import qs from 'qs';
-import type { Metadata } from "next";
 import { notFound } from 'next/navigation';
-import { getStrapiData, getStrapiMetadata } from "../../../utils/fetchStrapiData";
-import { blockRenderer, Block, } from "../../../utils/render"
+import type { Metadata } from "next";
+import { getStrapiData, getStrapiMetadata } from "../../../../utils/fetchStrapiData";
+import { blockRenderer, Block, } from "../../../../utils/render"
 
-const path = "/api/prototype-service";
-const queryPrototype = qs.stringify(
+const path = "/api/automation-service";
+const queryAutomation = qs.stringify(
   {
     populate: {
       blocks: {
@@ -16,7 +16,7 @@ const queryPrototype = qs.stringify(
             populate: "*",
           },
           'layout.anchor-tag': {
-            populate: "*",
+          populate: "*",
           },
           "layout.services": {
             populate: {
@@ -46,7 +46,7 @@ const queryPrototype = qs.stringify(
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getStrapiMetadata(
     path,
-    "Prototype - J42L",
+    "Automation - J42L",
     "Junior 42 Lausanne",
   );
 
@@ -56,9 +56,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Prototype() {
+export default async function Automation() {
 	try {
-		const strapiData = await getStrapiData(path, queryPrototype);
+		const strapiData = await getStrapiData(path, queryAutomation);
 		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}
@@ -74,7 +74,7 @@ export default async function Prototype() {
 			</div>
 		)
 	} catch(error) {
-		console.error(`Page Prototype. ${error}`);
+		console.error(`Page Automation. ${error}`);
 		throw error;
 	}
 }

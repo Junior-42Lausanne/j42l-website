@@ -1,10 +1,11 @@
-import ButtonLink from "../components/ButtonLink";
-import StrapiImage, { type StrapiImageProps } from "../components/StrapiImage";
-import { type ThemeColor } from "../utils/type";
-import { getStrapiNavBarMenuData } from "../utils/fetchStrapiData";
-import { menuRenderer, type menuItem } from "../utils/render";
-import HamburgerMenu from "../components/HamburgerMenu";
+import ButtonLink from "@/components/ButtonLink";
+import StrapiImage, { type StrapiImageProps } from "@/components/StrapiImage";
+import { type ThemeColor } from "@/utils/type";
+import { getStrapiNavBarMenuData } from "@/utils/fetchStrapiData";
+import { menuRenderer, type menuItem } from "@/utils/render";
+import HamburgerMenu from "@/components/HamburgerMenu";
 import Link from 'next/link';
+import type { Locale } from "@/utils/type";
 
 export type LogoProps = {
 	logo: StrapiImageProps,
@@ -34,10 +35,16 @@ export type NavBarProps = {
 	},
 }
 
-export default async function NavBar( {blocks}: NavBarProps) {
+export default async function NavBar({
+  locale,
+  blocks,
+}: {
+  locale: Locale;
+  blocks: NavBarProps["blocks"];
+}) {
 
 	try {
-		const navBarMenuData = await getStrapiNavBarMenuData();
+		const navBarMenuData = await getStrapiNavBarMenuData(locale);
 		if (!navBarMenuData?.data?.menu) {
 			return null;
 		}
