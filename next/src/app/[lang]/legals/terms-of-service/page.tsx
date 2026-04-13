@@ -5,32 +5,58 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import { getStrapiData, getStrapiMetadata } from "../../../../utils/fetchStrapiData";
 import { blockRenderer, Block, } from "../../../../utils/render"
+import type { LangParams, Locale } from "@/utils/type";
 
 const path = "/api/terms-of-service";
-const queryToS = qs.stringify({
-	populate: {
-		blocks: {
-			populate: "*",
-		},
-	}
-})
-
-export async function generateMetadata(): Promise<Metadata> {
-  const metadata = await getStrapiMetadata(
-	path,
-	"Terms of Service - J42L",
-	"Junior 42 Lausanne",
-  );
-
-  return {
-	title: metadata.title,
-	description: metadata.description,
-  };
+function getQueryTos(locale: Locale) {
+	return qs.stringify({
+		populate: {
+			blocks: {
+				populate: "*",
+			},
+		}
+	})
 }
 
-export default async function ToS() {
+export async function generateMetadata({
+	params,
+}: {
+	params: LangParams
+}): Promise<Metadata> {
+	const { lang: locale } = await params;
+	let metaTitle = null;
+	let metaDescription = null;
+	if (locale === "de") {
+		metaTitle = "Nutzungsbedingungen - J42L"
+		metaDescription = "Junior 42 Lausanne"
+	} else if (locale === "fr") {
+		metaTitle = "Conditions d'utilisation - J42L"
+		metaDescription = "Junior 42 Lausanne"
+	} else {
+		metaTitle = "Terms of Service - J42L"
+		metaDescription = "Junior 42 Lausanne"
+	}
+	const metadata = await getStrapiMetadata(
+		path,
+		metaTitle,
+		metaDescription,
+		locale
+	);
+	console.log(metadata)
+	return {
+		title: metadata.title,
+		description: metadata.description,
+	};
+}
+
+export default async function ToS({
+	params,
+}: {
+	params: LangParams
+}) {
 	try {
-		const strapiData = await getStrapiData(path, queryToS);
+		const { lang: locale } = await params;
+		const strapiData = await getStrapiData(path, getQueryTos(locale));
 		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}

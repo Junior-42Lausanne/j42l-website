@@ -3,34 +3,62 @@ export const dynamic = "force-dynamic";
 import qs from 'qs';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
-import { getStrapiData, getStrapiMetadata } from "../../../utils/fetchStrapiData";
-import { blockRenderer, Block, } from "../../../utils/render"
+import { getStrapiData, getStrapiMetadata } from "@/utils/fetchStrapiData";
+import { blockRenderer, Block, } from "@/utils/render"
+import type { LangParams, Locale } from "@/utils/type";
 
 const path = "/api/contact";
-const queryContact = qs.stringify({
-	populate: {
-		blocks: {
-			populate: "*",
-		},
-	}
-})
-
-export async function generateMetadata(): Promise<Metadata> {
-  const metadata = await getStrapiMetadata(
-	path,
-	"Contact - J42L",
-	"Junior 42 Lausanne",
-  );
-
-  return {
-	title: metadata.title,
-	description: metadata.description,
-  };
+function getQueryContact(locale: Locale) {
+	return qs.stringify({
+		locale: locale,
+		populate: {
+			blocks: {
+				populate: "*",
+			},
+		}
+	})
 }
 
-export default async function Contact() {
+
+export async function generateMetadata({
+	params,
+}: {
+	params: LangParams
+}): Promise<Metadata> {
+	const { lang: locale } = await params;
+	let metaTitle = null;
+	let metaDescription = null;
+	if (locale === "de") {
+		metaTitle = "Kontakt - J42L"
+		metaDescription = "Junior 42 Lausanne"
+	} else if (locale === "fr") {
+		metaTitle = "Contact - J42L"
+		metaDescription = "Junior 42 Lausanne"
+	} else {
+		metaTitle = "Contact - J42L"
+		metaDescription = "Junior 42 Lausanne"
+	}
+	const metadata = await getStrapiMetadata(
+		path,
+		metaTitle,
+		metaDescription,
+		locale
+	);
+	console.log(metadata)
+	return {
+		title: metadata.title,
+		description: metadata.description,
+	};
+}
+
+export default async function Contact({
+	params,
+}: {
+	params: LangParams
+}) {
 	try {
-		const strapiData = await getStrapiData(path, queryContact);
+		const { lang: locale } = await params;
+		const strapiData = await getStrapiData(path, getQueryContact(locale));
 		if (strapiData.type == "NOT_FOUND") {
 			return notFound();
 		}
