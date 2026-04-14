@@ -6,6 +6,7 @@ import { menuRenderer, type menuItem } from "@/utils/render";
 import HamburgerMenu from "@/components/HamburgerMenu";
 import Link from 'next/link';
 import type { Locale } from "@/utils/type";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export type LogoProps = {
 	logo: StrapiImageProps,
@@ -134,8 +135,9 @@ export default async function NavBar({
 							</div>
 						))}
 					</div>
+					<LanguageSwitcher currentLocale={locale} />
 				</div>
-				<HamburgerMenu menu={menu} cta={cta} social={social}></HamburgerMenu>
+				<HamburgerMenu menu={menu} cta={cta} social={social} locale={locale}></HamburgerMenu>
 			</nav>
 		)
 	} catch(error) {

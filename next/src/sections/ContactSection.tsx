@@ -25,7 +25,7 @@ export default async function ContactSection({
     { locale?: Locale }
 ){
     try {
-        const lang : Locale = locale ?? "en"
+        const lang : Locale = locale ?? "fr"
         const contactInformationData = await getStrapiContactDetailsData(lang);
         if (!contactInformationData?.data?.contactDetails) 
             return null;
@@ -44,8 +44,7 @@ export default async function ContactSection({
                     }}>
             <div className="flex flex-col gap-[4rem] font-poppins text-h5 xl:text-h4">
                 <header className="flex flex-col gap-[1rem] min-w-md
-                                md:gap-[2rem]
-                                lg:w-2/3">
+                                md:gap-[2rem]">
                     <h1 className="text-h2 leading-[1.1]
                                 md:text-h1">{block.title}</h1>
                     <p>{block.description}</p>

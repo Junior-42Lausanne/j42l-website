@@ -1,20 +1,23 @@
 'use client';
 
-import { menuRenderer, type menuItem } from "../utils/render";
-import { type IconProps, type CtaProps } from "../sections/NavBar";
-import ButtonLink from "../components/ButtonLink";
-import StrapiImage from "../components/StrapiImage";
+import { menuRenderer, type menuItem } from "@/utils/render";
+import { type IconProps, type CtaProps } from "@/sections/NavBar";
+import ButtonLink from "@/components/ButtonLink";
+import StrapiImage from "@/components/StrapiImage";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import type { Locale } from "@/utils/type";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export type HamburgerProp = {
     menu: menuItem[],
     cta: CtaProps,
     social: IconProps[],
+    locale: Locale,
 }
 
-export default function HamburgerMenu({menu, cta, social} : HamburgerProp) {
+export default function HamburgerMenu({menu, cta, social, locale} : HamburgerProp) {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const pathname = usePathname();
     useEffect(() => {
@@ -41,6 +44,7 @@ export default function HamburgerMenu({menu, cta, social} : HamburgerProp) {
         button: "flex flex-col w-full animate-pulse",
         iconWrap: "flex flex-row justify-end gap-[0.625rem] items-center",
         icon: "relative w-[30px] h-[30px]",
+        langueSwitcher: "flex justify-end",
     }
 
     return (
@@ -64,30 +68,33 @@ export default function HamburgerMenu({menu, cta, social} : HamburgerProp) {
                     </ButtonLink>
                 </div>
                 <div className={styles.iconWrap}>
-						{social.map((item) => (
-							<div key={item.icon.id} className={styles.icon}>
-								{item.external ? (
-									<a href={item.url} target="_blank">
-										<StrapiImage
-											alternativeText={item.icon.alternativeText}
-											className=""
-											height={item.icon.height}
-											url={item.icon.url}
-											width={item.icon.width} />
-									</a>
-								) : (
-									<Link href={item.url}>
-										<StrapiImage
-											alternativeText={item.icon.alternativeText}
-											className=""
-											height={item.icon.height}
-											url={item.icon.url}
-											width={item.icon.width} />
-									</Link>
-								)}
-							</div>
-						))}
-					</div>
+                    {social.map((item) => (
+                        <div key={item.icon.id} className={styles.icon}>
+                            {item.external ? (
+                                <a href={item.url} target="_blank">
+                                    <StrapiImage
+                                        alternativeText={item.icon.alternativeText}
+                                        className=""
+                                        height={item.icon.height}
+                                        url={item.icon.url}
+                                        width={item.icon.width} />
+                                </a>
+                            ) : (
+                                <Link href={item.url}>
+                                    <StrapiImage
+                                        alternativeText={item.icon.alternativeText}
+                                        className=""
+                                        height={item.icon.height}
+                                        url={item.icon.url}
+                                        width={item.icon.width} />
+                                </Link>
+                            )}
+                        </div>
+                    ))}
+                </div>
+                <div className={styles.langueSwitcher}>
+                    <LanguageSwitcher currentLocale={locale} />
+                </div>
             </div>
         </div>
     )

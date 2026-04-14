@@ -1,8 +1,8 @@
-import Script from "next/script";
 import { getStrapiGlobalData } from "@/utils/fetchStrapiData";
 import NavBar from "@/sections/NavBar";
 import Footer from "@/sections/Footer";
 import { Locale } from "@/utils/type";
+import HtmlLang from "@/components/HtmlLang";
 
 export default async function LocaleLayout({
 	children,
@@ -41,15 +41,9 @@ export default async function LocaleLayout({
 		console.error(`Global data. ${error}`);
 	}
 	return (
-		<html lang={locale}>
-			<head>
-				<Script
-					src="https://analytics.j42l.ch/script.js"
-					data-website-id="a83bec4c-2654-4cc6-a97b-266d5297cb16"
-					strategy="afterInteractive"
-				/>
-			</head>
-			<body>
+		
+		<div>
+			<HtmlLang locale={locale} />
 			{
 				global
 					? <NavBar locale={locale} blocks={navBar} />
@@ -61,7 +55,6 @@ export default async function LocaleLayout({
 					? <Footer locale={locale} blocks={footer} />
 					: null
 			}
-			</body>
-		</html>
+		</div>
 	);
 }
