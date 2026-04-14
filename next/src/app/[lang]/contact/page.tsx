@@ -44,7 +44,6 @@ export async function generateMetadata({
 		metaDescription,
 		locale
 	);
-	console.log(metadata)
 	return {
 		title: metadata.title,
 		description: metadata.description,

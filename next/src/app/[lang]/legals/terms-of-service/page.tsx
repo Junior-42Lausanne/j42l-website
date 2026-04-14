@@ -10,6 +10,7 @@ import type { LangParams, Locale } from "@/utils/type";
 const path = "/api/terms-of-service";
 function getQueryTos(locale: Locale) {
 	return qs.stringify({
+		locale: locale,
 		populate: {
 			blocks: {
 				populate: "*",
@@ -42,7 +43,6 @@ export async function generateMetadata({
 		metaDescription,
 		locale
 	);
-	console.log(metadata)
 	return {
 		title: metadata.title,
 		description: metadata.description,

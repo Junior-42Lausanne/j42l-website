@@ -1,17 +1,25 @@
 import Script from "next/script";
-import { getStrapiGlobalData } from "../../utils/fetchStrapiData";
-import NavBar from "../../sections/NavBar";
-import Footer from "../../sections/Footer";
-import { LangParams } from "@/utils/type";
+import { getStrapiGlobalData } from "@/utils/fetchStrapiData";
+import NavBar from "@/sections/NavBar";
+import Footer from "@/sections/Footer";
+import { Locale } from "@/utils/type";
 
 export default async function LocaleLayout({
 	children,
 	params
 }: Readonly<{
 	children: React.ReactNode
-	params: LangParams;
+	params: Promise<{lang: string}>;
 }>) {
-	const { lang: locale } = await params;
+	const { lang } = await params;
+
+	const allowedLocales = ["en", "fr", "de"] as const;
+	let locale: Locale;
+	if (!allowedLocales.includes(lang as Locale)) {
+		locale = "en"
+	} else {
+		locale = lang as Locale;
+	}
 
 	let global = null;
 	let navBar = null;

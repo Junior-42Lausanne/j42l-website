@@ -1,16 +1,16 @@
-import TextSection, { type TextSectionProps } from '../sections/TextSection';
-import FooterCTASection, { type FooterCTASectionProps } from "../sections/FooterCTASection";
-import TextSectionWithTitle, { type TextSectionWithTitleProps } from "../sections/TextSectionWithTitle";
-import MemberSection, { type MemberSectionProps } from "../sections/MemberSection";
-import NavBarLink, { type NavBarLinkProps } from '../components/NavBarLink';
-import NavBarDropdown, { type NavBarDropdownProps } from "../components/NavBarDropdown";
-import HeroSection, { type HeroSectionProps } from '../sections/HeroSection';
-import ContactSection, { type ContactSectionProps } from '../sections/ContactSection';
-import ServiceCardSection, { type ServiceCardSectionProps } from '../sections/ServiceSection';
-import ServicesSection, { type ServicesSectionProps } from '../sections/ServicesSection';
-import LegalSection, { type LegalSectionProps } from '../sections/LegalSection';
-import { type Mode } from '../utils/type';
-import TestimonialSection, { TestimonialSectionProps } from '../sections/TestimonialSection';
+import TextSection, { type TextSectionProps } from '@/sections/TextSection';
+import FooterCTASection, { type FooterCTASectionProps } from "@/sections/FooterCTASection";
+import TextSectionWithTitle, { type TextSectionWithTitleProps } from "@/sections/TextSectionWithTitle";
+import MemberSection, { type MemberSectionProps } from "@/sections/MemberSection";
+import NavBarLink, { type NavBarLinkProps } from '@/components/NavBarLink';
+import NavBarDropdown, { type NavBarDropdownProps } from "@/components/NavBarDropdown";
+import HeroSection, { type HeroSectionProps } from '@/sections/HeroSection';
+import ContactSection, { type ContactSectionProps } from '@/sections/ContactSection';
+import ServiceCardSection, { type ServiceCardSectionProps } from '@/sections/ServiceSection';
+import ServicesSection, { type ServicesSectionProps } from '@/sections/ServicesSection';
+import LegalSection, { type LegalSectionProps } from '@/sections/LegalSection';
+import { Locale, type Mode } from '@/utils/type';
+import TestimonialSection, { TestimonialSectionProps } from '@/sections/TestimonialSection';
 import PartnerSection, { PartnerSectionProps } from '@/sections/PartnerSection';
 
 export type AnchorTagProps = {
@@ -32,7 +32,7 @@ export type Block = HeroSectionProps |
                     PartnerSectionProps |
                     AnchorTagProps;
 
-export function blockRenderer(block: Block) {
+export function blockRenderer(block: Block, locale?: Locale) {
     if (!block) {
         return null;
     }
@@ -53,7 +53,7 @@ export function blockRenderer(block: Block) {
         case "layout.card-section":
             return <ServiceCardSection key={key} {...block} />;
         case "layout.contact-section":
-            return <ContactSection key={key} {...block} />;
+            return <ContactSection key={key} {...block} locale={locale}/>;
         case "layout.services":
             return <ServicesSection key={key} {...block} />;
         case "layout.legal-section":
