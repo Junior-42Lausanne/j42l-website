@@ -85,7 +85,7 @@ export default function MemberCard({
 				</div>
 				<div className={styles.bottomWrap}>
 					<div className={styles.socialWrap}>
-						{social?.map((item, index) => (
+						{social?.map((item) => (
 							<motion.div
 								key={item.icon.id}
 								className={styles.icon}

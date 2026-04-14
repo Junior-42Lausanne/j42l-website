@@ -2,7 +2,7 @@
 
 import { type ThemeColor } from "../utils/type";
 import { useRef, useState, useLayoutEffect } from "react";
-import { motion, useInView, AnimatePresence } from "motion/react";
+import { motion, useInView } from "motion/react";
 
 export type SectionTitleProps = {
 	color: ThemeColor;
