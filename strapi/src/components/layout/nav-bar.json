@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_layout_nav_bars",
+  "info": {
+    "displayName": "navBar"
+  },
+  "options": {},
+  "attributes": {
+    "Note": {
+      "type": "text",
+      "private": true,
+      "default": "For Nav Bar Menu, fill Navbar Menu page."
+    },
+    "logo": {
+      "type": "component",
+      "component": "composants.logo",
+      "repeatable": false,
+      "required": true
+    },
+    "cta": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false,
+      "required": true
+    },
+    "social": {
+      "type": "component",
+      "component": "composants.social",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

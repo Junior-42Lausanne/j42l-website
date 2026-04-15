@@ -1,0 +1,54 @@
+{
+  "kind": "singleType",
+  "collectionName": "web_services",
+  "info": {
+    "singularName": "web-service",
+    "pluralName": "web-services",
+    "displayName": "Page - Web Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "metaTitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": true
+    },
+    "metaDescription": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": true
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "layout.footer-cta",
+        "layout.hero",
+        "layout.services",
+        "layout.anchor-tag",
+        "layout.testimonial-section"
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_composants_contact_details",
+  "info": {
+    "displayName": "ContactDetails"
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "streetName": {
+      "type": "string"
+    },
+    "streetNumber": {
+      "type": "string"
+    },
+    "zipCode": {
+      "type": "biginteger",
+      "required": false,
+      "default": "1020"
+    },
+    "municipal": {
+      "type": "string",
+      "default": "Renens"
+    },
+    "city": {
+      "type": "string",
+      "default": "Lausanne",
+      "required": false
+    },
+    "country": {
+      "type": "string",
+      "default": "Suisse",
+      "required": false
+    }
+  },
+  "config": {}
+}

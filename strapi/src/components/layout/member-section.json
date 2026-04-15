@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_layout_member_sections",
+  "info": {
+    "displayName": "memberSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "component",
+      "component": "composants.section-title",
+      "repeatable": false,
+      "required": true
+    },
+    "members": {
+      "type": "component",
+      "component": "composants.member-card",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@theme inline {
+  --animate-pulse: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-orange: #f49819;
+  --color-pale_orange: #FFE6C4;
+  --color-black: #14120e;
+  --color-white: #ffffff;
+
+  --font-poppins: "Poppins", sans-serif;
+  
+  --text-h1: 4rem;
+  --text-h1--font-weight: 700;
+  --text-h2: 3rem;
+  --text-h2--font-weight: 700;
+  --text-h3: 2rem;
+  --text-h3--font-weight: 500;
+  --text-h4: 1.3rem;
+  --text-h4--font-weight: 500;
+  --text-h5: 1rem;
+  --text-h5--font-weight: 400;
+  --text-h6: 0.7rem;
+  --text-h6--font-weight: 400;
+}
+
+/* UL bullet marker */
+.prose.text-black ul > li::marker { color: var(--color-black); }
+.prose.text-white ul > li::marker { color: var(--color-white); }
+.prose.text-orange ul > li::marker { color: var(--color-orange); }
+.prose.text-pale_orange ul > li::marker { color: var(--color-pale_orange); }
+
+/* OL number marker */
+.prose.text-black ol > li::marker { color: var(--color-black); }
+.prose.text-white ol > li::marker { color: var(--color-white); }
+.prose.text-orange ol > li::marker { color: var(--color-orange); }
+.prose.text-pale_orange ol > li::marker { color: var(--color-pale_orange); }
+
+/* Text inside list items (<p>, <strong>, <span>, etc.) */
+.prose.text-black li > * { color: var(--color-black) !important; }
+.prose.text-white li > * { color: var(--color-white) !important; }
+.prose.text-orange li > * { color: var(--color-orange) !important; }
+.prose.text-pale_orange li > * { color: var(--color-pale_orange) !important; }
+
+.group:hover .group-hover\:block {
+  display: block;
+}
+
+@layer utilities {
+  .data-\[state\=closed\]\:animate-accordion-up[data-state="closed"] {
+    animation: accordion-up var(--tw-duration, .2s) ease-out;
+  }
+
+  .data-\[state\=open\]\:animate-accordion-down[data-state="open"] {
+    animation: accordion-down var(--tw-duration, .2s) ease-out;
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height, var(--bits-accordion-content-height));
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height, var(--bits-accordion-content-height));
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_composants_services_accordions",
+  "info": {
+    "displayName": "ServicesAccordion"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "blocks"
+    },
+    "triggerbg": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "composants.lien",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

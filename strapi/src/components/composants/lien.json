@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_composants_liens",
+  "info": {
+    "displayName": "Button"
+  },
+  "options": {},
+  "attributes": {
+    "buttonText": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "enumeration",
+      "required": true,
+      "default": "orange",
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "external": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "config": {}
+}

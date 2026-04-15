@@ -1,0 +1,75 @@
+{
+  "collectionName": "components_layout_contact_sections",
+  "info": {
+    "displayName": "contactSection"
+  },
+  "options": {},
+  "attributes": {
+    "Note": {
+      "type": "text",
+      "private": true,
+      "default": "For contact details, fill Contact Information page."
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "phoneIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "emailIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "addressIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "illustration": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "textColor": {
+      "type": "enumeration",
+      "required": true,
+      "default": "black",
+      "enum": [
+        "orange",
+        "white",
+        "black"
+      ]
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "orange",
+        "white",
+        "black",
+        "pale_orange"
+      ]
+    }
+  },
+  "config": {}
+}

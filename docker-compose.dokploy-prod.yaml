@@ -1,0 +1,56 @@
+services:
+  next-app:
+    container_name: J42Lweb-nextjs-production
+    build:
+      context: ./next
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
+    ports:
+      - 3001
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      - PORT=3001
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+    depends_on:
+      - strapi-app
+    restart: unless-stopped
+
+  strapi-app:
+    container_name: J42Lweb-strapi-production
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile
+    ports:
+      - 1337
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
+      - NODE_ENV=production
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - production-strapi-uploads:/opt/app/public/uploads
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:17-alpine
+    container_name: J42Lweb-strapi-db-production
+    ports:
+      - 5432
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - production-postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  production-strapi-uploads:
+  production-postgres-data:
