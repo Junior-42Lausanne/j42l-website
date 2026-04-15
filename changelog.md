@@ -1,15 +1,21 @@
 # Change log
 
-## v.0.4.0 ( Not live )
+## v.1.0.0 ( Release )
 Date: 04 April 2026
 
 - **Feature**:
-    - Added hover effect on partner logos.
-    - Added /about/j42l and /about/members pages. Url /about will redirect to /about/j42l.
-    - Added multi language
+    - Multi language English (en), French (fr) and German (de)
+    - Page:
+        - Home (`/`)
+        - Service web (`/services/web`)
+        - Service automation (`/services/automation`)
+        - Service prototype (`/services/prototype`)
+        - About us (`/about/j42l`)
+        - Members (`/about/members`)
+        - Student (`/student`)
+        - Contact (`/contact`)
+        - Impressum (`/legals/impressum`)
+        - Privacy policy (`/legals/privacy-policy`)
+        - Terms of Service (`/legals/terms-of-service`)
 
-- **Refactor**:
-    - Semantic HTML
-    - Enhance visual of some elements with Framer Motion 
-    - Remove Yarn in Strapi build to avoid confusion of 2 systems
 
