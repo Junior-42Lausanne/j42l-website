@@ -46,6 +46,20 @@ services:
     volumes:
       - strapi-db-data:/var/lib/postgresql/data
     restart: unless-stopped
+    depends_on:
+      db-sync:
+        condition: service_completed_successfully
+
+  db-sync:
+    image: rclone/rclone:latest
+    container_name: strapi-db-sync
+    volumes:
+      - strapi-db-data:/pgdata
+      - ./rclone.conf:/config/rclone/rclone.conf:ro
+      - ./rclone-init.sh:/scripts/rclone-init.sh:ro
+    entrypoint: ["/bin/sh", "/scripts/rclone-init.sh"]
+    env_file: "./strapi/.env"
+    restart: "no"
 
 volumes:
   next-build:
