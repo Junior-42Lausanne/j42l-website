@@ -1,5 +1,10 @@
 # Junior 42 Lausanne Official Website
 
+## Change log:
+
+[Changelog](./changelog.md)
+
+
 ## A bit about us
 [Junior 42 Lausanne](j42l.ch/) is a student association founded in 2023 to bridge the gap between academic learning and professional IT experience. We enable students from 42 Lausanne to work on real-world projects through professional mandates and hands-on development.
 
