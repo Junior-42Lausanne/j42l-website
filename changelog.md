@@ -1,5 +1,16 @@
 # Change log
 
+## v.1.0.1 ( UNRELASED )
+Last update: 27 April 2026
+
+- **Dev**:
+    - Strapi data populate for dev workflow by [leoxanigm](github.com/leoxanigm)
+
+- **Chore**:
+    - Update Strapi to 5.43
+    - Update various dependencies
+
+
 ## v.1.0.0 ( Release )
 Date: 04 April 2026
 
