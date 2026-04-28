@@ -1,14 +1,14 @@
+// src/sections/portfolio/components/ServiceSelector.tsx
+
 "use client";
+
+import { ArrowUpRight } from "lucide-react";
 
 import type {
   PortfolioService,
   PortfolioServiceId,
 } from "@/sections/portfolio/types/portfolio.types";
-import {
-  portfolioBadge,
-  portfolioLayout,
-  portfolioText,
-} from "@/sections/portfolio/styles/portfolioStyles";
+import { portfolioText } from "@/sections/portfolio/styles/portfolioStyles";
 
 type ServiceSelectorProps = {
   services: PortfolioService[];
@@ -22,24 +22,42 @@ export function ServiceSelector({
   onSelect,
 }: ServiceSelectorProps) {
   return (
-    <section id="services" className={portfolioLayout.sectionCompact}>
-      <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-        <div>
-          <span className={portfolioText.eyebrow}>Service-first exploration</span>
+    <section
+      id="services"
+      className="relative mx-auto w-full max-w-7xl px-5 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-20 lg:pb-10"
+    >
+      <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+        <div className="max-w-xl">
+          <span className={portfolioText.eyebrow}>
+            Service-first exploration
+          </span>
 
           <h2 className={`${portfolioText.h2} mt-4`}>
             Start with the service, then inspect the proof.
           </h2>
 
-          <p className={`${portfolioText.body} mt-5 max-w-xl`}>
-            Each service acts as an entry point into relevant projects,
-            capabilities and case studies. The goal is to show what J42L can
-            deliver, not just what it can display.
+          <p className={`${portfolioText.body} mt-5`}>
+            The portfolio is structured like a commercial proof system. Each
+            service opens a focused path toward the projects, capabilities and
+            case studies that validate it.
           </p>
+
+          <div className="mt-8 hidden border-l border-white/10 pl-5 lg:block">
+            <p className="text-sm leading-6 text-white/48">
+              Select a service to reframe the portfolio around one specific
+              business need.
+            </p>
+          </div>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-2">
-          <div className="grid gap-2 sm:grid-cols-2">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025]">
+          <div className="grid border-b border-white/10 px-5 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-white/36 sm:grid-cols-[0.35fr_1.15fr_0.6fr]">
+            <span>Index</span>
+            <span className="hidden sm:block">Service</span>
+            <span className="hidden text-right sm:block">Focus</span>
+          </div>
+
+          <div>
             {services.map((service, index) => {
               const isSelected = service.id === selectedServiceId;
 
@@ -50,61 +68,100 @@ export function ServiceSelector({
                   onClick={() => onSelect(service.id)}
                   aria-pressed={isSelected}
                   className={[
-                    "group relative overflow-hidden rounded-[1.5rem] border p-5 text-left transition duration-300",
-                    "focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-[#181612]",
+                    "group grid w-full gap-4 border-b border-white/10 px-5 py-5 text-left transition duration-300 last:border-b-0 sm:grid-cols-[0.35fr_1.15fr_0.6fr] sm:items-start",
+                    "focus:outline-none focus:ring-2 focus:ring-orange focus:ring-inset",
                     isSelected
-                      ? "border-orange/45 bg-orange/[0.10] shadow-[0_20px_70px_rgba(244,152,25,0.08)]"
-                      : "border-white/10 bg-[#181612]/60 hover:border-white/20 hover:bg-white/[0.055]",
+                      ? "bg-orange/[0.075]"
+                      : "bg-transparent hover:bg-white/[0.035]",
                   ].join(" ")}
                 >
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3">
                     <span
-                      className={
-                        isSelected ? portfolioBadge.accent : portfolioBadge.muted
-                      }
+                      className={[
+                        "inline-flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition",
+                        isSelected
+                          ? "border-orange/45 bg-orange/10 text-orange"
+                          : "border-white/10 bg-white/[0.03] text-white/44",
+                      ].join(" ")}
                     >
-                      0{index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
 
                     <span
                       className={[
-                        "text-xs font-semibold uppercase tracking-[0.18em] transition",
-                        isSelected ? "text-orange" : "text-white/36",
+                        "h-px flex-1 transition sm:hidden",
+                        isSelected ? "bg-orange/60" : "bg-white/10",
+                      ].join(" ")}
+                    />
+                  </div>
+
+                  <div>
+                    <div className="flex items-start justify-between gap-4">
+                      <h3
+                        className={[
+                          "text-xl font-semibold tracking-[-0.04em] transition",
+                          isSelected ? "text-white" : "text-white/86",
+                        ].join(" ")}
+                      >
+                        {service.label}
+                      </h3>
+
+                      <ArrowUpRight
+                        className={[
+                          "mt-1 h-4 w-4 shrink-0 transition sm:hidden",
+                          isSelected
+                            ? "text-orange"
+                            : "text-white/28 group-hover:text-white/50",
+                        ].join(" ")}
+                        aria-hidden="true"
+                      />
+                    </div>
+
+                    <p
+                      className={[
+                        "mt-3 max-w-2xl text-sm leading-6 transition",
+                        isSelected ? "text-white/72" : "text-white/52",
+                      ].join(" ")}
+                    >
+                      {service.description}
+                    </p>
+
+                    <p
+                      className={[
+                        "mt-4 max-w-2xl text-sm leading-6 transition",
+                        isSelected ? "text-white/82" : "text-white/38",
+                      ].join(" ")}
+                    >
+                      {service.proofAngle}
+                    </p>
+                  </div>
+
+                  <div className="hidden items-start justify-end gap-3 sm:flex">
+                    <span
+                      className={[
+                        "mt-1 text-xs font-semibold uppercase tracking-[0.22em] transition",
+                        isSelected ? "text-orange" : "text-white/32",
                       ].join(" ")}
                     >
                       {service.shortLabel}
                     </span>
+
+                    <ArrowUpRight
+                      className={[
+                        "mt-0.5 h-4 w-4 shrink-0 transition",
+                        isSelected
+                          ? "text-orange"
+                          : "text-white/22 group-hover:text-white/48",
+                      ].join(" ")}
+                      aria-hidden="true"
+                    />
                   </div>
-
-                  <h3 className="mt-5 text-xl font-semibold tracking-[-0.04em] text-white">
-                    {service.label}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-white/60">
-                    {service.description}
-                  </p>
-
-                  <div className="mt-5 h-px w-full bg-white/10" />
-
-                  <p
-                    className={[
-                      "mt-4 text-sm leading-6 transition",
-                      isSelected ? "text-white/76" : "text-white/48",
-                    ].join(" ")}
-                  >
-                    {service.proofAngle}
-                  </p>
-
-                  <div
-                    className={[
-                      "pointer-events-none absolute inset-x-5 bottom-0 h-px transition",
-                      isSelected ? "bg-orange/70" : "bg-transparent",
-                    ].join(" ")}
-                  />
                 </button>
               );
             })}
           </div>
+
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange/30 to-transparent" />
         </div>
       </div>
     </section>
