@@ -88,3 +88,130 @@
 html {
   scroll-behavior: smooth;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-screen-line-a {
+    animation: hero-screen-line-a 1.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .hero-screen-line-b {
+    animation: hero-screen-line-b 1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .hero-screen-line-c {
+    animation: hero-screen-line-c 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .hero-screen-card-a {
+    animation: hero-screen-card-a 1s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .hero-screen-card-b {
+    animation: hero-screen-card-b 1.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .hero-screen-card-c {
+    animation: hero-screen-card-c 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .hero-screen-pill {
+    animation: hero-screen-pill 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+}
+
+@keyframes hero-screen-line-a {
+  0%,
+  100% {
+    opacity: 0.48;
+    transform: translate3d(0, 0, 0) scaleX(1);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: translate3d(2px, 0, 0) scaleX(1.04);
+  }
+}
+
+@keyframes hero-screen-line-b {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: translate3d(0, 0, 0) scaleX(1);
+  }
+
+  50% {
+    opacity: 0.64;
+    transform: translate3d(1px, 0, 0) scaleX(1.03);
+  }
+}
+
+@keyframes hero-screen-line-c {
+  0%,
+  100% {
+    opacity: 0.36;
+    transform: translate3d(0, 0, 0) scaleX(1);
+  }
+
+  50% {
+    opacity: 0.56;
+    transform: translate3d(1px, 0, 0) scaleX(1.02);
+  }
+}
+
+@keyframes hero-screen-card-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@keyframes hero-screen-card-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 3px, 0);
+  }
+}
+
+@keyframes hero-screen-card-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(2px, -2px, 0);
+  }
+}
+
+@keyframes hero-screen-pill {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(1);
+    opacity: 0.82;
+  }
+
+  50% {
+    transform: translate3d(2px, 0, 0) scaleX(1.06);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-screen-line-a,
+  .hero-screen-line-b,
+  .hero-screen-line-c,
+  .hero-screen-card-a,
+  .hero-screen-card-b,
+  .hero-screen-card-c,
+  .hero-screen-pill {
+    animation: none !important;
+  }
+}

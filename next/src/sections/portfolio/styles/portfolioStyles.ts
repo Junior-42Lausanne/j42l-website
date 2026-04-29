@@ -3,7 +3,7 @@ export const portfolioLayout = {
         "min-h-screen bg-[#181612] text-white selection:bg-orange/30 selection:text-white",
 
     section:
-        "relative mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28",
+        "relative mx-auto w-full px-5 py-20 sm:px-6 lg:px-8 lg:py-28",
 
     sectionCompact:
         "relative mx-auto w-full max-w-7xl px-5 py-14 sm:px-6 lg:px-8 lg:py-20",

@@ -1,5 +1,3 @@
-// src/sections/portfolio/components/ProjectCard.tsx
-
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
