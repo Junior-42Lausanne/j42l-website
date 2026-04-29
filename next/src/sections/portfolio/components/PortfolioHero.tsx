@@ -200,9 +200,9 @@ function HeroProofPlate({ project }: HeroProofPlateProps) {
 
             <div className="group relative">
                 <div className="mb-5 grid grid-cols-[1fr_auto] items-center gap-6 pb-4">
-                    <HeroMetaLabel tone="accent">
+                    {/* <HeroMetaLabel tone="accent">
                         01 / Featured proof
-                    </HeroMetaLabel>
+                    </HeroMetaLabel> */}
 
                     <HeroMetaLabel>{project.type}</HeroMetaLabel>
                 </div>

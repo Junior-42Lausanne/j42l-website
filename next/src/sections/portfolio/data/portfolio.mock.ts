@@ -180,7 +180,7 @@ export const portfolioData: PortfolioData = {
       slug: "j42l-website-redesign",
       serviceId: "web-platforms",
       secondaryServiceIds: ["product-discovery-prototyping"],
-      type: "CMS Platform",
+      type: "",
       status: "In progress",
       proofStatement:
         "A service-first institutional website designed to turn J42L’s offer into clear proof of capability.",
@@ -239,7 +239,7 @@ export const portfolioData: PortfolioData = {
           "The J42L website redesign reframes the portfolio as a strategic interface where services lead the exploration and projects validate credibility.",
         quickFacts: [
           { label: "Service", value: "Web Platforms" },
-          { label: "Type", value: "CMS Platform" },
+          { label: "Type", value: "" },
           { label: "Status", value: "In progress" },
           { label: "Core stack", value: "Next.js, React, Strapi" },
         ],

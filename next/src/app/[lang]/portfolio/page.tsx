@@ -23,10 +23,10 @@ export default async function PortfolioPage({
       <PortfolioServiceExplorer />
       <FeaturedCaseStudies locale={locale} />
       <BrowseCaseStudies locale={locale} />
-      <h1 className="w-400">In progress</h1>
-      {/* <ProofPhilosophy /> */}
-      {/* <CapabilitiesSection /> */}
-      {/* <PortfolioCTA locale={locale} /> */}
+      {/* <h1 className="w-400 h-100 bg-white text-black text-4xl">In progress</h1> */}
+      <ProofPhilosophy />
+      <CapabilitiesSection />
+      <PortfolioCTA locale={locale} />
     </main>
   );
 }
