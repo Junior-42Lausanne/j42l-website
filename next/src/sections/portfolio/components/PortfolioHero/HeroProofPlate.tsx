@@ -3,7 +3,6 @@ import type { PortfolioProject } from "@/sections/portfolio/types/portfolio.type
 import { HeroMetaLabel } from "@/sections/portfolio/components/PortfolioHero/HeroMetalLabe";
 import { HeroInterfaceSketch } from "@/sections/portfolio/components/PortfolioHero/HeroInterfaceSketch";
 
-
 export function HeroProofPlate({ project }: HeroProofPlateProps) {
     const service = project
         ? portfolioData.services.find(

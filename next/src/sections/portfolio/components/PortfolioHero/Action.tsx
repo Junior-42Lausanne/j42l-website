@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-// import type { portfolioData } from "@/sections/portfolio/types/portfolio.types";
-
 export function HeroPrimaryAction({ href, children }: HeroActionProps) {
     return (
         <Link
