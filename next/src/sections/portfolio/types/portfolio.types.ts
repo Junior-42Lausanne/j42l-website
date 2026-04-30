@@ -13,7 +13,7 @@ export type ProjectType =
   | "Dashboard"
   | "Prototype"
   | "Automation"
-  | "CMS Platform";
+  | "";
 
 export type ProjectStatus =
   | "Live"
