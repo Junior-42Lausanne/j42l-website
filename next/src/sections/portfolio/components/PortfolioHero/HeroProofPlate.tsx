@@ -1,7 +1,7 @@
-import type { PortfolioProject } from "@/sections/portfolio/types/portfolio.types";
 import { portfolioData } from "@/sections/portfolio/data/portfolio.mock";
-import {HeroMetaLabel} from "@/sections/portfolio/components/PortfolioHero/HeroMetalLabe";
-import {HeroInterfaceSketch} from "@/sections/portfolio/components/PortfolioHero/HeroInterfaceSketch";
+import type { PortfolioProject } from "@/sections/portfolio/types/portfolio.types";
+import { HeroMetaLabel } from "@/sections/portfolio/components/PortfolioHero/HeroMetalLabe";
+import { HeroInterfaceSketch } from "@/sections/portfolio/components/PortfolioHero/HeroInterfaceSketch";
 
 
 export function HeroProofPlate({ project }: HeroProofPlateProps) {
