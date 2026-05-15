@@ -212,6 +212,7 @@ export function BrowseFilterCarousel({
                     onGoToProject={goToProject}
                     canGoPrev={!hasPendingFilter && canGoPrev}
                     canGoNext={!hasPendingFilter && canGoNext}
+                    isTransitioning={hasPendingFilter}
                 />
             </div>
 

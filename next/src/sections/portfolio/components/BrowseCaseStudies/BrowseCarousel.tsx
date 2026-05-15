@@ -182,7 +182,7 @@ export const BrowseCarousel = forwardRef<BrowseCarouselHandle, BrowseCarouselPro
                     wheelDeltaRef.current = 0;
                 }, 90);
 
-                const wheelThreshold = 18;
+                const wheelThreshold = 400;
 
                 if (Math.abs(wheelDeltaRef.current) < wheelThreshold) {
                     return;
@@ -213,7 +213,7 @@ export const BrowseCarousel = forwardRef<BrowseCarouselHandle, BrowseCarouselPro
 
                 wheelUnlockTimeoutRef.current = setTimeout(() => {
                     wheelLockRef.current = false;
-                }, 430);
+                }, 630);
             }
 
             viewportNode.addEventListener("wheel", handleWheel, {
