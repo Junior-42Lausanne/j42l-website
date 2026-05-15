@@ -58,6 +58,7 @@ export function BrowseFilterCarousel({
         dragFree: false,
         containScroll: "trimSnaps",
         watchDrag: false,
+        // Ne pas toucher pour l'instant car je dois mettre en place un meilleur contrôle de la "duration" et de sa "transition"
         duration: 16,
     });
 
@@ -122,6 +123,7 @@ export function BrowseFilterCarousel({
         [hasPendingFilter],
     );
 
+    // Factoriser PARCE QUE 2 FUCKING USEFFECT DANS LE MEME COMPOSANT C'EST INTERDIT
     useEffect(() => {
         if (!emblaApi) {
             return;

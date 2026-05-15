@@ -13,6 +13,7 @@ import type {
 } from "./types";
 import {
     isProjectLinkedToService,
+    sortProjectsByServiceOrder,
 } from "./utils/browseCaseStudies.utils";
 
 export function BrowseCaseStudies({
@@ -90,7 +91,7 @@ export function BrowseCaseStudies({
 
 function getProjectsByFilter(filter: BrowseFilter) {
     if (filter === "all") {
-        return portfolioData.projects;
+        return sortProjectsByServiceOrder(portfolioData.projects);
     }
 
     return portfolioData.projects.filter((project) =>

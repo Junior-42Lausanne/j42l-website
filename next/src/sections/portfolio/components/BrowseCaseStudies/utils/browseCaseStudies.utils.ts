@@ -76,3 +76,30 @@ export function formatIndex(index: number) {
 export function clampIndex(index: number, itemCount: number) {
     return Math.min(Math.max(index, 0), Math.max(itemCount - 1, 0));
 }
+
+export function sortProjectsByServiceOrder(projects: PortfolioProject[]) {
+    const serviceOrder = new Map(
+        portfolioData.services.map((service, index) => [service.id, index]),
+    );
+
+    const originalProjectOrder = new Map(
+        projects.map((project, index) => [project.slug, index]),
+    );
+
+    return [...projects].sort((firstProject, secondProject) => {
+        const firstServiceOrder =
+            serviceOrder.get(firstProject.serviceId) ?? Number.MAX_SAFE_INTEGER;
+
+        const secondServiceOrder =
+            serviceOrder.get(secondProject.serviceId) ?? Number.MAX_SAFE_INTEGER;
+
+        if (firstServiceOrder !== secondServiceOrder) {
+            return firstServiceOrder - secondServiceOrder;
+        }
+
+        return (
+            (originalProjectOrder.get(firstProject.slug) ?? 0) -
+            (originalProjectOrder.get(secondProject.slug) ?? 0)
+        );
+    });
+}

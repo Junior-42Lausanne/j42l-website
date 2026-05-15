@@ -27,6 +27,9 @@ export function BrowseSidebar({
     projectsCount,
     onChangeFilter,
 }: BrowseSidebarProps) {
+    const highlightedServiceId: PortfolioServiceId | undefined =
+        activeFilter === "all" ? activeProject?.serviceId : activeFilter;
+
     return (
         <aside className="lg:sticky lg:top-28">
             <span className={portfolioText.eyebrow}>
@@ -51,7 +54,8 @@ export function BrowseSidebar({
                     <FilterButton
                         label="All case studies"
                         count={portfolioData.projects.length}
-                        isActive={activeFilter === "all"}
+                        isActive={activeFilter === "all" && !highlightedServiceId}
+                        isContextActive={activeFilter === "all"}
                         onClick={() => onChangeFilter("all")}
                     />
 
@@ -62,7 +66,7 @@ export function BrowseSidebar({
                             count={countProjectsForService(
                                 service.id as PortfolioServiceId,
                             )}
-                            isActive={activeFilter === service.id}
+                            isActive={highlightedServiceId === service.id}
                             onClick={() => onChangeFilter(service.id)}
                         />
                     ))}

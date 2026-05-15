@@ -2,6 +2,7 @@ type FilterButtonProps = {
     label: string;
     count: number;
     isActive: boolean;
+    isContextActive?: boolean;
     onClick: () => void;
 };
 
@@ -9,18 +10,24 @@ export function FilterButton({
     label,
     count,
     isActive,
+    isContextActive = false,
     onClick,
 }: FilterButtonProps) {
     return (
         <button
             type="button"
             onClick={onClick}
+            aria-current={isActive ? "true" : undefined}
             className="group grid w-full grid-cols-[1fr_auto] items-center gap-4 py-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
         >
             <span
                 className={[
                     "text-sm font-medium transition",
-                    isActive ? "text-orange" : "text-white/58 group-hover:text-white",
+                    isActive
+                        ? "text-orange"
+                        : isContextActive
+                          ? "text-white/78"
+                          : "text-white/58 group-hover:text-white",
                 ].join(" ")}
             >
                 {label}
@@ -29,7 +36,11 @@ export function FilterButton({
             <span
                 className={[
                     "text-xs font-semibold tabular-nums transition",
-                    isActive ? "text-orange" : "text-white/32 group-hover:text-white/52",
+                    isActive
+                        ? "text-orange"
+                        : isContextActive
+                          ? "text-white/48"
+                          : "text-white/32 group-hover:text-white/52",
                 ].join(" ")}
             >
                 {String(count).padStart(2, "0")}
