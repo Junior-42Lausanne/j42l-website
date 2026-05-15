@@ -1,3 +1,43 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "baseBranchPatterns": [
+    "dev"
+  ],
+  "branchPrefix": "renovate/",
+  "commitMessagePrefix": "chore(deps): ",
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": false,
+      "schedule": [
+        "every weekend"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false,
+      "schedule": [
+        "on the first day of the month"
+      ]
+    }
+  ],
+  "ignoreDeps": [
+    "eslint",
+    "typescript"
+  ],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "every weekend"
+    ]
+  }
 }
