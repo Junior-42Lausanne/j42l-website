@@ -41,7 +41,7 @@ export function DeckHeader({
                         className={[
                             "text-xs font-semibold uppercase tracking-[0.22em] text-orange",
                             "animate-[headerFadeIn_420ms_cubic-bezier(0.19,1,0.22,1)_both]",
-                            isTransitioning ? "opacity-60" : "opacity-100",
+                            isTransitioning ? "opacity-20" : "opacity-100",
                         ].join(" ")}
                     >
                         {getFilterTitle(activeFilter)}

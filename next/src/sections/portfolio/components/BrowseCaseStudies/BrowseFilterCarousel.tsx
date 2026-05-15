@@ -58,7 +58,7 @@ export function BrowseFilterCarousel({
         dragFree: false,
         containScroll: "trimSnaps",
         watchDrag: false,
-        duration: 36,
+        duration: 16,
     });
 
     const headerFilter = pendingFilter ?? currentFilter;
