@@ -6,7 +6,11 @@ import type {
 
 export type BrowseFilter = "all" | PortfolioServiceId;
 
-export type FilterTransitionState = "idle" | "leaving" | "entering";
+export type FilterTransitionState =
+    | "idle"
+    | "leaving"
+    | "entering-prep"
+    | "entering";
 
 export type BrowseCaseStudiesProps = {
     locale?: PortfolioLocale;

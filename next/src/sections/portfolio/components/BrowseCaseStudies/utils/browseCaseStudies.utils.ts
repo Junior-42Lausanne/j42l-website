@@ -59,11 +59,11 @@ export function getFilterTitle(activeFilter: BrowseFilter) {
 
 export function getFilterTransitionClass(state: FilterTransitionState) {
     if (state === "leaving") {
-        return "translate-x-16 opacity-0 scale-[0.985]";
+        return "translate-x-20 opacity-0 scale-[0.985]";
     }
 
-    if (state === "entering") {
-        return "-translate-x-16 opacity-0 scale-[0.985]";
+    if (state === "entering-prep") {
+        return "-translate-x-20 opacity-0 scale-[0.985] transition-none";
     }
 
     return "translate-x-0 opacity-100 scale-100";
