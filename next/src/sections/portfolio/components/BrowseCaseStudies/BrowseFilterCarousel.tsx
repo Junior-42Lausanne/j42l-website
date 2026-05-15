@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 import type {
@@ -8,7 +8,11 @@ import type {
     PortfolioProject,
 } from "@/sections/portfolio/types/portfolio.types";
 
-import { BrowseCarousel } from "./BrowseCarousel";
+import {
+    BrowseCarousel,
+    type BrowseCarouselHandle,
+} from "./BrowseCarousel";
+import { DeckHeader } from "./DeckHeader";
 import type { BrowseFilter } from "./types";
 
 type BrowseFilterCarouselProps = {
@@ -34,11 +38,15 @@ export function BrowseFilterCarousel({
     onCurrentProjectIndexChange,
     onTransitionEnd,
 }: BrowseFilterCarouselProps) {
+    const currentCarouselRef = useRef<BrowseCarouselHandle | null>(null);
+    const pendingCarouselRef = useRef<BrowseCarouselHandle | null>(null);
     const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
         null,
     );
 
     const [incomingProjectIndex, setIncomingProjectIndex] = useState(0);
+    const [canGoPrev, setCanGoPrev] = useState(false);
+    const [canGoNext, setCanGoNext] = useState(currentProjects.length > 1);
 
     const hasPendingFilter = pendingFilter !== null;
 
@@ -53,6 +61,12 @@ export function BrowseFilterCarousel({
         duration: 36,
     });
 
+    const headerFilter = pendingFilter ?? currentFilter;
+    const headerProjectIndex = hasPendingFilter ? 0 : currentProjectIndex;
+    const headerProjectsCount = hasPendingFilter
+        ? pendingProjects.length
+        : currentProjects.length;
+
     const slides = useMemo(() => {
         if (!hasPendingFilter || !pendingFilter) {
             return [
@@ -61,6 +75,7 @@ export function BrowseFilterCarousel({
                     filter: currentFilter,
                     projects: currentProjects,
                     activeIndex: currentProjectIndex,
+                    ref: currentCarouselRef,
                     onActiveIndexChange: onCurrentProjectIndexChange,
                 },
             ];
@@ -72,6 +87,7 @@ export function BrowseFilterCarousel({
                 filter: currentFilter,
                 projects: currentProjects,
                 activeIndex: currentProjectIndex,
+                ref: currentCarouselRef,
                 onActiveIndexChange: onCurrentProjectIndexChange,
             },
             {
@@ -79,6 +95,7 @@ export function BrowseFilterCarousel({
                 filter: pendingFilter,
                 projects: pendingProjects,
                 activeIndex: incomingProjectIndex,
+                ref: pendingCarouselRef,
                 onActiveIndexChange: setIncomingProjectIndex,
             },
         ];
@@ -92,6 +109,18 @@ export function BrowseFilterCarousel({
         pendingFilter,
         pendingProjects,
     ]);
+
+    const updateHeaderControls = useCallback(
+        (state: { canGoPrev: boolean; canGoNext: boolean }) => {
+            if (hasPendingFilter) {
+                return;
+            }
+
+            setCanGoPrev(state.canGoPrev);
+            setCanGoNext(state.canGoNext);
+        },
+        [hasPendingFilter],
+    );
 
     useEffect(() => {
         if (!emblaApi) {
@@ -108,6 +137,8 @@ export function BrowseFilterCarousel({
         }
 
         setIncomingProjectIndex(0);
+        setCanGoPrev(false);
+        setCanGoNext(false);
 
         if (transitionTimeoutRef.current) {
             clearTimeout(transitionTimeoutRef.current);
@@ -133,30 +164,82 @@ export function BrowseFilterCarousel({
         };
     }, [emblaApi, hasPendingFilter, onTransitionEnd, pendingFilter]);
 
+    useEffect(() => {
+        if (hasPendingFilter) {
+            return;
+        }
+
+        setCanGoPrev(currentProjectIndex > 0);
+        setCanGoNext(currentProjectIndex < currentProjects.length - 1);
+    }, [currentProjectIndex, currentProjects.length, hasPendingFilter]);
+
+    const goToProject = useCallback(
+        (index: number) => {
+            if (hasPendingFilter) {
+                return;
+            }
+
+            currentCarouselRef.current?.scrollTo(index);
+        },
+        [hasPendingFilter],
+    );
+
+    const goPrev = useCallback(() => {
+        if (hasPendingFilter) {
+            return;
+        }
+
+        currentCarouselRef.current?.scrollPrev();
+    }, [hasPendingFilter]);
+
+    const goNext = useCallback(() => {
+        if (hasPendingFilter) {
+            return;
+        }
+
+        currentCarouselRef.current?.scrollNext();
+    }, [hasPendingFilter]);
+
     return (
-        <div className="overflow-hidden">
-            <div
-                ref={emblaRef}
-                className="overflow-hidden"
-                aria-label="Service filter transition carousel"
-            >
-                <div className="flex">
-                    {slides.map((slide) => (
-                        <div
-                            key={slide.key}
-                            className="min-w-0 flex-[0_0_100%]"
-                        >
-                            <BrowseCarousel
-                                activeFilter={slide.filter}
-                                projects={slide.projects}
-                                activeProjectIndex={slide.activeIndex}
-                                locale={locale}
-                                onActiveProjectIndexChange={
-                                    slide.onActiveIndexChange
-                                }
-                            />
-                        </div>
-                    ))}
+        <div className="relative min-h-[690px] overscroll-contain lg:min-h-[760px]">
+            <div className="absolute left-0 right-0 top-0 z-30 transition-opacity duration-300 ease-out">
+                <DeckHeader
+                    activeFilter={headerFilter}
+                    activeProjectIndex={headerProjectIndex}
+                    projectsCount={headerProjectsCount}
+                    onPrev={goPrev}
+                    onNext={goNext}
+                    onGoToProject={goToProject}
+                    canGoPrev={!hasPendingFilter && canGoPrev}
+                    canGoNext={!hasPendingFilter && canGoNext}
+                />
+            </div>
+
+            <div className="absolute inset-x-0 bottom-0 top-24 overflow-hidden">
+                <div
+                    ref={emblaRef}
+                    className="h-full overflow-hidden"
+                    aria-label="Service filter transition carousel"
+                >
+                    <div className="flex h-full">
+                        {slides.map((slide) => (
+                            <div
+                                key={slide.key}
+                                className="min-w-0 flex-[0_0_100%]"
+                            >
+                                <BrowseCarousel
+                                    ref={slide.ref}
+                                    projects={slide.projects}
+                                    activeProjectIndex={slide.activeIndex}
+                                    locale={locale}
+                                    onActiveProjectIndexChange={
+                                        slide.onActiveIndexChange
+                                    }
+                                    onCarouselStateChange={updateHeaderControls}
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
