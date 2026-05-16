@@ -9,7 +9,6 @@ import { FilterButton } from "./FilterButton";
 import type { BrowseFilter } from "./types";
 import {
     countProjectsForService,
-    formatIndex,
 } from "./utils/browseCaseStudies.utils";
 
 type BrowseSidebarProps = {
@@ -23,8 +22,6 @@ type BrowseSidebarProps = {
 export function BrowseSidebar({
     activeFilter,
     activeProject,
-    activeProjectIndex,
-    projectsCount,
     onChangeFilter,
 }: BrowseSidebarProps) {
     const highlightedServiceId: PortfolioServiceId | undefined =
@@ -39,11 +36,6 @@ export function BrowseSidebar({
             <h2 className={`${portfolioText.h2} mt-4`}>
                 Explore the complete proof system.
             </h2>
-
-            <p className={`${portfolioText.body} mt-5 max-w-md`}>
-                Browse the full set of case studies through a vertical proof
-                deck: one case at a time, connected to the service it validates.
-            </p>
 
             <div className="mt-8 border-t border-white/10 pt-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/36">
@@ -83,10 +75,7 @@ export function BrowseSidebar({
                         {activeProject.title}
                     </p>
 
-                    <p className="mt-2 text-sm text-white/44">
-                        {formatIndex(activeProjectIndex)} /{" "}
-                        {String(projectsCount).padStart(2, "0")}
-                    </p>
+                    
                 </div>
             ) : null}
         </aside>

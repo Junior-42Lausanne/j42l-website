@@ -6,7 +6,8 @@ import type {
     PortfolioProject,
 } from "@/sections/portfolio/types/portfolio.types";
 
-import { ProjectVisualPoster } from "./ProjectVisualPoster";
+// AJOUTER LE COMPOSANT LORSQU'IL SERA PRET A ACCEUILLIR LE CONTENU 
+// import { ProjectVisualPoster } from "./ProjectVisualPoster";
 import {
     formatIndex,
     getServiceLabel,
@@ -33,7 +34,8 @@ export function ProjectDeckCard({
         <div className="relative h-full overflow-hidden rounded-[2.25rem] bg-[#201c16] ring-1 ring-white/[0.07] shadow-[0_18px_46px_rgba(0,0,0,0.16)]">
             <div className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] ring-1 ring-inset ring-white/[0.035]" />
 
-            <ProjectVisualPoster project={project} />
+            {/* AJOUTER LE COMPOSANT LORSQU'IL SERA PRET A ACCEUILLIR LE CONTENU */}
+            {/* <ProjectVisualPoster project={project} /> */}
 
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(18,15,11,0.96)_0%,rgba(18,15,11,0.74)_42%,rgba(18,15,11,0.24)_100%)]" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(18,15,11,0.02)_0%,rgba(18,15,11,0.08)_42%,rgba(18,15,11,0.76)_100%)]" />

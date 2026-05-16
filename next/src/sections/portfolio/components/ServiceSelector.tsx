@@ -1,5 +1,3 @@
-// src/sections/portfolio/components/ServiceSelector.tsx
-
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
