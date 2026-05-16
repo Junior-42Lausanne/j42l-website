@@ -1,10 +1,10 @@
-import { BrowseCaseStudies } from "@/sections/portfolio/components/BrowseCaseStudies";
-import { CapabilitiesSection } from "@/sections/portfolio/components/CapabilitiesSection";
+// import { BrowseCaseStudies } from "@/sections/portfolio/components/BrowseCaseStudies";
+// import { CapabilitiesSection } from "@/sections/portfolio/components/CapabilitiesSection";
 import { FeaturedCaseStudies } from "@/sections/portfolio/components/FeaturedCaseStudies";
 import { PortfolioCTA } from "@/sections/portfolio/components/PortfolioCTA";
 import { PortfolioHero } from "@/sections/portfolio/components/PortfolioHero";
 import { PortfolioServiceExplorer } from "@/sections/portfolio/components/PortfolioServiceExplorer";
-import { ProofPhilosophy } from "@/sections/portfolio/components/ProofPhilosophy";
+// import { ProofPhilosophy } from "@/sections/portfolio/components/ProofPhilosophy";
 import { portfolioLayout } from "@/sections/portfolio/styles/portfolioStyles";
 import type { PortfolioLocale } from "@/sections/portfolio/types/portfolio.types";
 import type { LangParams } from "@/utils/type";
@@ -21,7 +21,7 @@ export default async function PortfolioPage({
     <main className={portfolioLayout.page}>
       <PortfolioHero />
       <FeaturedCaseStudies locale={locale} />
-      <PortfolioServiceExplorer />
+      {/* <PortfolioServiceExplorer /> */}
       {/* <BrowseCaseStudies locale={locale} /> */}
       {/* <h1 className="w-400 h-100 bg-white text-black text-4xl">In progress</h1> */}
       {/* <ProofPhilosophy /> */}

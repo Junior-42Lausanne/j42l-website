@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useMemo, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { PortfolioVisualMockup } from "@/sections/portfolio/components/PortfolioVisualMockup";
@@ -13,6 +16,8 @@ import {
     portfolioText,
 } from "@/sections/portfolio/styles/portfolioStyles";
 
+type WorkFilter = "all" | PortfolioServiceId;
+
 type FeaturedCaseStudiesProps = {
     locale?: PortfolioLocale;
 };
@@ -20,13 +25,14 @@ type FeaturedCaseStudiesProps = {
 export function FeaturedCaseStudies({
     locale = "en",
 }: FeaturedCaseStudiesProps) {
-    const featuredProjects = portfolioData.projects
-        .filter((project) => project.isFeatured)
-        .sort(sortFeaturedProjects)
-        .slice(0, 3);
+    const [activeFilter, setActiveFilter] = useState<WorkFilter>("all");
 
-    const primaryProject = featuredProjects[0];
-    const secondaryProjects = featuredProjects.slice(1, 3);
+    const visibleProjects = useMemo(() => {
+        return getProjectsByFilter(activeFilter).slice(0, 3);
+    }, [activeFilter]);
+
+    const primaryProject = visibleProjects[0];
+    const secondaryProjects = visibleProjects.slice(1, 3);
 
     if (!primaryProject) {
         return null;
@@ -37,21 +43,27 @@ export function FeaturedCaseStudies({
             id="featured-case-studies"
             className={portfolioLayout.section}
         >
-            <div className="mb-12 grid gap-6 lg:grid-cols-[0.72fr_0.78fr] lg:items-end">
+            <div className="mb-12 grid gap-8 lg:grid-cols-[0.72fr_0.78fr] lg:items-end">
                 <div>
                     <span className={portfolioText.eyebrow}>
                         Selected work
                     </span>
 
                     <h2 className={`${portfolioText.h2} mt-4 max-w-3xl`}>
-                        Proof through work, not explanation.
+                        Work that proves what J42L can deliver.
                     </h2>
                 </div>
 
-                <p className={`${portfolioText.body} max-w-xl lg:justify-self-end`}>
-                    A focused selection of projects showing what J42L can design,
-                    build and deliver across web platforms, tools and product systems.
-                </p>
+                <div className="max-w-xl mr-10 lg:justify-self-end">
+                    <p className={portfolioText.body}>
+                        Explore selected projects by service category.
+                    </p>
+
+                    <WorkFilterNav
+                        activeFilter={activeFilter}
+                        onChangeFilter={setActiveFilter}
+                    />
+                </div>
             </div>
 
             <div className="grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
@@ -75,12 +87,20 @@ export function FeaturedCaseStudies({
                 </div>
             </div>
 
-            <div className="mt-8 flex justify-end">
+            <div className="mt-8 flex justify-between gap-4 border-t border-white/10 pt-6">
+                <p className="max-w-md text-sm leading-6 text-white/38">
+                    Showing{" "}
+                    <span className="text-white/62">
+                        {getFilterLabel(activeFilter)}
+                    </span>{" "}
+                    projects.
+                </p>
+
                 <Link
-                    href="#browse-case-studies"
+                    href={`/${locale}/portfolio`}
                     className="group inline-flex items-center gap-2 text-sm font-semibold text-white/58 transition hover:text-orange"
                 >
-                    View all work
+                    View portfolio
                     <ArrowRight
                         className="h-4 w-4 transition group-hover:translate-x-1"
                         aria-hidden="true"
@@ -88,6 +108,76 @@ export function FeaturedCaseStudies({
                 </Link>
             </div>
         </section>
+    );
+}
+
+type WorkFilterNavProps = {
+    activeFilter: WorkFilter;
+    onChangeFilter: (filter: WorkFilter) => void;
+};
+
+function WorkFilterNav({
+    activeFilter,
+    onChangeFilter,
+}: WorkFilterNavProps) {
+    return (
+        <nav
+            className="mt-7 flex flex-wrap gap-x-5 gap-y-3"
+            aria-label="Filter selected work by service"
+        >
+            <FilterButton
+                label="All"
+                isActive={activeFilter === "all"}
+                onClick={() => onChangeFilter("all")}
+            />
+
+            {portfolioData.services.map((service) => (
+                <FilterButton
+                    key={service.id}
+                    label={service.shortLabel}
+                    isActive={activeFilter === service.id}
+                    onClick={() => onChangeFilter(service.id)}
+                />
+            ))}
+        </nav>
+    );
+}
+
+type FilterButtonProps = {
+    label: string;
+    isActive: boolean;
+    onClick: () => void;
+};
+
+function FilterButton({
+    label,
+    isActive,
+    onClick,
+}: FilterButtonProps) {
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            aria-pressed={isActive}
+            className={[
+                "relative pb-1 text-sm font-semibold transition",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-orange",
+                isActive
+                    ? "text-orange"
+                    : "text-white/42 hover:text-white/76",
+            ].join(" ")}
+        >
+            {label}
+
+            <span
+                className={[
+                    "absolute inset-x-0 -bottom-0.5 h-px origin-left transition-transform duration-300",
+                    isActive
+                        ? "scale-x-100 bg-orange"
+                        : "scale-x-0 bg-white/30 group-hover:scale-x-100",
+                ].join(" ")}
+            />
+        </button>
     );
 }
 
@@ -110,7 +200,6 @@ function FeaturedWorkCard({
     return (
         <Link
             href={href}
-            // Jouer sur avec la className juste en dessous, partie concernée --> "border border-white/[0.075] bg-[#211e18]"
             className={[
                 "group relative block overflow-hidden rounded-[2.25rem] border border-white/[0.075] bg-[#211e18]",
                 "transition duration-500 ease-out hover:border-orange/35",
@@ -208,6 +297,34 @@ function FeaturedWorkCard({
     );
 }
 
+function getProjectsByFilter(filter: WorkFilter) {
+    if (filter === "all") {
+        return portfolioData.projects
+            .filter((project) => project.isFeatured)
+            .sort(sortFeaturedProjects);
+    }
+
+    const service = portfolioData.services.find(
+        (currentService) => currentService.id === filter,
+    );
+
+    if (!service) {
+        return [];
+    }
+
+    const featuredProjects = service.featuredProjectSlugs
+        .map((slug) => portfolioData.projects.find((project) => project.slug === slug))
+        .filter((project): project is PortfolioProject => Boolean(project));
+
+    if (featuredProjects.length) {
+        return featuredProjects;
+    }
+
+    return portfolioData.projects.filter((project) =>
+        isProjectLinkedToService(project, filter),
+    );
+}
+
 function sortFeaturedProjects(
     firstProject: PortfolioProject,
     secondProject: PortfolioProject,
@@ -216,6 +333,16 @@ function sortFeaturedProjects(
         (firstProject.featuredOrder ?? 999) -
         (secondProject.featuredOrder ?? 999)
     );
+}
+
+function isProjectLinkedToService(
+    project: PortfolioProject,
+    serviceId: PortfolioServiceId,
+) {
+    const isPrimaryService = project.serviceId === serviceId;
+    const isSecondaryService = project.secondaryServiceIds?.includes(serviceId);
+
+    return isPrimaryService || Boolean(isSecondaryService);
 }
 
 function getServiceLabel(serviceId: PortfolioServiceId) {
@@ -232,4 +359,16 @@ function getServiceLabel(serviceId: PortfolioServiceId) {
     }
 
     return service.label;
+}
+
+function getFilterLabel(filter: WorkFilter) {
+    if (filter === "all") {
+        return "selected";
+    }
+
+    const service = portfolioData.services.find(
+        (currentService) => currentService.id === filter,
+    );
+
+    return service?.shortLabel ?? "selected";
 }
