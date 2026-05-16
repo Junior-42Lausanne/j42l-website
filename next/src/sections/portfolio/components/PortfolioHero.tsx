@@ -19,9 +19,8 @@ export function PortfolioHero() {
                 "overflow-hidden lg:py-24",
             ].join(" ")}
         >
-            <div className="relative mx-auto w-full max-w-[96rem]">
+            <div className="relative mt-8 mx-auto w-full max-w-[105rem]">
                 <div className="pointer-events-none absolute -left-16 top-10 hidden h-[420px] w-[420px] rounded-full bg-orange/[0.045] blur-3xl lg:block" />
-                {/* <div className="pointer-events-none absolute right-0 top-0 hidden h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block" /> */}
 
                 <div className="relative grid gap-14 lg:grid-cols-[minmax(0,0.94fr)_minmax(440px,0.82fr)] lg:items-start lg:gap-16 xl:gap-20">
                     <div className="max-w-[52rem]">
@@ -40,7 +39,7 @@ export function PortfolioHero() {
                             can be delivered, not just what can be displayed.
                         </p>
 
-                        <div className="mt-9 flex flex-col gap-5 sm:flex-row sm:items-center">
+                        <div className="mt-14 flex flex-col gap-5 sm:flex-row sm:items-center">
                             <HeroPrimaryAction href="#featured-case-studies">
                                 View selected proofs
                             </HeroPrimaryAction>
@@ -50,7 +49,7 @@ export function PortfolioHero() {
                             </HeroSecondaryAction>
                         </div>
 
-                        <HeroReadingRail />
+                        {/* <HeroReadingRail /> */}
                     </div>
 
                     <HeroProofPlate project={featuredProject} />

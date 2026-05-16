@@ -18,7 +18,7 @@ const readingSteps = [
 
 export function HeroReadingRail() {
     return (
-        <div className="mt-16 border-t border-white/[0.08] pt-6">
+        <div className="mt-10 border-t border-white/[0.08] pt-6">
             <div className="grid gap-6 sm:grid-cols-3 sm:items-start">
                 {readingSteps.map((step, index) => (
                     <div key={step.index} className="relative min-w-0">

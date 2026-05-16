@@ -2,6 +2,7 @@ import { portfolioData } from "@/sections/portfolio/data/portfolio.mock";
 import type { PortfolioProject } from "@/sections/portfolio/types/portfolio.types";
 import { HeroMetaLabel } from "@/sections/portfolio/components/PortfolioHero/HeroMetalLabe";
 import { HeroInterfaceSketch } from "@/sections/portfolio/components/PortfolioHero/HeroInterfaceSketch";
+import { HeroReadingRail } from "@/sections/portfolio/components/PortfolioHero/HeroReadingRail";
 
 export function HeroProofPlate({ project }: HeroProofPlateProps) {
     const service = project
@@ -34,8 +35,8 @@ export function HeroProofPlate({ project }: HeroProofPlateProps) {
                     <HeroInterfaceSketch />
                 </div>
 
-                <div className="mt-8 border-t border-white/[0.08] pt-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-white/36">
+                <div className="mt-4 pt-6">
+                    {/* <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-white/36">
                         {service?.label ?? "Service"}{" "}
                         <span className="text-orange/70">/</span>{" "}
                         {project.status}
@@ -47,9 +48,9 @@ export function HeroProofPlate({ project }: HeroProofPlateProps) {
 
                     <p className="mt-4 max-w-xl text-sm leading-7 text-white/62 sm:text-base sm:leading-8">
                         {project.proofStatement}
-                    </p>
+                    </p> */}
 
-                    <div className="mt-6 grid gap-4 border-t border-white/[0.08] pt-5 sm:grid-cols-[0.42fr_1fr]">
+                    {/* <div className="mt-6 grid gap-4 border-t border-white/[0.08] pt-5 sm:grid-cols-[0.42fr_1fr]">
                         <HeroMetaLabel>What it proves</HeroMetaLabel>
 
                         <p className="text-sm leading-7 text-white/54">
@@ -57,7 +58,8 @@ export function HeroProofPlate({ project }: HeroProofPlateProps) {
                             a way to connect offer, execution and evidence
                             without turning projects into decoration.
                         </p>
-                    </div>
+                    </div> */}
+                        <HeroReadingRail />
                 </div>
             </div>
         </aside>

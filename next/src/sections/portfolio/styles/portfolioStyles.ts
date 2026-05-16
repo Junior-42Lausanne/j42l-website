@@ -119,6 +119,5 @@ export const portfolioMockup = {
     barAccent:
         "h-2 rounded-full bg-orange/80",
 
-    gridLine:
-        "bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:28px_28px]",
+    
 } as const;

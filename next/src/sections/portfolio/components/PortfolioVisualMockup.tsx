@@ -16,7 +16,6 @@ export function PortfolioVisualMockup({
     <div
       className={[
         portfolioMockup.frame,
-        portfolioMockup.gridLine,
         "min-h-[260px]",
         className,
       ].join(" ")}

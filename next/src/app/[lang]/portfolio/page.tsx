@@ -20,12 +20,12 @@ export default async function PortfolioPage({
   return (
     <main className={portfolioLayout.page}>
       <PortfolioHero />
-      <PortfolioServiceExplorer />
       <FeaturedCaseStudies locale={locale} />
-      <BrowseCaseStudies locale={locale} />
+      <PortfolioServiceExplorer />
+      {/* <BrowseCaseStudies locale={locale} /> */}
       {/* <h1 className="w-400 h-100 bg-white text-black text-4xl">In progress</h1> */}
-      <ProofPhilosophy />
-      <CapabilitiesSection />
+      {/* <ProofPhilosophy /> */}
+      {/* <CapabilitiesSection /> */}
       <PortfolioCTA locale={locale} />
     </main>
   );
