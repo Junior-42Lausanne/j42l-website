@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { PortfolioVisualMockup } from "@/sections/portfolio/components/PortfolioVisualMockup";
@@ -20,6 +21,53 @@ type WorkFilter = "all" | PortfolioServiceId;
 
 type FeaturedCaseStudiesProps = {
     locale?: PortfolioLocale;
+};
+
+const smoothEase = [0.19, 1, 0.22, 1] as const;
+const exitEase = [0.4, 0, 1, 1] as const;
+
+const workGridVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 18,
+        filter: "blur(6px)",
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: {
+            duration: 0.62,
+            ease: smoothEase,
+            staggerChildren: 0.08,
+        },
+    },
+    exit: {
+        opacity: 0,
+        y: -10,
+        filter: "blur(5px)",
+        transition: {
+            duration: 0.24,
+            ease: exitEase,
+        },
+    },
+};
+
+const workCardVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 24,
+        scale: 0.985,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+            duration: 0.62,
+            ease: smoothEase,
+        },
+    },
 };
 
 export function FeaturedCaseStudies({
@@ -66,46 +114,56 @@ export function FeaturedCaseStudies({
                 </div>
             </div>
 
-            <div className="grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
-                <FeaturedWorkCard
-                    project={primaryProject}
-                    serviceLabel={getServiceLabel(primaryProject.serviceId)}
-                    locale={locale}
-                    variant="large"
-                />
-
-                <div className="grid gap-5">
-                    {secondaryProjects.map((project) => (
+            <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                    key={getWorkGridKey(activeFilter, visibleProjects)}
+                    variants={workGridVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="grid items-stretch gap-5 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.72fr)] xl:grid-cols-[minmax(0,1.04fr)_minmax(420px,0.68fr)]"
+                >
+                    <motion.div variants={workCardVariants}>
                         <FeaturedWorkCard
-                            key={project.slug}
-                            project={project}
-                            serviceLabel={getServiceLabel(project.serviceId)}
+                            project={primaryProject}
+                            serviceLabel={getServiceLabel(primaryProject.serviceId)}
                             locale={locale}
-                            variant="compact"
+                            variant="large"
                         />
-                    ))}
-                </div>
-            </div>
+                    </motion.div>
 
-            <div className="mt-8 flex justify-between gap-4 border-t border-white/10 pt-6">
-                <p className="max-w-md text-sm leading-6 text-white/38">
+                    <div className="grid h-full grid-rows-2 gap-5">
+                        {secondaryProjects.map((project) => (
+                            <motion.div
+                                key={project.slug}
+                                variants={workCardVariants}
+                                className="h-full"
+                            >
+                                <FeaturedWorkCard
+                                    project={project}
+                                    serviceLabel={getServiceLabel(project.serviceId)}
+                                    locale={locale}
+                                    variant="compact"
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
+                <p className="text-sm leading-6 text-white/38">
                     Showing{" "}
-                    <span className="text-white/62">
+                    <span className="font-medium text-white/70">
                         {getFilterLabel(activeFilter)}
                     </span>{" "}
-                    projects.
+                    work.
                 </p>
 
-                <Link
-                    href={`/${locale}/portfolio`}
-                    className="group inline-flex items-center gap-2 text-sm font-semibold text-white/58 transition hover:text-orange"
-                >
-                    View portfolio
-                    <ArrowRight
-                        className="h-4 w-4 transition group-hover:translate-x-1"
-                        aria-hidden="true"
-                    />
-                </Link>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/28">
+                    {String(visibleProjects.length).padStart(2, "0")} selected
+                    cases
+                </p>
             </div>
         </section>
     );
@@ -122,7 +180,7 @@ function WorkFilterNav({
 }: WorkFilterNavProps) {
     return (
         <nav
-            className="mt-7 flex flex-wrap gap-x-5 gap-y-3"
+            className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3"
             aria-label="Filter selected work by service"
         >
             <FilterButton
@@ -160,7 +218,7 @@ function FilterButton({
             onClick={onClick}
             aria-pressed={isActive}
             className={[
-                "relative pb-1 text-sm font-semibold transition",
+                "group relative pb-1 text-sm font-semibold transition",
                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-orange",
                 isActive
                     ? "text-orange"
@@ -204,8 +262,8 @@ function FeaturedWorkCard({
                 "group relative block overflow-hidden rounded-[2.25rem] border border-white/[0.075] bg-[#211e18]",
                 "transition duration-500 ease-out hover:border-orange/35",
                 isLarge
-                    ? "min-h-[720px]"
-                    : "min-h-[350px] lg:min-h-[350px]",
+                    ? "min-h-[620px] lg:min-h-[640px] xl:min-h-[660px]"
+                    : "h-full min-h-[300px] lg:min-h-0",
             ].join(" ")}
         >
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(244,152,25,0.10),transparent_34%,rgba(255,255,255,0.025))] opacity-70 transition duration-500 group-hover:opacity-100" />
@@ -214,14 +272,16 @@ function FeaturedWorkCard({
                 className={[
                     "relative grid h-full gap-0",
                     isLarge
-                        ? "grid-rows-[1fr_auto]"
-                        : "grid-cols-[0.95fr_1.05fr]",
+                        ? "grid-rows-[0.58fr_auto]"
+                        : "grid-cols-[0.46fr_0.54fr]",
                 ].join(" ")}
             >
                 <div
                     className={[
                         "relative overflow-hidden",
-                        isLarge ? "min-h-[420px]" : "min-h-full",
+                        isLarge
+                            ? "min-h-[360px] lg:min-h-[380px]"
+                            : "min-h-full",
                     ].join(" ")}
                 >
                     <PortfolioVisualMockup
@@ -260,8 +320,8 @@ function FeaturedWorkCard({
                             className={[
                                 "mt-5 font-semibold tracking-[-0.055em] text-white",
                                 isLarge
-                                    ? "max-w-[11ch] text-5xl leading-[0.95] sm:text-6xl lg:text-[4.7rem]"
-                                    : "text-3xl leading-[1] sm:text-4xl",
+                                    ? "max-w-[12ch] text-5xl leading-[0.95] sm:text-6xl lg:text-[4.1rem] xl:text-[4.35rem]"
+                                    : "text-2xl leading-[1] sm:text-3xl xl:text-[2.35rem]",
                             ].join(" ")}
                         >
                             {project.title}
@@ -272,7 +332,9 @@ function FeaturedWorkCard({
                         <p
                             className={[
                                 "overflow-hidden leading-7 text-white/62",
-                                isLarge ? "max-w-xl text-base sm:text-lg" : "text-sm",
+                                isLarge
+                                    ? "max-w-xl text-base sm:text-lg"
+                                    : "text-sm",
                             ].join(" ")}
                             style={{
                                 display: "-webkit-box",
@@ -313,7 +375,9 @@ function getProjectsByFilter(filter: WorkFilter) {
     }
 
     const featuredProjects = service.featuredProjectSlugs
-        .map((slug) => portfolioData.projects.find((project) => project.slug === slug))
+        .map((slug) =>
+            portfolioData.projects.find((project) => project.slug === slug),
+        )
         .filter((project): project is PortfolioProject => Boolean(project));
 
     if (featuredProjects.length) {
@@ -371,4 +435,8 @@ function getFilterLabel(filter: WorkFilter) {
     );
 
     return service?.shortLabel ?? "selected";
+}
+
+function getWorkGridKey(filter: WorkFilter, projects: PortfolioProject[]) {
+    return `${filter}-${projects.map((project) => project.slug).join("-")}`;
 }
