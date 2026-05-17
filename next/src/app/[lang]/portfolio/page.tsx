@@ -19,7 +19,7 @@ export default async function PortfolioPage({
 
   return (
     <main className={portfolioLayout.page}>
-      <PortfolioHero />
+      <PortfolioHero/>
       <FeaturedCaseStudies locale={locale} />
       {/* <PortfolioServiceExplorer /> */}
       {/* <BrowseCaseStudies locale={locale} /> */}

@@ -3,7 +3,7 @@ import { portfolioData } from "@/sections/portfolio/data/portfolio.mock";
 import { portfolioLayout } from "@/sections/portfolio/styles/portfolioStyles";
 import { HeroProofPlate } from "@/sections/portfolio/components/PortfolioHero/HeroProofPlate";
 import { HeroMetaLabel } from "@/sections/portfolio/components/PortfolioHero/HeroMetalLabe";
-import { HeroReadingRail } from "@/sections/portfolio/components/PortfolioHero/HeroReadingRail";
+// import { HeroReadingRail } from "@/sections/portfolio/components/PortfolioHero/HeroReadingRail";
 import { HeroPrimaryAction, HeroSecondaryAction } from "@/sections/portfolio/components/PortfolioHero/Action";
 
 export function PortfolioHero() {

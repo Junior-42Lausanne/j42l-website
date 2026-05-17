@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
+import { HeroPrimaryForContact, HeroSecondaryAction } from "@/sections/portfolio/components/PortfolioHero/Action";
+
 import type { PortfolioLocale } from "@/sections/portfolio/types/portfolio.types";
 import {
+    // portfolioButton,
     portfolioLayout,
     portfolioText,
 } from "@/sections/portfolio/styles/portfolioStyles";
@@ -33,7 +36,7 @@ export function PortfolioCTA({ locale = "en" }: PortfolioCTAProps) {
                         </p>
                     </div>
 
-                    <aside className="max-w-md lg:pl-10 xl:pl-12">
+                    <aside className="max-w-md lg:border-l lg:border-white/10 lg:pl-10 xl:pl-12">
                         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/34">
                             Next step
                         </p>
@@ -44,28 +47,21 @@ export function PortfolioCTA({ locale = "en" }: PortfolioCTAProps) {
                             <NextStep index="03" text="Start with a focused scope." />
                         </div>
 
-                        <div className="mt-10 flex flex-col gap-3">
-                            <Link
+
+                        <div className="mt-10 flex w-full max-w-[320px] flex-col gap-4">
+                            <HeroPrimaryForContact
                                 href={`/${locale}/contact`}
-                                className="group inline-flex h-12 items-center justify-between rounded-full bg-orange px-6 text-sm font-semibold text-[#14120e] transition duration-300 hover:bg-[#ffad3d] sm:h-14 sm:px-7"
+                                className="w-full min-w-0 justify-between px-7 [&>svg]:ml-auto"
                             >
                                 Contact J42L
-                                <ArrowRight
-                                    className="h-4 w-4 transition duration-300 group-hover:translate-x-1"
-                                    aria-hidden="true"
-                                />
-                            </Link>
+                            </HeroPrimaryForContact>
 
-                            <Link
+                            <HeroSecondaryAction
                                 href={`/${locale}/services`}
-                                className="group inline-flex h-12 items-center justify-between rounded-full border border-white/10 px-6 text-sm font-semibold text-white/58 transition duration-300 hover:border-white/20 hover:bg-white/[0.025] hover:text-white sm:h-14 sm:px-7"
+                                className="w-full min-w-0 justify-between px-7 [&>svg]:ml-auto"
                             >
                                 Explore services
-                                <ArrowUpRight
-                                    className="h-4 w-4 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                                    aria-hidden="true"
-                                />
-                            </Link>
+                            </HeroSecondaryAction>
                         </div>
                     </aside>
                 </div>
