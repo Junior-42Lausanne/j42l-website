@@ -2,11 +2,11 @@ import ButtonLink from "@/components/ButtonLink";
 import StrapiImage, { type StrapiImageProps } from "@/components/StrapiImage";
 import { type ThemeColor } from "@/utils/type";
 import { getStrapiNavBarMenuData } from "@/utils/fetchStrapiData";
-import { menuRenderer, type menuItem } from "@/utils/render";
-import HamburgerMenu from "@/components/HamburgerMenu";
-import Link from 'next/link';
+// import { menuRenderer, type menuItem } from "@/utils/render";
+// import HamburgerMenu from "@/components/HamburgerMenu";
+// import Link from 'next/link';
 import type { Locale } from "@/utils/type";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+// import LanguageSwitcher from "@/components/LanguageSwitcher";
 import NavBarClient from "@/components/NavBarClient";
 
 export type LogoProps = {
