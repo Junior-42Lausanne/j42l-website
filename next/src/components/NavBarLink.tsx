@@ -85,7 +85,7 @@ export default function NavBarLink({
 			"group relative inline-flex h-10 w-full items-center justify-center overflow-hidden rounded-full px-2",
 			"font-poppins text-sm font-semibold",
 			"transition-colors duration-300 ease-out",
-			"focus:outline-none focus:ring-2 focus:ring-orange/70 focus:ring-offset-2 focus:ring-offset-[#181612]",
+			"focus:outline-none focus-visible:outline-none",
 			onCurrentPage ? "text-orange" : "text-white/74 hover:text-white",
 		].join(" ");
 

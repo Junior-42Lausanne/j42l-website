@@ -2,24 +2,28 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import {
-    motion,
-    useMotionValueEvent,
-    useScroll,
-} from "motion/react";
-import { useState } from "react";
-
-//  menuRenderer, --> @utils/render
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 import HamburgerMenu from "@/components/HamburgerMenu";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import StrapiImage from "@/components/StrapiImage";
-import { type menuItem } from "@/utils/render";
-import type { Locale } from "@/utils/type";
-import type { CtaProps, IconProps, LogoProps } from "@/sections/NavBar";
-
-import NavBarLink from "@/components/NavBarLink";
 import NavBarDropdown from "@/components/NavBarDropdown";
+import NavBarLink from "@/components/NavBarLink";
+import StrapiImage from "@/components/StrapiImage";
+import type { CtaProps, IconProps, LogoProps } from "@/sections/NavBar";
+import type { menuItem } from "@/utils/render";
+import type { Locale } from "@/utils/type";
+
+const useIsomorphicLayoutEffect =
+    typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+function readInitialDetachedState() {
+    if (typeof document === "undefined") {
+        return false;
+    }
+
+    return document.documentElement.dataset.navDetached === "true";
+}
 
 type NavBarClientProps = {
     locale: Locale;
@@ -37,15 +41,72 @@ export default function NavBarClient({
     social,
 }: NavBarClientProps) {
     const { scrollY } = useScroll();
-    const [isDetached, setIsDetached] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+
+    const [isDetached, setIsDetached] = useState(readInitialDetachedState);
+    const [isScrolled, setIsScrolled] = useState(readInitialDetachedState);
+    const [canAnimateNav, setCanAnimateNav] = useState(false);
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<number | null>(null);
 
+    useIsomorphicLayoutEffect(() => {
+        let frame = 0;
+        let frameCount = 0;
+
+        function syncFromScroll() {
+            const currentScrollY = window.scrollY;
+
+            setIsScrolled(currentScrollY > 8);
+            setIsDetached(currentScrollY > 32);
+
+            if (currentScrollY > 32) {
+                document.documentElement.dataset.navDetached = "true";
+            } else {
+                document.documentElement.removeAttribute("data-nav-detached");
+            }
+        }
+
+        function syncLoop() {
+            syncFromScroll();
+            frameCount += 1;
+
+            if (frameCount < 6) {
+                frame = window.requestAnimationFrame(syncLoop);
+                return;
+            }
+
+            setCanAnimateNav(true);
+        }
+
+        setCanAnimateNav(false);
+        syncFromScroll();
+        frame = window.requestAnimationFrame(syncLoop);
+
+        return () => {
+            window.cancelAnimationFrame(frame);
+        };
+    }, []);
+
     useMotionValueEvent(scrollY, "change", (latest) => {
-        // 24 / 32
-        setIsScrolled(latest > 24);
-        setIsDetached(latest > 32);
+        if (!canAnimateNav) {
+            return;
+        }
+
+        setIsScrolled(latest > 8);
+
+        setIsDetached((current) => {
+            if (latest < 4) {
+                document.documentElement.removeAttribute("data-nav-detached");
+                return false;
+            }
+
+            if (latest > 36) {
+                document.documentElement.dataset.navDetached = "true";
+                return true;
+            }
+
+            return current;
+        });
     });
+
     const navTransition = {
         type: "spring",
         stiffness: 200,
@@ -53,123 +114,133 @@ export default function NavBarClient({
         mass: 0.9,
     } as const;
 
+    const navTransitionWhenReady = canAnimateNav
+        ? navTransition
+        : { duration: 0 };
+
     const hoveredMenuItemIndex =
         hoveredMenuItemId === null
             ? -1
             : menu.findIndex((item) => item.id === hoveredMenuItemId);
 
+    // if (!isNavReady) {
+    //     return null;
+    // }
 
     return (
-        <>
-            <motion.header
+        <motion.header
+            suppressHydrationWarning
+            initial={false}
+            animate={{
+                paddingLeft: isDetached ? "2rem" : "0rem",
+                paddingRight: isDetached ? "2rem" : "0rem",
+                paddingTop: isDetached ? "1rem" : "0rem",
+            }}
+            transition={navTransitionWhenReady}
+            className="fixed inset-x-0 top-0 z-50"
+        >
+            <motion.nav
+                suppressHydrationWarning
+                initial={false}
+                aria-label="Main navigation"
                 animate={{
-                    paddingLeft: isDetached ? "2rem" : "0rem",
-                    paddingRight: isDetached ? "2rem" : "0rem",
-                    paddingTop: isDetached ? "1rem" : "0rem",
+                    width: "100%",
+                    maxWidth: isDetached ? 1280 : 2400,
+                    borderRadius: isDetached ? "1.75rem" : "0rem",
+                    paddingLeft: isDetached ? "1rem" : "3rem",
+                    paddingRight: isDetached ? "1rem" : "3rem",
+                    paddingTop: isDetached ? "0.75rem" : "1rem",
+                    paddingBottom: isDetached ? "0.75rem" : "1rem",
+                    backgroundColor: isDetached
+                        ? "rgba(24, 22, 18, 0.82)"
+                        : "rgba(24, 22, 18, 0.94)",
+                    boxShadow: isDetached
+                        ? "0 24px 90px rgba(0,0,0,0)"
+                        : "0 0 0 rgba(0,0,0,0)",
                 }}
-                transition={navTransition}
-                className="fixed inset-x-0 top-0 z-50"
+                transition={navTransitionWhenReady}
+                className={[
+                    "mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-6",
+                    "px-12 py-4",
+                    "border-white/10 backdrop-blur-xl",
+                    "will-change-[max-width,border-radius,padding,background-color,box-shadow]",
+                    isDetached ? "border" : "border-b",
+                ].join(" ")}
             >
-                <motion.nav
-                    aria-label="Main navigation"
-                    animate={{
-                        width: isDetached ? "calc(100% - 4rem)" : "100%",
-                        maxWidth: isDetached ? 1280 : 2400,
-                        borderRadius: isDetached ? "1.75rem" : "0rem",
-                        paddingLeft: isDetached ? "1rem" : "3rem",
-                        paddingRight: isDetached ? "1rem" : "3rem",
-                        paddingTop: isDetached ? "0.75rem" : "1rem",
-                        paddingBottom: isDetached ? "0.75rem" : "1rem",
-                        backgroundColor: isDetached
-                            ? "rgba(24, 22, 18, 0.82)"
-                            : "rgba(24, 22, 18, 0.94)",
-                        boxShadow: isDetached
-                            ? "0 24px 90px rgba(0,0,0,0)"
-                            : "0 0 0 rgba(0,0,0,0)",
-                    }}
-                    transition={navTransition}
-                    className={[
-                        "mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-6",
-                        "border-white/10 backdrop-blur-xl",
-                        "will-change-[width,max-width,border-radius,padding,background-color,box-shadow]",
-                        isDetached ? "border" : "border-b",
-                    ].join(" ")}
-                >
-                    <div className="relative flex min-w-[8rem] items-center">
-                        <LogoLink logo={logo} />
+                <div className="relative flex min-w-[8rem] items-center">
+                    <LogoLink logo={logo} />
+                </div>
+
+                <div className="hidden min-w-0 items-center justify-center lg:flex">
+                    <div
+                        className={[
+                            "relative flex min-w-0 items-center justify-center gap-0",
+                            "transition-all duration-500 ease-out",
+                            isDetached ? "rounded-full" : "rounded-none",
+                        ].join(" ")}
+                        onMouseLeave={() => setHoveredMenuItemId(null)}
+                    >
+                        {menu?.map((item: menuItem, index) => {
+                            const isHovered = hoveredMenuItemId === item.id;
+                            const isAdjacentToHovered =
+                                hoveredMenuItemIndex !== -1 &&
+                                Math.abs(index - hoveredMenuItemIndex) === 1;
+
+                            if (item.__component === "composants.link") {
+                                return (
+                                    <NavBarLink
+                                        key={item.id}
+                                        {...item}
+                                        mode="desktop"
+                                        isHovered={isHovered}
+                                        isAdjacentToHovered={isAdjacentToHovered}
+                                        onHoverStart={() => setHoveredMenuItemId(item.id)}
+                                        onHoverEnd={() => undefined}
+                                    />
+                                );
+                            }
+
+                            if (item.__component === "composants.dropdown-link") {
+                                return (
+                                    <NavBarDropdown
+                                        key={item.id}
+                                        {...item}
+                                        mode="desktop"
+                                        isHovered={isHovered}
+                                        isAdjacentToHovered={isAdjacentToHovered}
+                                        onHoverStart={() => setHoveredMenuItemId(item.id)}
+                                        onHoverEnd={() => undefined}
+                                    />
+                                );
+                            }
+
+                            return null;
+                        })}
                     </div>
+                </div>
 
-                    <div className="hidden min-w-0 items-center justify-center lg:flex">
-                        <div
-                            className={[
-                                "relative flex min-w-0 items-center justify-center gap-0",
-                                "transition-all duration-500 ease-out",
-                                isScrolled ? "rounded-full" : "rounded-none",
-                            ].join(" ")}
-                            onMouseLeave={() => setHoveredMenuItemId(null)}
-                        >
-                            {menu?.map((item: menuItem, index) => {
-                                const isHovered = hoveredMenuItemId === item.id;
-                                const isAdjacentToHovered =
-                                    hoveredMenuItemIndex !== -1 &&
-                                    Math.abs(index - hoveredMenuItemIndex) === 1;
+                <div className="hidden items-center justify-end gap-2 lg:flex">
+                    <NavBarCta cta={cta} />
 
-                                if (item.__component === "composants.link") {
-                                    return (
-                                        <NavBarLink
-                                            key={item.id}
-                                            {...item}
-                                            mode="desktop"
-                                            isHovered={isHovered}
-                                            isAdjacentToHovered={isAdjacentToHovered}
-                                            onHoverStart={() => setHoveredMenuItemId(item.id)}
-                                            onHoverEnd={() => undefined}
-                                        />
-                                    );
-                                }
+                    <div className="h-7 w-px bg-white/10" />
 
-                                if (item.__component === "composants.dropdown-link") {
-                                    return (
-                                        <NavBarDropdown
-                                            key={item.id}
-                                            {...item}
-                                            mode="desktop"
-                                            isHovered={isHovered}
-                                            isAdjacentToHovered={isAdjacentToHovered}
-                                            onHoverStart={() => setHoveredMenuItemId(item.id)}
-                                            onHoverEnd={() => undefined}
-                                        />
-                                    );
-                                }
+                    <SocialLinks social={social} />
 
-                                return null;
-                            })}
-                        </div>
-                    </div>
+                    <div className="h-7 w-px bg-white/10" />
 
-                    <div className="hidden items-center justify-end gap-2 lg:flex">
-                        <NavBarCta cta={cta} />
+                    <LanguageSwitcher currentLocale={locale} isDetached={isDetached} />
+                </div>
 
-                        <div className="h-7 w-px bg-white/10" />
-
-                        <SocialLinks social={social} />
-
-                        <div className="h-7 w-px bg-white/10" />
-
-                        <LanguageSwitcher currentLocale={locale} />
-                    </div>
-
-                    <div className="flex items-center justify-self-end lg:hidden">
-                        <HamburgerMenu
-                            menu={menu}
-                            cta={cta}
-                            social={social}
-                            locale={locale}
-                        />
-                    </div>
-                </motion.nav>
-            </motion.header>
-        </>
+                <div className="flex items-center justify-self-end lg:hidden">
+                    <HamburgerMenu
+                        menu={menu}
+                        cta={cta}
+                        social={social}
+                        locale={locale}
+                    />
+                </div>
+            </motion.nav>
+        </motion.header>
     );
 }
 
@@ -203,7 +274,7 @@ function NavBarCta({ cta }: { cta: CtaProps }) {
         "bg-orange px-4 text-sm font-semibold text-[#14120e]",
         "shadow-[0_18px_60px_rgba(244,152,25,0.16)]",
         "transition-colors duration-300 ease-out hover:bg-[#ffad3d]",
-        "focus:outline-none focus:ring-2 focus:ring-orange/70 focus:ring-offset-2 focus:ring-offset-[#181612]",
+        "outline-none ring-0 focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0",
     ].join(" ");
 
     const content = (
@@ -253,7 +324,7 @@ function SocialLinks({ social }: { social: IconProps[] }) {
                             "group/social relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full",
                             "border border-white/10 bg-white/[0.035] p-2",
                             "transition duration-300 ease-out hover:border-orange/30 hover:bg-orange/10",
-                            "focus:outline-none focus:ring-2 focus:ring-orange/50 focus:ring-offset-2 focus:ring-offset-[#181612]",
+                            "outline-none ring-0 focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0",
                         ].join(" ")}
                     >
                         <span className="pointer-events-none absolute inset-0 scale-0 rounded-full bg-orange/10 transition duration-300 group-hover/social:scale-100" />
