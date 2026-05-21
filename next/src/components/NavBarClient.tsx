@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
 import { useEffect, useLayoutEffect, useState } from "react";
 
 import HamburgerMenu from "@/components/HamburgerMenu";
@@ -17,13 +17,8 @@ import type { Locale } from "@/utils/type";
 const useIsomorphicLayoutEffect =
     typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-function readInitialDetachedState() {
-    if (typeof document === "undefined") {
-        return false;
-    }
-
-    return document.documentElement.dataset.navDetached === "true";
-}
+const NAV_DETACH_THRESHOLD = 36;
+const NAV_ATTACH_THRESHOLD = 4;
 
 type NavBarClientProps = {
     locale: Locale;
@@ -42,63 +37,31 @@ export default function NavBarClient({
 }: NavBarClientProps) {
     const { scrollY } = useScroll();
 
-    const [isDetached, setIsDetached] = useState(readInitialDetachedState);
-    const [isScrolled, setIsScrolled] = useState(readInitialDetachedState);
-    const [canAnimateNav, setCanAnimateNav] = useState(false);
+    const [isDetached, setIsDetached] = useState(false);
     const [hoveredMenuItemId, setHoveredMenuItemId] = useState<number | null>(null);
 
     useIsomorphicLayoutEffect(() => {
-        let frame = 0;
-        let frameCount = 0;
+        const detached =
+            document.documentElement.dataset.navDetached === "true" ||
+            window.scrollY > NAV_DETACH_THRESHOLD;
 
-        function syncFromScroll() {
-            const currentScrollY = window.scrollY;
+        setIsDetached(detached);
 
-            setIsScrolled(currentScrollY > 8);
-            setIsDetached(currentScrollY > 32);
-
-            if (currentScrollY > 32) {
-                document.documentElement.dataset.navDetached = "true";
-            } else {
-                document.documentElement.removeAttribute("data-nav-detached");
-            }
+        if (detached) {
+            document.documentElement.dataset.navDetached = "true";
+        } else {
+            document.documentElement.removeAttribute("data-nav-detached");
         }
-
-        function syncLoop() {
-            syncFromScroll();
-            frameCount += 1;
-
-            if (frameCount < 6) {
-                frame = window.requestAnimationFrame(syncLoop);
-                return;
-            }
-
-            setCanAnimateNav(true);
-        }
-
-        setCanAnimateNav(false);
-        syncFromScroll();
-        frame = window.requestAnimationFrame(syncLoop);
-
-        return () => {
-            window.cancelAnimationFrame(frame);
-        };
     }, []);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
-        if (!canAnimateNav) {
-            return;
-        }
-
-        setIsScrolled(latest > 8);
-
         setIsDetached((current) => {
-            if (latest < 4) {
+            if (latest < NAV_ATTACH_THRESHOLD) {
                 document.documentElement.removeAttribute("data-nav-detached");
                 return false;
             }
 
-            if (latest > 36) {
+            if (latest > NAV_DETACH_THRESHOLD) {
                 document.documentElement.dataset.navDetached = "true";
                 return true;
             }
@@ -107,65 +70,16 @@ export default function NavBarClient({
         });
     });
 
-    const navTransition = {
-        type: "spring",
-        stiffness: 200,
-        damping: 24,
-        mass: 0.9,
-    } as const;
-
-    const navTransitionWhenReady = canAnimateNav
-        ? navTransition
-        : { duration: 0 };
-
     const hoveredMenuItemIndex =
         hoveredMenuItemId === null
             ? -1
             : menu.findIndex((item) => item.id === hoveredMenuItemId);
 
-    // if (!isNavReady) {
-    //     return null;
-    // }
-
     return (
-        <motion.header
-            suppressHydrationWarning
-            initial={false}
-            animate={{
-                paddingLeft: isDetached ? "2rem" : "0rem",
-                paddingRight: isDetached ? "2rem" : "0rem",
-                paddingTop: isDetached ? "1rem" : "0rem",
-            }}
-            transition={navTransitionWhenReady}
-            className="fixed inset-x-0 top-0 z-50"
-        >
-            <motion.nav
-                suppressHydrationWarning
-                initial={false}
+        <header className="j42l-nav-header fixed inset-x-0 top-0 z-50">
+            <nav
                 aria-label="Main navigation"
-                animate={{
-                    width: "100%",
-                    maxWidth: isDetached ? 1280 : 2400,
-                    borderRadius: isDetached ? "1.75rem" : "0rem",
-                    paddingLeft: isDetached ? "1rem" : "3rem",
-                    paddingRight: isDetached ? "1rem" : "3rem",
-                    paddingTop: isDetached ? "0.75rem" : "1rem",
-                    paddingBottom: isDetached ? "0.75rem" : "1rem",
-                    backgroundColor: isDetached
-                        ? "rgba(24, 22, 18, 0.82)"
-                        : "rgba(24, 22, 18, 0.94)",
-                    boxShadow: isDetached
-                        ? "0 24px 90px rgba(0,0,0,0)"
-                        : "0 0 0 rgba(0,0,0,0)",
-                }}
-                transition={navTransitionWhenReady}
-                className={[
-                    "mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-6",
-                    "px-12 py-4",
-                    "border-white/10 backdrop-blur-xl",
-                    "will-change-[max-width,border-radius,padding,background-color,box-shadow]",
-                    isDetached ? "border" : "border-b",
-                ].join(" ")}
+                className="j42l-nav mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-6 border-white/10 backdrop-blur-xl"
             >
                 <div className="relative flex min-w-[8rem] items-center">
                     <LogoLink logo={logo} />
@@ -180,7 +94,7 @@ export default function NavBarClient({
                         ].join(" ")}
                         onMouseLeave={() => setHoveredMenuItemId(null)}
                     >
-                        {menu?.map((item: menuItem, index) => {
+                        {menu.map((item, index) => {
                             const isHovered = hoveredMenuItemId === item.id;
                             const isAdjacentToHovered =
                                 hoveredMenuItemIndex !== -1 &&
@@ -228,7 +142,10 @@ export default function NavBarClient({
 
                     <div className="h-7 w-px bg-white/10" />
 
-                    <LanguageSwitcher currentLocale={locale} isDetached={isDetached} />
+                    <LanguageSwitcher
+                        currentLocale={locale}
+                        isDetached={isDetached}
+                    />
                 </div>
 
                 <div className="flex items-center justify-self-end lg:hidden">
@@ -239,8 +156,8 @@ export default function NavBarClient({
                         locale={locale}
                     />
                 </div>
-            </motion.nav>
-        </motion.header>
+            </nav>
+        </header>
     );
 }
 
@@ -279,9 +196,7 @@ function NavBarCta({ cta }: { cta: CtaProps }) {
 
     const content = (
         <>
-            <span className="whitespace-nowrap">
-                {cta.buttonText}
-            </span>
+            <span className="whitespace-nowrap">{cta.buttonText}</span>
 
             <ArrowUpRight
                 className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover/contact:-translate-y-0.5 group-hover/contact:translate-x-0.5"
@@ -311,7 +226,7 @@ function NavBarCta({ cta }: { cta: CtaProps }) {
 }
 
 function SocialLinks({ social }: { social: IconProps[] }) {
-    if (!social?.length) {
+    if (!social.length) {
         return null;
     }
 
