@@ -57,6 +57,35 @@ function getHoverWidth(label: string) {
 	return Math.max(104, label.length * 9.4 + 34);
 }
 
+function normalizePath(path: string) {
+	if (!path) {
+		return "/";
+	}
+
+	const cleanPath = path.split("?")[0].split("#")[0];
+
+	const withoutLocale = cleanPath.replace(/^\/(en|fr|de)(?=\/|$)/, "");
+
+	if (!withoutLocale) {
+		return "/";
+	}
+
+	return withoutLocale.endsWith("/") && withoutLocale !== "/"
+		? withoutLocale.slice(0, -1)
+		: withoutLocale;
+}
+
+function isCurrentNavPath(pathname: string, url: string) {
+	const currentPath = normalizePath(pathname);
+	const targetPath = normalizePath(url);
+
+	if (targetPath === "/") {
+		return currentPath === "/";
+	}
+
+	return currentPath === targetPath || currentPath.startsWith(`${targetPath}/`);
+}
+
 export default function NavBarLink({
 	linkText,
 	url,
@@ -68,7 +97,7 @@ export default function NavBarLink({
 	onHoverEnd,
 }: Readonly<NavBarLinkProps>) {
 	const pathName = usePathname();
-	const onCurrentPage = pathName === url;
+	const onCurrentPage = isCurrentNavPath(pathName, url);
 	const hoverLabel = HOVER_LABELS[linkText] ?? linkText;
 
 	if (mode === "desktop") {
@@ -138,7 +167,7 @@ export default function NavBarLink({
 				className="inline-flex shrink-0"
 				initial={false}
 				animate={{
-					width: targetWidth,
+					width: Math.min(targetWidth, 150),
 					x: isAdjacentToHovered ? 1 : 0,
 					opacity: 1,
 				}}

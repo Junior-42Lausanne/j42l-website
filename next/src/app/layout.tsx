@@ -27,6 +27,7 @@ const navBootstrapScript = `
     var storedScroll = Number(sessionStorage.getItem(key) || "0") || 0;
     var currentScroll = getScrollY();
     var navigation = performance.getEntriesByType("navigation")[0];
+
     var isRestore = navigation && (
       navigation.type === "reload" ||
       navigation.type === "back_forward"
@@ -37,7 +38,7 @@ const navBootstrapScript = `
     var frame = 0;
     var count = 0;
 
-    function stabilize() {
+    function stabilizeNavState() {
       var y = getScrollY();
 
       if (isRestore) {
@@ -50,14 +51,14 @@ const navBootstrapScript = `
       count += 1;
 
       if (count < readyDelayFrames) {
-        frame = window.requestAnimationFrame(stabilize);
+        frame = window.requestAnimationFrame(stabilizeNavState);
         return;
       }
 
       document.documentElement.setAttribute("data-nav-ready", "true");
     }
 
-    frame = window.requestAnimationFrame(stabilize);
+    frame = window.requestAnimationFrame(stabilizeNavState);
 
     window.addEventListener("scroll", saveScroll, { passive: true });
     window.addEventListener("pagehide", saveScroll);
