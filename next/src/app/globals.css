@@ -170,6 +170,21 @@ html[data-nav-ready="true"] .j42l-nav {
 
 html {
   scroll-behavior: smooth;
+  background-color: #181612;
+  overscroll-behavior-y: none;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: #181612;
+  color: #ffffff;
+  overscroll-behavior-y: none;
+}
+
+body>div {
+  min-height: 100vh;
+  background-color: #181612;
 }
 
 @media (prefers-reduced-motion: no-preference) {

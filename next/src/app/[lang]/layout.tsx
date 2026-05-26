@@ -1,60 +1,64 @@
 import { getStrapiGlobalData } from "@/utils/fetchStrapiData";
+import HtmlLang from "@/components/HtmlLang";
 import NavBar from "@/sections/NavBar";
 import Footer from "@/sections/Footer";
-import { Locale } from "@/utils/type";
-import HtmlLang from "@/components/HtmlLang";
+import { siteLayout } from "@/styles/siteStyles";
+import type { Locale } from "@/utils/type";
 
 export default async function LocaleLayout({
 	children,
-	params
+	params,
 }: Readonly<{
-	children: React.ReactNode
-	params: Promise<{lang: string}>;
+	children: React.ReactNode;
+	params: Promise<{ lang: string }>;
 }>) {
 	const { lang } = await params;
 
 	const allowedLocales = ["en", "fr", "de"] as const;
-	let locale: Locale;
-	if (!allowedLocales.includes(lang as Locale)) {
-		locale = "en"
-	} else {
-		locale = lang as Locale;
-	}
+
+	const locale: Locale = allowedLocales.includes(lang as Locale)
+		? (lang as Locale)
+		: "en";
 
 	let global = null;
 	let navBar = null;
 	let footer = null;
+
 	try {
 		const globalData = await getStrapiGlobalData(locale);
 		global = globalData?.data?.global ?? null;
-		for (let i = 0; i < global.length; i++) {
-			if (global[i].__component === 'layout.nav-bar') {
-				navBar = global[i];
-				continue;
-			}
-			if (global[i].__component === "layout.footer") {
-				footer = global[i];
-				continue;
+
+		if (Array.isArray(global)) {
+			for (const block of global) {
+				if (block.__component === "layout.nav-bar") {
+					navBar = block;
+					continue;
+				}
+
+				if (block.__component === "layout.footer") {
+					footer = block;
+				}
 			}
 		}
 	} catch (error) {
 		console.error(`Global data. ${error}`);
 	}
+
 	return (
-		
-		<div>
+		<div className={siteLayout.page}>
 			<HtmlLang locale={locale} />
-			{
-				global
-					? <NavBar locale={locale} blocks={navBar} />
-					: null
-			}
-			<div>{children}</div>
-			{
-				global
-					? <Footer locale={locale} blocks={footer} />
-					: null
-			}
+
+			{global && navBar ? (
+				<NavBar locale={locale} blocks={navBar} />
+			) : null}
+
+			<main className={siteLayout.main}>
+				{children}
+			</main>
+
+			{global && footer ? (
+				<Footer locale={locale} blocks={footer} />
+			) : null}
 		</div>
 	);
 }
