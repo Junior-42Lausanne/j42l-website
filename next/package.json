@@ -16,7 +16,7 @@
     "lucide-react": "^0.562.0",
     "motion": "^12.38.0",
     "next": "^15.5.9",
-    "qs": "^6.14.0",
+    "qs": "^6.15.2",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "tailwind-merge": "^3.4.0"
@@ -26,7 +26,7 @@
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20.19.41",
-    "@types/qs": "^6.14.0",
+    "@types/qs": "^6.15.1",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9",
