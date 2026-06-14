@@ -4,6 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 import StrapiImage, { type StrapiImageProps } from "@/components/StrapiImage";
 import { type ThemeColor } from "@/utils/type";
 
+import HeroProofArtwork from "@/sections/HeroProofArtwork";
+
 type HeroBackgroundImage = StrapiImageProps & {
 	data?: {
 		attributes?: Partial<StrapiImageProps> | null;
@@ -66,55 +68,42 @@ export default function HeroSection({
 		<section className="relative min-h-screen overflow-hidden bg-[#181612] text-white">
 			<HeroImage backgroundImage={backgroundImage} />
 
-			<div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(24,22,18,0.96)_0%,rgba(24,22,18,0.84)_26%,rgba(24,22,18,0.34)_62%,rgba(24,22,18,0.70)_100%)]" />
-			<div className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_66%_30%,rgba(244,152,25,0.15),transparent_28%),linear-gradient(180deg,rgba(24,22,18,0.18)_0%,rgba(24,22,18,0.04)_46%,#181612_100%)]" />
-			<div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[42vw] bg-[linear-gradient(90deg,rgba(0,0,0,0.28),transparent)]" />
+			<div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(15,14,11,0.96)_0%,rgba(15,14,11,0.88)_24%,rgba(15,14,11,0.40)_58%,rgba(15,14,11,0.76)_100%)]" />
+			{/* <div className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_70%_42%,rgba(244,152,25,0.19),transparent_31%),linear-gradient(180deg,rgba(0,0,0,0.26)_0%,rgba(0,0,0,0.02)_46%,rgba(24,22,18,0.74)_100%)]" /> */}
+			<div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[45vw] bg-[linear-gradient(90deg,rgba(0,0,0,0.32),transparent)]" />
 
 			<div className="pointer-events-none absolute inset-x-0 top-0 z-[3] h-px bg-white/10" />
-			<div className="pointer-events-none absolute left-0 top-0 z-[3] hidden h-full w-px bg-white/10 lg:block" />
-			<div className="pointer-events-none absolute right-0 top-0 z-[3] hidden h-full w-px bg-white/10 lg:block" />
 
-			<div className="relative z-10 flex min-h-screen flex-col px-5 pt-18 sm:px-6 lg:px-8 lg:pt-12">
-				<div className="mx-auto grid w-full max-w-[92rem] flex-1 grid-cols-1 items-center gap-14 py-14 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-12 lg:py-20 xl:grid-cols-[minmax(0,1fr)_26rem]">
-					<div className="max-w-[72rem]">
-						<div className="mb-7 flex items-center gap-4">
-							<span className="h-px w-12 bg-orange" />
-							<p className="font-poppins text-xs font-semibold uppercase tracking-[0.32em] text-orange">
-								Junior Entreprise 42 Lausanne
-							</p>
-						</div>
+			<div className="relative z-10 flex min-h-screen px-5 pt-18 sm:px-6 lg:px-8 lg:pt-12">
+				<div className="mx-auto grid w-full max-w-[92rem] grid-cols-1 items-center gap-12 py-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(25rem,0.75fr)] lg:gap-10 xl:grid-cols-[minmax(0,0.9fr)_minmax(30rem,0.8fr)]">
+					<div className="relative z-10 max-w-[48rem] xl:pl-20">
+						<p className="mb-7 font-poppins text-xs font-semibold uppercase tracking-[0.34em] text-orange">
+							Junior Entreprise 42 Lausanne
+						</p>
 
-						<h1 className="max-w-[66rem] text-[clamp(3.65rem,8.8vw,9rem)] font-semibold leading-[0.86] tracking-[-0.085em] text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.38)]">
+						<h1 className="max-w-[47rem] whitespace-pre-line text-[clamp(3.7rem,6.4vw,6.85rem)] font-semibold leading-[0.88] tracking-[-0.078em] text-white drop-shadow-[0_16px_46px_rgba(0,0,0,0.42)]">
 							{heading}
 						</h1>
 
-						<div className="mt-8 grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-[minmax(0,34rem)_auto] lg:items-end">
+						<div className="mt-8 max-w-[34rem]">
 							{subheading ? (
-								<p className="max-w-[34rem] text-base leading-8 text-white/78 sm:text-lg">
+								<p className="text-base leading-8 text-white/70 sm:text-lg">
 									{subheading}
 								</p>
 							) : null}
 
 							{button ? (
-								<HeroCta url={button.url} external={button.external}>
-									{button.buttonText}
-								</HeroCta>
+								<div className="mt-9">
+									<HeroCta url={button.url} external={button.external}>
+										{button.buttonText}
+									</HeroCta>
+								</div>
 							) : null}
 						</div>
 					</div>
 
-					<PoweredBySignature />
+					<HeroProofArtwork />
 				</div>
-			</div>
-
-			<div className="pointer-events-none absolute bottom-7 left-5 right-5 z-10 mx-auto flex max-w-[92rem] items-center justify-between border-t border-white/10 pt-5 text-xs text-white/36 sm:left-6 sm:right-6 lg:left-8 lg:right-8">
-				<span className="font-poppins uppercase tracking-[0.22em]">
-					Strategy · Design · Development
-				</span>
-
-				<span className="hidden font-poppins uppercase tracking-[0.22em] sm:inline">
-					Lausanne / Switzerland
-				</span>
 			</div>
 		</section>
 	);
@@ -143,54 +132,6 @@ function HeroImage({
 				width={image.width}
 			/>
 		</div>
-	);
-}
-
-function PoweredBySignature() {
-	return (
-		<aside className="hidden lg:flex lg:justify-end">
-			<div className="relative flex w-full max-w-[24rem] flex-col items-end text-right">
-				<div className="mb-7 flex items-center gap-3">
-					<p className="font-poppins text-[0.68rem] font-semibold uppercase tracking-[0.30em] text-white/58">
-						Powered by
-					</p>
-					<span className="h-px w-14 bg-gradient-to-r from-white/0 to-orange/80" />
-				</div>
-
-				<div className="relative w-full">
-					<div className="pointer-events-none absolute right-[5.3rem] top-[-1rem] h-[12rem] w-px rotate-[29deg] bg-gradient-to-b from-orange/0 via-orange/70 to-orange/0 origin-top" />
-
-					<div className="flex items-end justify-end gap-3">
-						<span className="font-poppins text-[7rem] font-semibold leading-none tracking-[-0.10em] text-white drop-shadow-[0_12px_36px_rgba(0,0,0,0.35)]">
-							42
-						</span>
-
-						<span className="mb-4 font-poppins text-[1.15rem] font-semibold uppercase tracking-[0.22em] text-orange">
-							Lausanne
-						</span>
-					</div>
-
-					<div className="mt-4 flex items-center justify-end gap-4">
-						<span className="h-px w-16 bg-white/12" />
-						<span className="font-poppins text-[2rem] font-light leading-none text-orange/88">
-							+
-						</span>
-					</div>
-
-					<div className="mt-5 flex justify-end">
-						<div className="border-l border-white/12 pl-5">
-							<p className="font-poppins text-sm font-medium uppercase leading-8 tracking-[0.22em] text-white/74">
-								Student talent.
-								<br />
-								Real projects.
-								<br />
-								Measurable impact.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</aside>
 	);
 }
 

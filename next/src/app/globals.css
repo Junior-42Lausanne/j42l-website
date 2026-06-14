@@ -1,4 +1,9 @@
 @import "tailwindcss";
+
+@source "../sections/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
+
 @plugin '@tailwindcss/typography';
 
 @theme inline {
@@ -392,4 +397,43 @@ html[data-nav-ready="true"] .j42l-nav {
     background-color 420ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 420ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* J42L artistic texture system                                               */
+/* -------------------------------------------------------------------------- */
+
+.j42l-texture-grain {
+  background-image: url("/textures/j42l-grain-overlay.png");
+  background-repeat: repeat;
+  background-size: 260px 260px;
+}
+
+.j42l-texture-dust {
+  background-image: url("/textures/j42l-amber-dust-overlay.png");
+  background-repeat: repeat;
+  background-size: 680px 680px;
+}
+
+.j42l-number-texture {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 1), transparent 16%),
+    radial-gradient(circle at 72% 38%, rgba(244, 152, 25, 0.16), transparent 22%),
+    radial-gradient(circle at 42% 72%, rgba(56, 31, 16, 0.42), transparent 28%),
+    linear-gradient(135deg, #fff7ec 0%, #e7d9c6 34%, #b99a78 58%, #f2e8dc 82%, #8f765f 100%),
+    url("/textures/j42l-grain-overlay.png");
+  background-blend-mode: screen, soft-light, multiply, normal, multiply;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 118px 118px;
+}
+
+.j42l-orange-rough-mark {
+  background-image:
+    linear-gradient(180deg, rgba(244, 152, 25, 0.78), rgba(110, 55, 16, 0.62)),
+    url("/textures/j42l-grain-overlay.png");
+  background-blend-mode: multiply;
+  background-size: cover, 95px 95px;
 }
