@@ -74,7 +74,7 @@ export default function HeroSection({
 
 			<div className="pointer-events-none absolute inset-x-0 top-0 z-[3] h-px bg-white/10" />
 
-			<div className="relative z-10 flex min-h-screen px-5 pt-18 sm:px-6 lg:px-8 lg:pt-12">
+			<div className="relative z-10 flex min-h-screen px-5 pt-18 sm:px-6 lg:px-8 lg:pt-22">
 				<div className="mx-auto grid w-full max-w-[92rem] grid-cols-1 items-center gap-12 py-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(25rem,0.75fr)] lg:gap-10 xl:grid-cols-[minmax(0,0.9fr)_minmax(30rem,0.8fr)]">
 					<div className="relative z-10 max-w-[48rem] xl:pl-20">
 						<p className="mb-7 font-poppins text-xs font-semibold uppercase tracking-[0.34em] text-orange">
