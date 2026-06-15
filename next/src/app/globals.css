@@ -437,3 +437,124 @@ html[data-nav-ready="true"] .j42l-nav {
   background-blend-mode: multiply;
   background-size: cover, 95px 95px;
 }
+
+
+/* -------------------------------------------------------------------------- */
+/* J42L Hero rising particles                                                 */
+/* -------------------------------------------------------------------------- */
+
+.j42l-hero-particles {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  contain: layout paint;
+}
+
+.j42l-hero-particle {
+  position: absolute;
+  display: block;
+  background-image: url("/textures/j42l-amber-dust-overlay.png");
+  background-repeat: repeat;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0.15px);
+}
+
+.j42l-hero-particle-a {
+  right: -9rem;
+  bottom: -26rem;
+  width: 48rem;
+  height: 86rem;
+  opacity: 0.20;
+  background-size: 620px 620px;
+  animation: j42l-particle-rise-a 34s linear infinite;
+  mask-image: radial-gradient(ellipse at 50% 55%, black 0%, rgba(0, 0, 0, 0.72) 26%, rgba(0, 0, 0, 0.24) 56%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 55%, black 0%, rgba(0, 0, 0, 0.72) 26%, rgba(0, 0, 0, 0.24) 56%, transparent 78%);
+}
+
+.j42l-hero-particle-b {
+  right: 2rem;
+  bottom: -22rem;
+  width: 34rem;
+  height: 74rem;
+  opacity: 0.13;
+  background-size: 520px 520px;
+  animation: j42l-particle-rise-b 46s linear infinite;
+  mask-image: radial-gradient(ellipse at 46% 58%, black 0%, rgba(0, 0, 0, 0.58) 24%, rgba(0, 0, 0, 0.18) 54%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse at 46% 58%, black 0%, rgba(0, 0, 0, 0.58) 24%, rgba(0, 0, 0, 0.18) 54%, transparent 76%);
+}
+
+.j42l-hero-particle-c {
+  right: 15rem;
+  bottom: -18rem;
+  width: 26rem;
+  height: 62rem;
+  opacity: 0.09;
+  background-size: 460px 460px;
+  animation: j42l-particle-rise-c 58s linear infinite;
+  mask-image: radial-gradient(ellipse at 52% 60%, black 0%, rgba(0, 0, 0, 0.48) 22%, rgba(0, 0, 0, 0.14) 50%, transparent 74%);
+  -webkit-mask-image: radial-gradient(ellipse at 52% 60%, black 0%, rgba(0, 0, 0, 0.48) 22%, rgba(0, 0, 0, 0.14) 50%, transparent 74%);
+}
+
+@keyframes j42l-particle-rise-a {
+  0% {
+    opacity: 1.12;
+    transform: translate3d(0, 18%, 0) scale(1);
+  }
+
+  20% {
+    opacity: 0.20;
+  }
+
+  50% {
+    transform: translate3d(-1.6rem, -4%, 0) scale(1.015);
+  }
+
+  100% {
+    opacity: 0.10;
+    transform: translate3d(1rem, -28%, 0) scale(1.03);
+  }
+}
+
+@keyframes j42l-particle-rise-b {
+  0% {
+    opacity: 1.08;
+    transform: translate3d(1rem, 16%, 0) scale(1);
+  }
+
+  35% {
+    opacity: 0.13;
+    transform: translate3d(-1rem, 0%, 0) scale(1.02);
+  }
+
+  100% {
+    opacity: 0.07;
+    transform: translate3d(1.8rem, -24%, 0) scale(1.04);
+  }
+}
+
+@keyframes j42l-particle-rise-c {
+  0% {
+    opacity: 1.05;
+    transform: translate3d(-0.8rem, 14%, 0) scale(1);
+  }
+
+  45% {
+    opacity: 0.09;
+    transform: translate3d(1.1rem, -2%, 0) scale(1.025);
+  }
+
+  100% {
+    opacity: 0.04;
+    transform: translate3d(-1.4rem, -22%, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .j42l-hero-particle {
+    animation: none !important;
+  }
+}
