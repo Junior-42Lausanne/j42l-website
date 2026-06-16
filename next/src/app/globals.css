@@ -442,6 +442,10 @@ html[data-nav-ready="true"] .j42l-nav {
 /* J42L Hero rising particles - SVG version                                   */
 /* -------------------------------------------------------------------------- */
 
+/* -------------------------------------------------------------------------- */
+/* J42L Hero rising particles - diagonal wind flow                            */
+/* -------------------------------------------------------------------------- */
+
 .j42l-hero-particles {
   pointer-events: none;
   position: absolute;
@@ -449,97 +453,138 @@ html[data-nav-ready="true"] .j42l-nav {
   z-index: 4;
   overflow: hidden;
   contain: layout paint;
-  mask-image:
-    linear-gradient(90deg, transparent 0%, transparent 44%, black 58%, black 100%),
-    radial-gradient(ellipse at 76% 58%, black 0%, rgba(0, 0, 0, 0.72) 34%, rgba(0, 0, 0, 0.24) 66%, transparent 86%);
-  -webkit-mask-image:
-    linear-gradient(90deg, transparent 0%, transparent 44%, black 58%, black 100%),
-    radial-gradient(ellipse at 76% 58%, black 0%, rgba(0, 0, 0, 0.72) 34%, rgba(0, 0, 0, 0.24) 66%, transparent 86%);
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
+
+  /* On garde l'effet surtout sur la moitié droite,
+     avec un fade doux vers le centre. */
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.28) 48%,
+    rgba(0, 0, 0, 0.82) 64%,
+    black 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 36%,
+    rgba(0, 0, 0, 0.28) 48%,
+    rgba(0, 0, 0, 0.82) 64%,
+    black 100%
+  );
 }
 
 .j42l-hero-particle-svg {
   position: absolute;
-  right: -4rem;
-  bottom: -16rem;
-  width: 54rem;
-  height: 76rem;
+
+  /*
+    Grande zone invisible : les points naissent bas/droite,
+    puis traversent en diagonale vers le haut/centre.
+  */
+  right: -18rem;
+  bottom: -30rem;
+
+  width: 68rem;
+  height: 88rem;
+
   color: rgba(244, 152, 25, 0.82);
   mix-blend-mode: screen;
-  filter: blur(0.15px);
+  filter: blur(0.12px);
+
   will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
 }
 
 .j42l-hero-particle-layer-a {
-  opacity: 0.36;
-  animation: j42l-svg-particles-rise-a 32s linear infinite;
+  opacity: 0.34;
+  animation: j42l-svg-particles-wind-a 42s linear infinite;
+  animation-delay: -8s;
 }
 
 .j42l-hero-particle-layer-b {
   opacity: 0.22;
-  transform: translate3d(4rem, 6rem, 0) scale(0.88);
-  animation: j42l-svg-particles-rise-b 46s linear infinite;
+  animation: j42l-svg-particles-wind-b 58s linear infinite;
+  animation-delay: -23s;
 }
 
 .j42l-hero-particle-layer-c {
   opacity: 0.14;
-  transform: translate3d(-7rem, 10rem, 0) scale(1.08);
-  animation: j42l-svg-particles-rise-c 58s linear infinite;
+  animation: j42l-svg-particles-wind-c 74s linear infinite;
+  animation-delay: -39s;
 }
 
-@keyframes j42l-svg-particles-rise-a {
+@keyframes j42l-svg-particles-wind-a {
   0% {
-    transform: translate3d(0, 16%, 0) scale(1);
-    opacity: 0.18;
+    opacity: 0;
+    transform: translate3d(18rem, 24%, 0) scale(1);
   }
 
-  18% {
-    opacity: 0.36;
+  12% {
+    opacity: 0.28;
   }
 
-  52% {
-    transform: translate3d(-1.3rem, -3%, 0) scale(1.01);
+  48% {
+    opacity: 0.34;
+    transform: translate3d(-8rem, -8%, 0) scale(1.015);
   }
 
-  100% {
-    transform: translate3d(1.1rem, -30%, 0) scale(1.03);
-    opacity: 0.12;
-  }
-}
-
-@keyframes j42l-svg-particles-rise-b {
-  0% {
-    transform: translate3d(4rem, 20%, 0) scale(0.88);
-    opacity: 0.1;
-  }
-
-  35% {
-    transform: translate3d(2rem, 2%, 0) scale(0.9);
+  88% {
     opacity: 0.22;
   }
 
   100% {
-    transform: translate3d(5.2rem, -26%, 0) scale(0.93);
-    opacity: 0.08;
+    opacity: 0;
+    transform: translate3d(-34rem, -42%, 0) scale(1.035);
   }
 }
 
-@keyframes j42l-svg-particles-rise-c {
+@keyframes j42l-svg-particles-wind-b {
   0% {
-    transform: translate3d(-7rem, 18%, 0) scale(1.08);
-    opacity: 0.06;
+    opacity: 0;
+    transform: translate3d(26rem, 30%, 0) scale(0.86);
   }
 
-  45% {
-    transform: translate3d(-5.5rem, -1%, 0) scale(1.1);
-    opacity: 0.14;
+  16% {
+    opacity: 0.18;
+  }
+
+  52% {
+    opacity: 0.22;
+    transform: translate3d(-2rem, -4%, 0) scale(0.9);
+  }
+
+  90% {
+    opacity: 0.12;
   }
 
   100% {
-    transform: translate3d(-8.2rem, -24%, 0) scale(1.12);
-    opacity: 0.05;
+    opacity: 0;
+    transform: translate3d(-29rem, -36%, 0) scale(0.94);
+  }
+}
+
+@keyframes j42l-svg-particles-wind-c {
+  0% {
+    opacity: 0;
+    transform: translate3d(12rem, 26%, 0) scale(1.08);
+  }
+
+  20% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0.14;
+    transform: translate3d(-14rem, -10%, 0) scale(1.1);
+  }
+
+  86% {
+    opacity: 0.08;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-42rem, -46%, 0) scale(1.13);
   }
 }
 
