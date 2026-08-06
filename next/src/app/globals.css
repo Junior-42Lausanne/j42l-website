@@ -442,6 +442,8 @@ html[data-nav-ready="true"] .j42l-nav {
 /* J42L Hero rising particles - SVG version                                   */
 /* -------------------------------------------------------------------------- */
 
+
+
 /* -------------------------------------------------------------------------- */
 /* J42L Hero rising particles - diagonal wind flow                            */
 /* -------------------------------------------------------------------------- */
@@ -476,39 +478,36 @@ html[data-nav-ready="true"] .j42l-nav {
 
 .j42l-hero-particle-svg {
   position: absolute;
-
-  /*
-    Grande zone invisible : les points naissent bas/droite,
-    puis traversent en diagonale vers le haut/centre.
-  */
   right: -18rem;
   bottom: -30rem;
 
   width: 68rem;
   height: 88rem;
 
-  color: rgba(244, 152, 25, 0.82);
+  overflow: visible;
   mix-blend-mode: screen;
-  filter: blur(0.12px);
 
   will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
 }
 
 .j42l-hero-particle-layer-a {
-  opacity: 0.34;
+  color: rgba(244, 152, 25, 0.88);
+  opacity: 0.42;
   animation: j42l-svg-particles-wind-a 42s linear infinite;
   animation-delay: -8s;
 }
 
 .j42l-hero-particle-layer-b {
-  opacity: 0.22;
+  color: rgba(255, 184, 77, 0.68);
+  opacity: 0.26;
   animation: j42l-svg-particles-wind-b 58s linear infinite;
   animation-delay: -23s;
 }
 
 .j42l-hero-particle-layer-c {
-  opacity: 0.14;
+  color: rgba(255, 230, 196, 0.46);
+  opacity: 0.16;
   animation: j42l-svg-particles-wind-c 74s linear infinite;
   animation-delay: -39s;
 }
