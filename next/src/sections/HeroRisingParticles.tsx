@@ -5,105 +5,64 @@ type Particle = {
 	opacity: number;
 };
 
-type ParticleFieldOptions = {
-	seed: number;
+type ParticleLayerProps = {
+	className: string;
 	count: number;
+	seed: number;
 	minRadius: number;
 	maxRadius: number;
-	minOpacity: number;
-	maxOpacity: number;
 };
 
-function createRandom(seed: number) {
-	let state = seed >>> 0;
-
-	return () => {
-		state = (state * 1664525 + 1013904223) >>> 0;
-		return state / 4294967296;
-	};
-}
-
-function createParticleField({
-	seed,
+function createParticles({
 	count,
+	seed,
 	minRadius,
 	maxRadius,
-	minOpacity,
-	maxOpacity,
-}: ParticleFieldOptions): Particle[] {
-	const random = createRandom(seed);
+}: Omit<ParticleLayerProps, "className">): Particle[] {
+	let currentSeed = seed;
+
+	function random() {
+		currentSeed = (currentSeed * 1664525 + 1013904223) % 4294967296;
+		return currentSeed / 4294967296;
+	}
 
 	return Array.from({ length: count }, () => {
-		const y = random() * 1000;
-
-		/*
-		 * Le centre du courant se décale vers la droite en descendant :
-		 * haut-centre -> bas-droite.
-		 */
-		const streamCenterX = 360 + y * 0.5;
-		const horizontalSpread = (random() - 0.5) * 340;
-
-		const x = Math.min(
-			985,
-			Math.max(70, streamCenterX + horizontalSpread),
-		);
+		const depth = random();
 
 		return {
-			x: Number(x.toFixed(2)),
-			y: Number(y.toFixed(2)),
-			radius: Number(
-				(minRadius + random() * (maxRadius - minRadius)).toFixed(2),
-			),
-			opacity: Number(
-				(minOpacity + random() * (maxOpacity - minOpacity)).toFixed(2),
-			),
+			x: 40 + random() * 920,
+			y: 30 + random() * 1340,
+			radius: minRadius + depth * (maxRadius - minRadius),
+			opacity: 0.18 + random() * 0.58,
 		};
 	});
 }
-
-const FOREGROUND_PARTICLES = createParticleField({
-	seed: 42,
-	count: 82,
-	minRadius: 1.05,
-	maxRadius: 2.35,
-	minOpacity: 0.42,
-	maxOpacity: 0.92,
-});
-
-const MIDDLE_PARTICLES = createParticleField({
-	seed: 84,
-	count: 68,
-	minRadius: 0.75,
-	maxRadius: 1.7,
-	minOpacity: 0.28,
-	maxOpacity: 0.7,
-});
-
-const BACKGROUND_PARTICLES = createParticleField({
-	seed: 126,
-	count: 54,
-	minRadius: 0.5,
-	maxRadius: 1.2,
-	minOpacity: 0.18,
-	maxOpacity: 0.5,
-});
 
 export default function HeroRisingParticles() {
 	return (
 		<div className="j42l-hero-particles" aria-hidden="true">
 			<ParticleLayer
 				className="j42l-hero-particle-layer-a"
-				particles={FOREGROUND_PARTICLES}
+				count={58}
+				seed={42}
+				minRadius={1}
+				maxRadius={2.3}
 			/>
 
 			<ParticleLayer
 				className="j42l-hero-particle-layer-b"
-				particles={MIDDLE_PARTICLES}
+				count={46}
+				seed={84}
+				minRadius={0.7}
+				maxRadius={1.65}
 			/>
 
 			<ParticleLayer
 				className="j42l-hero-particle-layer-c"
-				particles={BACKGROUND_PARTICLES}
+				count={34}
+				seed={126}
+				minRadius={0.45}
+				maxRadius={1.15}
 			/>
 		</div>
 	);
@@ -111,21 +70,28 @@ export default function HeroRisingParticles() {
 
 function ParticleLayer({
 	className,
-	particles,
-}: {
-	className: string;
-	particles: Particle[];
-}) {
+	count,
+	seed,
+	minRadius,
+	maxRadius,
+}: ParticleLayerProps) {
+	const particles = createParticles({
+		count,
+		seed,
+		minRadius,
+		maxRadius,
+	});
+
 	return (
 		<svg
 			className={`j42l-hero-particle-svg ${className}`}
-			viewBox="0 0 1000 1000"
+			viewBox="0 0 1000 1400"
 			preserveAspectRatio="xMidYMid slice"
 			focusable="false"
 		>
 			{particles.map((particle, index) => (
 				<circle
-					key={`${className}-${index}`}
+					key={`${seed}-${index}`}
 					cx={particle.x}
 					cy={particle.y}
 					r={particle.radius}
