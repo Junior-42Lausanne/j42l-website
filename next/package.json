@@ -17,8 +17,8 @@
     "motion": "^12.41.0",
     "next": "^15.5.9",
     "qs": "^6.15.2",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
@@ -27,8 +27,8 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20.19.43",
     "@types/qs": "^6.15.1",
-    "@types/react": "^19.2.15",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "husky": "^9.1.7",
