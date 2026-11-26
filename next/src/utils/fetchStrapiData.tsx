@@ -4,9 +4,124 @@ import type { Locale } from '@/utils/type';
 const baseUrl = "http://strapi-app:1337";
 // const baseUrl = "http://localhost:1337";
 
+const SLUG_SEGMENT_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+export const PAGE_BLOCKS_POPULATE = {
+	"layout.hero": {
+		populate: "*",
+	},
+	"layout.text-section": {
+		populate: "*",
+	},
+	"layout.text-section-with-title": {
+		populate: "*",
+	},
+	"layout.member-section": {
+		populate: {
+			title: true,
+			members: {
+				populate: {
+					photo: true,
+					social: {
+						populate: "*",
+					},
+				},
+			},
+		},
+	},
+	"layout.footer-cta": {
+		populate: "*",
+	},
+	"layout.card-section": {
+		populate: {
+			title: true,
+			cards: {
+				populate: {
+					button: true,
+					backgroundImage: {
+						fields: ["url", "alternativeText", "width", "height"],
+					},
+				},
+			},
+		},
+	},
+	"layout.contact-section": {
+		populate: "*",
+	},
+	"layout.services": {
+		populate: {
+			servicesTitle: true,
+			servicesAccordions: {
+				populate: {
+					image: true,
+					triggerbg: true,
+					ctaButton: true,
+				},
+			},
+		},
+	},
+	"layout.legal-section": {
+		populate: "*",
+	},
+	"layout.testimonial-section": {
+		populate: "*",
+	},
+	"layout.partner-carousel-section": {
+		populate: {
+			sectionTitle: true,
+			partners: {
+				populate: "*",
+			},
+		},
+	},
+	"layout.anchor-tag": {
+		populate: "*",
+	},
+} as const;
+
+function buildPageRouteFilters(segments: string[]) {
+	if (
+		segments.length === 0 ||
+		!segments.every((segment) => SLUG_SEGMENT_REGEX.test(segment))
+	) {
+		return null;
+	}
+
+	const menu = segments.length === 1 ? null : segments.slice(0, -1).join("/");
+	const pageSlug = segments[segments.length - 1];
+
+	if (menu === null) {
+		return {
+			slug: { $eq: pageSlug },
+			$or: [{ menu: { $null: true } }, { menu: { $eq: "" } }],
+		};
+	}
+
+	return {
+		menu: { $eq: menu },
+		slug: { $eq: pageSlug },
+	};
+}
+
+function humanizeSlug(slug?: string): string {
+	if (!slug) return "J42L";
+	if (slug.toLowerCase() === "j42l") return "J42L";
+	return slug
+		.split("-")
+		.filter(Boolean)
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(" ");
+}
+
+function withBrandSuffix(title: string): string {
+	const trimmed = title.trim();
+	if (!trimmed) return "J42L";
+	return /[-|]\s*j42l$/i.test(trimmed) ? trimmed : `${trimmed} - J42L`;
+}
+
 /*
 * Strapi API call to get Page Data
-* param1: url to call, this corresponse to Strapi Single Types url. Eg: "/api/accueil"
+* param1: url to call, this corresponds to Strapi endpoint url. Eg: "/api/accueil"
 * param2: the query converted by qs
 */
 export async function getStrapiData(path: string, query: string) {
@@ -23,6 +138,44 @@ export async function getStrapiData(path: string, query: string) {
 	const data = await response.json();
 	
 	return {type: "OK" as const, data};
+}
+
+/*
+* Strapi API call to resolve a subpage from the Page Collection Type (/api/pages)
+*/
+export async function getStrapiPageBySlug(segments: string[], locale: Locale) {
+	const filters = buildPageRouteFilters(segments);
+	if (!filters) {
+		return { type: "NOT_FOUND" as const };
+	}
+
+	const query = qs.stringify(
+		{
+			locale,
+			filters,
+			populate: {
+				blocks: {
+					on: PAGE_BLOCKS_POPULATE,
+				},
+			},
+			pagination: {
+				pageSize: 1,
+			},
+		},
+		{ encodeValuesOnly: true }
+	);
+
+	const result = await getStrapiData("/api/pages", query);
+	if (result.type === "NOT_FOUND") {
+		return { type: "NOT_FOUND" as const };
+	}
+
+	const page = result.data?.data?.[0];
+	if (!page) {
+		return { type: "NOT_FOUND" as const };
+	}
+
+	return { type: "OK" as const, data: page };
 }
 
 /*
@@ -133,7 +286,7 @@ export async function getStrapiContactDetailsData(locale: Locale) {
 }
 
 /*
-* Strapi API call for Page Meta Data
+* Strapi API call for Single Type Page Meta Data (e.g. /api/accueil)
 */
 export async function getStrapiMetadata(
 	path: string,
@@ -166,6 +319,63 @@ export async function getStrapiMetadata(
 		return {
 				title: fallbackTitle,
 				description: fallbackDescription,
+		};
+	}
+}
+
+/*
+* Strapi API call for Collection Type Subpage Meta Data (/api/pages)
+*/
+export async function getStrapiPageMetadata(
+	segments: string[],
+	locale: Locale
+) {
+	const fallbackTitle = withBrandSuffix(humanizeSlug(segments.at(-1)));
+	const fallbackDescription = "Junior 42 Lausanne";
+	const filters = buildPageRouteFilters(segments);
+	if (!filters) {
+		return {
+			title: fallbackTitle,
+			description: fallbackDescription,
+		};
+	}
+
+	const url = new URL("/api/pages", baseUrl);
+	url.search = qs.stringify(
+		{
+			locale,
+			filters,
+			fields: ["title", "metaTitle", "metaDescription"],
+			pagination: {
+				pageSize: 1,
+			},
+		},
+		{ encodeValuesOnly: true }
+	);
+
+	try {
+		const response = await fetch(url.href, { cache: "no-store" });
+		if (!response.ok) {
+			console.error(`HTTP error! status: ${response.status}`);
+			console.error(`Fail to get page metadata, using default.`);
+			return {
+				title: fallbackTitle,
+				description: fallbackDescription,
+			};
+		}
+		const json = await response.json();
+		const page = json?.data?.[0];
+		return {
+			title:
+				page?.metaTitle ||
+				(page?.title ? withBrandSuffix(page.title) : fallbackTitle),
+			description: page?.metaDescription || fallbackDescription,
+		};
+	} catch (error) {
+		console.error(`Page meta data, using default. ${error}`);
+		return {
+			title: fallbackTitle,
+			description: fallbackDescription,
 		};
 	}
 }
