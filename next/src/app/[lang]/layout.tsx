@@ -1,7 +1,8 @@
+import { notFound } from "next/navigation";
 import { getStrapiGlobalData } from "@/utils/fetchStrapiData";
 import NavBar from "@/sections/NavBar";
 import Footer from "@/sections/Footer";
-import { Locale } from "@/utils/type";
+import { ALLOWED_LOCALES, type Locale } from "@/utils/type";
 import HtmlLang from "@/components/HtmlLang";
 
 export default async function LocaleLayout({
@@ -13,13 +14,10 @@ export default async function LocaleLayout({
 }>) {
 	const { lang } = await params;
 
-	const allowedLocales = ["en", "fr", "de"] as const;
-	let locale: Locale;
-	if (!allowedLocales.includes(lang as Locale)) {
-		locale = "en"
-	} else {
-		locale = lang as Locale;
+	if (!ALLOWED_LOCALES.includes(lang as Locale)) {
+		notFound();
 	}
+	const locale = lang as Locale;
 
 	let global = null;
 	let navBar = null;
@@ -27,14 +25,16 @@ export default async function LocaleLayout({
 	try {
 		const globalData = await getStrapiGlobalData(locale);
 		global = globalData?.data?.global ?? null;
-		for (let i = 0; i < global.length; i++) {
-			if (global[i].__component === 'layout.nav-bar') {
-				navBar = global[i];
-				continue;
-			}
-			if (global[i].__component === "layout.footer") {
-				footer = global[i];
-				continue;
+		if (Array.isArray(global)) {
+			for (let i = 0; i < global.length; i++) {
+				if (global[i].__component === 'layout.nav-bar') {
+					navBar = global[i];
+					continue;
+				}
+				if (global[i].__component === "layout.footer") {
+					footer = global[i];
+					continue;
+				}
 			}
 		}
 	} catch (error) {

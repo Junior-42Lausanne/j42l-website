@@ -41,11 +41,11 @@ export function middleware(request: NextRequest) {
   const second = segments[1]
   const isLocale = locales.includes(first)
 
-  if (!isLocale && blockedRoutes.includes(first)) {
+  if (!isLocale && segments.length === 1 && blockedRoutes.includes(first)) {
     return NextResponse.redirect(new URL('/', request.url))
   }
 
-  if (isLocale && blockedRoutes.includes(second)) {
+  if (isLocale && segments.length === 2 && blockedRoutes.includes(second)) {
     return NextResponse.redirect(new URL(`/${first}`, request.url))
   }
 
@@ -53,5 +53,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|api).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|graphic|partners|stock_photo|api).*)'],
 }

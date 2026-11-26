@@ -46,9 +46,14 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/about',
-        destination: '/about/j42l',
+        destination: '/en/about/j42l',
         permanent: true,
-      }
+      },
+      {
+        source: '/:lang(en|fr|de)/about',
+        destination: '/:lang/about/j42l',
+        permanent: true,
+      },
     ];
   }
 };
