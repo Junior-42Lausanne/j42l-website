@@ -448,13 +448,18 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'layout.text-section',
-        'layout.card-section',
-        'layout.footer-cta',
         'layout.hero',
-        'layout.anchor-tag',
+        'layout.text-section',
+        'layout.text-section-with-title',
+        'layout.member-section',
+        'layout.footer-cta',
+        'layout.card-section',
+        'layout.contact-section',
+        'layout.services',
+        'layout.legal-section',
         'layout.testimonial-section',
         'layout.partner-carousel-section',
+        'layout.anchor-tag',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -471,16 +476,12 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
       'api::accueil.accueil'
     >;
     metaDescription: Schema.Attribute.Text &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     metaTitle: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -888,6 +889,89 @@ export interface ApiNavbarMenuNavbarMenu extends Struct.SingleTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPagePage extends Struct.CollectionTypeSchema {
+  collectionName: 'pages';
+  info: {
+    description: 'Dynamic subpages resolved by Next.js /[lang]/[...slug]';
+    displayName: 'Page';
+    pluralName: 'pages';
+    singularName: 'page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'layout.hero',
+        'layout.text-section',
+        'layout.text-section-with-title',
+        'layout.member-section',
+        'layout.footer-cta',
+        'layout.card-section',
+        'layout.contact-section',
+        'layout.services',
+        'layout.legal-section',
+        'layout.testimonial-section',
+        'layout.partner-carousel-section',
+        'layout.anchor-tag',
+      ]
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
+    menu: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    metaDescription: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    metaTitle: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1708,6 +1792,7 @@ declare module '@strapi/strapi' {
       'api::j42l.j42l': ApiJ42LJ42L;
       'api::member.member': ApiMemberMember;
       'api::navbar-menu.navbar-menu': ApiNavbarMenuNavbarMenu;
+      'api::page.page': ApiPagePage;
       'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
       'api::prototype-service.prototype-service': ApiPrototypeServicePrototypeService;
       'api::student.student': ApiStudentStudent;
